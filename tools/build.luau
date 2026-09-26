@@ -42,6 +42,7 @@ local env = setmetatable({
 	UDim = roblox.UDim,
 	UDim2 = roblox.UDim2,
 	Vector2 = roblox.Vector2,
+	Vector3 = roblox.Vector3,
 	Color3 = roblox.Color3,
 	ColorSequence = roblox.ColorSequence,
 	ColorSequenceKeypoint = roblox.ColorSequenceKeypoint,

@@ -38,6 +38,7 @@ local remotes = getOrCreate(shared, "Folder", "Remotes")
 local spawnRemote = getOrCreate(remotes, "RemoteFunction", "SpawnVehicle")
 local despawnRemote = getOrCreate(remotes, "RemoteFunction", "DespawnVehicle")
 local available = getOrCreate(shared, "Folder", "Available")
+local previews = getOrCreate(shared, "Folder", "Previews")
 local spawnedFolder = getOrCreate(workspace, "Folder", "SpawnedVehicles")
 
 local vehicleFolder = ServerStorage:FindFirstChild(Settings.VehiclesFolder)
@@ -56,15 +57,56 @@ for _, vehicle in Config.Vehicles do
 	vehiclesByName[vehicle.Name] = vehicle
 end
 
+local function flatLook(cframe)
+	local look = cframe.LookVector * Vector3.new(1, 0, 1)
+	return if look.Magnitude > 1e-3 then look.Unit else Vector3.new(0, 0, -1)
+end
+
+-- Direction the vehicle faces: where its driver seat looks.
+local function vehicleForward(model)
+	local seat = model:FindFirstChildWhichIsA("VehicleSeat", true)
+	return flatLook(if seat then seat.CFrame else model:GetPivot())
+end
+
 ---------------------------------------------------------------------------
--- Which Config vehicles actually have a model (the menu hides the rest)
+-- Which Config vehicles actually have a model (the menu hides the rest),
+-- and a look-only copy of each for the 3D pictures in the menu.
 ---------------------------------------------------------------------------
+
+local VISUAL_CLASSES = { "BasePart", "DataModelMesh", "Decal", "SurfaceAppearance", "Model", "Folder" }
+
+local function isVisual(instance)
+	for _, className in VISUAL_CLASSES do
+		if instance:IsA(className) then
+			return true
+		end
+	end
+	return false
+end
+
+local function buildPreview(name, source)
+	local copy = source:Clone()
+	for _, item in copy:GetDescendants() do
+		if not isVisual(item) then
+			item:Destroy()
+		elseif item:IsA("BasePart") then
+			item.Anchored = true
+			item.CanCollide = false
+			item.CanTouch = false
+			item.CanQuery = false
+		end
+	end
+	copy.Name = name
+	copy:SetAttribute("Forward", vehicleForward(source))
+	copy.Parent = previews
+end
 
 local function refreshAvailable()
 	for name in vehiclesByName do
 		local model = vehicleFolder:FindFirstChild(name)
 		local exists = model ~= nil and model:IsA("Model")
 		local flag = available:FindFirstChild(name)
+		local preview = previews:FindFirstChild(name)
 		if exists and not flag then
 			flag = Instance.new("BoolValue")
 			flag.Name = name
@@ -72,6 +114,11 @@ local function refreshAvailable()
 			flag.Parent = available
 		elseif not exists and flag then
 			flag:Destroy()
+		end
+		if exists and not preview then
+			buildPreview(name, model)
+		elseif not exists and preview then
+			preview:Destroy()
 		end
 	end
 end
@@ -122,11 +169,6 @@ end)
 -- Placement
 ---------------------------------------------------------------------------
 
-local function flatLook(cframe)
-	local look = cframe.LookVector * Vector3.new(1, 0, 1)
-	return if look.Magnitude > 1e-3 then look.Unit else Vector3.new(0, 0, -1)
-end
-
 local function yaw(direction)
 	return math.atan2(-direction.X, -direction.Z)
 end
@@ -151,9 +193,7 @@ local function placeVehicle(model, root, ignore)
 	local look = flatLook(root.CFrame)
 	local target = root.Position + look * Settings.SpawnDistance
 
-	local seat = model:FindFirstChildWhichIsA("VehicleSeat", true)
-	local forward = flatLook(if seat then seat.CFrame else model:GetPivot())
-	local turn = yaw(look) - yaw(forward) + math.rad(Settings.SpawnRotation or 0)
+	local turn = yaw(look) - yaw(vehicleForward(model)) + math.rad(Settings.SpawnRotation or 0)
 	local center = model:GetBoundingBox().Position
 	model:PivotTo(CFrame.new(center) * CFrame.Angles(0, turn, 0) * CFrame.new(-center) * model:GetPivot())
 
@@ -197,13 +237,96 @@ local function waitUntilDrivable(model, seat, timeout)
 	return model.Parent ~= nil and not seat.Anchored
 end
 
-local function autoSit(model, humanoid, root)
+-- "E  Drive" / "E  Ride" prompts on every seat. They switch on once the
+-- vehicle is drivable and hide while the seat is taken.
+local function addPrompts(model, owner, vehicle)
+	local prompts = {}
+	for _, seat in model:GetDescendants() do
+		if seat:IsA("Seat") or seat:IsA("VehicleSeat") then
+			if not Settings.SitByTouch then
+				seat.CanTouch = false -- no more sitting down by walking into it
+			end
+			local isDriver = seat:IsA("VehicleSeat")
+			local ownerOnly = isDriver and Settings.OnlyOwnerCanDrive == true
+			local prompt = Instance.new("ProximityPrompt")
+			prompt.Name = "EnterPrompt"
+			prompt.ActionText = if isDriver then "Drive" else "Ride"
+			prompt.ObjectText = vehicle.DisplayName or vehicle.Name
+			prompt.KeyboardKeyCode = Settings.EnterKey or Enum.KeyCode.E
+			prompt.HoldDuration = 0
+			prompt.MaxActivationDistance = 12
+			prompt.RequiresLineOfSight = false
+			prompt.Enabled = false
+			prompt:SetAttribute("OwnerOnly", ownerOnly)
+			prompt:SetAttribute("OwnerUserId", owner.UserId)
+			prompt.Parent = seat
+
+			prompt.Triggered:Connect(function(player)
+				if seat.Occupant or (ownerOnly and player ~= owner) then
+					return
+				end
+				local character = player.Character
+				local humanoid = character and character:FindFirstChildOfClass("Humanoid")
+				local root = character and character:FindFirstChild("HumanoidRootPart")
+				if humanoid and humanoid.Health > 0 and not humanoid.SeatPart and root
+					and (root.Position - seat.Position).Magnitude <= prompt.MaxActivationDistance + 6 then
+					seat:Sit(humanoid)
+				end
+			end)
+			table.insert(prompts, { prompt = prompt, seat = seat })
+		end
+	end
+	return prompts
+end
+
+local function enablePrompts(prompts)
+	for _, item in prompts do
+		local function refresh()
+			item.prompt.Enabled = item.seat.Occupant == nil
+		end
+		refresh()
+		item.seat:GetPropertyChangedSignal("Occupant"):Connect(refresh)
+	end
+end
+
+-- Stands a parked motorcycle up (like a kickstand) while nobody is driving.
+-- Must be added while the vehicle is placed upright: that pose is the target.
+local function keepUpright(seat)
+	local up = seat.CFrame:VectorToObjectSpace(Vector3.yAxis)
+	local other = if math.abs(up.X) < 0.9 then Vector3.xAxis else Vector3.zAxis
+	local attachment = Instance.new("Attachment")
+	attachment.Name = "UprightAttachment"
+	attachment.CFrame = CFrame.fromMatrix(Vector3.zero, up, up:Cross(other).Unit)
+	attachment.Parent = seat
+
+	local align = Instance.new("AlignOrientation")
+	align.Name = "KeepUpright"
+	align.Mode = Enum.OrientationAlignmentMode.OneAttachment
+	align.Attachment0 = attachment
+	align.AlignType = Enum.AlignType.PrimaryAxisParallel
+	align.PrimaryAxis = Vector3.yAxis
+	align.MaxTorque = 20000
+	align.Responsiveness = 12
+	align.Parent = seat
+
+	local function refresh()
+		align.Enabled = seat.Occupant == nil
+	end
+	refresh()
+	seat:GetPropertyChangedSignal("Occupant"):Connect(refresh)
+end
+
+local function whenDrivable(model, prompts, humanoid, root)
 	local seat = model:FindFirstChildWhichIsA("VehicleSeat", true)
-	if not seat or not waitUntilDrivable(model, seat, 15) then
+	if seat and not waitUntilDrivable(model, seat, 15) then
+		warn(`[VehicleSpawner] {model.Name} did not finish loading; seats are enabled anyway.`)
+	end
+	if not model.Parent then
 		return
 	end
-	if humanoid.Health > 0 and not humanoid.SeatPart and root.Parent
-		and (root.Position - seat.Position).Magnitude < Settings.SpawnDistance + 40 then
+	enablePrompts(prompts)
+	if Settings.AutoSit and seat and not seat.Occupant and humanoid.Health > 0 and not humanoid.SeatPart
+		and root.Parent and (root.Position - seat.Position).Magnitude < Settings.SpawnDistance + 40 then
 		seat:Sit(humanoid)
 	end
 end
@@ -272,6 +395,15 @@ spawnRemote.OnServerInvoke = function(player, name)
 	model:SetAttribute("OwnerUserId", player.UserId)
 	setCollisionGroup(model)
 	placeVehicle(model, root, { character, spawnedFolder })
+	local prompts = addPrompts(model, player, vehicle)
+	local driverSeat = model:FindFirstChildWhichIsA("VehicleSeat", true)
+	local upright = vehicle.KeepUpright
+	if upright == nil then
+		upright = vehicle.Category == "Motorcycle"
+	end
+	if upright and driverSeat then
+		keepUpright(driverSeat)
+	end
 	model.Parent = spawnedFolder
 	spawned[player] = model
 	model.Destroying:Connect(function()
@@ -280,9 +412,7 @@ spawnRemote.OnServerInvoke = function(player, name)
 		end
 	end)
 
-	if Settings.AutoSit then
-		task.spawn(autoSit, model, humanoid, root)
-	end
+	task.spawn(whenDrivable, model, prompts, humanoid, root)
 	return true, `{vehicle.DisplayName or vehicle.Name} spawned!`
 end
 

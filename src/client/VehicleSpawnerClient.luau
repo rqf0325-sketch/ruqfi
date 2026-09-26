@@ -10,6 +10,7 @@ local GuiService = game:GetService("GuiService")
 local MarketplaceService = game:GetService("MarketplaceService")
 local Players = game:GetService("Players")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
+local RunService = game:GetService("RunService")
 local TweenService = game:GetService("TweenService")
 local UserInputService = game:GetService("UserInputService")
 
@@ -23,6 +24,7 @@ local remotes = shared:WaitForChild("Remotes")
 local spawnRemote = remotes:WaitForChild("SpawnVehicle")
 local despawnRemote = remotes:WaitForChild("DespawnVehicle")
 local available = shared:WaitForChild("Available", 10)
+local previews = shared:WaitForChild("Previews", 10)
 
 local main = gui:WaitForChild("Main")
 local backdrop = gui:WaitForChild("Backdrop")
@@ -97,18 +99,119 @@ local function isAvailable(vehicle)
 	return available == nil or available:FindFirstChild(vehicle.Name) ~= nil
 end
 
-local function setImage(stage, image)
+---------------------------------------------------------------------------
+-- Vehicle pictures: Config.Image if set, otherwise the vehicle's 3D model
+-- (ReplicatedStorage.VehicleSpawner.Previews, made by the server).
+---------------------------------------------------------------------------
+
+local CARD_ANGLE = math.rad(60) -- camera angle from the vehicle's front, towards its right side
+local views = {} -- [ViewportFrame] = camera framing info
+
+local function visibleBounds(model)
+	local low, high = Vector3.one * math.huge, -Vector3.one * math.huge
+	for _, part in model:GetDescendants() do
+		if part:IsA("BasePart") and part.Transparency < 1 then
+			local cframe, half = part.CFrame, part.Size / 2
+			local right, up, look = cframe.RightVector, cframe.UpVector, cframe.LookVector
+			local extent = Vector3.new(
+				math.abs(right.X) * half.X + math.abs(up.X) * half.Y + math.abs(look.X) * half.Z,
+				math.abs(right.Y) * half.X + math.abs(up.Y) * half.Y + math.abs(look.Y) * half.Z,
+				math.abs(right.Z) * half.X + math.abs(up.Z) * half.Y + math.abs(look.Z) * half.Z
+			)
+			low = low:Min(cframe.Position - extent)
+			high = high:Max(cframe.Position + extent)
+		end
+	end
+	if low.X == math.huge then
+		local cframe, size = model:GetBoundingBox()
+		return cframe.Position, size
+	end
+	return (low + high) / 2, high - low
+end
+
+-- Places the camera so the whole vehicle fits the viewport from `angle`.
+local function frameCamera(view)
+	local camera, angle = view.camera, view.angle
+	local absolute = view.viewport.AbsoluteSize
+	local aspect = if absolute.X > 0 and absolute.Y > 0 then absolute.X / absolute.Y else 1.4
+	local forward = view.forward
+	local right = forward:Cross(Vector3.yAxis)
+	local length = math.abs(view.size.X * forward.X) + math.abs(view.size.Z * forward.Z)
+	local width = math.abs(view.size.X * right.X) + math.abs(view.size.Z * right.Z)
+	local vertical = math.rad(camera.FieldOfView) / 2
+	local horizontal = math.atan(math.tan(vertical) * aspect)
+	local across = length * math.abs(math.sin(angle)) + width * math.abs(math.cos(angle))
+	local depth = length * math.abs(math.cos(angle)) + width * math.abs(math.sin(angle))
+	local distance = math.max(across / 2 / math.tan(horizontal), view.size.Y / 2 / math.tan(vertical)) * 1.15 + depth / 2
+	local direction = forward * math.cos(angle) + right * math.sin(angle)
+	camera.CFrame = CFrame.lookAt(view.center + direction * distance + Vector3.yAxis * distance * 0.2, view.center)
+end
+
+local function clearModel(viewport)
+	views[viewport] = nil
+	viewport:ClearAllChildren()
+	viewport.Visible = false
+end
+
+local function showModel(viewport, vehicle)
+	clearModel(viewport)
+	local source = previews and previews:FindFirstChild(vehicle.Name)
+	if not source then
+		return false
+	end
+	local model = source:Clone()
+	model.Parent = viewport
+	local camera = Instance.new("Camera")
+	camera.FieldOfView = 30
+	camera.Parent = viewport
+	viewport.CurrentCamera = camera
+
+	local center, size = visibleBounds(model)
+	local view = {
+		viewport = viewport,
+		camera = camera,
+		center = center,
+		size = size,
+		forward = model:GetAttribute("Forward") or Vector3.new(0, 0, -1),
+		angle = CARD_ANGLE,
+	}
+	views[viewport] = view
+	frameCamera(view)
+	viewport.Visible = true
+	return true
+end
+
+local function watchViewport(viewport)
+	viewport:GetPropertyChangedSignal("AbsoluteSize"):Connect(function()
+		local view = views[viewport]
+		if view then
+			frameCamera(view)
+		end
+	end)
+end
+
+local function setVisual(stage, vehicle)
+	local image = vehicle and vehicle.Image
 	if type(image) == "number" then
 		image = "rbxassetid://" .. image
 	end
 	local hasImage = type(image) == "string" and image ~= ""
 	local picture = stage:FindFirstChild("VehicleImage")
+	local viewport = stage:FindFirstChild("ModelView")
 	local placeholder = stage:FindFirstChild("PlaceholderIcon")
 	if picture then
 		picture.Image = if hasImage then image else ""
 	end
+	local hasModel = false
+	if viewport then
+		if vehicle and not hasImage then
+			hasModel = showModel(viewport, vehicle)
+		else
+			clearModel(viewport)
+		end
+	end
 	if placeholder then
-		placeholder.Visible = not hasImage
+		placeholder.Visible = not hasImage and not hasModel
 	end
 end
 
@@ -211,6 +314,9 @@ local function updateSpawnButton(text)
 		or "SPAWN VEHICLE"
 end
 
+local detailsViewport = details:WaitForChild("Stage"):WaitForChild("ModelView")
+local detailsVehicle = false
+
 local function updateDetails()
 	local entry = state.selected
 	local vehicle = entry and entry.vehicle
@@ -223,7 +329,10 @@ local function updateDetails()
 		table.insert(info, vehicle.Category)
 	end
 	details.Info.Text = table.concat(info, "  •  ")
-	setImage(details.Stage, vehicle and vehicle.Image)
+	if vehicle ~= detailsVehicle then
+		detailsVehicle = vehicle
+		setVisual(details.Stage, vehicle)
+	end
 	details.NewBadge.Visible = vehicle ~= nil and vehicle.New == true
 
 	local stats = vehicle and vehicle.Stats or {}
@@ -408,8 +517,9 @@ for index, vehicle in Config.Vehicles do
 	card.Info.Text = vehicle.Type or vehicle.Category or ""
 	card.NewBadge.Visible = vehicle.New == true
 	card.LockOverlay.Subtitle.Text = vehicle.GamepassName or "Gamepass"
-	setImage(card.Stage, vehicle.Image)
 	slot.Parent = grid
+	watchViewport(card.Stage.ModelView)
+	setVisual(card.Stage, vehicle)
 
 	local entry = {
 		vehicle = vehicle,
@@ -542,6 +652,48 @@ if available then
 	available.ChildAdded:Connect(refreshList)
 	available.ChildRemoved:Connect(refreshList)
 end
+
+-- 3D pictures that arrive after the menu was built
+if previews then
+	previews.ChildAdded:Connect(function(preview)
+		for _, entry in entries do
+			if entry.vehicle.Name == preview.Name then
+				setVisual(entry.card.Stage, entry.vehicle)
+				if state.selected == entry then
+					setVisual(details.Stage, entry.vehicle)
+				end
+			end
+		end
+	end)
+end
+
+watchViewport(detailsViewport)
+RunService.RenderStepped:Connect(function(deltaTime)
+	local view = state.open and views[detailsViewport]
+	if view then
+		view.angle += deltaTime * 0.6
+		frameCamera(view)
+	end
+end)
+
+-- "E  Drive" on someone else's owner-only vehicle: hide it for this player
+-- (the server refuses it anyway).
+local function hideForeignPrompt(prompt)
+	if prompt:IsA("ProximityPrompt") and prompt:GetAttribute("OwnerOnly")
+		and prompt:GetAttribute("OwnerUserId") ~= player.UserId then
+		prompt.MaxActivationDistance = 0
+	end
+end
+
+task.spawn(function()
+	local spawnedVehicles = workspace:WaitForChild("SpawnedVehicles", 30)
+	if spawnedVehicles then
+		for _, item in spawnedVehicles:GetDescendants() do
+			hideForeignPrompt(item)
+		end
+		spawnedVehicles.DescendantAdded:Connect(hideForeignPrompt)
+	end
+end)
 
 -- Vehicles may hide Roblox's touch controls while riding (their own touch
 -- buttons replace them). Make sure they come back once the player is off.

@@ -2,19 +2,20 @@
 	Rider visuals — replaces the NCT: M "FEAnims" handler.
 
 	The bike carries its own animated body (Misc.Anims.R6 / R15). While someone
-	rides, their real body is hidden and their look (colours, clothes, face,
-	head mesh, accessories) is copied onto that animated body.
+	rides, their real body is hidden and their look is copied onto that
+	animated body: colours, clothes, the whole head (mesh + face, classic or
+	dynamic) and accessories.
 
-	Differences from the original:
-	  * Runs on the server from DriveSeat.Occupant. The client can no longer
-	    pick whose body gets hidden, and nothing depends on the rider's GUI
-	    still existing when they get off.
+	  * Runs on the server from DriveSeat.Occupant, so the client can't pick
+	    whose body gets hidden and nothing depends on the rider's GUI.
 	  * Copies instead of moving things off the character, and restores the
 	    rider when they get off, when the bike is despawned while they ride,
-	    or when the bike leaves the workspace. The rider never ends up
-	    invisible, faceless or without accessories.
-	  * R6: also copies T-shirts, R6 package meshes (CharacterMesh) and scales
-	    accessories to the slightly smaller rider body.
+	    or when the bike leaves the workspace.
+	  * Accessories are found whatever joins them to the body (Weld,
+	    WeldConstraint, RigidConstraint, attachment name, nearest part) and
+	    the original is always hidden. The real body sits higher than the
+	    animated one, so a missed accessory would otherwise float above the
+	    rider's head.
 ]]
 
 local Players = game:GetService("Players")
@@ -51,6 +52,8 @@ local R6_PARTS = {
 	["Right Leg"] = R6.RightLeg.Parts["Right Leg"],
 	["Left Leg"] = R6.LeftLeg.Parts["Left Leg"],
 }
+-- The animated R6 body is a uniformly scaled R6 (a normal R6 torso is 2 studs tall).
+local R6_SCALE = R6_PARTS.Torso.Size.Y / 2
 
 local R15_PARTS = {}
 for _, name in {
@@ -128,54 +131,108 @@ local function restore()
 	end
 end
 
--- Copies an accessory onto the animated body at the same offset, scaled to
--- the animated part's size. The original stays on the character, hidden.
-local function copyAccessory(accessory, parts)
+local function scaleFor(isR6, real, fake)
+	return if isR6 then R6_SCALE else fake.Size.Y / real.Size.Y
+end
+
+-- Turns a copied body/accessory part into a weightless visual, scaled to the animated body.
+local function prepareCopy(part, scale)
+	for _, item in part:GetDescendants() do
+		if item:IsA("JointInstance") or item:IsA("WeldConstraint") or item:IsA("Constraint")
+			or item:IsA("Attachment") or item:IsA("LuaSourceContainer") or item:IsA("ValueBase") then
+			item:Destroy()
+		end
+	end
+	part.Anchored = false
+	part.CanCollide = false
+	part.CanTouch = false
+	part.CanQuery = false
+	part.Massless = true
+	part.Size *= scale
+	for _, mesh in part:GetChildren() do
+		if mesh:IsA("SpecialMesh") then
+			-- Head/Brick/Sphere meshes follow the part size; file meshes don't.
+			if mesh.MeshType == Enum.MeshType.FileMesh then
+				mesh.Scale *= scale
+			end
+			mesh.Offset *= scale
+		end
+	end
+end
+
+local function attachCopy(copy, target, offset)
+	copy.CFrame = target.CFrame * offset
+	local weld = Instance.new("Weld")
+	weld.Part0 = target
+	weld.Part1 = copy
+	weld.C0 = offset
+	weld.Parent = copy
+	keep(copy, target.Parent)
+end
+
+-- The body part an accessory hangs on, however it was joined.
+local function attachedPart(handle, character, parts)
+	local function bodyPart(part)
+		if part and part ~= handle and part:IsA("BasePart") and part.Parent == character and parts[part.Name] then
+			return part
+		end
+		return nil
+	end
+	for _, item in handle:GetChildren() do
+		local found = nil
+		if item:IsA("JointInstance") or item:IsA("WeldConstraint") then
+			found = bodyPart(item.Part0) or bodyPart(item.Part1)
+		elseif item:IsA("Constraint") then
+			found = bodyPart(item.Attachment0 and item.Attachment0.Parent)
+				or bodyPart(item.Attachment1 and item.Attachment1.Parent)
+		end
+		if found then
+			return found
+		end
+	end
+	-- Humanoids attach accessories by attachment name (e.g. HairAttachment on the Head).
+	for _, attachment in handle:GetChildren() do
+		if attachment:IsA("Attachment") then
+			for name in parts do
+				local part = character:FindFirstChild(name)
+				if part and part:FindFirstChild(attachment.Name) then
+					return part
+				end
+			end
+		end
+	end
+	local nearest, nearestDistance = nil, math.huge
+	for name in parts do
+		local part = character:FindFirstChild(name)
+		if part and part:IsA("BasePart") then
+			local distance = (part.Position - handle.Position).Magnitude
+			if distance < nearestDistance then
+				nearest, nearestDistance = part, distance
+			end
+		end
+	end
+	return nearest
+end
+
+local function copyAccessory(accessory, character, parts, isR6)
 	local handle = accessory:FindFirstChild("Handle")
 	if not handle or not handle:IsA("BasePart") then
 		return
 	end
-	local joint = handle:FindFirstChild("AccessoryWeld")
-	local attachedTo = nil
-	if joint and (joint:IsA("JointInstance") or joint:IsA("WeldConstraint")) then
-		attachedTo = joint.Part1 ~= handle and joint.Part1 or joint.Part0
-	end
-	local target = attachedTo and parts[attachedTo.Name]
-	if not target then
-		return
-	end
-
-	local scale = target.Size.Y / attachedTo.Size.Y
-	local offset = attachedTo.CFrame:ToObjectSpace(handle.CFrame)
-	offset = offset - offset.Position + offset.Position * scale
-
-	local clone = handle:Clone()
-	for _, item in clone:GetDescendants() do
-		if item:IsA("JointInstance") or item:IsA("WeldConstraint") or item:IsA("Constraint") then
-			item:Destroy()
+	-- Layered clothing can't be wrapped onto the animated body; it is only hidden.
+	if not handle:FindFirstChildOfClass("WrapLayer") then
+		local attachedTo = attachedPart(handle, character, parts)
+		local target = attachedTo and parts[attachedTo.Name]
+		if target then
+			local scale = scaleFor(isR6, attachedTo, target)
+			local offset = attachedTo.CFrame:ToObjectSpace(handle.CFrame)
+			offset = offset - offset.Position + offset.Position * scale
+			local copy = handle:Clone()
+			copy.Name = accessory.Name
+			prepareCopy(copy, scale)
+			attachCopy(copy, target, offset)
 		end
 	end
-	clone.Name = accessory.Name
-	clone.Anchored = false
-	clone.CanCollide = false
-	clone.CanTouch = false
-	clone.CanQuery = false
-	clone.Massless = true
-	clone.Size *= scale
-	local mesh = clone:FindFirstChildOfClass("SpecialMesh")
-	if mesh then
-		mesh.Scale *= scale
-		mesh.Offset *= scale
-	end
-	clone.CFrame = target.CFrame * offset
-
-	local weld = Instance.new("Weld")
-	weld.Part0 = target
-	weld.Part1 = clone
-	weld.C0 = offset
-	weld.Parent = clone
-
-	keep(clone, target.Parent)
 	hide(handle, "Transparency")
 end
 
@@ -188,45 +245,57 @@ local function apply(character)
 	local parts = isR6 and R6_PARTS or R15_PARTS
 	session = { hidden = {}, clones = {}, shown = {} }
 
-	-- Body: show the animated part in the rider's colour, hide the real one.
-	for name, fake in parts do
-		local real = character:FindFirstChild(name)
-		if fake and real and real:IsA("BasePart") then
-			fake.Color = real.Color
-			fake.Transparency = 0
-			table.insert(session.shown, fake)
-			hide(real, "Transparency")
+	-- Everything is copied from the real body before any of it is hidden.
+
+	-- Head: copy the real head as a whole (mesh, face decal or dynamic head,
+	-- colour) onto the animated head, which itself stays invisible.
+	local head = character:FindFirstChild("Head")
+	if head and head:IsA("BasePart") and parts.Head then
+		local copy = head:Clone()
+		copy.Name = "RiderHead"
+		prepareCopy(copy, scaleFor(isR6, head, parts.Head))
+		attachCopy(copy, parts.Head, CFrame.identity)
+	end
+
+	-- Accessories
+	for _, item in character:GetChildren() do
+		if item:IsA("Accessory") then
+			copyAccessory(item, character, parts, isR6)
 		end
 	end
 
-	-- Head mesh and face
-	local head = character:FindFirstChild("Head")
-	if head and parts.Head then
-		for _, item in head:GetChildren() do
-			if item:IsA("SpecialMesh") then
-				keep(item:Clone(), parts.Head)
-			elseif item:IsA("Decal") then
-				keep(item:Clone(), parts.Head)
+	-- Body: show the animated parts in the rider's colours, hide the real ones.
+	for name, fake in parts do
+		local real = character:FindFirstChild(name)
+		if fake and real and real:IsA("BasePart") then
+			if name ~= "Head" then
+				fake.Color = real.Color
+				fake.Transparency = 0
+				table.insert(session.shown, fake)
+			end
+			hide(real, "Transparency")
+		end
+	end
+	if head then
+		for _, item in head:GetDescendants() do
+			if item:IsA("Decal") then
 				hide(item, "Transparency")
 			end
 		end
 	end
 
-	-- Clothing, R6 packages, accessories
+	-- Clothing and R6 packages
 	if isR6 then
-		for _, name in R6_CLOTHING.Shirt do
-			ensureHumanoid(R6_PARTS[name].Parent, Enum.HumanoidRigType.R6)
+		for name, fake in R6_PARTS do
+			if name ~= "Head" then
+				ensureHumanoid(fake.Parent, Enum.HumanoidRigType.R6)
+			end
 		end
-		ensureHumanoid(R6_PARTS["Right Leg"].Parent, Enum.HumanoidRigType.R6)
-		ensureHumanoid(R6_PARTS["Left Leg"].Parent, Enum.HumanoidRigType.R6)
 	else
 		ensureHumanoid(R15, Enum.HumanoidRigType.R15)
 	end
-
 	for _, item in character:GetChildren() do
-		if item:IsA("Accessory") then
-			copyAccessory(item, parts)
-		elseif isR6 and R6_CLOTHING[item.ClassName] then
+		if isR6 and R6_CLOTHING[item.ClassName] then
 			for _, name in R6_CLOTHING[item.ClassName] do
 				keep(item:Clone(), R6_PARTS[name].Parent)
 			end

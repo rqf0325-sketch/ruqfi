@@ -19,6 +19,9 @@ Config.Settings = {
 	SpawnRotation = 0, -- putar kendaraan (derajat) kalau muncul menghadap arah yang salah
 	SpawnCooldown = 5, -- detik antar spawn per pemain
 	AutoSit = true, -- pemain langsung duduk di kendaraan setelah spawn
+	EnterKey = Enum.KeyCode.E, -- tombol naik ke kendaraan ("E  Drive")
+	SitByTouch = false, -- true = pemain juga bisa naik dengan menabrak/menyentuh jok
+	OnlyOwnerCanDrive = true, -- hanya yang men-spawn yang bisa mengemudi (jok penumpang tetap bebas)
 	CloseMenuOnSpawn = true,
 	OpenOnJoin = false, -- menu langsung terbuka saat masuk game
 	ToggleKey = Enum.KeyCode.V, -- tombol keyboard buka/tutup menu (nil = tidak ada)
@@ -39,11 +42,14 @@ Config.Settings = {
 	DisplayName  : nama yang tampil di menu (opsional, default = Name)
 	Category     : "Motorcycle" / "Car" (harus cocok dengan tab Tab_<Category>)
 	Type         : keterangan kecil, mis. "Touring", "Chopper"
-	Image        : "rbxassetid://123..." gambar kendaraan (kosong = ikon placeholder)
+	Image        : "rbxassetid://123..." gambar kartu (kosong = tampilkan model 3D kendaraannya)
 	New          : true = badge NEW dan muncul paling atas di sort "Newest"
 	GamepassId   : 0 = gratis; isi ID gamepass untuk mengunci kendaraan
 	GamepassName : teks di kartu yang terkunci
 	Stats        : TopSpeed (km/h), Acceleration (detik 0-100), Handling (0-10) — hanya tampilan
+	KeepUpright  : motor tetap berdiri saat ditinggal (default: true untuk Category "Motorcycle")
+
+	Gambar di menu: kalau Image kosong, menu menampilkan model 3D kendaraannya.
 ]]
 Config.Vehicles = {
 	{

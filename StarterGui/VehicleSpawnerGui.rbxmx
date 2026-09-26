@@ -1860,7 +1860,48 @@
                     <int name="ZIndex">3</int>
                   </Properties>
                 </Item>
-                <Item class="ImageLabel" referent="81">
+                <Item class="ViewportFrame" referent="81">
+                  <Properties>
+                    <string name="Name">ModelView</string>
+                    <Color3 name="Ambient">
+                      <R>0.6666667</R>
+                      <G>0.6745098</G>
+                      <B>0.7254902</B>
+                    </Color3>
+                    <Color3 name="BackgroundColor3">
+                      <R>1</R>
+                      <G>1</G>
+                      <B>1</B>
+                    </Color3>
+                    <float name="BackgroundTransparency">1</float>
+                    <int name="BorderSizePixel">0</int>
+                    <Color3 name="LightColor">
+                      <R>1</R>
+                      <G>0.972549</G>
+                      <B>0.92156863</B>
+                    </Color3>
+                    <Vector3 name="LightDirection">
+                      <X>-0.6000061</X>
+                      <Y>-1</Y>
+                      <Z>-0.3999939</Z>
+                    </Vector3>
+                    <UDim2 name="Position">
+                      <XS>0</XS>
+                      <XO>0</XO>
+                      <YS>0</YS>
+                      <YO>0</YO>
+                    </UDim2>
+                    <UDim2 name="Size">
+                      <XS>1</XS>
+                      <XO>0</XO>
+                      <YS>1</YS>
+                      <YO>0</YO>
+                    </UDim2>
+                    <bool name="Visible">false</bool>
+                    <int name="ZIndex">3</int>
+                  </Properties>
+                </Item>
+                <Item class="ImageLabel" referent="82">
                   <Properties>
                     <string name="Name">VehicleImage</string>
                     <Color3 name="BackgroundColor3">
@@ -1891,7 +1932,7 @@
                   </Properties>
                 </Item>
               </Item>
-              <Item class="Frame" referent="82">
+              <Item class="Frame" referent="83">
                 <Properties>
                   <string name="Name">LockOverlay</string>
                   <Color3 name="BackgroundColor3">
@@ -1916,7 +1957,7 @@
                   <bool name="Visible">false</bool>
                   <int name="ZIndex">2</int>
                 </Properties>
-                <Item class="UICorner" referent="83">
+                <Item class="UICorner" referent="84">
                   <Properties>
                     <string name="Name">UICorner</string>
                     <UDim name="BottomLeftRadius">
@@ -1937,7 +1978,7 @@
                     </UDim>
                   </Properties>
                 </Item>
-                <Item class="Frame" referent="84">
+                <Item class="Frame" referent="85">
                   <Properties>
                     <string name="Name">LockIcon</string>
                     <Color3 name="BackgroundColor3">
@@ -1960,7 +2001,7 @@
                       <YO>0</YO>
                     </UDim2>
                   </Properties>
-                  <Item class="UICorner" referent="85">
+                  <Item class="UICorner" referent="86">
                     <Properties>
                       <string name="Name">UICorner</string>
                       <UDim name="BottomLeftRadius">
@@ -1981,7 +2022,7 @@
                       </UDim>
                     </Properties>
                   </Item>
-                  <Item class="UIStroke" referent="86">
+                  <Item class="UIStroke" referent="87">
                     <Properties>
                       <string name="Name">UIStroke</string>
                       <token name="ApplyStrokeMode">1</token>
@@ -1994,7 +2035,7 @@
                       <float name="Transparency">0.45</float>
                     </Properties>
                   </Item>
-                  <Item class="TextLabel" referent="87">
+                  <Item class="TextLabel" referent="88">
                     <Properties>
                       <string name="Name">Icon</string>
                       <Color3 name="BackgroundColor3">
@@ -2036,7 +2077,7 @@
                     </Properties>
                   </Item>
                 </Item>
-                <Item class="TextLabel" referent="88">
+                <Item class="TextLabel" referent="89">
                   <Properties>
                     <string name="Name">Title</string>
                     <Color3 name="BackgroundColor3">
@@ -2077,7 +2118,7 @@
                     <token name="TextYAlignment">1</token>
                   </Properties>
                 </Item>
-                <Item class="TextLabel" referent="89">
+                <Item class="TextLabel" referent="90">
                   <Properties>
                     <string name="Name">Subtitle</string>
                     <Color3 name="BackgroundColor3">
@@ -2119,7 +2160,7 @@
                   </Properties>
                 </Item>
               </Item>
-              <Item class="Frame" referent="90">
+              <Item class="Frame" referent="91">
                 <Properties>
                   <string name="Name">NewBadge</string>
                   <Color3 name="BackgroundColor3">
@@ -2144,7 +2185,7 @@
                   <bool name="Visible">true</bool>
                   <int name="ZIndex">3</int>
                 </Properties>
-                <Item class="UICorner" referent="91">
+                <Item class="UICorner" referent="92">
                   <Properties>
                     <string name="Name">UICorner</string>
                     <UDim name="BottomLeftRadius">
@@ -2165,7 +2206,7 @@
                     </UDim>
                   </Properties>
                 </Item>
-                <Item class="UIGradient" referent="92">
+                <Item class="UIGradient" referent="93">
                   <Properties>
                     <string name="Name">UIGradient</string>
                     <ColorSequence name="Color">0 1 0.74509805 0.21960784 0 1 1 0.5019608 0.12156863 0 </ColorSequence>
@@ -2173,7 +2214,7 @@
                     <NumberSequence name="Transparency">0 0 0 1 0 0 </NumberSequence>
                   </Properties>
                 </Item>
-                <Item class="TextLabel" referent="93">
+                <Item class="TextLabel" referent="94">
                   <Properties>
                     <string name="Name">Label</string>
                     <Color3 name="BackgroundColor3">
@@ -2215,7 +2256,7 @@
                   </Properties>
                 </Item>
               </Item>
-              <Item class="TextLabel" referent="94">
+              <Item class="TextLabel" referent="95">
                 <Properties>
                   <string name="Name">VehicleName</string>
                   <Color3 name="BackgroundColor3">
@@ -2256,7 +2297,7 @@
                   <token name="TextYAlignment">1</token>
                 </Properties>
               </Item>
-              <Item class="TextLabel" referent="95">
+              <Item class="TextLabel" referent="96">
                 <Properties>
                   <string name="Name">Info</string>
                   <Color3 name="BackgroundColor3">
@@ -2297,7 +2338,7 @@
                   <token name="TextYAlignment">1</token>
                 </Properties>
               </Item>
-              <Item class="Frame" referent="96">
+              <Item class="Frame" referent="97">
                 <Properties>
                   <string name="Name">StatusDot</string>
                   <Color3 name="BackgroundColor3">
@@ -2320,7 +2361,7 @@
                     <YO>0</YO>
                   </UDim2>
                 </Properties>
-                <Item class="UICorner" referent="97">
+                <Item class="UICorner" referent="98">
                   <Properties>
                     <string name="Name">UICorner</string>
                     <UDim name="BottomLeftRadius">
@@ -2342,7 +2383,7 @@
                   </Properties>
                 </Item>
               </Item>
-              <Item class="TextLabel" referent="98">
+              <Item class="TextLabel" referent="99">
                 <Properties>
                   <string name="Name">Status</string>
                   <Color3 name="BackgroundColor3">
@@ -2385,14 +2426,14 @@
               </Item>
             </Item>
           </Item>
-          <Item class="Frame" referent="99">
+          <Item class="Frame" referent="100">
             <Properties>
               <string name="Name">Card_ChopperHowlers</string>
               <float name="BackgroundTransparency">1</float>
               <int name="BorderSizePixel">0</int>
               <int name="LayoutOrder">2</int>
             </Properties>
-            <Item class="TextButton" referent="100">
+            <Item class="TextButton" referent="101">
               <Properties>
                 <string name="Name">Card</string>
                 <bool name="AutoButtonColor">false</bool>
@@ -2417,7 +2458,7 @@
                 </UDim2>
                 <string name="Text"></string>
               </Properties>
-              <Item class="UICorner" referent="101">
+              <Item class="UICorner" referent="102">
                 <Properties>
                   <string name="Name">UICorner</string>
                   <UDim name="BottomLeftRadius">
@@ -2438,7 +2479,7 @@
                   </UDim>
                 </Properties>
               </Item>
-              <Item class="UIStroke" referent="102">
+              <Item class="UIStroke" referent="103">
                 <Properties>
                   <string name="Name">UIStroke</string>
                   <token name="ApplyStrokeMode">1</token>
@@ -2451,7 +2492,7 @@
                   <float name="Transparency">0.92</float>
                 </Properties>
               </Item>
-              <Item class="Frame" referent="103">
+              <Item class="Frame" referent="104">
                 <Properties>
                   <string name="Name">Stage</string>
                   <Color3 name="BackgroundColor3">
@@ -2474,7 +2515,7 @@
                     <YO>0</YO>
                   </UDim2>
                 </Properties>
-                <Item class="UICorner" referent="104">
+                <Item class="UICorner" referent="105">
                   <Properties>
                     <string name="Name">UICorner</string>
                     <UDim name="BottomLeftRadius">
@@ -2495,7 +2536,7 @@
                     </UDim>
                   </Properties>
                 </Item>
-                <Item class="UIGradient" referent="105">
+                <Item class="UIGradient" referent="106">
                   <Properties>
                     <string name="Name">UIGradient</string>
                     <ColorSequence name="Color">0 0.1882353 0.21568628 0.2901961 0 1 0.06666667 0.078431375 0.10980392 0 </ColorSequence>
@@ -2503,7 +2544,7 @@
                     <NumberSequence name="Transparency">0 0 0 1 0 0 </NumberSequence>
                   </Properties>
                 </Item>
-                <Item class="Frame" referent="106">
+                <Item class="Frame" referent="107">
                   <Properties>
                     <string name="Name">Floor</string>
                     <Color3 name="BackgroundColor3">
@@ -2527,7 +2568,7 @@
                     </UDim2>
                     <int name="ZIndex">1</int>
                   </Properties>
-                  <Item class="UICorner" referent="107">
+                  <Item class="UICorner" referent="108">
                     <Properties>
                       <string name="Name">UICorner</string>
                       <UDim name="BottomLeftRadius">
@@ -2548,7 +2589,7 @@
                       </UDim>
                     </Properties>
                   </Item>
-                  <Item class="UIGradient" referent="108">
+                  <Item class="UIGradient" referent="109">
                     <Properties>
                       <string name="Name">UIGradient</string>
                       <ColorSequence name="Color">0 0 0 0 0 1 0 0 0 0 </ColorSequence>
@@ -2557,7 +2598,7 @@
                     </Properties>
                   </Item>
                 </Item>
-                <Item class="Frame" referent="109">
+                <Item class="Frame" referent="110">
                   <Properties>
                     <string name="Name">FloorLine</string>
                     <Color3 name="BackgroundColor3">
@@ -2582,7 +2623,7 @@
                     <int name="ZIndex">2</int>
                   </Properties>
                 </Item>
-                <Item class="TextLabel" referent="110">
+                <Item class="TextLabel" referent="111">
                   <Properties>
                     <string name="Name">PlaceholderIcon</string>
                     <Color3 name="BackgroundColor3">
@@ -2625,7 +2666,48 @@
                     <int name="ZIndex">3</int>
                   </Properties>
                 </Item>
-                <Item class="ImageLabel" referent="111">
+                <Item class="ViewportFrame" referent="112">
+                  <Properties>
+                    <string name="Name">ModelView</string>
+                    <Color3 name="Ambient">
+                      <R>0.6666667</R>
+                      <G>0.6745098</G>
+                      <B>0.7254902</B>
+                    </Color3>
+                    <Color3 name="BackgroundColor3">
+                      <R>1</R>
+                      <G>1</G>
+                      <B>1</B>
+                    </Color3>
+                    <float name="BackgroundTransparency">1</float>
+                    <int name="BorderSizePixel">0</int>
+                    <Color3 name="LightColor">
+                      <R>1</R>
+                      <G>0.972549</G>
+                      <B>0.92156863</B>
+                    </Color3>
+                    <Vector3 name="LightDirection">
+                      <X>-0.6000061</X>
+                      <Y>-1</Y>
+                      <Z>-0.3999939</Z>
+                    </Vector3>
+                    <UDim2 name="Position">
+                      <XS>0</XS>
+                      <XO>0</XO>
+                      <YS>0</YS>
+                      <YO>0</YO>
+                    </UDim2>
+                    <UDim2 name="Size">
+                      <XS>1</XS>
+                      <XO>0</XO>
+                      <YS>1</YS>
+                      <YO>0</YO>
+                    </UDim2>
+                    <bool name="Visible">false</bool>
+                    <int name="ZIndex">3</int>
+                  </Properties>
+                </Item>
+                <Item class="ImageLabel" referent="113">
                   <Properties>
                     <string name="Name">VehicleImage</string>
                     <Color3 name="BackgroundColor3">
@@ -2656,7 +2738,7 @@
                   </Properties>
                 </Item>
               </Item>
-              <Item class="Frame" referent="112">
+              <Item class="Frame" referent="114">
                 <Properties>
                   <string name="Name">LockOverlay</string>
                   <Color3 name="BackgroundColor3">
@@ -2681,7 +2763,7 @@
                   <bool name="Visible">true</bool>
                   <int name="ZIndex">2</int>
                 </Properties>
-                <Item class="UICorner" referent="113">
+                <Item class="UICorner" referent="115">
                   <Properties>
                     <string name="Name">UICorner</string>
                     <UDim name="BottomLeftRadius">
@@ -2702,7 +2784,7 @@
                     </UDim>
                   </Properties>
                 </Item>
-                <Item class="Frame" referent="114">
+                <Item class="Frame" referent="116">
                   <Properties>
                     <string name="Name">LockIcon</string>
                     <Color3 name="BackgroundColor3">
@@ -2725,7 +2807,7 @@
                       <YO>0</YO>
                     </UDim2>
                   </Properties>
-                  <Item class="UICorner" referent="115">
+                  <Item class="UICorner" referent="117">
                     <Properties>
                       <string name="Name">UICorner</string>
                       <UDim name="BottomLeftRadius">
@@ -2746,7 +2828,7 @@
                       </UDim>
                     </Properties>
                   </Item>
-                  <Item class="UIStroke" referent="116">
+                  <Item class="UIStroke" referent="118">
                     <Properties>
                       <string name="Name">UIStroke</string>
                       <token name="ApplyStrokeMode">1</token>
@@ -2759,7 +2841,7 @@
                       <float name="Transparency">0.45</float>
                     </Properties>
                   </Item>
-                  <Item class="TextLabel" referent="117">
+                  <Item class="TextLabel" referent="119">
                     <Properties>
                       <string name="Name">Icon</string>
                       <Color3 name="BackgroundColor3">
@@ -2801,7 +2883,7 @@
                     </Properties>
                   </Item>
                 </Item>
-                <Item class="TextLabel" referent="118">
+                <Item class="TextLabel" referent="120">
                   <Properties>
                     <string name="Name">Title</string>
                     <Color3 name="BackgroundColor3">
@@ -2842,7 +2924,7 @@
                     <token name="TextYAlignment">1</token>
                   </Properties>
                 </Item>
-                <Item class="TextLabel" referent="119">
+                <Item class="TextLabel" referent="121">
                   <Properties>
                     <string name="Name">Subtitle</string>
                     <Color3 name="BackgroundColor3">
@@ -2884,7 +2966,7 @@
                   </Properties>
                 </Item>
               </Item>
-              <Item class="Frame" referent="120">
+              <Item class="Frame" referent="122">
                 <Properties>
                   <string name="Name">NewBadge</string>
                   <Color3 name="BackgroundColor3">
@@ -2909,7 +2991,7 @@
                   <bool name="Visible">true</bool>
                   <int name="ZIndex">3</int>
                 </Properties>
-                <Item class="UICorner" referent="121">
+                <Item class="UICorner" referent="123">
                   <Properties>
                     <string name="Name">UICorner</string>
                     <UDim name="BottomLeftRadius">
@@ -2930,7 +3012,7 @@
                     </UDim>
                   </Properties>
                 </Item>
-                <Item class="UIGradient" referent="122">
+                <Item class="UIGradient" referent="124">
                   <Properties>
                     <string name="Name">UIGradient</string>
                     <ColorSequence name="Color">0 1 0.74509805 0.21960784 0 1 1 0.5019608 0.12156863 0 </ColorSequence>
@@ -2938,7 +3020,7 @@
                     <NumberSequence name="Transparency">0 0 0 1 0 0 </NumberSequence>
                   </Properties>
                 </Item>
-                <Item class="TextLabel" referent="123">
+                <Item class="TextLabel" referent="125">
                   <Properties>
                     <string name="Name">Label</string>
                     <Color3 name="BackgroundColor3">
@@ -2980,7 +3062,7 @@
                   </Properties>
                 </Item>
               </Item>
-              <Item class="TextLabel" referent="124">
+              <Item class="TextLabel" referent="126">
                 <Properties>
                   <string name="Name">VehicleName</string>
                   <Color3 name="BackgroundColor3">
@@ -3021,7 +3103,7 @@
                   <token name="TextYAlignment">1</token>
                 </Properties>
               </Item>
-              <Item class="TextLabel" referent="125">
+              <Item class="TextLabel" referent="127">
                 <Properties>
                   <string name="Name">Info</string>
                   <Color3 name="BackgroundColor3">
@@ -3062,7 +3144,7 @@
                   <token name="TextYAlignment">1</token>
                 </Properties>
               </Item>
-              <Item class="Frame" referent="126">
+              <Item class="Frame" referent="128">
                 <Properties>
                   <string name="Name">StatusDot</string>
                   <Color3 name="BackgroundColor3">
@@ -3085,7 +3167,7 @@
                     <YO>0</YO>
                   </UDim2>
                 </Properties>
-                <Item class="UICorner" referent="127">
+                <Item class="UICorner" referent="129">
                   <Properties>
                     <string name="Name">UICorner</string>
                     <UDim name="BottomLeftRadius">
@@ -3107,7 +3189,7 @@
                   </Properties>
                 </Item>
               </Item>
-              <Item class="TextLabel" referent="128">
+              <Item class="TextLabel" referent="130">
                 <Properties>
                   <string name="Name">Status</string>
                   <Color3 name="BackgroundColor3">
@@ -3150,14 +3232,14 @@
               </Item>
             </Item>
           </Item>
-          <Item class="Frame" referent="129">
+          <Item class="Frame" referent="131">
             <Properties>
               <string name="Name">Card_BobberHowlers</string>
               <float name="BackgroundTransparency">1</float>
               <int name="BorderSizePixel">0</int>
               <int name="LayoutOrder">3</int>
             </Properties>
-            <Item class="TextButton" referent="130">
+            <Item class="TextButton" referent="132">
               <Properties>
                 <string name="Name">Card</string>
                 <bool name="AutoButtonColor">false</bool>
@@ -3182,7 +3264,7 @@
                 </UDim2>
                 <string name="Text"></string>
               </Properties>
-              <Item class="UICorner" referent="131">
+              <Item class="UICorner" referent="133">
                 <Properties>
                   <string name="Name">UICorner</string>
                   <UDim name="BottomLeftRadius">
@@ -3203,7 +3285,7 @@
                   </UDim>
                 </Properties>
               </Item>
-              <Item class="UIStroke" referent="132">
+              <Item class="UIStroke" referent="134">
                 <Properties>
                   <string name="Name">UIStroke</string>
                   <token name="ApplyStrokeMode">1</token>
@@ -3216,7 +3298,7 @@
                   <float name="Transparency">0.92</float>
                 </Properties>
               </Item>
-              <Item class="Frame" referent="133">
+              <Item class="Frame" referent="135">
                 <Properties>
                   <string name="Name">Stage</string>
                   <Color3 name="BackgroundColor3">
@@ -3239,7 +3321,7 @@
                     <YO>0</YO>
                   </UDim2>
                 </Properties>
-                <Item class="UICorner" referent="134">
+                <Item class="UICorner" referent="136">
                   <Properties>
                     <string name="Name">UICorner</string>
                     <UDim name="BottomLeftRadius">
@@ -3260,7 +3342,7 @@
                     </UDim>
                   </Properties>
                 </Item>
-                <Item class="UIGradient" referent="135">
+                <Item class="UIGradient" referent="137">
                   <Properties>
                     <string name="Name">UIGradient</string>
                     <ColorSequence name="Color">0 0.1882353 0.21568628 0.2901961 0 1 0.06666667 0.078431375 0.10980392 0 </ColorSequence>
@@ -3268,7 +3350,7 @@
                     <NumberSequence name="Transparency">0 0 0 1 0 0 </NumberSequence>
                   </Properties>
                 </Item>
-                <Item class="Frame" referent="136">
+                <Item class="Frame" referent="138">
                   <Properties>
                     <string name="Name">Floor</string>
                     <Color3 name="BackgroundColor3">
@@ -3292,7 +3374,7 @@
                     </UDim2>
                     <int name="ZIndex">1</int>
                   </Properties>
-                  <Item class="UICorner" referent="137">
+                  <Item class="UICorner" referent="139">
                     <Properties>
                       <string name="Name">UICorner</string>
                       <UDim name="BottomLeftRadius">
@@ -3313,7 +3395,7 @@
                       </UDim>
                     </Properties>
                   </Item>
-                  <Item class="UIGradient" referent="138">
+                  <Item class="UIGradient" referent="140">
                     <Properties>
                       <string name="Name">UIGradient</string>
                       <ColorSequence name="Color">0 0 0 0 0 1 0 0 0 0 </ColorSequence>
@@ -3322,7 +3404,7 @@
                     </Properties>
                   </Item>
                 </Item>
-                <Item class="Frame" referent="139">
+                <Item class="Frame" referent="141">
                   <Properties>
                     <string name="Name">FloorLine</string>
                     <Color3 name="BackgroundColor3">
@@ -3347,7 +3429,7 @@
                     <int name="ZIndex">2</int>
                   </Properties>
                 </Item>
-                <Item class="TextLabel" referent="140">
+                <Item class="TextLabel" referent="142">
                   <Properties>
                     <string name="Name">PlaceholderIcon</string>
                     <Color3 name="BackgroundColor3">
@@ -3390,7 +3472,48 @@
                     <int name="ZIndex">3</int>
                   </Properties>
                 </Item>
-                <Item class="ImageLabel" referent="141">
+                <Item class="ViewportFrame" referent="143">
+                  <Properties>
+                    <string name="Name">ModelView</string>
+                    <Color3 name="Ambient">
+                      <R>0.6666667</R>
+                      <G>0.6745098</G>
+                      <B>0.7254902</B>
+                    </Color3>
+                    <Color3 name="BackgroundColor3">
+                      <R>1</R>
+                      <G>1</G>
+                      <B>1</B>
+                    </Color3>
+                    <float name="BackgroundTransparency">1</float>
+                    <int name="BorderSizePixel">0</int>
+                    <Color3 name="LightColor">
+                      <R>1</R>
+                      <G>0.972549</G>
+                      <B>0.92156863</B>
+                    </Color3>
+                    <Vector3 name="LightDirection">
+                      <X>-0.6000061</X>
+                      <Y>-1</Y>
+                      <Z>-0.3999939</Z>
+                    </Vector3>
+                    <UDim2 name="Position">
+                      <XS>0</XS>
+                      <XO>0</XO>
+                      <YS>0</YS>
+                      <YO>0</YO>
+                    </UDim2>
+                    <UDim2 name="Size">
+                      <XS>1</XS>
+                      <XO>0</XO>
+                      <YS>1</YS>
+                      <YO>0</YO>
+                    </UDim2>
+                    <bool name="Visible">false</bool>
+                    <int name="ZIndex">3</int>
+                  </Properties>
+                </Item>
+                <Item class="ImageLabel" referent="144">
                   <Properties>
                     <string name="Name">VehicleImage</string>
                     <Color3 name="BackgroundColor3">
@@ -3421,7 +3544,7 @@
                   </Properties>
                 </Item>
               </Item>
-              <Item class="Frame" referent="142">
+              <Item class="Frame" referent="145">
                 <Properties>
                   <string name="Name">LockOverlay</string>
                   <Color3 name="BackgroundColor3">
@@ -3446,7 +3569,7 @@
                   <bool name="Visible">true</bool>
                   <int name="ZIndex">2</int>
                 </Properties>
-                <Item class="UICorner" referent="143">
+                <Item class="UICorner" referent="146">
                   <Properties>
                     <string name="Name">UICorner</string>
                     <UDim name="BottomLeftRadius">
@@ -3467,7 +3590,7 @@
                     </UDim>
                   </Properties>
                 </Item>
-                <Item class="Frame" referent="144">
+                <Item class="Frame" referent="147">
                   <Properties>
                     <string name="Name">LockIcon</string>
                     <Color3 name="BackgroundColor3">
@@ -3490,7 +3613,7 @@
                       <YO>0</YO>
                     </UDim2>
                   </Properties>
-                  <Item class="UICorner" referent="145">
+                  <Item class="UICorner" referent="148">
                     <Properties>
                       <string name="Name">UICorner</string>
                       <UDim name="BottomLeftRadius">
@@ -3511,7 +3634,7 @@
                       </UDim>
                     </Properties>
                   </Item>
-                  <Item class="UIStroke" referent="146">
+                  <Item class="UIStroke" referent="149">
                     <Properties>
                       <string name="Name">UIStroke</string>
                       <token name="ApplyStrokeMode">1</token>
@@ -3524,7 +3647,7 @@
                       <float name="Transparency">0.45</float>
                     </Properties>
                   </Item>
-                  <Item class="TextLabel" referent="147">
+                  <Item class="TextLabel" referent="150">
                     <Properties>
                       <string name="Name">Icon</string>
                       <Color3 name="BackgroundColor3">
@@ -3566,7 +3689,7 @@
                     </Properties>
                   </Item>
                 </Item>
-                <Item class="TextLabel" referent="148">
+                <Item class="TextLabel" referent="151">
                   <Properties>
                     <string name="Name">Title</string>
                     <Color3 name="BackgroundColor3">
@@ -3607,7 +3730,7 @@
                     <token name="TextYAlignment">1</token>
                   </Properties>
                 </Item>
-                <Item class="TextLabel" referent="149">
+                <Item class="TextLabel" referent="152">
                   <Properties>
                     <string name="Name">Subtitle</string>
                     <Color3 name="BackgroundColor3">
@@ -3649,7 +3772,7 @@
                   </Properties>
                 </Item>
               </Item>
-              <Item class="Frame" referent="150">
+              <Item class="Frame" referent="153">
                 <Properties>
                   <string name="Name">NewBadge</string>
                   <Color3 name="BackgroundColor3">
@@ -3674,7 +3797,7 @@
                   <bool name="Visible">true</bool>
                   <int name="ZIndex">3</int>
                 </Properties>
-                <Item class="UICorner" referent="151">
+                <Item class="UICorner" referent="154">
                   <Properties>
                     <string name="Name">UICorner</string>
                     <UDim name="BottomLeftRadius">
@@ -3695,7 +3818,7 @@
                     </UDim>
                   </Properties>
                 </Item>
-                <Item class="UIGradient" referent="152">
+                <Item class="UIGradient" referent="155">
                   <Properties>
                     <string name="Name">UIGradient</string>
                     <ColorSequence name="Color">0 1 0.74509805 0.21960784 0 1 1 0.5019608 0.12156863 0 </ColorSequence>
@@ -3703,7 +3826,7 @@
                     <NumberSequence name="Transparency">0 0 0 1 0 0 </NumberSequence>
                   </Properties>
                 </Item>
-                <Item class="TextLabel" referent="153">
+                <Item class="TextLabel" referent="156">
                   <Properties>
                     <string name="Name">Label</string>
                     <Color3 name="BackgroundColor3">
@@ -3745,7 +3868,7 @@
                   </Properties>
                 </Item>
               </Item>
-              <Item class="TextLabel" referent="154">
+              <Item class="TextLabel" referent="157">
                 <Properties>
                   <string name="Name">VehicleName</string>
                   <Color3 name="BackgroundColor3">
@@ -3786,7 +3909,7 @@
                   <token name="TextYAlignment">1</token>
                 </Properties>
               </Item>
-              <Item class="TextLabel" referent="155">
+              <Item class="TextLabel" referent="158">
                 <Properties>
                   <string name="Name">Info</string>
                   <Color3 name="BackgroundColor3">
@@ -3827,7 +3950,7 @@
                   <token name="TextYAlignment">1</token>
                 </Properties>
               </Item>
-              <Item class="Frame" referent="156">
+              <Item class="Frame" referent="159">
                 <Properties>
                   <string name="Name">StatusDot</string>
                   <Color3 name="BackgroundColor3">
@@ -3850,7 +3973,7 @@
                     <YO>0</YO>
                   </UDim2>
                 </Properties>
-                <Item class="UICorner" referent="157">
+                <Item class="UICorner" referent="160">
                   <Properties>
                     <string name="Name">UICorner</string>
                     <UDim name="BottomLeftRadius">
@@ -3872,7 +3995,7 @@
                   </Properties>
                 </Item>
               </Item>
-              <Item class="TextLabel" referent="158">
+              <Item class="TextLabel" referent="161">
                 <Properties>
                   <string name="Name">Status</string>
                   <Color3 name="BackgroundColor3">
@@ -3915,14 +4038,14 @@
               </Item>
             </Item>
           </Item>
-          <Item class="Frame" referent="159">
+          <Item class="Frame" referent="162">
             <Properties>
               <string name="Name">Card_BMWR80</string>
               <float name="BackgroundTransparency">1</float>
               <int name="BorderSizePixel">0</int>
               <int name="LayoutOrder">4</int>
             </Properties>
-            <Item class="TextButton" referent="160">
+            <Item class="TextButton" referent="163">
               <Properties>
                 <string name="Name">Card</string>
                 <bool name="AutoButtonColor">false</bool>
@@ -3947,7 +4070,7 @@
                 </UDim2>
                 <string name="Text"></string>
               </Properties>
-              <Item class="UICorner" referent="161">
+              <Item class="UICorner" referent="164">
                 <Properties>
                   <string name="Name">UICorner</string>
                   <UDim name="BottomLeftRadius">
@@ -3968,7 +4091,7 @@
                   </UDim>
                 </Properties>
               </Item>
-              <Item class="UIStroke" referent="162">
+              <Item class="UIStroke" referent="165">
                 <Properties>
                   <string name="Name">UIStroke</string>
                   <token name="ApplyStrokeMode">1</token>
@@ -3981,7 +4104,7 @@
                   <float name="Transparency">0.92</float>
                 </Properties>
               </Item>
-              <Item class="Frame" referent="163">
+              <Item class="Frame" referent="166">
                 <Properties>
                   <string name="Name">Stage</string>
                   <Color3 name="BackgroundColor3">
@@ -4004,7 +4127,7 @@
                     <YO>0</YO>
                   </UDim2>
                 </Properties>
-                <Item class="UICorner" referent="164">
+                <Item class="UICorner" referent="167">
                   <Properties>
                     <string name="Name">UICorner</string>
                     <UDim name="BottomLeftRadius">
@@ -4025,7 +4148,7 @@
                     </UDim>
                   </Properties>
                 </Item>
-                <Item class="UIGradient" referent="165">
+                <Item class="UIGradient" referent="168">
                   <Properties>
                     <string name="Name">UIGradient</string>
                     <ColorSequence name="Color">0 0.1882353 0.21568628 0.2901961 0 1 0.06666667 0.078431375 0.10980392 0 </ColorSequence>
@@ -4033,7 +4156,7 @@
                     <NumberSequence name="Transparency">0 0 0 1 0 0 </NumberSequence>
                   </Properties>
                 </Item>
-                <Item class="Frame" referent="166">
+                <Item class="Frame" referent="169">
                   <Properties>
                     <string name="Name">Floor</string>
                     <Color3 name="BackgroundColor3">
@@ -4057,7 +4180,7 @@
                     </UDim2>
                     <int name="ZIndex">1</int>
                   </Properties>
-                  <Item class="UICorner" referent="167">
+                  <Item class="UICorner" referent="170">
                     <Properties>
                       <string name="Name">UICorner</string>
                       <UDim name="BottomLeftRadius">
@@ -4078,7 +4201,7 @@
                       </UDim>
                     </Properties>
                   </Item>
-                  <Item class="UIGradient" referent="168">
+                  <Item class="UIGradient" referent="171">
                     <Properties>
                       <string name="Name">UIGradient</string>
                       <ColorSequence name="Color">0 0 0 0 0 1 0 0 0 0 </ColorSequence>
@@ -4087,7 +4210,7 @@
                     </Properties>
                   </Item>
                 </Item>
-                <Item class="Frame" referent="169">
+                <Item class="Frame" referent="172">
                   <Properties>
                     <string name="Name">FloorLine</string>
                     <Color3 name="BackgroundColor3">
@@ -4112,7 +4235,7 @@
                     <int name="ZIndex">2</int>
                   </Properties>
                 </Item>
-                <Item class="TextLabel" referent="170">
+                <Item class="TextLabel" referent="173">
                   <Properties>
                     <string name="Name">PlaceholderIcon</string>
                     <Color3 name="BackgroundColor3">
@@ -4155,7 +4278,48 @@
                     <int name="ZIndex">3</int>
                   </Properties>
                 </Item>
-                <Item class="ImageLabel" referent="171">
+                <Item class="ViewportFrame" referent="174">
+                  <Properties>
+                    <string name="Name">ModelView</string>
+                    <Color3 name="Ambient">
+                      <R>0.6666667</R>
+                      <G>0.6745098</G>
+                      <B>0.7254902</B>
+                    </Color3>
+                    <Color3 name="BackgroundColor3">
+                      <R>1</R>
+                      <G>1</G>
+                      <B>1</B>
+                    </Color3>
+                    <float name="BackgroundTransparency">1</float>
+                    <int name="BorderSizePixel">0</int>
+                    <Color3 name="LightColor">
+                      <R>1</R>
+                      <G>0.972549</G>
+                      <B>0.92156863</B>
+                    </Color3>
+                    <Vector3 name="LightDirection">
+                      <X>-0.6000061</X>
+                      <Y>-1</Y>
+                      <Z>-0.3999939</Z>
+                    </Vector3>
+                    <UDim2 name="Position">
+                      <XS>0</XS>
+                      <XO>0</XO>
+                      <YS>0</YS>
+                      <YO>0</YO>
+                    </UDim2>
+                    <UDim2 name="Size">
+                      <XS>1</XS>
+                      <XO>0</XO>
+                      <YS>1</YS>
+                      <YO>0</YO>
+                    </UDim2>
+                    <bool name="Visible">false</bool>
+                    <int name="ZIndex">3</int>
+                  </Properties>
+                </Item>
+                <Item class="ImageLabel" referent="175">
                   <Properties>
                     <string name="Name">VehicleImage</string>
                     <Color3 name="BackgroundColor3">
@@ -4186,7 +4350,7 @@
                   </Properties>
                 </Item>
               </Item>
-              <Item class="Frame" referent="172">
+              <Item class="Frame" referent="176">
                 <Properties>
                   <string name="Name">LockOverlay</string>
                   <Color3 name="BackgroundColor3">
@@ -4211,7 +4375,7 @@
                   <bool name="Visible">false</bool>
                   <int name="ZIndex">2</int>
                 </Properties>
-                <Item class="UICorner" referent="173">
+                <Item class="UICorner" referent="177">
                   <Properties>
                     <string name="Name">UICorner</string>
                     <UDim name="BottomLeftRadius">
@@ -4232,7 +4396,7 @@
                     </UDim>
                   </Properties>
                 </Item>
-                <Item class="Frame" referent="174">
+                <Item class="Frame" referent="178">
                   <Properties>
                     <string name="Name">LockIcon</string>
                     <Color3 name="BackgroundColor3">
@@ -4255,7 +4419,7 @@
                       <YO>0</YO>
                     </UDim2>
                   </Properties>
-                  <Item class="UICorner" referent="175">
+                  <Item class="UICorner" referent="179">
                     <Properties>
                       <string name="Name">UICorner</string>
                       <UDim name="BottomLeftRadius">
@@ -4276,7 +4440,7 @@
                       </UDim>
                     </Properties>
                   </Item>
-                  <Item class="UIStroke" referent="176">
+                  <Item class="UIStroke" referent="180">
                     <Properties>
                       <string name="Name">UIStroke</string>
                       <token name="ApplyStrokeMode">1</token>
@@ -4289,7 +4453,7 @@
                       <float name="Transparency">0.45</float>
                     </Properties>
                   </Item>
-                  <Item class="TextLabel" referent="177">
+                  <Item class="TextLabel" referent="181">
                     <Properties>
                       <string name="Name">Icon</string>
                       <Color3 name="BackgroundColor3">
@@ -4331,7 +4495,7 @@
                     </Properties>
                   </Item>
                 </Item>
-                <Item class="TextLabel" referent="178">
+                <Item class="TextLabel" referent="182">
                   <Properties>
                     <string name="Name">Title</string>
                     <Color3 name="BackgroundColor3">
@@ -4372,7 +4536,7 @@
                     <token name="TextYAlignment">1</token>
                   </Properties>
                 </Item>
-                <Item class="TextLabel" referent="179">
+                <Item class="TextLabel" referent="183">
                   <Properties>
                     <string name="Name">Subtitle</string>
                     <Color3 name="BackgroundColor3">
@@ -4414,7 +4578,7 @@
                   </Properties>
                 </Item>
               </Item>
-              <Item class="Frame" referent="180">
+              <Item class="Frame" referent="184">
                 <Properties>
                   <string name="Name">NewBadge</string>
                   <Color3 name="BackgroundColor3">
@@ -4439,7 +4603,7 @@
                   <bool name="Visible">true</bool>
                   <int name="ZIndex">3</int>
                 </Properties>
-                <Item class="UICorner" referent="181">
+                <Item class="UICorner" referent="185">
                   <Properties>
                     <string name="Name">UICorner</string>
                     <UDim name="BottomLeftRadius">
@@ -4460,7 +4624,7 @@
                     </UDim>
                   </Properties>
                 </Item>
-                <Item class="UIGradient" referent="182">
+                <Item class="UIGradient" referent="186">
                   <Properties>
                     <string name="Name">UIGradient</string>
                     <ColorSequence name="Color">0 1 0.74509805 0.21960784 0 1 1 0.5019608 0.12156863 0 </ColorSequence>
@@ -4468,7 +4632,7 @@
                     <NumberSequence name="Transparency">0 0 0 1 0 0 </NumberSequence>
                   </Properties>
                 </Item>
-                <Item class="TextLabel" referent="183">
+                <Item class="TextLabel" referent="187">
                   <Properties>
                     <string name="Name">Label</string>
                     <Color3 name="BackgroundColor3">
@@ -4510,7 +4674,7 @@
                   </Properties>
                 </Item>
               </Item>
-              <Item class="TextLabel" referent="184">
+              <Item class="TextLabel" referent="188">
                 <Properties>
                   <string name="Name">VehicleName</string>
                   <Color3 name="BackgroundColor3">
@@ -4551,7 +4715,7 @@
                   <token name="TextYAlignment">1</token>
                 </Properties>
               </Item>
-              <Item class="TextLabel" referent="185">
+              <Item class="TextLabel" referent="189">
                 <Properties>
                   <string name="Name">Info</string>
                   <Color3 name="BackgroundColor3">
@@ -4592,7 +4756,7 @@
                   <token name="TextYAlignment">1</token>
                 </Properties>
               </Item>
-              <Item class="Frame" referent="186">
+              <Item class="Frame" referent="190">
                 <Properties>
                   <string name="Name">StatusDot</string>
                   <Color3 name="BackgroundColor3">
@@ -4615,7 +4779,7 @@
                     <YO>0</YO>
                   </UDim2>
                 </Properties>
-                <Item class="UICorner" referent="187">
+                <Item class="UICorner" referent="191">
                   <Properties>
                     <string name="Name">UICorner</string>
                     <UDim name="BottomLeftRadius">
@@ -4637,7 +4801,7 @@
                   </Properties>
                 </Item>
               </Item>
-              <Item class="TextLabel" referent="188">
+              <Item class="TextLabel" referent="192">
                 <Properties>
                   <string name="Name">Status</string>
                   <Color3 name="BackgroundColor3">
@@ -4680,14 +4844,14 @@
               </Item>
             </Item>
           </Item>
-          <Item class="Frame" referent="189">
+          <Item class="Frame" referent="193">
             <Properties>
               <string name="Name">Card_ChicanoHowlers</string>
               <float name="BackgroundTransparency">1</float>
               <int name="BorderSizePixel">0</int>
               <int name="LayoutOrder">5</int>
             </Properties>
-            <Item class="TextButton" referent="190">
+            <Item class="TextButton" referent="194">
               <Properties>
                 <string name="Name">Card</string>
                 <bool name="AutoButtonColor">false</bool>
@@ -4712,7 +4876,7 @@
                 </UDim2>
                 <string name="Text"></string>
               </Properties>
-              <Item class="UICorner" referent="191">
+              <Item class="UICorner" referent="195">
                 <Properties>
                   <string name="Name">UICorner</string>
                   <UDim name="BottomLeftRadius">
@@ -4733,7 +4897,7 @@
                   </UDim>
                 </Properties>
               </Item>
-              <Item class="UIStroke" referent="192">
+              <Item class="UIStroke" referent="196">
                 <Properties>
                   <string name="Name">UIStroke</string>
                   <token name="ApplyStrokeMode">1</token>
@@ -4746,7 +4910,7 @@
                   <float name="Transparency">0.92</float>
                 </Properties>
               </Item>
-              <Item class="Frame" referent="193">
+              <Item class="Frame" referent="197">
                 <Properties>
                   <string name="Name">Stage</string>
                   <Color3 name="BackgroundColor3">
@@ -4769,7 +4933,7 @@
                     <YO>0</YO>
                   </UDim2>
                 </Properties>
-                <Item class="UICorner" referent="194">
+                <Item class="UICorner" referent="198">
                   <Properties>
                     <string name="Name">UICorner</string>
                     <UDim name="BottomLeftRadius">
@@ -4790,7 +4954,7 @@
                     </UDim>
                   </Properties>
                 </Item>
-                <Item class="UIGradient" referent="195">
+                <Item class="UIGradient" referent="199">
                   <Properties>
                     <string name="Name">UIGradient</string>
                     <ColorSequence name="Color">0 0.1882353 0.21568628 0.2901961 0 1 0.06666667 0.078431375 0.10980392 0 </ColorSequence>
@@ -4798,7 +4962,7 @@
                     <NumberSequence name="Transparency">0 0 0 1 0 0 </NumberSequence>
                   </Properties>
                 </Item>
-                <Item class="Frame" referent="196">
+                <Item class="Frame" referent="200">
                   <Properties>
                     <string name="Name">Floor</string>
                     <Color3 name="BackgroundColor3">
@@ -4822,7 +4986,7 @@
                     </UDim2>
                     <int name="ZIndex">1</int>
                   </Properties>
-                  <Item class="UICorner" referent="197">
+                  <Item class="UICorner" referent="201">
                     <Properties>
                       <string name="Name">UICorner</string>
                       <UDim name="BottomLeftRadius">
@@ -4843,7 +5007,7 @@
                       </UDim>
                     </Properties>
                   </Item>
-                  <Item class="UIGradient" referent="198">
+                  <Item class="UIGradient" referent="202">
                     <Properties>
                       <string name="Name">UIGradient</string>
                       <ColorSequence name="Color">0 0 0 0 0 1 0 0 0 0 </ColorSequence>
@@ -4852,7 +5016,7 @@
                     </Properties>
                   </Item>
                 </Item>
-                <Item class="Frame" referent="199">
+                <Item class="Frame" referent="203">
                   <Properties>
                     <string name="Name">FloorLine</string>
                     <Color3 name="BackgroundColor3">
@@ -4877,7 +5041,7 @@
                     <int name="ZIndex">2</int>
                   </Properties>
                 </Item>
-                <Item class="TextLabel" referent="200">
+                <Item class="TextLabel" referent="204">
                   <Properties>
                     <string name="Name">PlaceholderIcon</string>
                     <Color3 name="BackgroundColor3">
@@ -4920,7 +5084,48 @@
                     <int name="ZIndex">3</int>
                   </Properties>
                 </Item>
-                <Item class="ImageLabel" referent="201">
+                <Item class="ViewportFrame" referent="205">
+                  <Properties>
+                    <string name="Name">ModelView</string>
+                    <Color3 name="Ambient">
+                      <R>0.6666667</R>
+                      <G>0.6745098</G>
+                      <B>0.7254902</B>
+                    </Color3>
+                    <Color3 name="BackgroundColor3">
+                      <R>1</R>
+                      <G>1</G>
+                      <B>1</B>
+                    </Color3>
+                    <float name="BackgroundTransparency">1</float>
+                    <int name="BorderSizePixel">0</int>
+                    <Color3 name="LightColor">
+                      <R>1</R>
+                      <G>0.972549</G>
+                      <B>0.92156863</B>
+                    </Color3>
+                    <Vector3 name="LightDirection">
+                      <X>-0.6000061</X>
+                      <Y>-1</Y>
+                      <Z>-0.3999939</Z>
+                    </Vector3>
+                    <UDim2 name="Position">
+                      <XS>0</XS>
+                      <XO>0</XO>
+                      <YS>0</YS>
+                      <YO>0</YO>
+                    </UDim2>
+                    <UDim2 name="Size">
+                      <XS>1</XS>
+                      <XO>0</XO>
+                      <YS>1</YS>
+                      <YO>0</YO>
+                    </UDim2>
+                    <bool name="Visible">false</bool>
+                    <int name="ZIndex">3</int>
+                  </Properties>
+                </Item>
+                <Item class="ImageLabel" referent="206">
                   <Properties>
                     <string name="Name">VehicleImage</string>
                     <Color3 name="BackgroundColor3">
@@ -4951,7 +5156,7 @@
                   </Properties>
                 </Item>
               </Item>
-              <Item class="Frame" referent="202">
+              <Item class="Frame" referent="207">
                 <Properties>
                   <string name="Name">LockOverlay</string>
                   <Color3 name="BackgroundColor3">
@@ -4976,7 +5181,7 @@
                   <bool name="Visible">false</bool>
                   <int name="ZIndex">2</int>
                 </Properties>
-                <Item class="UICorner" referent="203">
+                <Item class="UICorner" referent="208">
                   <Properties>
                     <string name="Name">UICorner</string>
                     <UDim name="BottomLeftRadius">
@@ -4997,7 +5202,7 @@
                     </UDim>
                   </Properties>
                 </Item>
-                <Item class="Frame" referent="204">
+                <Item class="Frame" referent="209">
                   <Properties>
                     <string name="Name">LockIcon</string>
                     <Color3 name="BackgroundColor3">
@@ -5020,7 +5225,7 @@
                       <YO>0</YO>
                     </UDim2>
                   </Properties>
-                  <Item class="UICorner" referent="205">
+                  <Item class="UICorner" referent="210">
                     <Properties>
                       <string name="Name">UICorner</string>
                       <UDim name="BottomLeftRadius">
@@ -5041,7 +5246,7 @@
                       </UDim>
                     </Properties>
                   </Item>
-                  <Item class="UIStroke" referent="206">
+                  <Item class="UIStroke" referent="211">
                     <Properties>
                       <string name="Name">UIStroke</string>
                       <token name="ApplyStrokeMode">1</token>
@@ -5054,7 +5259,7 @@
                       <float name="Transparency">0.45</float>
                     </Properties>
                   </Item>
-                  <Item class="TextLabel" referent="207">
+                  <Item class="TextLabel" referent="212">
                     <Properties>
                       <string name="Name">Icon</string>
                       <Color3 name="BackgroundColor3">
@@ -5096,7 +5301,7 @@
                     </Properties>
                   </Item>
                 </Item>
-                <Item class="TextLabel" referent="208">
+                <Item class="TextLabel" referent="213">
                   <Properties>
                     <string name="Name">Title</string>
                     <Color3 name="BackgroundColor3">
@@ -5137,7 +5342,7 @@
                     <token name="TextYAlignment">1</token>
                   </Properties>
                 </Item>
-                <Item class="TextLabel" referent="209">
+                <Item class="TextLabel" referent="214">
                   <Properties>
                     <string name="Name">Subtitle</string>
                     <Color3 name="BackgroundColor3">
@@ -5179,7 +5384,7 @@
                   </Properties>
                 </Item>
               </Item>
-              <Item class="Frame" referent="210">
+              <Item class="Frame" referent="215">
                 <Properties>
                   <string name="Name">NewBadge</string>
                   <Color3 name="BackgroundColor3">
@@ -5204,7 +5409,7 @@
                   <bool name="Visible">true</bool>
                   <int name="ZIndex">3</int>
                 </Properties>
-                <Item class="UICorner" referent="211">
+                <Item class="UICorner" referent="216">
                   <Properties>
                     <string name="Name">UICorner</string>
                     <UDim name="BottomLeftRadius">
@@ -5225,7 +5430,7 @@
                     </UDim>
                   </Properties>
                 </Item>
-                <Item class="UIGradient" referent="212">
+                <Item class="UIGradient" referent="217">
                   <Properties>
                     <string name="Name">UIGradient</string>
                     <ColorSequence name="Color">0 1 0.74509805 0.21960784 0 1 1 0.5019608 0.12156863 0 </ColorSequence>
@@ -5233,7 +5438,7 @@
                     <NumberSequence name="Transparency">0 0 0 1 0 0 </NumberSequence>
                   </Properties>
                 </Item>
-                <Item class="TextLabel" referent="213">
+                <Item class="TextLabel" referent="218">
                   <Properties>
                     <string name="Name">Label</string>
                     <Color3 name="BackgroundColor3">
@@ -5275,7 +5480,7 @@
                   </Properties>
                 </Item>
               </Item>
-              <Item class="TextLabel" referent="214">
+              <Item class="TextLabel" referent="219">
                 <Properties>
                   <string name="Name">VehicleName</string>
                   <Color3 name="BackgroundColor3">
@@ -5316,7 +5521,7 @@
                   <token name="TextYAlignment">1</token>
                 </Properties>
               </Item>
-              <Item class="TextLabel" referent="215">
+              <Item class="TextLabel" referent="220">
                 <Properties>
                   <string name="Name">Info</string>
                   <Color3 name="BackgroundColor3">
@@ -5357,7 +5562,7 @@
                   <token name="TextYAlignment">1</token>
                 </Properties>
               </Item>
-              <Item class="Frame" referent="216">
+              <Item class="Frame" referent="221">
                 <Properties>
                   <string name="Name">StatusDot</string>
                   <Color3 name="BackgroundColor3">
@@ -5380,7 +5585,7 @@
                     <YO>0</YO>
                   </UDim2>
                 </Properties>
-                <Item class="UICorner" referent="217">
+                <Item class="UICorner" referent="222">
                   <Properties>
                     <string name="Name">UICorner</string>
                     <UDim name="BottomLeftRadius">
@@ -5402,7 +5607,7 @@
                   </Properties>
                 </Item>
               </Item>
-              <Item class="TextLabel" referent="218">
+              <Item class="TextLabel" referent="223">
                 <Properties>
                   <string name="Name">Status</string>
                   <Color3 name="BackgroundColor3">
@@ -5445,14 +5650,14 @@
               </Item>
             </Item>
           </Item>
-          <Item class="Frame" referent="219">
+          <Item class="Frame" referent="224">
             <Properties>
               <string name="Name">Card_Scrambler400</string>
               <float name="BackgroundTransparency">1</float>
               <int name="BorderSizePixel">0</int>
               <int name="LayoutOrder">6</int>
             </Properties>
-            <Item class="TextButton" referent="220">
+            <Item class="TextButton" referent="225">
               <Properties>
                 <string name="Name">Card</string>
                 <bool name="AutoButtonColor">false</bool>
@@ -5477,7 +5682,7 @@
                 </UDim2>
                 <string name="Text"></string>
               </Properties>
-              <Item class="UICorner" referent="221">
+              <Item class="UICorner" referent="226">
                 <Properties>
                   <string name="Name">UICorner</string>
                   <UDim name="BottomLeftRadius">
@@ -5498,7 +5703,7 @@
                   </UDim>
                 </Properties>
               </Item>
-              <Item class="UIStroke" referent="222">
+              <Item class="UIStroke" referent="227">
                 <Properties>
                   <string name="Name">UIStroke</string>
                   <token name="ApplyStrokeMode">1</token>
@@ -5511,7 +5716,7 @@
                   <float name="Transparency">0.92</float>
                 </Properties>
               </Item>
-              <Item class="Frame" referent="223">
+              <Item class="Frame" referent="228">
                 <Properties>
                   <string name="Name">Stage</string>
                   <Color3 name="BackgroundColor3">
@@ -5534,7 +5739,7 @@
                     <YO>0</YO>
                   </UDim2>
                 </Properties>
-                <Item class="UICorner" referent="224">
+                <Item class="UICorner" referent="229">
                   <Properties>
                     <string name="Name">UICorner</string>
                     <UDim name="BottomLeftRadius">
@@ -5555,7 +5760,7 @@
                     </UDim>
                   </Properties>
                 </Item>
-                <Item class="UIGradient" referent="225">
+                <Item class="UIGradient" referent="230">
                   <Properties>
                     <string name="Name">UIGradient</string>
                     <ColorSequence name="Color">0 0.1882353 0.21568628 0.2901961 0 1 0.06666667 0.078431375 0.10980392 0 </ColorSequence>
@@ -5563,7 +5768,7 @@
                     <NumberSequence name="Transparency">0 0 0 1 0 0 </NumberSequence>
                   </Properties>
                 </Item>
-                <Item class="Frame" referent="226">
+                <Item class="Frame" referent="231">
                   <Properties>
                     <string name="Name">Floor</string>
                     <Color3 name="BackgroundColor3">
@@ -5587,7 +5792,7 @@
                     </UDim2>
                     <int name="ZIndex">1</int>
                   </Properties>
-                  <Item class="UICorner" referent="227">
+                  <Item class="UICorner" referent="232">
                     <Properties>
                       <string name="Name">UICorner</string>
                       <UDim name="BottomLeftRadius">
@@ -5608,7 +5813,7 @@
                       </UDim>
                     </Properties>
                   </Item>
-                  <Item class="UIGradient" referent="228">
+                  <Item class="UIGradient" referent="233">
                     <Properties>
                       <string name="Name">UIGradient</string>
                       <ColorSequence name="Color">0 0 0 0 0 1 0 0 0 0 </ColorSequence>
@@ -5617,7 +5822,7 @@
                     </Properties>
                   </Item>
                 </Item>
-                <Item class="Frame" referent="229">
+                <Item class="Frame" referent="234">
                   <Properties>
                     <string name="Name">FloorLine</string>
                     <Color3 name="BackgroundColor3">
@@ -5642,7 +5847,7 @@
                     <int name="ZIndex">2</int>
                   </Properties>
                 </Item>
-                <Item class="TextLabel" referent="230">
+                <Item class="TextLabel" referent="235">
                   <Properties>
                     <string name="Name">PlaceholderIcon</string>
                     <Color3 name="BackgroundColor3">
@@ -5685,7 +5890,48 @@
                     <int name="ZIndex">3</int>
                   </Properties>
                 </Item>
-                <Item class="ImageLabel" referent="231">
+                <Item class="ViewportFrame" referent="236">
+                  <Properties>
+                    <string name="Name">ModelView</string>
+                    <Color3 name="Ambient">
+                      <R>0.6666667</R>
+                      <G>0.6745098</G>
+                      <B>0.7254902</B>
+                    </Color3>
+                    <Color3 name="BackgroundColor3">
+                      <R>1</R>
+                      <G>1</G>
+                      <B>1</B>
+                    </Color3>
+                    <float name="BackgroundTransparency">1</float>
+                    <int name="BorderSizePixel">0</int>
+                    <Color3 name="LightColor">
+                      <R>1</R>
+                      <G>0.972549</G>
+                      <B>0.92156863</B>
+                    </Color3>
+                    <Vector3 name="LightDirection">
+                      <X>-0.6000061</X>
+                      <Y>-1</Y>
+                      <Z>-0.3999939</Z>
+                    </Vector3>
+                    <UDim2 name="Position">
+                      <XS>0</XS>
+                      <XO>0</XO>
+                      <YS>0</YS>
+                      <YO>0</YO>
+                    </UDim2>
+                    <UDim2 name="Size">
+                      <XS>1</XS>
+                      <XO>0</XO>
+                      <YS>1</YS>
+                      <YO>0</YO>
+                    </UDim2>
+                    <bool name="Visible">false</bool>
+                    <int name="ZIndex">3</int>
+                  </Properties>
+                </Item>
+                <Item class="ImageLabel" referent="237">
                   <Properties>
                     <string name="Name">VehicleImage</string>
                     <Color3 name="BackgroundColor3">
@@ -5716,7 +5962,7 @@
                   </Properties>
                 </Item>
               </Item>
-              <Item class="Frame" referent="232">
+              <Item class="Frame" referent="238">
                 <Properties>
                   <string name="Name">LockOverlay</string>
                   <Color3 name="BackgroundColor3">
@@ -5741,7 +5987,7 @@
                   <bool name="Visible">false</bool>
                   <int name="ZIndex">2</int>
                 </Properties>
-                <Item class="UICorner" referent="233">
+                <Item class="UICorner" referent="239">
                   <Properties>
                     <string name="Name">UICorner</string>
                     <UDim name="BottomLeftRadius">
@@ -5762,7 +6008,7 @@
                     </UDim>
                   </Properties>
                 </Item>
-                <Item class="Frame" referent="234">
+                <Item class="Frame" referent="240">
                   <Properties>
                     <string name="Name">LockIcon</string>
                     <Color3 name="BackgroundColor3">
@@ -5785,7 +6031,7 @@
                       <YO>0</YO>
                     </UDim2>
                   </Properties>
-                  <Item class="UICorner" referent="235">
+                  <Item class="UICorner" referent="241">
                     <Properties>
                       <string name="Name">UICorner</string>
                       <UDim name="BottomLeftRadius">
@@ -5806,7 +6052,7 @@
                       </UDim>
                     </Properties>
                   </Item>
-                  <Item class="UIStroke" referent="236">
+                  <Item class="UIStroke" referent="242">
                     <Properties>
                       <string name="Name">UIStroke</string>
                       <token name="ApplyStrokeMode">1</token>
@@ -5819,7 +6065,7 @@
                       <float name="Transparency">0.45</float>
                     </Properties>
                   </Item>
-                  <Item class="TextLabel" referent="237">
+                  <Item class="TextLabel" referent="243">
                     <Properties>
                       <string name="Name">Icon</string>
                       <Color3 name="BackgroundColor3">
@@ -5861,7 +6107,7 @@
                     </Properties>
                   </Item>
                 </Item>
-                <Item class="TextLabel" referent="238">
+                <Item class="TextLabel" referent="244">
                   <Properties>
                     <string name="Name">Title</string>
                     <Color3 name="BackgroundColor3">
@@ -5902,7 +6148,7 @@
                     <token name="TextYAlignment">1</token>
                   </Properties>
                 </Item>
-                <Item class="TextLabel" referent="239">
+                <Item class="TextLabel" referent="245">
                   <Properties>
                     <string name="Name">Subtitle</string>
                     <Color3 name="BackgroundColor3">
@@ -5944,7 +6190,7 @@
                   </Properties>
                 </Item>
               </Item>
-              <Item class="Frame" referent="240">
+              <Item class="Frame" referent="246">
                 <Properties>
                   <string name="Name">NewBadge</string>
                   <Color3 name="BackgroundColor3">
@@ -5969,7 +6215,7 @@
                   <bool name="Visible">false</bool>
                   <int name="ZIndex">3</int>
                 </Properties>
-                <Item class="UICorner" referent="241">
+                <Item class="UICorner" referent="247">
                   <Properties>
                     <string name="Name">UICorner</string>
                     <UDim name="BottomLeftRadius">
@@ -5990,7 +6236,7 @@
                     </UDim>
                   </Properties>
                 </Item>
-                <Item class="UIGradient" referent="242">
+                <Item class="UIGradient" referent="248">
                   <Properties>
                     <string name="Name">UIGradient</string>
                     <ColorSequence name="Color">0 1 0.74509805 0.21960784 0 1 1 0.5019608 0.12156863 0 </ColorSequence>
@@ -5998,7 +6244,7 @@
                     <NumberSequence name="Transparency">0 0 0 1 0 0 </NumberSequence>
                   </Properties>
                 </Item>
-                <Item class="TextLabel" referent="243">
+                <Item class="TextLabel" referent="249">
                   <Properties>
                     <string name="Name">Label</string>
                     <Color3 name="BackgroundColor3">
@@ -6040,7 +6286,7 @@
                   </Properties>
                 </Item>
               </Item>
-              <Item class="TextLabel" referent="244">
+              <Item class="TextLabel" referent="250">
                 <Properties>
                   <string name="Name">VehicleName</string>
                   <Color3 name="BackgroundColor3">
@@ -6081,7 +6327,7 @@
                   <token name="TextYAlignment">1</token>
                 </Properties>
               </Item>
-              <Item class="TextLabel" referent="245">
+              <Item class="TextLabel" referent="251">
                 <Properties>
                   <string name="Name">Info</string>
                   <Color3 name="BackgroundColor3">
@@ -6122,7 +6368,7 @@
                   <token name="TextYAlignment">1</token>
                 </Properties>
               </Item>
-              <Item class="Frame" referent="246">
+              <Item class="Frame" referent="252">
                 <Properties>
                   <string name="Name">StatusDot</string>
                   <Color3 name="BackgroundColor3">
@@ -6145,7 +6391,7 @@
                     <YO>0</YO>
                   </UDim2>
                 </Properties>
-                <Item class="UICorner" referent="247">
+                <Item class="UICorner" referent="253">
                   <Properties>
                     <string name="Name">UICorner</string>
                     <UDim name="BottomLeftRadius">
@@ -6167,7 +6413,7 @@
                   </Properties>
                 </Item>
               </Item>
-              <Item class="TextLabel" referent="248">
+              <Item class="TextLabel" referent="254">
                 <Properties>
                   <string name="Name">Status</string>
                   <Color3 name="BackgroundColor3">
@@ -6210,14 +6456,14 @@
               </Item>
             </Item>
           </Item>
-          <Item class="Frame" referent="249">
+          <Item class="Frame" referent="255">
             <Properties>
               <string name="Name">Card_StreetGlide</string>
               <float name="BackgroundTransparency">1</float>
               <int name="BorderSizePixel">0</int>
               <int name="LayoutOrder">7</int>
             </Properties>
-            <Item class="TextButton" referent="250">
+            <Item class="TextButton" referent="256">
               <Properties>
                 <string name="Name">Card</string>
                 <bool name="AutoButtonColor">false</bool>
@@ -6242,7 +6488,7 @@
                 </UDim2>
                 <string name="Text"></string>
               </Properties>
-              <Item class="UICorner" referent="251">
+              <Item class="UICorner" referent="257">
                 <Properties>
                   <string name="Name">UICorner</string>
                   <UDim name="BottomLeftRadius">
@@ -6263,7 +6509,7 @@
                   </UDim>
                 </Properties>
               </Item>
-              <Item class="UIStroke" referent="252">
+              <Item class="UIStroke" referent="258">
                 <Properties>
                   <string name="Name">UIStroke</string>
                   <token name="ApplyStrokeMode">1</token>
@@ -6276,7 +6522,7 @@
                   <float name="Transparency">0.92</float>
                 </Properties>
               </Item>
-              <Item class="Frame" referent="253">
+              <Item class="Frame" referent="259">
                 <Properties>
                   <string name="Name">Stage</string>
                   <Color3 name="BackgroundColor3">
@@ -6299,7 +6545,7 @@
                     <YO>0</YO>
                   </UDim2>
                 </Properties>
-                <Item class="UICorner" referent="254">
+                <Item class="UICorner" referent="260">
                   <Properties>
                     <string name="Name">UICorner</string>
                     <UDim name="BottomLeftRadius">
@@ -6320,7 +6566,7 @@
                     </UDim>
                   </Properties>
                 </Item>
-                <Item class="UIGradient" referent="255">
+                <Item class="UIGradient" referent="261">
                   <Properties>
                     <string name="Name">UIGradient</string>
                     <ColorSequence name="Color">0 0.1882353 0.21568628 0.2901961 0 1 0.06666667 0.078431375 0.10980392 0 </ColorSequence>
@@ -6328,7 +6574,7 @@
                     <NumberSequence name="Transparency">0 0 0 1 0 0 </NumberSequence>
                   </Properties>
                 </Item>
-                <Item class="Frame" referent="256">
+                <Item class="Frame" referent="262">
                   <Properties>
                     <string name="Name">Floor</string>
                     <Color3 name="BackgroundColor3">
@@ -6352,7 +6598,7 @@
                     </UDim2>
                     <int name="ZIndex">1</int>
                   </Properties>
-                  <Item class="UICorner" referent="257">
+                  <Item class="UICorner" referent="263">
                     <Properties>
                       <string name="Name">UICorner</string>
                       <UDim name="BottomLeftRadius">
@@ -6373,7 +6619,7 @@
                       </UDim>
                     </Properties>
                   </Item>
-                  <Item class="UIGradient" referent="258">
+                  <Item class="UIGradient" referent="264">
                     <Properties>
                       <string name="Name">UIGradient</string>
                       <ColorSequence name="Color">0 0 0 0 0 1 0 0 0 0 </ColorSequence>
@@ -6382,7 +6628,7 @@
                     </Properties>
                   </Item>
                 </Item>
-                <Item class="Frame" referent="259">
+                <Item class="Frame" referent="265">
                   <Properties>
                     <string name="Name">FloorLine</string>
                     <Color3 name="BackgroundColor3">
@@ -6407,7 +6653,7 @@
                     <int name="ZIndex">2</int>
                   </Properties>
                 </Item>
-                <Item class="TextLabel" referent="260">
+                <Item class="TextLabel" referent="266">
                   <Properties>
                     <string name="Name">PlaceholderIcon</string>
                     <Color3 name="BackgroundColor3">
@@ -6450,7 +6696,48 @@
                     <int name="ZIndex">3</int>
                   </Properties>
                 </Item>
-                <Item class="ImageLabel" referent="261">
+                <Item class="ViewportFrame" referent="267">
+                  <Properties>
+                    <string name="Name">ModelView</string>
+                    <Color3 name="Ambient">
+                      <R>0.6666667</R>
+                      <G>0.6745098</G>
+                      <B>0.7254902</B>
+                    </Color3>
+                    <Color3 name="BackgroundColor3">
+                      <R>1</R>
+                      <G>1</G>
+                      <B>1</B>
+                    </Color3>
+                    <float name="BackgroundTransparency">1</float>
+                    <int name="BorderSizePixel">0</int>
+                    <Color3 name="LightColor">
+                      <R>1</R>
+                      <G>0.972549</G>
+                      <B>0.92156863</B>
+                    </Color3>
+                    <Vector3 name="LightDirection">
+                      <X>-0.6000061</X>
+                      <Y>-1</Y>
+                      <Z>-0.3999939</Z>
+                    </Vector3>
+                    <UDim2 name="Position">
+                      <XS>0</XS>
+                      <XO>0</XO>
+                      <YS>0</YS>
+                      <YO>0</YO>
+                    </UDim2>
+                    <UDim2 name="Size">
+                      <XS>1</XS>
+                      <XO>0</XO>
+                      <YS>1</YS>
+                      <YO>0</YO>
+                    </UDim2>
+                    <bool name="Visible">false</bool>
+                    <int name="ZIndex">3</int>
+                  </Properties>
+                </Item>
+                <Item class="ImageLabel" referent="268">
                   <Properties>
                     <string name="Name">VehicleImage</string>
                     <Color3 name="BackgroundColor3">
@@ -6481,7 +6768,7 @@
                   </Properties>
                 </Item>
               </Item>
-              <Item class="Frame" referent="262">
+              <Item class="Frame" referent="269">
                 <Properties>
                   <string name="Name">LockOverlay</string>
                   <Color3 name="BackgroundColor3">
@@ -6506,7 +6793,7 @@
                   <bool name="Visible">false</bool>
                   <int name="ZIndex">2</int>
                 </Properties>
-                <Item class="UICorner" referent="263">
+                <Item class="UICorner" referent="270">
                   <Properties>
                     <string name="Name">UICorner</string>
                     <UDim name="BottomLeftRadius">
@@ -6527,7 +6814,7 @@
                     </UDim>
                   </Properties>
                 </Item>
-                <Item class="Frame" referent="264">
+                <Item class="Frame" referent="271">
                   <Properties>
                     <string name="Name">LockIcon</string>
                     <Color3 name="BackgroundColor3">
@@ -6550,7 +6837,7 @@
                       <YO>0</YO>
                     </UDim2>
                   </Properties>
-                  <Item class="UICorner" referent="265">
+                  <Item class="UICorner" referent="272">
                     <Properties>
                       <string name="Name">UICorner</string>
                       <UDim name="BottomLeftRadius">
@@ -6571,7 +6858,7 @@
                       </UDim>
                     </Properties>
                   </Item>
-                  <Item class="UIStroke" referent="266">
+                  <Item class="UIStroke" referent="273">
                     <Properties>
                       <string name="Name">UIStroke</string>
                       <token name="ApplyStrokeMode">1</token>
@@ -6584,7 +6871,7 @@
                       <float name="Transparency">0.45</float>
                     </Properties>
                   </Item>
-                  <Item class="TextLabel" referent="267">
+                  <Item class="TextLabel" referent="274">
                     <Properties>
                       <string name="Name">Icon</string>
                       <Color3 name="BackgroundColor3">
@@ -6626,7 +6913,7 @@
                     </Properties>
                   </Item>
                 </Item>
-                <Item class="TextLabel" referent="268">
+                <Item class="TextLabel" referent="275">
                   <Properties>
                     <string name="Name">Title</string>
                     <Color3 name="BackgroundColor3">
@@ -6667,7 +6954,7 @@
                     <token name="TextYAlignment">1</token>
                   </Properties>
                 </Item>
-                <Item class="TextLabel" referent="269">
+                <Item class="TextLabel" referent="276">
                   <Properties>
                     <string name="Name">Subtitle</string>
                     <Color3 name="BackgroundColor3">
@@ -6709,7 +6996,7 @@
                   </Properties>
                 </Item>
               </Item>
-              <Item class="Frame" referent="270">
+              <Item class="Frame" referent="277">
                 <Properties>
                   <string name="Name">NewBadge</string>
                   <Color3 name="BackgroundColor3">
@@ -6734,7 +7021,7 @@
                   <bool name="Visible">false</bool>
                   <int name="ZIndex">3</int>
                 </Properties>
-                <Item class="UICorner" referent="271">
+                <Item class="UICorner" referent="278">
                   <Properties>
                     <string name="Name">UICorner</string>
                     <UDim name="BottomLeftRadius">
@@ -6755,7 +7042,7 @@
                     </UDim>
                   </Properties>
                 </Item>
-                <Item class="UIGradient" referent="272">
+                <Item class="UIGradient" referent="279">
                   <Properties>
                     <string name="Name">UIGradient</string>
                     <ColorSequence name="Color">0 1 0.74509805 0.21960784 0 1 1 0.5019608 0.12156863 0 </ColorSequence>
@@ -6763,7 +7050,7 @@
                     <NumberSequence name="Transparency">0 0 0 1 0 0 </NumberSequence>
                   </Properties>
                 </Item>
-                <Item class="TextLabel" referent="273">
+                <Item class="TextLabel" referent="280">
                   <Properties>
                     <string name="Name">Label</string>
                     <Color3 name="BackgroundColor3">
@@ -6805,7 +7092,7 @@
                   </Properties>
                 </Item>
               </Item>
-              <Item class="TextLabel" referent="274">
+              <Item class="TextLabel" referent="281">
                 <Properties>
                   <string name="Name">VehicleName</string>
                   <Color3 name="BackgroundColor3">
@@ -6846,7 +7133,7 @@
                   <token name="TextYAlignment">1</token>
                 </Properties>
               </Item>
-              <Item class="TextLabel" referent="275">
+              <Item class="TextLabel" referent="282">
                 <Properties>
                   <string name="Name">Info</string>
                   <Color3 name="BackgroundColor3">
@@ -6887,7 +7174,7 @@
                   <token name="TextYAlignment">1</token>
                 </Properties>
               </Item>
-              <Item class="Frame" referent="276">
+              <Item class="Frame" referent="283">
                 <Properties>
                   <string name="Name">StatusDot</string>
                   <Color3 name="BackgroundColor3">
@@ -6910,7 +7197,7 @@
                     <YO>0</YO>
                   </UDim2>
                 </Properties>
-                <Item class="UICorner" referent="277">
+                <Item class="UICorner" referent="284">
                   <Properties>
                     <string name="Name">UICorner</string>
                     <UDim name="BottomLeftRadius">
@@ -6932,7 +7219,7 @@
                   </Properties>
                 </Item>
               </Item>
-              <Item class="TextLabel" referent="278">
+              <Item class="TextLabel" referent="285">
                 <Properties>
                   <string name="Name">Status</string>
                   <Color3 name="BackgroundColor3">
@@ -6975,14 +7262,14 @@
               </Item>
             </Item>
           </Item>
-          <Item class="Frame" referent="279">
+          <Item class="Frame" referent="286">
             <Properties>
               <string name="Name">Card_VespaSprint</string>
               <float name="BackgroundTransparency">1</float>
               <int name="BorderSizePixel">0</int>
               <int name="LayoutOrder">8</int>
             </Properties>
-            <Item class="TextButton" referent="280">
+            <Item class="TextButton" referent="287">
               <Properties>
                 <string name="Name">Card</string>
                 <bool name="AutoButtonColor">false</bool>
@@ -7007,7 +7294,7 @@
                 </UDim2>
                 <string name="Text"></string>
               </Properties>
-              <Item class="UICorner" referent="281">
+              <Item class="UICorner" referent="288">
                 <Properties>
                   <string name="Name">UICorner</string>
                   <UDim name="BottomLeftRadius">
@@ -7028,7 +7315,7 @@
                   </UDim>
                 </Properties>
               </Item>
-              <Item class="UIStroke" referent="282">
+              <Item class="UIStroke" referent="289">
                 <Properties>
                   <string name="Name">UIStroke</string>
                   <token name="ApplyStrokeMode">1</token>
@@ -7041,7 +7328,7 @@
                   <float name="Transparency">0.92</float>
                 </Properties>
               </Item>
-              <Item class="Frame" referent="283">
+              <Item class="Frame" referent="290">
                 <Properties>
                   <string name="Name">Stage</string>
                   <Color3 name="BackgroundColor3">
@@ -7064,7 +7351,7 @@
                     <YO>0</YO>
                   </UDim2>
                 </Properties>
-                <Item class="UICorner" referent="284">
+                <Item class="UICorner" referent="291">
                   <Properties>
                     <string name="Name">UICorner</string>
                     <UDim name="BottomLeftRadius">
@@ -7085,7 +7372,7 @@
                     </UDim>
                   </Properties>
                 </Item>
-                <Item class="UIGradient" referent="285">
+                <Item class="UIGradient" referent="292">
                   <Properties>
                     <string name="Name">UIGradient</string>
                     <ColorSequence name="Color">0 0.1882353 0.21568628 0.2901961 0 1 0.06666667 0.078431375 0.10980392 0 </ColorSequence>
@@ -7093,7 +7380,7 @@
                     <NumberSequence name="Transparency">0 0 0 1 0 0 </NumberSequence>
                   </Properties>
                 </Item>
-                <Item class="Frame" referent="286">
+                <Item class="Frame" referent="293">
                   <Properties>
                     <string name="Name">Floor</string>
                     <Color3 name="BackgroundColor3">
@@ -7117,7 +7404,7 @@
                     </UDim2>
                     <int name="ZIndex">1</int>
                   </Properties>
-                  <Item class="UICorner" referent="287">
+                  <Item class="UICorner" referent="294">
                     <Properties>
                       <string name="Name">UICorner</string>
                       <UDim name="BottomLeftRadius">
@@ -7138,7 +7425,7 @@
                       </UDim>
                     </Properties>
                   </Item>
-                  <Item class="UIGradient" referent="288">
+                  <Item class="UIGradient" referent="295">
                     <Properties>
                       <string name="Name">UIGradient</string>
                       <ColorSequence name="Color">0 0 0 0 0 1 0 0 0 0 </ColorSequence>
@@ -7147,7 +7434,7 @@
                     </Properties>
                   </Item>
                 </Item>
-                <Item class="Frame" referent="289">
+                <Item class="Frame" referent="296">
                   <Properties>
                     <string name="Name">FloorLine</string>
                     <Color3 name="BackgroundColor3">
@@ -7172,7 +7459,7 @@
                     <int name="ZIndex">2</int>
                   </Properties>
                 </Item>
-                <Item class="TextLabel" referent="290">
+                <Item class="TextLabel" referent="297">
                   <Properties>
                     <string name="Name">PlaceholderIcon</string>
                     <Color3 name="BackgroundColor3">
@@ -7215,7 +7502,48 @@
                     <int name="ZIndex">3</int>
                   </Properties>
                 </Item>
-                <Item class="ImageLabel" referent="291">
+                <Item class="ViewportFrame" referent="298">
+                  <Properties>
+                    <string name="Name">ModelView</string>
+                    <Color3 name="Ambient">
+                      <R>0.6666667</R>
+                      <G>0.6745098</G>
+                      <B>0.7254902</B>
+                    </Color3>
+                    <Color3 name="BackgroundColor3">
+                      <R>1</R>
+                      <G>1</G>
+                      <B>1</B>
+                    </Color3>
+                    <float name="BackgroundTransparency">1</float>
+                    <int name="BorderSizePixel">0</int>
+                    <Color3 name="LightColor">
+                      <R>1</R>
+                      <G>0.972549</G>
+                      <B>0.92156863</B>
+                    </Color3>
+                    <Vector3 name="LightDirection">
+                      <X>-0.6000061</X>
+                      <Y>-1</Y>
+                      <Z>-0.3999939</Z>
+                    </Vector3>
+                    <UDim2 name="Position">
+                      <XS>0</XS>
+                      <XO>0</XO>
+                      <YS>0</YS>
+                      <YO>0</YO>
+                    </UDim2>
+                    <UDim2 name="Size">
+                      <XS>1</XS>
+                      <XO>0</XO>
+                      <YS>1</YS>
+                      <YO>0</YO>
+                    </UDim2>
+                    <bool name="Visible">false</bool>
+                    <int name="ZIndex">3</int>
+                  </Properties>
+                </Item>
+                <Item class="ImageLabel" referent="299">
                   <Properties>
                     <string name="Name">VehicleImage</string>
                     <Color3 name="BackgroundColor3">
@@ -7246,7 +7574,7 @@
                   </Properties>
                 </Item>
               </Item>
-              <Item class="Frame" referent="292">
+              <Item class="Frame" referent="300">
                 <Properties>
                   <string name="Name">LockOverlay</string>
                   <Color3 name="BackgroundColor3">
@@ -7271,7 +7599,7 @@
                   <bool name="Visible">false</bool>
                   <int name="ZIndex">2</int>
                 </Properties>
-                <Item class="UICorner" referent="293">
+                <Item class="UICorner" referent="301">
                   <Properties>
                     <string name="Name">UICorner</string>
                     <UDim name="BottomLeftRadius">
@@ -7292,7 +7620,7 @@
                     </UDim>
                   </Properties>
                 </Item>
-                <Item class="Frame" referent="294">
+                <Item class="Frame" referent="302">
                   <Properties>
                     <string name="Name">LockIcon</string>
                     <Color3 name="BackgroundColor3">
@@ -7315,7 +7643,7 @@
                       <YO>0</YO>
                     </UDim2>
                   </Properties>
-                  <Item class="UICorner" referent="295">
+                  <Item class="UICorner" referent="303">
                     <Properties>
                       <string name="Name">UICorner</string>
                       <UDim name="BottomLeftRadius">
@@ -7336,7 +7664,7 @@
                       </UDim>
                     </Properties>
                   </Item>
-                  <Item class="UIStroke" referent="296">
+                  <Item class="UIStroke" referent="304">
                     <Properties>
                       <string name="Name">UIStroke</string>
                       <token name="ApplyStrokeMode">1</token>
@@ -7349,7 +7677,7 @@
                       <float name="Transparency">0.45</float>
                     </Properties>
                   </Item>
-                  <Item class="TextLabel" referent="297">
+                  <Item class="TextLabel" referent="305">
                     <Properties>
                       <string name="Name">Icon</string>
                       <Color3 name="BackgroundColor3">
@@ -7391,7 +7719,7 @@
                     </Properties>
                   </Item>
                 </Item>
-                <Item class="TextLabel" referent="298">
+                <Item class="TextLabel" referent="306">
                   <Properties>
                     <string name="Name">Title</string>
                     <Color3 name="BackgroundColor3">
@@ -7432,7 +7760,7 @@
                     <token name="TextYAlignment">1</token>
                   </Properties>
                 </Item>
-                <Item class="TextLabel" referent="299">
+                <Item class="TextLabel" referent="307">
                   <Properties>
                     <string name="Name">Subtitle</string>
                     <Color3 name="BackgroundColor3">
@@ -7474,7 +7802,7 @@
                   </Properties>
                 </Item>
               </Item>
-              <Item class="Frame" referent="300">
+              <Item class="Frame" referent="308">
                 <Properties>
                   <string name="Name">NewBadge</string>
                   <Color3 name="BackgroundColor3">
@@ -7499,7 +7827,7 @@
                   <bool name="Visible">false</bool>
                   <int name="ZIndex">3</int>
                 </Properties>
-                <Item class="UICorner" referent="301">
+                <Item class="UICorner" referent="309">
                   <Properties>
                     <string name="Name">UICorner</string>
                     <UDim name="BottomLeftRadius">
@@ -7520,7 +7848,7 @@
                     </UDim>
                   </Properties>
                 </Item>
-                <Item class="UIGradient" referent="302">
+                <Item class="UIGradient" referent="310">
                   <Properties>
                     <string name="Name">UIGradient</string>
                     <ColorSequence name="Color">0 1 0.74509805 0.21960784 0 1 1 0.5019608 0.12156863 0 </ColorSequence>
@@ -7528,7 +7856,7 @@
                     <NumberSequence name="Transparency">0 0 0 1 0 0 </NumberSequence>
                   </Properties>
                 </Item>
-                <Item class="TextLabel" referent="303">
+                <Item class="TextLabel" referent="311">
                   <Properties>
                     <string name="Name">Label</string>
                     <Color3 name="BackgroundColor3">
@@ -7570,7 +7898,7 @@
                   </Properties>
                 </Item>
               </Item>
-              <Item class="TextLabel" referent="304">
+              <Item class="TextLabel" referent="312">
                 <Properties>
                   <string name="Name">VehicleName</string>
                   <Color3 name="BackgroundColor3">
@@ -7611,7 +7939,7 @@
                   <token name="TextYAlignment">1</token>
                 </Properties>
               </Item>
-              <Item class="TextLabel" referent="305">
+              <Item class="TextLabel" referent="313">
                 <Properties>
                   <string name="Name">Info</string>
                   <Color3 name="BackgroundColor3">
@@ -7652,7 +7980,7 @@
                   <token name="TextYAlignment">1</token>
                 </Properties>
               </Item>
-              <Item class="Frame" referent="306">
+              <Item class="Frame" referent="314">
                 <Properties>
                   <string name="Name">StatusDot</string>
                   <Color3 name="BackgroundColor3">
@@ -7675,7 +8003,7 @@
                     <YO>0</YO>
                   </UDim2>
                 </Properties>
-                <Item class="UICorner" referent="307">
+                <Item class="UICorner" referent="315">
                   <Properties>
                     <string name="Name">UICorner</string>
                     <UDim name="BottomLeftRadius">
@@ -7697,7 +8025,7 @@
                   </Properties>
                 </Item>
               </Item>
-              <Item class="TextLabel" referent="308">
+              <Item class="TextLabel" referent="316">
                 <Properties>
                   <string name="Name">Status</string>
                   <Color3 name="BackgroundColor3">
@@ -7740,7 +8068,7 @@
               </Item>
             </Item>
           </Item>
-          <Item class="Frame" referent="309">
+          <Item class="Frame" referent="317">
             <Properties>
               <string name="Name">CardTemplate</string>
               <float name="BackgroundTransparency">1</float>
@@ -7748,7 +8076,7 @@
               <int name="LayoutOrder">0</int>
               <bool name="Visible">false</bool>
             </Properties>
-            <Item class="TextButton" referent="310">
+            <Item class="TextButton" referent="318">
               <Properties>
                 <string name="Name">Card</string>
                 <bool name="AutoButtonColor">false</bool>
@@ -7773,7 +8101,7 @@
                 </UDim2>
                 <string name="Text"></string>
               </Properties>
-              <Item class="UICorner" referent="311">
+              <Item class="UICorner" referent="319">
                 <Properties>
                   <string name="Name">UICorner</string>
                   <UDim name="BottomLeftRadius">
@@ -7794,7 +8122,7 @@
                   </UDim>
                 </Properties>
               </Item>
-              <Item class="UIStroke" referent="312">
+              <Item class="UIStroke" referent="320">
                 <Properties>
                   <string name="Name">UIStroke</string>
                   <token name="ApplyStrokeMode">1</token>
@@ -7807,7 +8135,7 @@
                   <float name="Transparency">0.92</float>
                 </Properties>
               </Item>
-              <Item class="Frame" referent="313">
+              <Item class="Frame" referent="321">
                 <Properties>
                   <string name="Name">Stage</string>
                   <Color3 name="BackgroundColor3">
@@ -7830,7 +8158,7 @@
                     <YO>0</YO>
                   </UDim2>
                 </Properties>
-                <Item class="UICorner" referent="314">
+                <Item class="UICorner" referent="322">
                   <Properties>
                     <string name="Name">UICorner</string>
                     <UDim name="BottomLeftRadius">
@@ -7851,7 +8179,7 @@
                     </UDim>
                   </Properties>
                 </Item>
-                <Item class="UIGradient" referent="315">
+                <Item class="UIGradient" referent="323">
                   <Properties>
                     <string name="Name">UIGradient</string>
                     <ColorSequence name="Color">0 0.1882353 0.21568628 0.2901961 0 1 0.06666667 0.078431375 0.10980392 0 </ColorSequence>
@@ -7859,7 +8187,7 @@
                     <NumberSequence name="Transparency">0 0 0 1 0 0 </NumberSequence>
                   </Properties>
                 </Item>
-                <Item class="Frame" referent="316">
+                <Item class="Frame" referent="324">
                   <Properties>
                     <string name="Name">Floor</string>
                     <Color3 name="BackgroundColor3">
@@ -7883,7 +8211,7 @@
                     </UDim2>
                     <int name="ZIndex">1</int>
                   </Properties>
-                  <Item class="UICorner" referent="317">
+                  <Item class="UICorner" referent="325">
                     <Properties>
                       <string name="Name">UICorner</string>
                       <UDim name="BottomLeftRadius">
@@ -7904,7 +8232,7 @@
                       </UDim>
                     </Properties>
                   </Item>
-                  <Item class="UIGradient" referent="318">
+                  <Item class="UIGradient" referent="326">
                     <Properties>
                       <string name="Name">UIGradient</string>
                       <ColorSequence name="Color">0 0 0 0 0 1 0 0 0 0 </ColorSequence>
@@ -7913,7 +8241,7 @@
                     </Properties>
                   </Item>
                 </Item>
-                <Item class="Frame" referent="319">
+                <Item class="Frame" referent="327">
                   <Properties>
                     <string name="Name">FloorLine</string>
                     <Color3 name="BackgroundColor3">
@@ -7938,7 +8266,7 @@
                     <int name="ZIndex">2</int>
                   </Properties>
                 </Item>
-                <Item class="TextLabel" referent="320">
+                <Item class="TextLabel" referent="328">
                   <Properties>
                     <string name="Name">PlaceholderIcon</string>
                     <Color3 name="BackgroundColor3">
@@ -7981,7 +8309,48 @@
                     <int name="ZIndex">3</int>
                   </Properties>
                 </Item>
-                <Item class="ImageLabel" referent="321">
+                <Item class="ViewportFrame" referent="329">
+                  <Properties>
+                    <string name="Name">ModelView</string>
+                    <Color3 name="Ambient">
+                      <R>0.6666667</R>
+                      <G>0.6745098</G>
+                      <B>0.7254902</B>
+                    </Color3>
+                    <Color3 name="BackgroundColor3">
+                      <R>1</R>
+                      <G>1</G>
+                      <B>1</B>
+                    </Color3>
+                    <float name="BackgroundTransparency">1</float>
+                    <int name="BorderSizePixel">0</int>
+                    <Color3 name="LightColor">
+                      <R>1</R>
+                      <G>0.972549</G>
+                      <B>0.92156863</B>
+                    </Color3>
+                    <Vector3 name="LightDirection">
+                      <X>-0.6000061</X>
+                      <Y>-1</Y>
+                      <Z>-0.3999939</Z>
+                    </Vector3>
+                    <UDim2 name="Position">
+                      <XS>0</XS>
+                      <XO>0</XO>
+                      <YS>0</YS>
+                      <YO>0</YO>
+                    </UDim2>
+                    <UDim2 name="Size">
+                      <XS>1</XS>
+                      <XO>0</XO>
+                      <YS>1</YS>
+                      <YO>0</YO>
+                    </UDim2>
+                    <bool name="Visible">false</bool>
+                    <int name="ZIndex">3</int>
+                  </Properties>
+                </Item>
+                <Item class="ImageLabel" referent="330">
                   <Properties>
                     <string name="Name">VehicleImage</string>
                     <Color3 name="BackgroundColor3">
@@ -8012,7 +8381,7 @@
                   </Properties>
                 </Item>
               </Item>
-              <Item class="Frame" referent="322">
+              <Item class="Frame" referent="331">
                 <Properties>
                   <string name="Name">LockOverlay</string>
                   <Color3 name="BackgroundColor3">
@@ -8037,7 +8406,7 @@
                   <bool name="Visible">true</bool>
                   <int name="ZIndex">2</int>
                 </Properties>
-                <Item class="UICorner" referent="323">
+                <Item class="UICorner" referent="332">
                   <Properties>
                     <string name="Name">UICorner</string>
                     <UDim name="BottomLeftRadius">
@@ -8058,7 +8427,7 @@
                     </UDim>
                   </Properties>
                 </Item>
-                <Item class="Frame" referent="324">
+                <Item class="Frame" referent="333">
                   <Properties>
                     <string name="Name">LockIcon</string>
                     <Color3 name="BackgroundColor3">
@@ -8081,7 +8450,7 @@
                       <YO>0</YO>
                     </UDim2>
                   </Properties>
-                  <Item class="UICorner" referent="325">
+                  <Item class="UICorner" referent="334">
                     <Properties>
                       <string name="Name">UICorner</string>
                       <UDim name="BottomLeftRadius">
@@ -8102,7 +8471,7 @@
                       </UDim>
                     </Properties>
                   </Item>
-                  <Item class="UIStroke" referent="326">
+                  <Item class="UIStroke" referent="335">
                     <Properties>
                       <string name="Name">UIStroke</string>
                       <token name="ApplyStrokeMode">1</token>
@@ -8115,7 +8484,7 @@
                       <float name="Transparency">0.45</float>
                     </Properties>
                   </Item>
-                  <Item class="TextLabel" referent="327">
+                  <Item class="TextLabel" referent="336">
                     <Properties>
                       <string name="Name">Icon</string>
                       <Color3 name="BackgroundColor3">
@@ -8157,7 +8526,7 @@
                     </Properties>
                   </Item>
                 </Item>
-                <Item class="TextLabel" referent="328">
+                <Item class="TextLabel" referent="337">
                   <Properties>
                     <string name="Name">Title</string>
                     <Color3 name="BackgroundColor3">
@@ -8198,7 +8567,7 @@
                     <token name="TextYAlignment">1</token>
                   </Properties>
                 </Item>
-                <Item class="TextLabel" referent="329">
+                <Item class="TextLabel" referent="338">
                   <Properties>
                     <string name="Name">Subtitle</string>
                     <Color3 name="BackgroundColor3">
@@ -8240,7 +8609,7 @@
                   </Properties>
                 </Item>
               </Item>
-              <Item class="Frame" referent="330">
+              <Item class="Frame" referent="339">
                 <Properties>
                   <string name="Name">NewBadge</string>
                   <Color3 name="BackgroundColor3">
@@ -8265,7 +8634,7 @@
                   <bool name="Visible">true</bool>
                   <int name="ZIndex">3</int>
                 </Properties>
-                <Item class="UICorner" referent="331">
+                <Item class="UICorner" referent="340">
                   <Properties>
                     <string name="Name">UICorner</string>
                     <UDim name="BottomLeftRadius">
@@ -8286,7 +8655,7 @@
                     </UDim>
                   </Properties>
                 </Item>
-                <Item class="UIGradient" referent="332">
+                <Item class="UIGradient" referent="341">
                   <Properties>
                     <string name="Name">UIGradient</string>
                     <ColorSequence name="Color">0 1 0.74509805 0.21960784 0 1 1 0.5019608 0.12156863 0 </ColorSequence>
@@ -8294,7 +8663,7 @@
                     <NumberSequence name="Transparency">0 0 0 1 0 0 </NumberSequence>
                   </Properties>
                 </Item>
-                <Item class="TextLabel" referent="333">
+                <Item class="TextLabel" referent="342">
                   <Properties>
                     <string name="Name">Label</string>
                     <Color3 name="BackgroundColor3">
@@ -8336,7 +8705,7 @@
                   </Properties>
                 </Item>
               </Item>
-              <Item class="TextLabel" referent="334">
+              <Item class="TextLabel" referent="343">
                 <Properties>
                   <string name="Name">VehicleName</string>
                   <Color3 name="BackgroundColor3">
@@ -8377,7 +8746,7 @@
                   <token name="TextYAlignment">1</token>
                 </Properties>
               </Item>
-              <Item class="TextLabel" referent="335">
+              <Item class="TextLabel" referent="344">
                 <Properties>
                   <string name="Name">Info</string>
                   <Color3 name="BackgroundColor3">
@@ -8418,7 +8787,7 @@
                   <token name="TextYAlignment">1</token>
                 </Properties>
               </Item>
-              <Item class="Frame" referent="336">
+              <Item class="Frame" referent="345">
                 <Properties>
                   <string name="Name">StatusDot</string>
                   <Color3 name="BackgroundColor3">
@@ -8441,7 +8810,7 @@
                     <YO>0</YO>
                   </UDim2>
                 </Properties>
-                <Item class="UICorner" referent="337">
+                <Item class="UICorner" referent="346">
                   <Properties>
                     <string name="Name">UICorner</string>
                     <UDim name="BottomLeftRadius">
@@ -8463,7 +8832,7 @@
                   </Properties>
                 </Item>
               </Item>
-              <Item class="TextLabel" referent="338">
+              <Item class="TextLabel" referent="347">
                 <Properties>
                   <string name="Name">Status</string>
                   <Color3 name="BackgroundColor3">
@@ -8507,7 +8876,7 @@
             </Item>
           </Item>
         </Item>
-        <Item class="TextLabel" referent="339">
+        <Item class="TextLabel" referent="348">
           <Properties>
             <string name="Name">EmptyState</string>
             <Color3 name="BackgroundColor3">
@@ -8550,7 +8919,7 @@
           </Properties>
         </Item>
       </Item>
-      <Item class="Frame" referent="340">
+      <Item class="Frame" referent="349">
         <Properties>
           <string name="Name">Details</string>
           <Color3 name="BackgroundColor3">
@@ -8573,7 +8942,7 @@
             <YO>0</YO>
           </UDim2>
         </Properties>
-        <Item class="UICorner" referent="341">
+        <Item class="UICorner" referent="350">
           <Properties>
             <string name="Name">UICorner</string>
             <UDim name="BottomLeftRadius">
@@ -8594,7 +8963,7 @@
             </UDim>
           </Properties>
         </Item>
-        <Item class="UIStroke" referent="342">
+        <Item class="UIStroke" referent="351">
           <Properties>
             <string name="Name">UIStroke</string>
             <token name="ApplyStrokeMode">1</token>
@@ -8607,7 +8976,7 @@
             <float name="Transparency">0.92</float>
           </Properties>
         </Item>
-        <Item class="Frame" referent="343">
+        <Item class="Frame" referent="352">
           <Properties>
             <string name="Name">Stage</string>
             <Color3 name="BackgroundColor3">
@@ -8630,7 +8999,7 @@
               <YO>0</YO>
             </UDim2>
           </Properties>
-          <Item class="UICorner" referent="344">
+          <Item class="UICorner" referent="353">
             <Properties>
               <string name="Name">UICorner</string>
               <UDim name="BottomLeftRadius">
@@ -8651,7 +9020,7 @@
               </UDim>
             </Properties>
           </Item>
-          <Item class="UIGradient" referent="345">
+          <Item class="UIGradient" referent="354">
             <Properties>
               <string name="Name">UIGradient</string>
               <ColorSequence name="Color">0 0.1882353 0.21568628 0.2901961 0 1 0.06666667 0.078431375 0.10980392 0 </ColorSequence>
@@ -8659,7 +9028,7 @@
               <NumberSequence name="Transparency">0 0 0 1 0 0 </NumberSequence>
             </Properties>
           </Item>
-          <Item class="Frame" referent="346">
+          <Item class="Frame" referent="355">
             <Properties>
               <string name="Name">Floor</string>
               <Color3 name="BackgroundColor3">
@@ -8683,7 +9052,7 @@
               </UDim2>
               <int name="ZIndex">1</int>
             </Properties>
-            <Item class="UICorner" referent="347">
+            <Item class="UICorner" referent="356">
               <Properties>
                 <string name="Name">UICorner</string>
                 <UDim name="BottomLeftRadius">
@@ -8704,7 +9073,7 @@
                 </UDim>
               </Properties>
             </Item>
-            <Item class="UIGradient" referent="348">
+            <Item class="UIGradient" referent="357">
               <Properties>
                 <string name="Name">UIGradient</string>
                 <ColorSequence name="Color">0 0 0 0 0 1 0 0 0 0 </ColorSequence>
@@ -8713,7 +9082,7 @@
               </Properties>
             </Item>
           </Item>
-          <Item class="Frame" referent="349">
+          <Item class="Frame" referent="358">
             <Properties>
               <string name="Name">FloorLine</string>
               <Color3 name="BackgroundColor3">
@@ -8738,7 +9107,7 @@
               <int name="ZIndex">2</int>
             </Properties>
           </Item>
-          <Item class="TextLabel" referent="350">
+          <Item class="TextLabel" referent="359">
             <Properties>
               <string name="Name">PlaceholderIcon</string>
               <Color3 name="BackgroundColor3">
@@ -8781,7 +9150,48 @@
               <int name="ZIndex">3</int>
             </Properties>
           </Item>
-          <Item class="ImageLabel" referent="351">
+          <Item class="ViewportFrame" referent="360">
+            <Properties>
+              <string name="Name">ModelView</string>
+              <Color3 name="Ambient">
+                <R>0.6666667</R>
+                <G>0.6745098</G>
+                <B>0.7254902</B>
+              </Color3>
+              <Color3 name="BackgroundColor3">
+                <R>1</R>
+                <G>1</G>
+                <B>1</B>
+              </Color3>
+              <float name="BackgroundTransparency">1</float>
+              <int name="BorderSizePixel">0</int>
+              <Color3 name="LightColor">
+                <R>1</R>
+                <G>0.972549</G>
+                <B>0.92156863</B>
+              </Color3>
+              <Vector3 name="LightDirection">
+                <X>-0.6000061</X>
+                <Y>-1</Y>
+                <Z>-0.3999939</Z>
+              </Vector3>
+              <UDim2 name="Position">
+                <XS>0</XS>
+                <XO>0</XO>
+                <YS>0</YS>
+                <YO>0</YO>
+              </UDim2>
+              <UDim2 name="Size">
+                <XS>1</XS>
+                <XO>0</XO>
+                <YS>1</YS>
+                <YO>0</YO>
+              </UDim2>
+              <bool name="Visible">false</bool>
+              <int name="ZIndex">3</int>
+            </Properties>
+          </Item>
+          <Item class="ImageLabel" referent="361">
             <Properties>
               <string name="Name">VehicleImage</string>
               <Color3 name="BackgroundColor3">
@@ -8812,7 +9222,7 @@
             </Properties>
           </Item>
         </Item>
-        <Item class="Frame" referent="352">
+        <Item class="Frame" referent="362">
           <Properties>
             <string name="Name">NewBadge</string>
             <Color3 name="BackgroundColor3">
@@ -8836,7 +9246,7 @@
             </UDim2>
             <int name="ZIndex">2</int>
           </Properties>
-          <Item class="UICorner" referent="353">
+          <Item class="UICorner" referent="363">
             <Properties>
               <string name="Name">UICorner</string>
               <UDim name="BottomLeftRadius">
@@ -8857,7 +9267,7 @@
               </UDim>
             </Properties>
           </Item>
-          <Item class="UIGradient" referent="354">
+          <Item class="UIGradient" referent="364">
             <Properties>
               <string name="Name">UIGradient</string>
               <ColorSequence name="Color">0 1 0.74509805 0.21960784 0 1 1 0.5019608 0.12156863 0 </ColorSequence>
@@ -8865,7 +9275,7 @@
               <NumberSequence name="Transparency">0 0 0 1 0 0 </NumberSequence>
             </Properties>
           </Item>
-          <Item class="TextLabel" referent="355">
+          <Item class="TextLabel" referent="365">
             <Properties>
               <string name="Name">Label</string>
               <Color3 name="BackgroundColor3">
@@ -8907,7 +9317,7 @@
             </Properties>
           </Item>
         </Item>
-        <Item class="TextLabel" referent="356">
+        <Item class="TextLabel" referent="366">
           <Properties>
             <string name="Name">VehicleName</string>
             <Color3 name="BackgroundColor3">
@@ -8948,7 +9358,7 @@
             <token name="TextYAlignment">1</token>
           </Properties>
         </Item>
-        <Item class="TextLabel" referent="357">
+        <Item class="TextLabel" referent="367">
           <Properties>
             <string name="Name">Info</string>
             <Color3 name="BackgroundColor3">
@@ -8989,7 +9399,7 @@
             <token name="TextYAlignment">1</token>
           </Properties>
         </Item>
-        <Item class="Frame" referent="358">
+        <Item class="Frame" referent="368">
           <Properties>
             <string name="Name">Divider</string>
             <Color3 name="BackgroundColor3">
@@ -9013,7 +9423,7 @@
             </UDim2>
           </Properties>
         </Item>
-        <Item class="Frame" referent="359">
+        <Item class="Frame" referent="369">
           <Properties>
             <string name="Name">Stats</string>
             <Color3 name="BackgroundColor3">
@@ -9036,7 +9446,7 @@
               <YO>0</YO>
             </UDim2>
           </Properties>
-          <Item class="Frame" referent="360">
+          <Item class="Frame" referent="370">
             <Properties>
               <string name="Name">Stat_TopSpeed</string>
               <Color3 name="BackgroundColor3">
@@ -9059,7 +9469,7 @@
                 <YO>0</YO>
               </UDim2>
             </Properties>
-            <Item class="TextLabel" referent="361">
+            <Item class="TextLabel" referent="371">
               <Properties>
                 <string name="Name">Name</string>
                 <Color3 name="BackgroundColor3">
@@ -9100,7 +9510,7 @@
                 <token name="TextYAlignment">1</token>
               </Properties>
             </Item>
-            <Item class="TextLabel" referent="362">
+            <Item class="TextLabel" referent="372">
               <Properties>
                 <string name="Name">Value</string>
                 <Color3 name="BackgroundColor3">
@@ -9141,7 +9551,7 @@
                 <token name="TextYAlignment">1</token>
               </Properties>
             </Item>
-            <Item class="Frame" referent="363">
+            <Item class="Frame" referent="373">
               <Properties>
                 <string name="Name">Track</string>
                 <Color3 name="BackgroundColor3">
@@ -9164,7 +9574,7 @@
                   <YO>0</YO>
                 </UDim2>
               </Properties>
-              <Item class="UICorner" referent="364">
+              <Item class="UICorner" referent="374">
                 <Properties>
                   <string name="Name">UICorner</string>
                   <UDim name="BottomLeftRadius">
@@ -9185,7 +9595,7 @@
                   </UDim>
                 </Properties>
               </Item>
-              <Item class="Frame" referent="365">
+              <Item class="Frame" referent="375">
                 <Properties>
                   <string name="Name">Fill</string>
                   <Color3 name="BackgroundColor3">
@@ -9208,7 +9618,7 @@
                     <YO>0</YO>
                   </UDim2>
                 </Properties>
-                <Item class="UICorner" referent="366">
+                <Item class="UICorner" referent="376">
                   <Properties>
                     <string name="Name">UICorner</string>
                     <UDim name="BottomLeftRadius">
@@ -9229,7 +9639,7 @@
                     </UDim>
                   </Properties>
                 </Item>
-                <Item class="UIGradient" referent="367">
+                <Item class="UIGradient" referent="377">
                   <Properties>
                     <string name="Name">UIGradient</string>
                     <ColorSequence name="Color">0 1 0.5019608 0.12156863 0 1 1 0.74509805 0.21960784 0 </ColorSequence>
@@ -9240,7 +9650,7 @@
               </Item>
             </Item>
           </Item>
-          <Item class="Frame" referent="368">
+          <Item class="Frame" referent="378">
             <Properties>
               <string name="Name">Stat_Acceleration</string>
               <Color3 name="BackgroundColor3">
@@ -9263,7 +9673,7 @@
                 <YO>0</YO>
               </UDim2>
             </Properties>
-            <Item class="TextLabel" referent="369">
+            <Item class="TextLabel" referent="379">
               <Properties>
                 <string name="Name">Name</string>
                 <Color3 name="BackgroundColor3">
@@ -9304,7 +9714,7 @@
                 <token name="TextYAlignment">1</token>
               </Properties>
             </Item>
-            <Item class="TextLabel" referent="370">
+            <Item class="TextLabel" referent="380">
               <Properties>
                 <string name="Name">Value</string>
                 <Color3 name="BackgroundColor3">
@@ -9345,7 +9755,7 @@
                 <token name="TextYAlignment">1</token>
               </Properties>
             </Item>
-            <Item class="Frame" referent="371">
+            <Item class="Frame" referent="381">
               <Properties>
                 <string name="Name">Track</string>
                 <Color3 name="BackgroundColor3">
@@ -9368,7 +9778,7 @@
                   <YO>0</YO>
                 </UDim2>
               </Properties>
-              <Item class="UICorner" referent="372">
+              <Item class="UICorner" referent="382">
                 <Properties>
                   <string name="Name">UICorner</string>
                   <UDim name="BottomLeftRadius">
@@ -9389,7 +9799,7 @@
                   </UDim>
                 </Properties>
               </Item>
-              <Item class="Frame" referent="373">
+              <Item class="Frame" referent="383">
                 <Properties>
                   <string name="Name">Fill</string>
                   <Color3 name="BackgroundColor3">
@@ -9412,7 +9822,7 @@
                     <YO>0</YO>
                   </UDim2>
                 </Properties>
-                <Item class="UICorner" referent="374">
+                <Item class="UICorner" referent="384">
                   <Properties>
                     <string name="Name">UICorner</string>
                     <UDim name="BottomLeftRadius">
@@ -9433,7 +9843,7 @@
                     </UDim>
                   </Properties>
                 </Item>
-                <Item class="UIGradient" referent="375">
+                <Item class="UIGradient" referent="385">
                   <Properties>
                     <string name="Name">UIGradient</string>
                     <ColorSequence name="Color">0 1 0.5019608 0.12156863 0 1 1 0.74509805 0.21960784 0 </ColorSequence>
@@ -9444,7 +9854,7 @@
               </Item>
             </Item>
           </Item>
-          <Item class="Frame" referent="376">
+          <Item class="Frame" referent="386">
             <Properties>
               <string name="Name">Stat_Handling</string>
               <Color3 name="BackgroundColor3">
@@ -9467,7 +9877,7 @@
                 <YO>0</YO>
               </UDim2>
             </Properties>
-            <Item class="TextLabel" referent="377">
+            <Item class="TextLabel" referent="387">
               <Properties>
                 <string name="Name">Name</string>
                 <Color3 name="BackgroundColor3">
@@ -9508,7 +9918,7 @@
                 <token name="TextYAlignment">1</token>
               </Properties>
             </Item>
-            <Item class="TextLabel" referent="378">
+            <Item class="TextLabel" referent="388">
               <Properties>
                 <string name="Name">Value</string>
                 <Color3 name="BackgroundColor3">
@@ -9549,7 +9959,7 @@
                 <token name="TextYAlignment">1</token>
               </Properties>
             </Item>
-            <Item class="Frame" referent="379">
+            <Item class="Frame" referent="389">
               <Properties>
                 <string name="Name">Track</string>
                 <Color3 name="BackgroundColor3">
@@ -9572,7 +9982,7 @@
                   <YO>0</YO>
                 </UDim2>
               </Properties>
-              <Item class="UICorner" referent="380">
+              <Item class="UICorner" referent="390">
                 <Properties>
                   <string name="Name">UICorner</string>
                   <UDim name="BottomLeftRadius">
@@ -9593,7 +10003,7 @@
                   </UDim>
                 </Properties>
               </Item>
-              <Item class="Frame" referent="381">
+              <Item class="Frame" referent="391">
                 <Properties>
                   <string name="Name">Fill</string>
                   <Color3 name="BackgroundColor3">
@@ -9616,7 +10026,7 @@
                     <YO>0</YO>
                   </UDim2>
                 </Properties>
-                <Item class="UICorner" referent="382">
+                <Item class="UICorner" referent="392">
                   <Properties>
                     <string name="Name">UICorner</string>
                     <UDim name="BottomLeftRadius">
@@ -9637,7 +10047,7 @@
                     </UDim>
                   </Properties>
                 </Item>
-                <Item class="UIGradient" referent="383">
+                <Item class="UIGradient" referent="393">
                   <Properties>
                     <string name="Name">UIGradient</string>
                     <ColorSequence name="Color">0 1 0.5019608 0.12156863 0 1 1 0.74509805 0.21960784 0 </ColorSequence>
@@ -9649,7 +10059,7 @@
             </Item>
           </Item>
         </Item>
-        <Item class="TextButton" referent="384">
+        <Item class="TextButton" referent="394">
           <Properties>
             <string name="Name">SpawnButton</string>
             <bool name="AutoButtonColor">true</bool>
@@ -9674,7 +10084,7 @@
             </UDim2>
             <string name="Text"></string>
           </Properties>
-          <Item class="UICorner" referent="385">
+          <Item class="UICorner" referent="395">
             <Properties>
               <string name="Name">UICorner</string>
               <UDim name="BottomLeftRadius">
@@ -9695,7 +10105,7 @@
               </UDim>
             </Properties>
           </Item>
-          <Item class="UIGradient" referent="386">
+          <Item class="UIGradient" referent="396">
             <Properties>
               <string name="Name">UIGradient</string>
               <ColorSequence name="Color">0 1 0.74509805 0.21960784 0 1 1 0.5019608 0.12156863 0 </ColorSequence>
@@ -9703,7 +10113,7 @@
               <NumberSequence name="Transparency">0 0 0 1 0 0 </NumberSequence>
             </Properties>
           </Item>
-          <Item class="TextLabel" referent="387">
+          <Item class="TextLabel" referent="397">
             <Properties>
               <string name="Name">Label</string>
               <Color3 name="BackgroundColor3">
@@ -9747,7 +10157,7 @@
         </Item>
       </Item>
     </Item>
-    <Item class="Frame" referent="388">
+    <Item class="Frame" referent="398">
       <Properties>
         <string name="Name">Toast</string>
         <Vector2 name="AnchorPoint">
@@ -9776,13 +10186,13 @@
         <bool name="Visible">false</bool>
         <int name="ZIndex">10</int>
       </Properties>
-      <Item class="UIAspectRatioConstraint" referent="389">
+      <Item class="UIAspectRatioConstraint" referent="399">
         <Properties>
           <string name="Name">UIAspectRatioConstraint</string>
           <float name="AspectRatio">7.0833335</float>
         </Properties>
       </Item>
-      <Item class="UICorner" referent="390">
+      <Item class="UICorner" referent="400">
         <Properties>
           <string name="Name">UICorner</string>
           <UDim name="BottomLeftRadius">
@@ -9803,7 +10213,7 @@
           </UDim>
         </Properties>
       </Item>
-      <Item class="UIStroke" referent="391">
+      <Item class="UIStroke" referent="401">
         <Properties>
           <string name="Name">UIStroke</string>
           <token name="ApplyStrokeMode">1</token>
@@ -9816,7 +10226,7 @@
           <float name="Transparency">0.86</float>
         </Properties>
       </Item>
-      <Item class="Frame" referent="392">
+      <Item class="Frame" referent="402">
         <Properties>
           <string name="Name">Dot</string>
           <Color3 name="BackgroundColor3">
@@ -9839,7 +10249,7 @@
             <YO>0</YO>
           </UDim2>
         </Properties>
-        <Item class="UICorner" referent="393">
+        <Item class="UICorner" referent="403">
           <Properties>
             <string name="Name">UICorner</string>
             <UDim name="BottomLeftRadius">
@@ -9861,7 +10271,7 @@
           </Properties>
         </Item>
       </Item>
-      <Item class="TextLabel" referent="394">
+      <Item class="TextLabel" referent="404">
         <Properties>
           <string name="Name">Message</string>
           <Color3 name="BackgroundColor3">
@@ -9903,7 +10313,7 @@
         </Properties>
       </Item>
     </Item>
-    <Item class="LocalScript" referent="395">
+    <Item class="LocalScript" referent="405">
       <Properties>
         <string name="Name">VehicleSpawnerClient</string>
         <string name="Source"><![CDATA[--[[
@@ -9918,6 +10328,7 @@ local GuiService = game:GetService("GuiService")
 local MarketplaceService = game:GetService("MarketplaceService")
 local Players = game:GetService("Players")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
+local RunService = game:GetService("RunService")
 local TweenService = game:GetService("TweenService")
 local UserInputService = game:GetService("UserInputService")
 
@@ -9931,6 +10342,7 @@ local remotes = shared:WaitForChild("Remotes")
 local spawnRemote = remotes:WaitForChild("SpawnVehicle")
 local despawnRemote = remotes:WaitForChild("DespawnVehicle")
 local available = shared:WaitForChild("Available", 10)
+local previews = shared:WaitForChild("Previews", 10)
 
 local main = gui:WaitForChild("Main")
 local backdrop = gui:WaitForChild("Backdrop")
@@ -10005,18 +10417,119 @@ local function isAvailable(vehicle)
 	return available == nil or available:FindFirstChild(vehicle.Name) ~= nil
 end
 
-local function setImage(stage, image)
+---------------------------------------------------------------------------
+-- Vehicle pictures: Config.Image if set, otherwise the vehicle's 3D model
+-- (ReplicatedStorage.VehicleSpawner.Previews, made by the server).
+---------------------------------------------------------------------------
+
+local CARD_ANGLE = math.rad(60) -- camera angle from the vehicle's front, towards its right side
+local views = {} -- [ViewportFrame] = camera framing info
+
+local function visibleBounds(model)
+	local low, high = Vector3.one * math.huge, -Vector3.one * math.huge
+	for _, part in model:GetDescendants() do
+		if part:IsA("BasePart") and part.Transparency < 1 then
+			local cframe, half = part.CFrame, part.Size / 2
+			local right, up, look = cframe.RightVector, cframe.UpVector, cframe.LookVector
+			local extent = Vector3.new(
+				math.abs(right.X) * half.X + math.abs(up.X) * half.Y + math.abs(look.X) * half.Z,
+				math.abs(right.Y) * half.X + math.abs(up.Y) * half.Y + math.abs(look.Y) * half.Z,
+				math.abs(right.Z) * half.X + math.abs(up.Z) * half.Y + math.abs(look.Z) * half.Z
+			)
+			low = low:Min(cframe.Position - extent)
+			high = high:Max(cframe.Position + extent)
+		end
+	end
+	if low.X == math.huge then
+		local cframe, size = model:GetBoundingBox()
+		return cframe.Position, size
+	end
+	return (low + high) / 2, high - low
+end
+
+-- Places the camera so the whole vehicle fits the viewport from `angle`.
+local function frameCamera(view)
+	local camera, angle = view.camera, view.angle
+	local absolute = view.viewport.AbsoluteSize
+	local aspect = if absolute.X > 0 and absolute.Y > 0 then absolute.X / absolute.Y else 1.4
+	local forward = view.forward
+	local right = forward:Cross(Vector3.yAxis)
+	local length = math.abs(view.size.X * forward.X) + math.abs(view.size.Z * forward.Z)
+	local width = math.abs(view.size.X * right.X) + math.abs(view.size.Z * right.Z)
+	local vertical = math.rad(camera.FieldOfView) / 2
+	local horizontal = math.atan(math.tan(vertical) * aspect)
+	local across = length * math.abs(math.sin(angle)) + width * math.abs(math.cos(angle))
+	local depth = length * math.abs(math.cos(angle)) + width * math.abs(math.sin(angle))
+	local distance = math.max(across / 2 / math.tan(horizontal), view.size.Y / 2 / math.tan(vertical)) * 1.15 + depth / 2
+	local direction = forward * math.cos(angle) + right * math.sin(angle)
+	camera.CFrame = CFrame.lookAt(view.center + direction * distance + Vector3.yAxis * distance * 0.2, view.center)
+end
+
+local function clearModel(viewport)
+	views[viewport] = nil
+	viewport:ClearAllChildren()
+	viewport.Visible = false
+end
+
+local function showModel(viewport, vehicle)
+	clearModel(viewport)
+	local source = previews and previews:FindFirstChild(vehicle.Name)
+	if not source then
+		return false
+	end
+	local model = source:Clone()
+	model.Parent = viewport
+	local camera = Instance.new("Camera")
+	camera.FieldOfView = 30
+	camera.Parent = viewport
+	viewport.CurrentCamera = camera
+
+	local center, size = visibleBounds(model)
+	local view = {
+		viewport = viewport,
+		camera = camera,
+		center = center,
+		size = size,
+		forward = model:GetAttribute("Forward") or Vector3.new(0, 0, -1),
+		angle = CARD_ANGLE,
+	}
+	views[viewport] = view
+	frameCamera(view)
+	viewport.Visible = true
+	return true
+end
+
+local function watchViewport(viewport)
+	viewport:GetPropertyChangedSignal("AbsoluteSize"):Connect(function()
+		local view = views[viewport]
+		if view then
+			frameCamera(view)
+		end
+	end)
+end
+
+local function setVisual(stage, vehicle)
+	local image = vehicle and vehicle.Image
 	if type(image) == "number" then
 		image = "rbxassetid://" .. image
 	end
 	local hasImage = type(image) == "string" and image ~= ""
 	local picture = stage:FindFirstChild("VehicleImage")
+	local viewport = stage:FindFirstChild("ModelView")
 	local placeholder = stage:FindFirstChild("PlaceholderIcon")
 	if picture then
 		picture.Image = if hasImage then image else ""
 	end
+	local hasModel = false
+	if viewport then
+		if vehicle and not hasImage then
+			hasModel = showModel(viewport, vehicle)
+		else
+			clearModel(viewport)
+		end
+	end
 	if placeholder then
-		placeholder.Visible = not hasImage
+		placeholder.Visible = not hasImage and not hasModel
 	end
 end
 
@@ -10119,6 +10632,9 @@ local function updateSpawnButton(text)
 		or "SPAWN VEHICLE"
 end
 
+local detailsViewport = details:WaitForChild("Stage"):WaitForChild("ModelView")
+local detailsVehicle = false
+
 local function updateDetails()
 	local entry = state.selected
 	local vehicle = entry and entry.vehicle
@@ -10131,7 +10647,10 @@ local function updateDetails()
 		table.insert(info, vehicle.Category)
 	end
 	details.Info.Text = table.concat(info, "  •  ")
-	setImage(details.Stage, vehicle and vehicle.Image)
+	if vehicle ~= detailsVehicle then
+		detailsVehicle = vehicle
+		setVisual(details.Stage, vehicle)
+	end
 	details.NewBadge.Visible = vehicle ~= nil and vehicle.New == true
 
 	local stats = vehicle and vehicle.Stats or {}
@@ -10316,8 +10835,9 @@ for index, vehicle in Config.Vehicles do
 	card.Info.Text = vehicle.Type or vehicle.Category or ""
 	card.NewBadge.Visible = vehicle.New == true
 	card.LockOverlay.Subtitle.Text = vehicle.GamepassName or "Gamepass"
-	setImage(card.Stage, vehicle.Image)
 	slot.Parent = grid
+	watchViewport(card.Stage.ModelView)
+	setVisual(card.Stage, vehicle)
 
 	local entry = {
 		vehicle = vehicle,
@@ -10450,6 +10970,48 @@ if available then
 	available.ChildAdded:Connect(refreshList)
 	available.ChildRemoved:Connect(refreshList)
 end
+
+-- 3D pictures that arrive after the menu was built
+if previews then
+	previews.ChildAdded:Connect(function(preview)
+		for _, entry in entries do
+			if entry.vehicle.Name == preview.Name then
+				setVisual(entry.card.Stage, entry.vehicle)
+				if state.selected == entry then
+					setVisual(details.Stage, entry.vehicle)
+				end
+			end
+		end
+	end)
+end
+
+watchViewport(detailsViewport)
+RunService.RenderStepped:Connect(function(deltaTime)
+	local view = state.open and views[detailsViewport]
+	if view then
+		view.angle += deltaTime * 0.6
+		frameCamera(view)
+	end
+end)
+
+-- "E  Drive" on someone else's owner-only vehicle: hide it for this player
+-- (the server refuses it anyway).
+local function hideForeignPrompt(prompt)
+	if prompt:IsA("ProximityPrompt") and prompt:GetAttribute("OwnerOnly")
+		and prompt:GetAttribute("OwnerUserId") ~= player.UserId then
+		prompt.MaxActivationDistance = 0
+	end
+end
+
+task.spawn(function()
+	local spawnedVehicles = workspace:WaitForChild("SpawnedVehicles", 30)
+	if spawnedVehicles then
+		for _, item in spawnedVehicles:GetDescendants() do
+			hideForeignPrompt(item)
+		end
+		spawnedVehicles.DescendantAdded:Connect(hideForeignPrompt)
+	end
+end)
 
 -- Vehicles may hide Roblox's touch controls while riding (their own touch
 -- buttons replace them). Make sure they come back once the player is off.

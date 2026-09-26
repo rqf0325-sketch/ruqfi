@@ -11,7 +11,7 @@ Menu spawn kendaraan untuk Roblox (GUI + sistem) plus motor **HD Road Glide ST C
 ![Kontrol motor di HP](docs/preview-touch.png)
 </details>
 
-> Gambar di atas adalah render preview. Motor 🏍️ merah adalah placeholder sampai kamu mengisi `Image` di Config.
+> Gambar di atas adalah render preview. Di dalam game, kartu dan panel detail menampilkan **model 3D motornya** (panel detail berputar pelan). Ikon 🏍️ hanya muncul kalau modelnya belum ada.
 
 ## Cara pasang
 
@@ -38,6 +38,8 @@ Kalau sebelumnya sudah memasang versi GUI saja, hapus dulu `VehicleSpawnerGui` y
 ## Cara main
 
 Buka menu dengan tombol **GARAGE** di kiri layar atau tekan **V**. Pilih kendaraan lalu tekan **SPAWN VEHICLE**. Kendaraan muncul di depan pemain dan pemain langsung duduk di atasnya. **Despawn Vehicle** menghapus kendaraanmu. Setiap pemain hanya punya satu kendaraan; spawn baru otomatis menghapus yang lama.
+
+Untuk naik lagi, dekati motor lalu tekan **E** (muncul tulisan **Drive**; di HP tinggal ketuk). Secara default hanya pemilik yang bisa mengemudi (`OnlyOwnerCanDrive`), dan menabrak jok tidak lagi membuat pemain duduk (`SitByTouch`). Motor tetap **berdiri** saat ditinggal, seperti memakai standar (`KeepUpright`).
 
 **PC**
 
@@ -75,6 +77,8 @@ Model aslinya punya beberapa masalah yang membuatnya tidak bisa dikendarai norma
 
 **R6 / badan pengendara**
 - Sistem badan pengendara (`FEAnims`) ditulis ulang menjadi `RiderVisuals` di server.
+- **Rambut melayang:** aksesori yang dipasang Roblox dengan cara selain `Weld` (misalnya `RigidConstraint`) tidak ikut tersalin, dan yang asli tetap menempel di badan asli yang tak terlihat, yang posisinya lebih tinggi. Aksesori sekarang dikenali lewat joint/constraint apa pun, nama attachment, atau bagian badan terdekat, dan yang asli selalu disembunyikan.
+- **Wajah hilang:** kepala sekarang disalin utuh (mesh, wajah, warna), dan aksesori wajah 3D ikut tersalin seperti rambut. Dicek otomatis oleh `tools/test-rider-visuals.luau`.
 - Badan, wajah, baju, kaos, paket R6, dan aksesoris selalu kembali normal saat turun, saat motor di-despawn ketika masih dinaiki, atau saat motor terhapus.
 - Aksesoris ikut diperkecil sesuai ukuran badan di motor.
 
@@ -103,6 +107,7 @@ File-file di atas dibuat dari `src/` dan `vehicles/original/` menggunakan [Lune]
 lune run tools/build.luau                # GUI, Config/Remotes, script server
 lune run tools/patch-road-glide.luau     # motor → ServerStorage/Vehicles.rbxm
 lune run tools/check.luau                # compile semua script di file model
+lune run tools/test-rider-visuals.luau   # tes badan pengendara R6 (kepala, wajah, rambut)
 ```
 
 Preview PNG: jalankan kedua build dengan `-- --tree`, lalu `node tools/preview/render.cjs` (butuh Playwright dan font Montserrat di `build/fonts`).

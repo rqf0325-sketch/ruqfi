@@ -199,6 +199,14 @@ local function stage(parent, x, y, w, h, radius, iconSize)
 		TextTransparency = 0.15,
 		ZIndex = 3,
 	})
+	-- VehicleSpawnerClient shows a copy of the vehicle model here.
+	place("ViewportFrame", node, "ModelView", 0, 0, w, h, {
+		Ambient = Color3.fromRGB(170, 172, 185),
+		LightColor = Color3.fromRGB(255, 248, 235),
+		LightDirection = Vector3.new(-0.6, -1, -0.4),
+		ZIndex = 3,
+		Visible = false,
+	})
 	place("ImageLabel", node, "VehicleImage", 0, 0, w, h, {
 		Image = "",
 		ScaleType = Enum.ScaleType.Fit,
