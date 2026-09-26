@@ -10,11 +10,14 @@ const { chromium } = require("playwright");
 
 const ROOT = path.resolve(__dirname, "../..");
 const FONT_DIR = path.join(ROOT, "build/fonts/package/files");
-const tree = JSON.parse(fs.readFileSync(path.join(ROOT, "build/tree.json"), "utf8"));
+const readTree = (file) => JSON.parse(fs.readFileSync(path.join(ROOT, file), "utf8"));
 
+// build/tree.json: `lune run tools/build.luau -- --tree`
+// build/touch-tree.json: `lune run tools/patch-road-glide.luau -- --tree`
 const SHOTS = [
-	{ file: "docs/preview-desktop.png", width: 1280, height: 720 },
-	{ file: "docs/preview-phone.png", width: 844, height: 390 },
+	{ tree: "build/tree.json", file: "docs/preview-desktop.png", width: 1280, height: 720 },
+	{ tree: "build/tree.json", file: "docs/preview-phone.png", width: 844, height: 390 },
+	{ tree: "build/touch-tree.json", file: "docs/preview-touch.png", width: 844, height: 390 },
 ];
 
 const fontFaces = [400, 500, 600, 700, 800]
@@ -89,11 +92,12 @@ function renderGui(tree) {
 			position: "absolute", left: `${x}px`, top: `${y}px`, width: `${w}px`, height: `${h}px`,
 			zIndex: String(p.ZIndex ?? 1),
 		});
+		if (p.Rotation && GUI.has(n.class)) el.style.transform = `rotate(${p.Rotation}deg)`;
 		if (p.BackgroundTransparency < 1) el.style.background = background(p, kid(n, "UIGradient"));
 		const corner = kid(n, "UICorner");
 		if (corner) el.style.borderRadius = `${corner.props.CornerRadius.s * Math.min(w, h) + corner.props.CornerRadius.o}px`;
 		const stroke = kid(n, "UIStroke");
-		if (stroke) el.style.boxShadow = `0 0 0 ${stroke.props.Thickness}px ${rgba(stroke.props.Color, stroke.props.Transparency)}`;
+		if (stroke && stroke.props.Enabled !== false) el.style.boxShadow = `0 0 0 ${stroke.props.Thickness}px ${rgba(stroke.props.Color, stroke.props.Transparency)}`;
 		if (p.ClipsDescendants || n.class === "ScrollingFrame") el.style.overflow = "hidden";
 		parentEl.appendChild(el);
 
@@ -199,7 +203,12 @@ html,body{margin:0;height:100%;overflow:hidden}
 		await page.goto(`file://${htmlPath}`);
 		// Webfonts load lazily; load every weight before TextScaled measuring.
 		await page.evaluate(() => Promise.all([400, 500, 600, 700, 800].map((w) => document.fonts.load(`${w} 16px Montserrat`))));
-		await page.evaluate(renderGui, tree);
+		if (!fs.existsSync(path.join(ROOT, shot.tree))) {
+			console.log(`Skip ${shot.file} (${shot.tree} not built)`);
+			await page.close();
+			continue;
+		}
+		await page.evaluate(renderGui, readTree(shot.tree));
 		await page.screenshot({ path: path.join(ROOT, shot.file) });
 		console.log(`Wrote ${shot.file}`);
 		await page.close();

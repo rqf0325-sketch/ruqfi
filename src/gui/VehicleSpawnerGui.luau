@@ -1,13 +1,14 @@
 --[[
-	VehicleSpawnerGui — UI only (tanpa sistem spawn)
+	VehicleSpawnerGui — tampilan menu (tanpa script).
 
-	Cara pakai (Roblox Studio):
-	  1. View > Command Bar
-	  2. Paste seluruh isi file ini, tekan Enter
-	  3. ScreenGui "VehicleSpawnerGui" akan muncul di StarterGui
+	tools/build.luau menjalankan file ini, menambahkan LocalScript
+	src/client/VehicleSpawnerClient.luau, lalu menyimpan hasilnya ke
+	StarterGui/VehicleSpawnerGui.rbxmx. File ini juga bisa di-paste ke
+	Command Bar Studio untuk membuat tampilannya saja.
 
-	Atau: klik kanan StarterGui > Insert from File... > StarterGui/VehicleSpawnerGui.rbxmx
-	(file .rbxmx dibuat dari script ini lewat tools/build.luau).
+	Kartu-kartu contoh di bawah hanya untuk tampilan di Studio; saat game
+	berjalan, VehicleSpawnerClient menghapusnya dan membuat kartu dari
+	ReplicatedStorage.VehicleSpawner.Config memakai Grid.CardTemplate.
 
 	Semua ukuran memakai Scale + UIAspectRatioConstraint, jadi tampilannya
 	sama di PC, tablet, dan HP. Angka-angka di bawah ditulis dalam "pixel desain"
@@ -22,6 +23,7 @@ local C = {
 	PanelTop = Color3.fromRGB(28, 33, 45),
 	PanelBottom = Color3.fromRGB(11, 13, 18),
 	Surface = Color3.fromRGB(26, 30, 41),
+	SelectedCard = Color3.fromRGB(36, 33, 29),
 	Sidebar = Color3.fromRGB(21, 25, 34),
 	Field = Color3.fromRGB(33, 38, 52),
 	StageTop = Color3.fromRGB(48, 55, 74),
@@ -44,25 +46,25 @@ local C = {
 local W = Enum.FontWeight
 local Left, Center, Right = Enum.TextXAlignment.Left, Enum.TextXAlignment.Center, Enum.TextXAlignment.Right
 
--- Contoh isi. Ganti/hapus sesuai kendaraan di game kamu.
+-- Contoh isi untuk tampilan di Studio (diganti Config saat game berjalan).
 local VEHICLES = {
+	{ name = "Road Glide ST CVO", info = "Touring", new = true, selected = true },
 	{ name = "Chopper Howlers", info = "Chopper", locked = true, new = true },
 	{ name = "Bobber Howlers", info = "Bobber", locked = true, new = true },
-	{ name = "BMW R 80", info = "Cafe Racer", new = true, selected = true },
+	{ name = "BMW R 80", info = "Cafe Racer", new = true },
 	{ name = "Chicano Howlers", info = "Lowrider", new = true },
 	{ name = "Scrambler 400", info = "Scrambler" },
 	{ name = "Street Glide", info = "Touring" },
-	{ name = "Ninja ZX-25R", info = "Sport" },
 	{ name = "Vespa Sprint", info = "Scooter" },
 }
 
 local SELECTED = {
-	name = "BMW R 80",
-	info = "Cafe Racer  •  Motorcycle",
+	name = "Road Glide ST CVO",
+	info = "Touring  •  Motorcycle",
 	stats = {
-		{ "Top Speed", "165 km/h", 0.72 },
-		{ "Acceleration", "4.8 s", 0.62 },
-		{ "Handling", "8.4 / 10", 0.84 },
+		{ "Top Speed", "190 km/h", 0.63 },
+		{ "Acceleration", "3.9 s", 0.81 },
+		{ "Handling", "7.5 / 10", 0.75 },
 	},
 }
 
@@ -225,9 +227,11 @@ local function vehicleCard(grid, index, data)
 		BorderSizePixel = 0,
 	})
 
-	local card = place("Frame", slot, "Card", CARD_GAP / 2, CARD_GAP / 2, CARD_W, CARD_H, {
+	local card = place("TextButton", slot, "Card", CARD_GAP / 2, CARD_GAP / 2, CARD_W, CARD_H, {
 		BackgroundTransparency = 0,
-		BackgroundColor3 = data.selected and Color3.fromRGB(36, 33, 29) or C.Surface,
+		BackgroundColor3 = data.selected and C.SelectedCard or C.Surface,
+		Text = "",
+		AutoButtonColor = false,
 	})
 	corner(card, 12)
 	if data.selected then
@@ -238,11 +242,12 @@ local function vehicleCard(grid, index, data)
 
 	stage(card, 7, 7, CARD_W - 14, 100, 9, 40)
 
-	if data.locked then
+	do
 		local overlay = place("Frame", card, "LockOverlay", 7, 7, CARD_W - 14, 100, {
 			BackgroundTransparency = 0.18,
 			BackgroundColor3 = Color3.fromRGB(10, 10, 16),
 			ZIndex = 2,
+			Visible = data.locked == true,
 		})
 		corner(overlay, 9)
 
@@ -258,9 +263,7 @@ local function vehicleCard(grid, index, data)
 		label(overlay, "Subtitle", "Motorcycle Pass", 0, 71, overlay.w, 12, C.Text, W.Bold, Center)
 	end
 
-	if data.new then
-		newBadge(card, 13, 13, 38, 17, 10, 3)
-	end
+	newBadge(card, 13, 13, 38, 17, 10, 3).inst.Visible = data.new == true
 
 	label(card, "VehicleName", data.name, 11, 116.5, CARD_W - 22, 13, C.Text, W.Bold)
 	label(card, "Info", data.info, 11, 134, CARD_W - 22, 12, C.Muted, W.Medium)
@@ -325,6 +328,7 @@ local function build()
 	})
 	main.w, main.h = 960, 582
 	add("UIAspectRatioConstraint", main, { AspectRatio = 960 / 582 })
+	add("UIScale", main, { Scale = 1 })
 	corner(main, 18)
 	stroke(main, C.White, 0.88, 1.5)
 	gradient(main, C.PanelTop, C.PanelBottom, 90)
@@ -360,7 +364,20 @@ local function build()
 	stroke(close, C.Red, 0.5)
 	label(close, "Icon", "×", 0, 5, 42, 30, C.Red, W.Bold, Center)
 
-	amberButton(header, "InsertButton", "+  Insert Vehicle", 710, 19, 172, 42, 14, 12)
+	local despawn = place("TextButton", header, "DespawnButton", 722, 19, 160, 42, {
+		BackgroundTransparency = 0,
+		BackgroundColor3 = C.Field,
+		Text = "",
+		AutoButtonColor = true,
+	})
+	corner(despawn, 12)
+	stroke(despawn, C.White, 0.9)
+	local despawnDot = place("Frame", despawn, "Dot", 18, 17, 8, 8, {
+		BackgroundTransparency = 0,
+		BackgroundColor3 = C.Red,
+	})
+	corner(despawnDot, 4)
+	label(despawn, "Label", "Despawn Vehicle", 34, 14, 112, 14, C.Text, W.Bold)
 
 	local divider = place("Frame", main, "Divider", 24, 80, 912, 1, { BackgroundTransparency = 0.93 })
 	divider.inst.Size = UDim2.new(912 / 960, 0, 0, 1)
@@ -427,9 +444,7 @@ local function build()
 			AutoButtonColor = true,
 		})
 		corner(button, 16)
-		if not active then
-			stroke(button, C.White, 0.92)
-		end
+		stroke(button, C.White, 0.92).Enabled = not active
 		add("UIPadding", button, {
 			PaddingTop = UDim.new(9.5 / 32, 0),
 			PaddingBottom = UDim.new(9.5 / 32, 0),
@@ -469,6 +484,15 @@ local function build()
 		vehicleCard(grid, i, data)
 	end
 
+	-- Cloned by VehicleSpawnerClient for every vehicle in the Config.
+	local template = vehicleCard(grid, 0, { name = "Template", info = "Category", new = true, locked = true })
+	template.inst.Name = "CardTemplate"
+	template.inst.Visible = false
+
+	label(browser, "EmptyState", "No vehicles found", 0, 260, 612, 15, C.Muted, W.SemiBold, Center, {
+		Visible = false,
+	})
+
 	-- Right: selected vehicle details ---------------------------------------
 	local details = place("Frame", main, "Details", 656, 96, 280, 462, {
 		BackgroundTransparency = 0,
@@ -502,6 +526,25 @@ local function build()
 	end
 
 	amberButton(details, "SpawnButton", "SPAWN VEHICLE", 16, 398, 248, 48, 15, 12)
+
+	-- Notification toast ------------------------------------------------------
+	local toast = place("Frame", screen, "Toast", 0.5, 0.94, 0.27, 0.07, {
+		AnchorPoint = Vector2.new(0.5, 1),
+		BackgroundTransparency = 0.04,
+		BackgroundColor3 = Color3.fromRGB(17, 20, 27),
+		ZIndex = 10,
+		Visible = false,
+	})
+	toast.w, toast.h = 340, 48
+	add("UIAspectRatioConstraint", toast, { AspectRatio = 340 / 48 })
+	corner(toast, 14)
+	stroke(toast, C.White, 0.86)
+	local toastDot = place("Frame", toast, "Dot", 18, 20, 8, 8, {
+		BackgroundTransparency = 0,
+		BackgroundColor3 = C.Green,
+	})
+	corner(toastDot, 4)
+	label(toast, "Message", "Vehicle spawned", 36, 16, 290, 16, C.Text, W.SemiBold)
 
 	return screenGui
 end

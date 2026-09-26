@@ -1,8 +1,14 @@
 --[[
-	Generates StarterGui/VehicleSpawnerGui.rbxmx from src/VehicleSpawnerGui.luau.
+	Builds the Studio model files from src/:
 
-	  lune run tools/build.luau            -- writes the .rbxmx
-	  lune run tools/build.luau -- --tree  -- also writes build/tree.json (for tools/preview)
+	  StarterGui/VehicleSpawnerGui.rbxmx          GUI + VehicleSpawnerClient (LocalScript)
+	  ReplicatedStorage/VehicleSpawner.rbxmx      Config (ModuleScript) + Remotes
+	  ServerScriptService/VehicleSpawnerServer.rbxmx
+
+	  lune run tools/build.luau
+	  lune run tools/build.luau -- --tree   (also writes build/tree.json for tools/preview)
+
+	The bike model is built separately by tools/patch-road-glide.luau.
 ]]
 
 local fs = require("@lune/fs")
@@ -10,14 +16,27 @@ local luau = require("@lune/luau")
 local process = require("@lune/process")
 local roblox = require("@lune/roblox")
 local serde = require("@lune/serde")
+local dump = require("./lib/dump")
 
-local SOURCE = "src/VehicleSpawnerGui.luau"
-local OUT_MODEL = "StarterGui/VehicleSpawnerGui.rbxmx"
-local OUT_TREE = "build/tree.json"
+local Instance = roblox.Instance
 
+local function write(path, instance)
+	fs.writeFile(path, roblox.serializeModel({ instance }, true))
+	print(`Wrote {path} ({#instance:GetDescendants() + 1} instances)`)
+end
+
+local function script(className, name, source, parent)
+	local instance = Instance.new(className)
+	instance.Name = name
+	instance.Source = fs.readFile(source)
+	instance.Parent = parent
+	return instance
+end
+
+-- GUI: run the builder with Lune's Roblox types standing in for Studio's.
 local env = setmetatable({
-	game = roblox.Instance.new("DataModel"),
-	Instance = roblox.Instance,
+	game = Instance.new("DataModel"),
+	Instance = Instance,
 	Enum = roblox.Enum,
 	Font = roblox.Font,
 	UDim = roblox.UDim,
@@ -30,77 +49,37 @@ local env = setmetatable({
 	NumberSequenceKeypoint = roblox.NumberSequenceKeypoint,
 }, { __index = getfenv(1) })
 
-local gui = luau.load(fs.readFile(SOURCE), { debugName = SOURCE, environment = env })()
+local GUI_SOURCE = "src/gui/VehicleSpawnerGui.luau"
+local gui = luau.load(fs.readFile(GUI_SOURCE), { debugName = GUI_SOURCE, environment = env })()
 gui.Parent = nil
+script("LocalScript", "VehicleSpawnerClient", "src/client/VehicleSpawnerClient.luau", gui)
 
-fs.writeFile(OUT_MODEL, roblox.serializeModel({ gui }, true))
-print(`Wrote {OUT_MODEL} ({#gui:GetDescendants() + 1} instances)`)
+fs.writeDir("StarterGui")
+write("StarterGui/VehicleSpawnerGui.rbxmx", gui)
 
-if not table.find(process.args, "--tree") then
-	return
+-- ReplicatedStorage.VehicleSpawner
+local shared = Instance.new("Folder")
+shared.Name = "VehicleSpawner"
+script("ModuleScript", "Config", "src/shared/Config.luau", shared)
+local remotes = Instance.new("Folder")
+remotes.Name = "Remotes"
+remotes.Parent = shared
+for _, name in { "SpawnVehicle", "DespawnVehicle" } do
+	local remote = Instance.new("RemoteFunction")
+	remote.Name = name
+	remote.Parent = remotes
 end
 
--- JSON dump of the properties the preview renderer understands.
-local PROPS = {
-	"Name", "Position", "Size", "AnchorPoint", "BackgroundColor3", "BackgroundTransparency",
-	"Visible", "ZIndex", "LayoutOrder", "ClipsDescendants",
-	"Text", "TextColor3", "TextTransparency", "TextXAlignment", "TextYAlignment", "TextScaled",
-	"TextSize", "FontFace", "RichText", "PlaceholderText", "PlaceholderColor3",
-	"ScrollBarThickness", "ScrollBarImageColor3", "ScrollBarImageTransparency",
-	"CornerRadius", "Color", "Thickness", "Transparency", "Rotation",
-	"PaddingTop", "PaddingBottom", "PaddingLeft", "PaddingRight",
-	"FillDirection", "Padding", "HorizontalAlignment", "VerticalAlignment",
-	"CellSize", "CellPadding", "AspectRatio", "AspectType", "DominantAxis",
-}
+fs.writeDir("ReplicatedStorage")
+write("ReplicatedStorage/VehicleSpawner.rbxmx", shared)
 
-local function encode(value)
-	local kind = typeof(value)
-	if kind == "UDim2" then
-		return { xs = value.X.Scale, xo = value.X.Offset, ys = value.Y.Scale, yo = value.Y.Offset }
-	elseif kind == "UDim" then
-		return { s = value.Scale, o = value.Offset }
-	elseif kind == "Vector2" then
-		return { x = value.X, y = value.Y }
-	elseif kind == "Color3" then
-		return { r = value.R, g = value.G, b = value.B }
-	elseif kind == "EnumItem" then
-		return value.Name
-	elseif kind == "Font" then
-		return { family = value.Family, weight = value.Weight.Value }
-	elseif kind == "ColorSequence" then
-		local points = {}
-		for _, k in value.Keypoints do
-			table.insert(points, { t = k.Time, r = k.Value.R, g = k.Value.G, b = k.Value.B })
-		end
-		return points
-	elseif kind == "NumberSequence" then
-		local points = {}
-		for _, k in value.Keypoints do
-			table.insert(points, { t = k.Time, v = k.Value })
-		end
-		return points
-	elseif kind == "string" or kind == "number" or kind == "boolean" then
-		return value
-	end
-	return nil
+-- ServerScriptService.VehicleSpawnerServer
+fs.writeDir("ServerScriptService")
+write("ServerScriptService/VehicleSpawnerServer.rbxmx",
+	script("Script", "VehicleSpawnerServer", "src/server/VehicleSpawnerServer.luau", nil))
+
+if table.find(process.args, "--tree") then
+	fs.writeDir("build")
+	fs.writeFile("build/tree.json", serde.encode("json", dump(gui), true))
+	print("Wrote build/tree.json")
 end
-
-local function dump(inst)
-	local node = { class = inst.ClassName, props = {}, children = {} }
-	for _, prop in PROPS do
-		local ok, value = pcall(function()
-			return inst[prop]
-		end)
-		if ok and value ~= nil then
-			node.props[prop] = encode(value)
-		end
-	end
-	for _, child in inst:GetChildren() do
-		table.insert(node.children, dump(child))
-	end
-	return node
-end
-
-fs.writeDir("build")
-fs.writeFile(OUT_TREE, serde.encode("json", dump(gui), true))
-print(`Wrote {OUT_TREE}`)
