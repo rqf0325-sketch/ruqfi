@@ -1,6 +1,6 @@
-# Vehicle Spawner + HD Road Glide ST CVO
+# Vehicle Spawner + HD Road Glide ST CVO + Scooter
 
-Menu spawn kendaraan untuk Roblox (GUI + sistem) plus motor **HD Road Glide ST CVO** yang sudah diperbaiki supaya bisa dikendarai normal di **R6** (juga R15), di PC maupun HP.
+Menu spawn kendaraan untuk Roblox (GUI + sistem) plus motor **HD Road Glide ST CVO** yang sudah diperbaiki supaya bisa dikendarai normal di **R6** (juga R15), di PC maupun HP. Ada juga **[Scooter](#scooter-tool)**: tool skuter tendang dengan 8 tema warna, animasi, trik, dan lampu.
 
 ![Menu](docs/preview-desktop.png)
 
@@ -99,6 +99,99 @@ Model aslinya punya beberapa masalah yang membuatnya tidak bisa dikendarai norma
 - Statistik di panel detail (Top Speed, dan lain-lain) hanya tampilan dan diisi manual di Config. Performa motor asli diatur di `Tuner` di dalam model motornya.
 - Kalau motor muncul menghadap arah yang salah, ubah `SpawnRotation` di Config.
 
+## Scooter (tool)
+
+Skuter tendang "scooter noctis" dijadikan **Tool**. Pemain memilihnya dari hotbar dan langsung naik. Warna dan animasinya sudah jadi, tanpa perlu upload animasi.
+
+![Tema warna](docs/scooter-themes.png)
+
+![Pose pengendara R6 dan R15](docs/scooter-rider.png)
+
+<details>
+<summary>Malam hari: lampu depan dan underglow menyala otomatis</summary>
+
+![Malam](docs/scooter-night.png)
+</details>
+
+> Gambar di atas adalah render perkiraan. Mesh skuternya adalah aset Roblox yang tidak bisa diunduh di sini, jadi tiap part digambar sebagai bentuk sederhana dengan ukuran, posisi, dan warna yang sama. Warna dan posenya sesuai, tetapi bentuk detailnya di game mengikuti mesh aslinya.
+
+### Cara pasang
+
+| File | Klik kanan di |
+|---|---|
+| `StarterPack/Scooter.rbxm` | **StarterPack** |
+| `StarterPlayerScripts/ScooterAnimator.rbxmx` | **StarterPlayer > StarterPlayerScripts** |
+
+`ScooterAnimator` wajib dipasang. Script ini yang menggerakkan badan pengendara, stang, roda, lampu, dan suara untuk **semua** pemain, jadi setiap pemain bisa melihat animasi pemain lain.
+
+Kalau skuter hanya untuk sebagian pemain (misalnya lewat gamepass atau toko), taruh tool-nya di ServerStorage dan clone ke `Backpack` pemain itu. `ScooterAnimator` tetap dipasang di StarterPlayerScripts.
+
+### Cara main
+
+| PC | HP | Fungsi |
+|---|---|---|
+| W/A/S/D | Thumbstick | Tahan arah untuk menendang dan menambah kecepatan. Lepas tombol untuk meluncur. Tekan arah berlawanan untuk mengerem. |
+| Spasi | Tombol lompat | Lompat. Saat melaju cepat, lompatan jadi trik: **tailwhip** (dek diputar) dan **spin 360** bergantian. |
+| T | Tombol di layar | Ganti warna skuter. Semua pemain melihat warnanya, dan pilihannya diingat sampai pemain keluar. |
+
+Di bawah layar ada speedometer (km/jam) dan tombol ganti warna. Skuter otomatis disimpan saat pemain duduk (misalnya naik motor dari garasi) atau berenang, dan disembunyikan saat memanjat.
+
+### Tema warna
+
+Ada 8 tema: **Noctis** (bawaan, biru malam + amber, senada dengan menu garasi), **Violet**, **Cyber**, **Street**, **Arctic**, **Candy**, **Gold**, dan **Army**. Semuanya memakai material bawaan Roblox (SmoothPlastic mengilap, Metal, Foil, Asphalt untuk grip tape, Rubber untuk ban, Neon untuk velg dan strip bawah dek), jadi tidak ada gambar yang perlu di-upload.
+
+Untuk mengatur warna, buka `StarterPack > Scooter > Settings`:
+
+- **Tema bawaan:** ubah `Settings.Theme = "Noctis"` ke nama tema lain.
+- **Tema sendiri (misalnya warna map-mu):** salin salah satu tabel di `Settings.Themes`, ganti nama dan warnanya, lalu tambahkan namanya ke `Settings.ThemeOrder`. Keterangan setiap bagian (Paint, Trim, Grip, Metal, Accent, Rubber, Rim, Glow, Light) ada di dalam Settings.
+- **Satu warna untuk semua pemain:** `Settings.PlayersCanChangeTheme = false`.
+
+### Animasi
+
+Semua animasi dihitung oleh script (IK), bukan AnimationTrack, jadi tidak ada ID animasi yang perlu di-upload:
+
+- Kaki kanan menendang tanah saat menambah kecepatan, lalu kedua kaki naik ke dek saat meluncur. Saat berhenti, satu kaki turun ke tanah.
+- Tangan selalu memegang handgrip, bahu ikut berputar saat stang belok, dan badan serta skuter condong ke arah belokan.
+- Roda berputar sesuai kecepatan, dan badan sedikit mengayun saat mendarat.
+- R6 dan R15 didukung, termasuk avatar R15 dengan ukuran berbeda. Kaki R6 tidak punya lutut, jadi tendangannya tidak sampai menyentuh tanah. Kaki R15 benar-benar menapak tanah.
+
+### Pengaturan lain (Settings)
+
+| Nama | Bawaan | Fungsi |
+|---|---|---|
+| `MaxSpeed` | 30 | Kecepatan maksimum (jalan kaki biasa = 16) |
+| `StartSpeed` / `Acceleration` | 12 / 9 | Kecepatan tendangan pertama / tambahan per detik |
+| `Coast` / `CoastFriction` | true / 8 | Meluncur saat tombol dilepas / seberapa cepat melambat |
+| `BrakeForce` | 45 | Kekuatan rem |
+| `TurnSpeed` / `TurnSpeedAtMax` | 6 / 3 | Kelincahan belok saat pelan / saat kencang |
+| `JumpBoost` | 1.1 | Lompatan 10% lebih tinggi |
+| `Tricks` / `TrickMinSpeed` | true / 16 | Trik saat lompat / kecepatan minimum |
+| `Lights` | "Auto" | Lampu: "Auto" (malam saja), true, atau false |
+| `Sounds`, `RollSound` | true, "" | Suara. Isi `RollSound` dengan ID suara roda dari Toolbox kalau mau |
+
+### Perubahan pada model
+
+`tools/build-scooter.luau` mengubah model asli dengan langkah berikut:
+
+- **Ukuran:** model asli sekitar 2× tinggi karakter. Profilnya diperkecil ke 0,36× sehingga stang berada 2,7 stud di atas dek, pas untuk tangan R6. Dek dibuat lebih lebar (1,35 stud) supaya dua kaki muat. Hasilnya dek 0,49 stud dari tanah dan roda berdiameter 0,68 stud.
+- **Nama part:** 40 part diberi nama yang jelas (Deck, Column, Handlebar, GripLeft, Tire, Spoke1 …), dan setiap part diberi atribut `Role` untuk tema.
+- **Sambungan:** part dirakit dengan Weld dan Motor6D sehingga stang bisa belok di sumbu tiangnya dan kedua roda bisa berputar. Semua part massless dan tidak bertabrakan, jadi tidak mengganggu gerak karakter.
+- **Tambahan:** lampu depan (SpotLight), lampu kolong (PointLight), dan titik tangan/kaki untuk animasi.
+- **Tekstur:** tekstur asli di permukaan dek diganti material grip tape (Asphalt).
+- **Format file:** file dari Studio versi baru menyimpan Tags dengan format yang belum bisa dibaca Lune. Tags-nya kosong, jadi dibuang saat build (`tools/lib/rbxm.luau`). File hasil build menyimpan `MeshId` sebagai teks biasa, sama seperti yang disimpan Studio.
+
+### Pengujian
+
+`tools/test-scooter-pose.luau` menjalankan simulasi lengkap: berhenti, menendang sampai kecepatan penuh, meluncur, belok kiri, tailwhip, spin 360, lalu meluncur sampai berhenti. Simulasi dijalankan dengan rig R6 standar dan rig R15, memakai modul `Motion` dan `Pose` yang sama dengan game. Yang dicek:
+
+- Tangan tetap di handgrip. R15 tepat; R6 paling jauh 0,1 stud karena lengannya tidak bisa menekuk.
+- Kaki depan tidak melayang atau tenggelam di dek.
+- Kaki R15 menyentuh tanah saat menendang.
+- Stang dan badan condong ke arah belokan, dan roda berputar ke depan.
+- Kedua trik terjadi, termasuk kalau data lompatan pemain lain datang terlambat satu frame.
+
+Semua pengecekan ini lolos. Seperti bagian lain di repo ini, skuter **belum dicoba langsung di Roblox Studio**, jadi coba dulu dengan Play sebelum dipublish.
+
 ## Build ulang (opsional)
 
 File-file di atas dibuat dari `src/` dan `vehicles/original/` menggunakan [Lune](https://github.com/lune-org/lune):
@@ -106,8 +199,12 @@ File-file di atas dibuat dari `src/` dan `vehicles/original/` menggunakan [Lune]
 ```sh
 lune run tools/build.luau                # GUI, Config/Remotes, script server
 lune run tools/patch-road-glide.luau     # motor → ServerStorage/Vehicles.rbxm
+lune run tools/build-scooter.luau        # skuter → StarterPack/Scooter.rbxm + StarterPlayerScripts/ScooterAnimator.rbxmx
 lune run tools/check.luau                # compile semua script di file model
 lune run tools/test-rider-visuals.luau   # tes badan pengendara R6 (kepala, wajah, rambut)
+lune run tools/test-scooter-pose.luau    # tes pose pengendara skuter (R6 + R15)
 ```
 
 Preview PNG: jalankan kedua build dengan `-- --tree`, lalu `node tools/preview/render.cjs` (butuh Playwright dan font Montserrat di `build/fonts`).
+
+Preview skuter: `lune run tools/build-scooter.luau -- --dump`, `lune run tools/test-scooter-pose.luau -- --dump`, lalu `node tools/preview/scooter.cjs` (butuh Playwright dan `three@0.149.0`).

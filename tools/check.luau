@@ -15,6 +15,8 @@ local FILES = {
 	"ReplicatedStorage/VehicleSpawner.rbxmx",
 	"ServerScriptService/VehicleSpawnerServer.rbxmx",
 	"ServerStorage/Vehicles.rbxm",
+	"StarterPack/Scooter.rbxm",
+	"StarterPlayerScripts/ScooterAnimator.rbxmx",
 }
 
 local checked, failed = 0, 0
