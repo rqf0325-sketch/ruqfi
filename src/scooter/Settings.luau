@@ -14,7 +14,18 @@ Settings.Theme = "Noctis"
 -- Pilihannya diingat sampai pemain keluar dari game.
 Settings.PlayersCanChangeTheme = true
 Settings.ThemeKey = Enum.KeyCode.T -- nil = tanpa tombol keyboard
-Settings.ShowHud = true -- tampilkan tombol tema + speedometer saat skuter dipakai
+Settings.ShowHud = true -- tampilkan speedometer, tombol tema dan tombol klakson saat skuter dipakai
+
+-- Klakson: tombol di layar (HP/PC) atau tombol H. Semua pemain di dekatnya ikut mendengar.
+Settings.HornSound = "rbxassetid://95752428333889" -- "" = tanpa klakson
+Settings.HornVolume = 1
+Settings.HornKey = Enum.KeyCode.H -- nil = hanya tombol di layar
+Settings.HornCooldown = 0.4 -- jeda minimum antar klakson (detik), supaya tidak di-spam
+
+-- Ukuran skuter mengikuti tinggi avatar: R15 bisa tinggi (Rthro) atau kecil,
+-- jadi skuter diperbesar/diperkecil supaya stang tetap pas di tangan.
+-- R6 selalu berukuran sama, jadi skuternya tetap ukuran normal.
+Settings.FitRiderSize = true
 
 -- Laju
 Settings.MaxSpeed = 30 -- kecepatan maksimum

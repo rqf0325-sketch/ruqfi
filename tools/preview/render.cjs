@@ -18,6 +18,9 @@ const SHOTS = [
 	{ tree: "build/tree.json", file: "docs/preview-desktop.png", width: 1280, height: 720 },
 	{ tree: "build/tree.json", file: "docs/preview-phone.png", width: 844, height: 390 },
 	{ tree: "build/touch-tree.json", file: "docs/preview-touch.png", width: 844, height: 390 },
+	// `lune run tools/build-scooter.luau -- --dump`
+	{ tree: "build/scooter-hud-pc.json", file: "docs/scooter-hud-pc.png", width: 1280, height: 720 },
+	{ tree: "build/scooter-hud-phone.json", file: "docs/scooter-hud-phone.png", width: 844, height: 390 },
 ];
 
 const fontFaces = [400, 500, 600, 700, 800]
@@ -60,9 +63,40 @@ function renderGui(tree) {
 		return `linear-gradient(${90 + grad.props.Rotation}deg, ${stops.join(", ")})`;
 	}
 
+	function measureText(text, size, weight) {
+		const span = document.createElement("span");
+		Object.assign(span.style, {
+			position: "absolute", visibility: "hidden", whiteSpace: "pre", lineHeight: "1",
+			fontFamily: "Montserrat, 'Noto Color Emoji'", fontWeight: String(weight), fontSize: `${size}px`,
+		});
+		span.textContent = text;
+		document.body.appendChild(span);
+		const width = span.getBoundingClientRect().width;
+		span.remove();
+		return width;
+	}
+
+	// AutomaticSize X: the width of the text, or of a horizontal list's items.
+	function autoWidth(n, pw, ph) {
+		const p = n.props;
+		const pad = kid(n, "UIPadding");
+		const padW = pad ? pad.props.PaddingLeft.o + pad.props.PaddingRight.o : 0;
+		if (["TextLabel", "TextButton", "TextBox"].includes(n.class) && p.Text) {
+			return measureText(p.Text, p.TextSize, p.FontFace.weight) + padW;
+		}
+		const list = kid(n, "UIListLayout");
+		if (list && list.props.FillDirection === "Horizontal") {
+			const items = kids(n).filter((c) => GUI.has(c.class) && c.props.Visible !== false);
+			const gap = list.props.Padding.o;
+			return items.reduce((sum, c) => sum + sizeOf(c, pw, ph)[0], 0) + gap * Math.max(0, items.length - 1) + padW;
+		}
+		return 0;
+	}
+
 	function sizeOf(n, pw, ph) {
 		const s = n.props.Size;
 		let w = s.xs * pw + s.xo, h = s.ys * ph + s.yo;
+		if (n.props.AutomaticSize === "X" || n.props.AutomaticSize === "XY") w = Math.max(w, autoWidth(n, pw, ph));
 		const ar = kid(n, "UIAspectRatioConstraint");
 		if (ar) {
 			const r = ar.props.AspectRatio;
@@ -197,7 +231,8 @@ html,body{margin:0;height:100%;overflow:hidden}
 (async () => {
 	const htmlPath = path.join(ROOT, "build/preview.html");
 	fs.writeFileSync(htmlPath, html);
-	const browser = await chromium.launch();
+	// CHROMIUM=/path/to/chrome uses an existing browser instead of Playwright's own.
+	const browser = await chromium.launch({ executablePath: process.env.CHROMIUM || undefined });
 	for (const shot of SHOTS) {
 		const page = await browser.newPage({ viewport: { width: shot.width, height: shot.height }, deviceScaleFactor: 2 });
 		await page.goto(`file://${htmlPath}`);

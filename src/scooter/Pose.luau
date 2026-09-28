@@ -8,7 +8,7 @@
 	can be tested outside Roblox (tools/test-scooter-pose.luau).
 
 	  local rig = Pose.rig(character)                  -- nil if the rig isn't R6/R15
-	  local transforms = Pose.solve(rig, rootCFrame, targets)
+	  local transforms = Pose.solve(rig, rootCFrame, targets[, reuse])
 	  for motor, transform in transforms do motor.Transform = transform end
 
 	targets:
@@ -215,8 +215,10 @@ end
 
 local SIDES = { Left = -1, Right = 1 }
 
-function Pose.solve(rig, rootCFrame, targets)
-	local out = {}
+-- `out` (optional) is reused between frames to save allocating a table:
+-- every call writes the same joints.
+function Pose.solve(rig, rootCFrame, targets, out)
+	out = out or {}
 	local facing = rotation(targets.facing or rootCFrame)
 	local head = facing * CFrame.Angles(-(targets.headPitch or 0), 0, 0)
 

@@ -44,15 +44,14 @@ local frontSpin = steerHub:FindFirstChild("FrontSpin")
 local function at(parent, name)
 	return parent:FindFirstChild(name).CFrame.Position
 end
-local scooter = {
+local baseScooter = {
+	scale = 1,
 	deckHeight = body:GetAttribute("DeckHeight"),
 	wheelRadius = body:GetAttribute("WheelRadius"),
 	wheelbase = ((steer.C0 * steer.C1:Inverse() * frontSpin.C0).Position - rearSpin.C0.Position).Magnitude,
 	steerC0 = steer.C0,
 	steerC1 = steer.C1,
 	anchors = {
-		LeftFoot = at(root, "LeftFoot"),
-		RightFoot = at(root, "RightFoot"),
 		Kick = at(root, "Kick"),
 		KickEnd = at(root, "KickEnd"),
 	},
@@ -112,6 +111,8 @@ local function r6()
 	joint("Right Hip", "Torso", "Right Leg", CFrame.new(1, -1, 0) * right, CFrame.new(0.5, 1, 0) * right).Parent = parts.Torso
 	joint("Left Hip", "Torso", "Left Leg", CFrame.new(-1, -1, 0) * left, CFrame.new(-0.5, 1, 0) * left).Parent = parts.Torso
 	return {
+		label = "R6",
+		dump = true,
 		character = character, humanoid = humanoid, parts = parts, joints = joints,
 		hands = { Left = { "Left Arm", V(0, -0.6, 0) }, Right = { "Right Arm", V(0, -0.6, 0) } },
 		soles = { Left = { "Left Leg", V(0, -1, 0) }, Right = { "Right Leg", V(0, -1, 0) } },
@@ -119,10 +120,39 @@ local function r6()
 	}
 end
 
--- A blocky R15 (legs 2.15 studs, arms 2 studs from shoulder to grip).
-local function r15()
-	local character, humanoid, parts, joints, part, joint = rigBuilder("R15", 2.15)
-	local V, C = Vector3.new, CFrame.new
+-- The scooter after Model:ScaleTo(s): joint and attachment offsets scale,
+-- the DeckHeight/WheelRadius attributes are multiplied by the animator.
+local function scaledScooter(s)
+	local function cf(c)
+		return c - c.Position + c.Position * s
+	end
+	local anchors = {}
+	for name, v in baseScooter.anchors do
+		anchors[name] = v * s
+	end
+	return {
+		scale = s,
+		deckHeight = baseScooter.deckHeight * s,
+		wheelRadius = baseScooter.wheelRadius * s,
+		wheelbase = baseScooter.wheelbase * s,
+		steerC0 = cf(baseScooter.steerC0),
+		steerC1 = cf(baseScooter.steerC1),
+		anchors = anchors,
+		grips = { Left = baseScooter.grips.Left * s, Right = baseScooter.grips.Right * s },
+	}
+end
+
+-- A blocky R15 (legs 2.15 studs, arms 2 studs from shoulder to grip),
+-- optionally scaled like a smaller or taller avatar.
+local function r15(k)
+	k = k or 1
+	local character, humanoid, parts, joints, part, joint = rigBuilder("R15", 2.15 * k)
+	local function V(x, y, z)
+		return Vector3.new(x * k, y * k, z * k)
+	end
+	local function C(x, y, z)
+		return CFrame.new(x * k, y * k, z * k)
+	end
 	part("HumanoidRootPart", V(2, 2, 1))
 	part("LowerTorso", V(2, 0.4, 1))
 	part("UpperTorso", V(2, 1.6, 1))
@@ -149,6 +179,8 @@ local function r15()
 		grip.Parent = parts[side .. "Hand"]
 	end
 	return {
+		label = if k == 1 then "R15" else string.format("R15 x%.1f", k),
+		dump = k == 1,
 		character = character, humanoid = humanoid, parts = parts, joints = joints,
 		hands = { Left = { "LeftHand", V(0, -0.1, 0) }, Right = { "RightHand", V(0, -0.1, 0) } },
 		soles = { Left = { "LeftFoot", V(0, -0.15, 0) }, Right = { "RightFoot", V(0, -0.15, 0) } },
@@ -241,6 +273,7 @@ local function ride(rig)
 	local hrp = rig.parts.HumanoidRootPart
 	local hipHeight = rig.humanoid.HipHeight
 	local mountC0 = Shared.mountOffset(rig.humanoid, hrp, hipHeight)
+	local scooter = scaledScooter(Shared.riderScale(settings, rig.humanoid, hrp, hipHeight))
 	local motion = Motion.new(scooter, settings, kind)
 
 	local position = Vector3.new(0, 0, 0) -- the ground is y = feet level of the raised rider
@@ -297,7 +330,7 @@ local function ride(rig)
 			gravity = GRAVITY,
 			mountC0 = mountC0,
 		})
-		local transforms = Pose.solve(rigData, rootCFrame, result.targets)
+		local transforms = Pose.solve(rigData, rootCFrame, result.targets, {})
 		local frames = forward(rig, rootCFrame, transforms)
 
 		local label = s[2]
@@ -325,8 +358,27 @@ local function ride(rig)
 			local right, rightTarget = sole("Right")
 			entry.backFoot = math.max(entry.backFoot, math.abs(right.Y - rightTarget.Y))
 		end
+		-- Arms while rolling steadily (not mid-kick, when the body crouches).
+		if rig.parts.RightUpperArm and motion.push < 0.05 and motion.idle < 0.05 and not airborne and not motion.trick then
+			local bucket = stats.cruising or entry
+			-- bend between shoulder->elbow and elbow->hand (0 = straight arm)
+			local arm = rigData.arms.Right
+			local shoulder = (frames.UpperTorso * arm.upper.C0).Position
+			local elbow = (frames.RightUpperArm * arm.lower.C0).Position
+			local hand = frames.RightHand * rig.hands.Right[2]
+			local bend = math.deg(math.acos(math.clamp((elbow - shoulder).Unit:Dot((hand - elbow).Unit), -1, 1)))
+			bucket.elbow = math.max(bucket.elbow or 0, bend)
+		end
 		if label == "kicking" then
 			entry.kickLow = math.min(entry.kickLow, (sole("Right")).Y)
+			-- how far the kicking leg swings (forward -, back +) and the front foot slides
+			local thigh = if rig.humanoid.RigType.Name == "R6" then "Right Leg" else "RightUpperLeg"
+			local legDown = deck:VectorToObjectSpace(-frames[thigh].UpVector)
+			local swing = math.deg(math.atan2(legDown.Z, -legDown.Y))
+			entry.swingMin = math.min(entry.swingMin or swing, swing)
+			entry.swingMax = math.max(entry.swingMax or swing, swing)
+			entry.slideMin = math.min(entry.slideMin or left.Z, left.Z)
+			entry.slideMax = math.max(entry.slideMax or left.Z, left.Z)
 		end
 
 		-- Directions: in the left turn the front wheel points left, rider and
@@ -362,7 +414,7 @@ local function ride(rig)
 			end
 			lastPhase = motion.phase
 		end
-		if dumpLabel then
+		if dumpLabel and rig.dump then
 			local bodyParts = {}
 			for name, cframe in frames do
 				if name ~= "HumanoidRootPart" then
@@ -383,7 +435,7 @@ local function ride(rig)
 		end
 		t += DT
 	end
-	return stats
+	return stats, scooter
 end
 
 local LIMITS = {
@@ -391,12 +443,13 @@ local LIMITS = {
 	R15 = { hand = 0.02, frontFoot = 0.02, backFoot = 0.02 },
 }
 
-for _, make in { r6, r15 } do
+for _, make in { r6, r15, function() return r15(0.8) end, function() return r15(1.3) end } do
 	local rig = make()
 	local kind = rig.humanoid.RigType.Name
-	print(`{kind}:`)
-	local stats = ride(rig)
+	local stats, scooter = ride(rig)
+	print(string.format("%s (scooter scaled x%.2f):", rig.label, scooter.scale))
 	local limit = LIMITS[kind]
+	kind = rig.label
 	for _, s in SCRIPT do
 		local e = stats[s[2]]
 		if e then
@@ -410,9 +463,13 @@ for _, make in { r6, r15 } do
 	check(cruising.rollsForward == true, `{kind} wheels roll forward`)
 	check(stats.tailwhip.trick == "tailwhip", `{kind} first jump at speed does a tailwhip`)
 	check(stats.spin.trick == "spin", `{kind} second jump does a 360 spin (jump velocity arriving a frame late)`)
-	print(string.format("    kicking foot lowest %.2f below the deck (ground is %.2f below)", -kicking.kickLow, scooter.deckHeight))
-	if kind == "R15" then
-		check(math.abs(kicking.kickLow + scooter.deckHeight) < 0.05, "R15 kicking foot touches the ground")
+	print(string.format("    kicking foot lowest %.2f below the deck (ground is %.2f below), leg swings %.0f..%.0f deg, front foot slides %.2f",
+		-kicking.kickLow, scooter.deckHeight, kicking.swingMin, kicking.swingMax, kicking.slideMax - kicking.slideMin))
+	if rig.humanoid.RigType.Name == "R15" then
+		check(math.abs(kicking.kickLow + scooter.deckHeight) < 0.05, `{kind} kicking foot touches the ground`)
+		-- Same posture at any avatar size: elbows relaxed, not locked straight or folded up.
+		print(string.format("    elbows bent %.0f deg while rolling", cruising.elbow))
+		check(cruising.elbow > 10 and cruising.elbow < 65, `{kind} elbows relaxed on the grips`)
 	end
 	local worstHand, worstFront, worstBack = 0, 0, 0
 	for _, e in stats do

@@ -1,6 +1,6 @@
 # Vehicle Spawner + HD Road Glide ST CVO + Scooter
 
-Menu spawn kendaraan untuk Roblox (GUI + sistem) plus motor **HD Road Glide ST CVO** yang sudah diperbaiki supaya bisa dikendarai normal di **R6** (juga R15), di PC maupun HP. Ada juga **[Scooter](#scooter-tool)**: tool skuter tendang dengan 8 tema warna, animasi, trik, dan lampu.
+Menu spawn kendaraan untuk Roblox (GUI + sistem) plus motor **HD Road Glide ST CVO** yang sudah diperbaiki supaya bisa dikendarai normal di **R6** (juga R15), di PC maupun HP. Ada juga **[Scooter](#scooter-tool)**: tool skuter tendang dengan 8 tema warna, animasi, trik, lampu, dan klakson.
 
 ![Menu](docs/preview-desktop.png)
 
@@ -101,11 +101,19 @@ Model aslinya punya beberapa masalah yang membuatnya tidak bisa dikendarai norma
 
 ## Scooter (tool)
 
-Skuter tendang "scooter noctis" dijadikan **Tool**. Pemain memilihnya dari hotbar dan langsung naik. Warna dan animasinya sudah jadi, tanpa perlu upload animasi.
+Skuter tendang "scooter noctis" dijadikan **Tool**. Pemain memilihnya dari hotbar dan langsung naik. Warna, animasi, dan klaksonnya sudah jadi, tanpa perlu upload animasi. Ukurannya menyesuaikan avatar R6 maupun R15.
 
 ![Tema warna](docs/scooter-themes.png)
 
 ![Pose pengendara R6 dan R15](docs/scooter-rider.png)
+
+![GUI di PC](docs/scooter-hud-pc.png)
+
+<details>
+<summary>GUI di HP (tombol klakson di samping tombol lompat)</summary>
+
+![GUI di HP](docs/scooter-hud-phone.png)
+</details>
 
 <details>
 <summary>Malam hari: lampu depan dan underglow menyala otomatis</summary>
@@ -113,7 +121,7 @@ Skuter tendang "scooter noctis" dijadikan **Tool**. Pemain memilihnya dari hotba
 ![Malam](docs/scooter-night.png)
 </details>
 
-> Gambar di atas adalah render perkiraan. Mesh skuternya adalah aset Roblox yang tidak bisa diunduh di sini, jadi tiap part digambar sebagai bentuk sederhana dengan ukuran, posisi, dan warna yang sama. Warna dan posenya sesuai, tetapi bentuk detailnya di game mengikuti mesh aslinya.
+> Gambar skuter di atas adalah render perkiraan. Mesh skuternya adalah aset Roblox yang tidak bisa diunduh di sini, jadi tiap part digambar sebagai bentuk sederhana dengan ukuran, posisi, dan warna yang sama. Warna dan posenya sesuai, tetapi bentuk detailnya di game mengikuti mesh aslinya. Gambar GUI dirender dari GUI yang sama dengan yang dibuat script. Tombol JUMP, thumbstick, dan slot hotbar di gambar hanya tiruan milik Roblox untuk menunjukkan posisinya.
 
 ### Cara pasang
 
@@ -132,9 +140,10 @@ Kalau skuter hanya untuk sebagian pemain (misalnya lewat gamepass atau toko), ta
 |---|---|---|
 | W/A/S/D | Thumbstick | Tahan arah untuk menendang dan menambah kecepatan. Lepas tombol untuk meluncur. Tekan arah berlawanan untuk mengerem. |
 | Spasi | Tombol lompat | Lompat. Saat melaju cepat, lompatan jadi trik: **tailwhip** (dek diputar) dan **spin 360** bergantian. |
+| H | Tombol **KLAKSON** | Bunyikan klakson. Pemain sendiri langsung mendengar, dan pemain lain di sekitarnya ikut mendengar dari arah skuter. |
 | T | Tombol di layar | Ganti warna skuter. Semua pemain melihat warnanya, dan pilihannya diingat sampai pemain keluar. |
 
-Di bawah layar ada speedometer (km/jam) dan tombol ganti warna. Skuter otomatis disimpan saat pemain duduk (misalnya naik motor dari garasi) atau berenang, dan disembunyikan saat memanjat.
+Di bawah layar ada speedometer (km/jam) dan tombol ganti warna. Tombol klakson ada di kanan bawah; di HP posisinya di samping kiri tombol lompat supaya tidak saling menutupi. Skuter otomatis disimpan saat pemain duduk (misalnya naik motor dari garasi) atau berenang, dan disembunyikan saat memanjat.
 
 ### Tema warna
 
@@ -146,6 +155,12 @@ Untuk mengatur warna, buka `StarterPack > Scooter > Settings`:
 - **Tema sendiri (misalnya warna map-mu):** salin salah satu tabel di `Settings.Themes`, ganti nama dan warnanya, lalu tambahkan namanya ke `Settings.ThemeOrder`. Keterangan setiap bagian (Paint, Trim, Grip, Metal, Accent, Rubber, Rim, Glow, Light) ada di dalam Settings.
 - **Satu warna untuk semua pemain:** `Settings.PlayersCanChangeTheme = false`.
 
+### Klakson
+
+Suara klakson memakai ID **95752428333889** (`Settings.HornSound`). Klakson bisa ditekan setiap 0,4 detik (`HornCooldown`) supaya tidak di-spam, dan server menolak klakson yang lebih cepat dari itu.
+
+Kalau tombol klakson ditekan tapi tidak ada suaranya, biasanya penyebabnya izin audio. Roblox hanya memutar audio yang publik atau milik pembuat game. Buka Creator Dashboard, pilih audionya, lalu izinkan untuk game ini di **Permissions**. Setelah itu tes lagi dengan Play.
+
 ### Animasi
 
 Semua animasi dihitung oleh script (IK), bukan AnimationTrack, jadi tidak ada ID animasi yang perlu di-upload:
@@ -153,7 +168,14 @@ Semua animasi dihitung oleh script (IK), bukan AnimationTrack, jadi tidak ada ID
 - Kaki kanan menendang tanah saat menambah kecepatan, lalu kedua kaki naik ke dek saat meluncur. Saat berhenti, satu kaki turun ke tanah.
 - Tangan selalu memegang handgrip, bahu ikut berputar saat stang belok, dan badan serta skuter condong ke arah belokan.
 - Roda berputar sesuai kecepatan, dan badan sedikit mengayun saat mendarat.
-- R6 dan R15 didukung, termasuk avatar R15 dengan ukuran berbeda. Kaki R6 tidak punya lutut, jadi tendangannya tidak sampai menyentuh tanah. Kaki R15 benar-benar menapak tanah.
+- R6 dan R15 didukung (lihat bagian berikut).
+
+### R6 dan R15
+
+- **Ukuran menyesuaikan avatar** (`FitRiderSize`). Skuter diperbesar atau diperkecil sesuai tinggi kaki avatar (0,75× sampai 1,4×). Avatar R15 kecil atau tinggi (Rthro) tetap memegang stang dengan postur yang sama. Tanpa penyesuaian ini, tangan avatar R15 kecil atau tinggi lepas dari stang. R6 selalu berukuran sama, jadi skuternya tetap ukuran normal.
+- **Sikap badan R15:** lengan R15 punya siku dan tangannya ada di ujung lengan. Karena itu pengendara R15 berdiri sedikit lebih ke belakang dari stang, dengan kaki depan maju dan lutut agak menekuk. Siku sekitar 60° saat meluncur (rileks, tidak terlipat), dan kaki menapak tanah saat menendang.
+- **Sikap badan R6:** kaki dan lengan R6 tidak punya sendi, jadi kaki tetap di bawah pinggul dan tangan memegang stang dengan bagian bawah balok lengan. Tendangannya dibuat lebih lebar (mengayun sekitar −10° sampai 36°) supaya jelas terlihat mendorong, walaupun kaki R6 tidak bisa menyentuh tanah.
+- **Performa:** pose badan (bagian paling berat) hanya dihitung untuk pengendara yang terlihat di layar dan dalam jarak 250 stud. Pose skuter milik sendiri selalu dihitung. Roda, stang, lampu, dan suara tetap jalan untuk semua pengendara, dan tabel hasil pose dipakai ulang setiap frame.
 
 ### Pengaturan lain (Settings)
 
@@ -168,6 +190,9 @@ Semua animasi dihitung oleh script (IK), bukan AnimationTrack, jadi tidak ada ID
 | `Tricks` / `TrickMinSpeed` | true / 16 | Trik saat lompat / kecepatan minimum |
 | `Lights` | "Auto" | Lampu: "Auto" (malam saja), true, atau false |
 | `Sounds`, `RollSound` | true, "" | Suara. Isi `RollSound` dengan ID suara roda dari Toolbox kalau mau |
+| `HornSound` / `HornVolume` | ID 95752428333889 / 1 | Suara klakson ("" = tanpa klakson) / volumenya |
+| `HornKey` / `HornCooldown` | H / 0.4 | Tombol keyboard klakson / jeda minimum antar klakson (detik) |
+| `FitRiderSize` | true | Ukuran skuter mengikuti tinggi avatar |
 
 ### Perubahan pada model
 
@@ -176,17 +201,18 @@ Semua animasi dihitung oleh script (IK), bukan AnimationTrack, jadi tidak ada ID
 - **Ukuran:** model asli sekitar 2× tinggi karakter. Profilnya diperkecil ke 0,36× sehingga stang berada 2,7 stud di atas dek, pas untuk tangan R6. Dek dibuat lebih lebar (1,35 stud) supaya dua kaki muat. Hasilnya dek 0,49 stud dari tanah dan roda berdiameter 0,68 stud.
 - **Nama part:** 40 part diberi nama yang jelas (Deck, Column, Handlebar, GripLeft, Tire, Spoke1 …), dan setiap part diberi atribut `Role` untuk tema.
 - **Sambungan:** part dirakit dengan Weld dan Motor6D sehingga stang bisa belok di sumbu tiangnya dan kedua roda bisa berputar. Semua part massless dan tidak bertabrakan, jadi tidak mengganggu gerak karakter.
-- **Tambahan:** lampu depan (SpotLight), lampu kolong (PointLight), dan titik tangan/kaki untuk animasi.
+- **Tambahan:** lampu depan (SpotLight), lampu kolong (PointLight), titik pegangan tangan dan jalur tendangan untuk animasi, RemoteEvent `SetTheme` dan `Horn`, dan modul GUI `ScooterHud`.
 - **Tekstur:** tekstur asli di permukaan dek diganti material grip tape (Asphalt).
 - **Format file:** file dari Studio versi baru menyimpan Tags dengan format yang belum bisa dibaca Lune. Tags-nya kosong, jadi dibuang saat build (`tools/lib/rbxm.luau`). File hasil build menyimpan `MeshId` sebagai teks biasa, sama seperti yang disimpan Studio.
 
 ### Pengujian
 
-`tools/test-scooter-pose.luau` menjalankan simulasi lengkap: berhenti, menendang sampai kecepatan penuh, meluncur, belok kiri, tailwhip, spin 360, lalu meluncur sampai berhenti. Simulasi dijalankan dengan rig R6 standar dan rig R15, memakai modul `Motion` dan `Pose` yang sama dengan game. Yang dicek:
+`tools/test-scooter-pose.luau` menjalankan simulasi lengkap: berhenti, menendang sampai kecepatan penuh, meluncur, belok kiri, tailwhip, spin 360, lalu meluncur sampai berhenti. Simulasi dijalankan dengan rig R6 standar dan tiga rig R15 (normal, kecil 0,8×, tinggi 1,3×, masing-masing dengan skuter yang ikut diskala), memakai modul `Motion` dan `Pose` yang sama dengan game. Yang dicek:
 
 - Tangan tetap di handgrip. R15 tepat; R6 paling jauh 0,1 stud karena lengannya tidak bisa menekuk.
 - Kaki depan tidak melayang atau tenggelam di dek.
 - Kaki R15 menyentuh tanah saat menendang.
+- Siku R15 rileks saat meluncur (sekitar 62° di ketiga ukuran avatar).
 - Stang dan badan condong ke arah belokan, dan roda berputar ke depan.
 - Kedua trik terjadi, termasuk kalau data lompatan pemain lain datang terlambat satu frame.
 

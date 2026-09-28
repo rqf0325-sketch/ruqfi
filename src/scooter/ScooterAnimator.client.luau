@@ -9,6 +9,13 @@
 	from what does replicate (position, velocity, humanoid state). Written in
 	PreSimulation, after Roblox's own animations, so it replaces the walk
 	animation while riding and hands the body back as soon as it stops.
+
+	Also plays other riders' horns (the tool's "Honk" attribute, set by
+	ScooterServer; the rider's own client plays theirs itself).
+
+	Cost: the body pose is only worked out for riders on screen and within
+	CULL_DISTANCE (plus this player's own). The rest still get the cheap
+	part: wheels, steering, lights and sounds.
 ]]
 
 local Lighting = game:GetService("Lighting")
@@ -18,7 +25,10 @@ local RunService = game:GetService("RunService")
 local Motion = require(script:WaitForChild("Motion"))
 local Pose = require(script:WaitForChild("Pose"))
 
-local CULL_DISTANCE = 300 -- riders further away keep the scooter but not the pose
+local CULL_DISTANCE = 250 -- riders further away keep the scooter but not the pose
+local SCREEN_MARGIN = 0.25 -- share of the screen size a rider may be outside it and still get posed
+
+local localPlayer = Players.LocalPlayer
 local IDENTITY = CFrame.new()
 
 local OFF_STATES = {
@@ -56,7 +66,7 @@ local function position(parent, name)
 	return if attachment and attachment:IsA("Attachment") then attachment.Position else nil
 end
 
-local function makeSound(parent, id, looped, volume)
+local function makeSound(parent, id, looped, volume, reach)
 	if type(id) ~= "string" or id == "" then
 		return nil
 	end
@@ -64,12 +74,46 @@ local function makeSound(parent, id, looped, volume)
 	sound.SoundId = id
 	sound.Looped = looped
 	sound.Volume = volume
-	sound.RollOffMaxDistance = 80
+	sound.RollOffMaxDistance = reach or 80
 	sound.Parent = parent
 	if looped then
 		sound:Play()
 	end
 	return sound
+end
+
+-- The scooter's measurements, as it is scaled right now (joints and
+-- attachments scale with Model:ScaleTo, attributes don't).
+local function readScooter(body)
+	local root = body:FindFirstChild("Root")
+	local steerHub = body:FindFirstChild("SteerHub")
+	local steer, rearSpin = motor(root, "Steer"), motor(root, "RearSpin")
+	local frontSpin = motor(steerHub, "FrontSpin")
+	if not (steer and rearSpin and frontSpin) then
+		return nil
+	end
+	local anchors, grips = {}, {}
+	for _, name in { "Kick", "KickEnd" } do
+		anchors[name] = position(root, name)
+		if not anchors[name] then
+			return nil
+		end
+	end
+	grips.Left, grips.Right = position(steerHub, "LeftGrip"), position(steerHub, "RightGrip")
+	if not (grips.Left and grips.Right) then
+		return nil
+	end
+	local scale = body:GetScale()
+	return {
+		scale = scale,
+		deckHeight = (body:GetAttribute("DeckHeight") or 0.5) * scale,
+		wheelRadius = (body:GetAttribute("WheelRadius") or 0.34) * scale,
+		wheelbase = ((steer.C0 * steer.C1:Inverse() * frontSpin.C0).Position - rearSpin.C0.Position).Magnitude,
+		steerC0 = steer.C0,
+		steerC1 = steer.C1,
+		anchors = anchors,
+		grips = grips,
+	}
 end
 
 local function start(character, tool)
@@ -83,13 +127,8 @@ local function start(character, tool)
 	end
 	local mount, steer = motor(root, "Mount"), motor(root, "Steer")
 	local frontSpin, rearSpin = motor(steerHub, "FrontSpin"), motor(root, "RearSpin")
-	local anchors, grips = {}, {}
-	for _, name in { "LeftFoot", "RightFoot", "Kick", "KickEnd" } do
-		anchors[name] = position(root, name)
-	end
-	grips.Left, grips.Right = position(steerHub, "LeftGrip"), position(steerHub, "RightGrip")
-	if not (mount and steer and frontSpin and rearSpin and anchors.LeftFoot and anchors.RightFoot
-		and anchors.Kick and anchors.KickEnd and grips.Left and grips.Right) then
+	local scooter = readScooter(body)
+	if not (mount and scooter) then
 		return nil
 	end
 
@@ -100,15 +139,6 @@ local function start(character, tool)
 	end
 
 	local rig = Pose.rig(character)
-	local scooter = {
-		deckHeight = body:GetAttribute("DeckHeight") or 0.5,
-		wheelRadius = body:GetAttribute("WheelRadius") or 0.34,
-		wheelbase = ((steer.C0 * steer.C1:Inverse() * frontSpin.C0).Position - rearSpin.C0.Position).Magnitude,
-		steerC0 = steer.C0,
-		steerC1 = steer.C1,
-		anchors = anchors,
-		grips = grips,
-	}
 	local parts = {}
 	for _, part in body:GetDescendants() do
 		if part:IsA("BasePart") then
@@ -136,11 +166,17 @@ local function start(character, tool)
 		underglow = body:FindFirstChild("Underglow", true),
 		hidden = false,
 		lights = nil,
+		isLocal = character == localPlayer.Character,
+		honk = tool:GetAttribute("Honk"),
+		pose = {},
 	}
 	if settings.Sounds ~= false then
 		rider.windSound = makeSound(root, settings.WindSound, true, 0)
 		rider.rollSound = makeSound(root, settings.RollSound, true, 0)
 		rider.kickSound = makeSound(root, settings.KickSound, false, 0.35)
+	end
+	if not rider.isLocal then
+		rider.hornSound = makeSound(root, settings.HornSound, false, settings.HornVolume or 1, 150)
 	end
 	return rider
 end
@@ -212,7 +248,7 @@ end
 
 local function finish(rider)
 	muteFootsteps(rider, false)
-	for _, sound in { rider.windSound, rider.rollSound, rider.kickSound } do
+	for _, sound in { rider.windSound, rider.rollSound, rider.kickSound, rider.hornSound } do
 		sound:Destroy()
 	end
 	setHidden(rider, false)
@@ -227,11 +263,48 @@ local function finish(rider)
 	end
 end
 
+-- Worth working out the pose: on screen (with a margin) and not too far away.
+local function inView(camera, point)
+	if not camera then
+		return true
+	end
+	local offset = camera.CFrame.Position - point
+	if offset.Magnitude > CULL_DISTANCE then
+		return false
+	end
+	if offset.Magnitude < 12 then
+		return true
+	end
+	local onScreen = camera:WorldToViewportPoint(point)
+	local size = camera.ViewportSize
+	local margin = SCREEN_MARGIN * math.max(size.X, size.Y)
+	return onScreen.Z > 0 and onScreen.X > -margin and onScreen.X < size.X + margin
+		and onScreen.Y > -margin and onScreen.Y < size.Y + margin
+end
+
 local function update(rider, dt, camera)
 	local humanoid, rootPart = rider.humanoid, rider.rootPart
 	if rider.mount.Part0 ~= rootPart then
 		return -- equipped, but not joined to the rider yet
 	end
+
+	local honk = rider.tool:GetAttribute("Honk")
+	if honk ~= rider.honk then
+		rider.honk = honk
+		if rider.hornSound then
+			rider.hornSound.TimePosition = 0
+			rider.hornSound:Play()
+		end
+	end
+
+	-- Rescaled for a new rider size (the server's ScaleTo can arrive after this rider started).
+	if math.abs(rider.body:GetScale() - rider.motion.scooter.scale) > 1e-3 then
+		local scooter = readScooter(rider.body)
+		if scooter then
+			rider.motion.scooter = scooter
+		end
+	end
+
 	local state = humanoid:GetState()
 	local off = OFF_STATES[state] or humanoid.Sit
 	setHidden(rider, off)
@@ -259,9 +332,8 @@ local function update(rider, dt, camera)
 	if rider.rig and not rider.rig.root.Parent then
 		rider.rig = Pose.rig(rider.character)
 	end
-	local near = not camera or (camera.CFrame.Position - rootPart.Position).Magnitude < CULL_DISTANCE
-	if rider.rig and near then
-		for joint, transform in Pose.solve(rider.rig, rootPart.CFrame, result.targets) do
+	if rider.rig and (rider.isLocal or inView(camera, rootPart.Position)) then
+		for joint, transform in Pose.solve(rider.rig, rootPart.CFrame, result.targets, rider.pose) do
 			joint.Transform = transform
 		end
 	end

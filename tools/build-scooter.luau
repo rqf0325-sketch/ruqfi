@@ -43,9 +43,7 @@ local BAR_WIDTH = 0.636 -- handlebar: grips 1.5 studs either side, where R6 hand
 -- The rider stands this far behind the middle of the deck.
 local STAND_BACK = 0.2
 
--- Where the rider's feet go, relative to Root (the deck surface under the rider).
-local LEFT_FOOT = Vector3.new(-0.3, 0, -0.55) -- front foot, stays on the deck
-local RIGHT_FOOT = Vector3.new(0.3, 0, 0.45) -- back foot while cruising
+-- Where the kicking foot goes, relative to Root (the deck surface under the rider).
 local KICK_X = 1.05 -- the kicking foot passes this far right of the middle (under the deck edge)
 
 ---------------------------------------------------------------------------
@@ -221,9 +219,11 @@ tool:SetAttribute("Scooter", true)
 
 script("ModuleScript", "Settings", "src/scooter/Settings.luau", tool)
 script("ModuleScript", "ScooterShared", "src/scooter/ScooterShared.luau", tool)
+script("ModuleScript", "ScooterHud", "src/scooter/ScooterHud.luau", tool)
 script("Script", "ScooterServer", "src/scooter/ScooterServer.server.luau", tool)
 script("LocalScript", "ScooterClient", "src/scooter/ScooterClient.client.luau", tool)
 new("RemoteEvent", { Name = "SetTheme" }, tool)
+new("RemoteEvent", { Name = "Horn" }, tool)
 
 local body = new("Model", { Name = "Body" }, tool)
 body:SetAttribute("DeckHeight", DECK_HEIGHT)
@@ -352,13 +352,12 @@ new("SpotLight", {
 	Enabled = false,
 }, lamp)
 
--- Anchors the animator reads (all in Root or SteerHub space).
+-- Anchors the animator reads (in Root or SteerHub space). The standing feet
+-- are placed by the animator itself (they differ between R6 and R15).
 local function attachment(name, parent, position)
 	return new("Attachment", { Name = name, CFrame = CFrame.new(position) }, parent)
 end
 local deckCenter = root.CFrame:PointToObjectSpace(deck.CFrame.Position)
-attachment("LeftFoot", root, LEFT_FOOT)
-attachment("RightFoot", root, RIGHT_FOOT)
 attachment("Kick", root, Vector3.new(KICK_X, -DECK_HEIGHT, -0.1)) -- kick foot lands here...
 attachment("KickEnd", root, Vector3.new(KICK_X, -DECK_HEIGHT, 0.9)) -- ...and pushes back to here
 attachment("LeftGrip", steerHub, steerHub.CFrame:PointToObjectSpace(built["Steering/GripLeft"].CFrame.Position))
@@ -382,6 +381,11 @@ local env = setmetatable({
 	Color3 = Color3,
 	CFrame = CFrame,
 	Vector3 = Vector3,
+	Vector2 = roblox.Vector2,
+	UDim = roblox.UDim,
+	UDim2 = roblox.UDim2,
+	Font = roblox.Font,
+	Instance = Instance,
 }, { __index = getfenv(1) })
 local function module(path)
 	return luau.load(fs.readFile(path), { debugName = path, environment = env })()
@@ -452,6 +456,49 @@ if table.find(process.args, "--dump") then
 		end
 		themes[name] = roles
 	end
+	-- HUD for tools/preview/render.cjs, as on a PC and on a phone. The jump
+	-- button and hotbar slot are stand-ins for Roblox's own, for the preview only.
+	local Hud = module("src/scooter/ScooterHud.luau")
+	local dump = require("./lib/dump")
+	local UDim2, Vector2 = roblox.UDim2, roblox.Vector2
+	local theme = settings.Themes[settings.Theme]
+	local function stand(className, props, parent)
+		local item = new(className, props, parent)
+		if className ~= "UICorner" and className ~= "UIStroke" then
+			new("UICorner", { CornerRadius = roblox.UDim.new(if props.Name == "Slot" then 0 else 1, if props.Name == "Slot" then 8 else 0) }, item)
+		end
+		return item
+	end
+	for _, device in {
+		{ file = "build/scooter-hud-pc.json", keyboard = true, touchOnly = false, viewport = Vector2.new(1280, 720) },
+		{ file = "build/scooter-hud-phone.json", keyboard = false, touchOnly = true, viewport = Vector2.new(844, 390) },
+	} do
+		local hud = Hud.new(settings, device, settings.HornSound ~= "")
+		hud:setTheme(string.upper(settings.Theme), theme.Light)
+		hud:setSpeed(24)
+		local slot = stand("TextLabel", {
+			Name = "Slot", AnchorPoint = Vector2.new(0.5, 1), Position = UDim2.new(0.5, 0, 1, -8),
+			Size = UDim2.fromOffset(60, 60), BackgroundColor3 = Color3.fromRGB(30, 34, 44), BackgroundTransparency = 0.3,
+			Text = "Scooter", TextSize = 11, TextColor3 = Color3.new(1, 1, 1),
+			FontFace = roblox.Font.new("rbxasset://fonts/families/Montserrat.json", Enum.FontWeight.SemiBold),
+		}, hud.gui)
+		new("UIStroke", { Color = Color3.new(1, 1, 1), Thickness = 2, Transparency = 0.3 }, slot)
+		if device.touchOnly then
+			stand("TextLabel", {
+				Name = "JumpButton (Roblox)", AnchorPoint = Vector2.new(0, 0), Position = UDim2.new(1, -95, 1, -90),
+				Size = UDim2.fromOffset(70, 70), BackgroundColor3 = Color3.new(1, 1, 1), BackgroundTransparency = 0.75,
+				Text = "JUMP", TextSize = 11, TextColor3 = Color3.new(1, 1, 1),
+				FontFace = roblox.Font.new("rbxasset://fonts/families/Montserrat.json", Enum.FontWeight.Bold),
+			}, hud.gui)
+			stand("Frame", {
+				Name = "Thumbstick (Roblox)", Position = UDim2.new(0, 60, 1, -150), Size = UDim2.fromOffset(110, 110),
+				BackgroundColor3 = Color3.new(1, 1, 1), BackgroundTransparency = 0.8,
+			}, hud.gui)
+		end
+		fs.writeFile(device.file, serde.encode("json", dump(hud.gui)))
+		print(`Wrote {device.file}`)
+	end
+
 	fs.writeDir("build")
 	fs.writeFile("build/scooter.json", serde.encode("json", {
 		parts = parts,

@@ -9,6 +9,9 @@
 	    and turning at speed is gradual; all through Humanoid:Move, so it
 	    works the same with keyboard, thumbstick and gamepad
 	  * a small HUD shows the speed and a button (or T) to change colour
+	  * a horn button (or H): the rider hears it at once, everyone else
+	    through the server (ScooterServer -> ScooterAnimator)
+	  * the scooter is sized to the rider (Settings.FitRiderSize)
 	Everything is put back when the tool is unequipped, and the tool is put
 	away when the rider sits down (e.g. on a bike) or swims.
 ]]
@@ -21,9 +24,12 @@ local player = Players.LocalPlayer
 local tool = script.Parent
 local settings = require(tool:WaitForChild("Settings"))
 local Shared = require(tool:WaitForChild("ScooterShared"))
+local Hud = require(tool:WaitForChild("ScooterHud"))
 local body = tool:WaitForChild("Body")
-local mount = body:WaitForChild("Root"):WaitForChild("Mount")
+local root = body:WaitForChild("Root")
+local mount = root:WaitForChild("Mount")
 local setTheme = tool:WaitForChild("SetTheme")
+local hornRemote = tool:WaitForChild("Horn")
 
 local STEP = "ScooterControl"
 local STOP_SPEED = 3
@@ -34,6 +40,17 @@ local ride = nil
 -- the first time the scooter is equipped).
 Shared.applyTheme(body, settings,
 	if settings.PlayersCanChangeTheme then player:GetAttribute("ScooterTheme") or settings.Theme else settings.Theme)
+
+-- The rider's own horn, local so it plays without waiting for the server.
+local hornSound = nil
+if type(settings.HornSound) == "string" and settings.HornSound ~= "" then
+	hornSound = Instance.new("Sound")
+	hornSound.Name = "HornLocal"
+	hornSound.SoundId = settings.HornSound
+	hornSound.Volume = settings.HornVolume or 1
+	hornSound.RollOffMaxDistance = 150
+	hornSound.Parent = root
+end
 
 local function flat(vector)
 	return Vector3.new(vector.X, 0, vector.Z)
@@ -53,110 +70,28 @@ end
 -- HUD
 ---------------------------------------------------------------------------
 
-local FONT = Font.new("rbxasset://fonts/families/Montserrat.json", Enum.FontWeight.Bold)
-
 local function themeColor()
 	local theme = Shared.theme(settings, body:GetAttribute("Theme"))
 	return theme.Light or (theme.Accent and theme.Accent.Color) or Color3.new(1, 1, 1)
 end
 
-local function makeHud()
-	local gui = Instance.new("ScreenGui")
-	gui.Name = "ScooterHud"
-	gui.ResetOnSpawn = false
-	gui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
-
-	local bar = Instance.new("Frame")
-	bar.AnchorPoint = Vector2.new(0.5, 1)
-	bar.Position = UDim2.new(0.5, 0, 1, -92)
-	bar.AutomaticSize = Enum.AutomaticSize.X
-	bar.Size = UDim2.fromOffset(0, 40)
-	bar.BackgroundColor3 = Color3.fromRGB(12, 14, 20)
-	bar.BackgroundTransparency = 0.2
-	bar.Parent = gui
-	Instance.new("UICorner", bar).CornerRadius = UDim.new(1, 0)
-	local stroke = Instance.new("UIStroke", bar)
-	stroke.Color = Color3.new(1, 1, 1)
-	stroke.Transparency = 0.85
-	local padding = Instance.new("UIPadding", bar)
-	padding.PaddingLeft = UDim.new(0, 14)
-	padding.PaddingRight = UDim.new(0, 16)
-	local layout = Instance.new("UIListLayout", bar)
-	layout.FillDirection = Enum.FillDirection.Horizontal
-	layout.VerticalAlignment = Enum.VerticalAlignment.Center
-	layout.Padding = UDim.new(0, 10)
-	layout.SortOrder = Enum.SortOrder.LayoutOrder
-
-	local function label(text, size, color, order)
-		local item = Instance.new("TextLabel")
-		item.BackgroundTransparency = 1
-		item.AutomaticSize = Enum.AutomaticSize.X
-		item.Size = UDim2.fromOffset(0, 40)
-		item.FontFace = FONT
-		item.TextSize = size
-		item.TextColor3 = color
-		item.Text = text
-		item.LayoutOrder = order
-		item.Parent = bar
-		return item
+local function showTheme()
+	if ride and ride.hud then
+		ride.hud:setTheme(string.upper(body:GetAttribute("Theme") or ""), themeColor())
 	end
-
-	local hud = { gui = gui }
-	if settings.PlayersCanChangeTheme then
-		local button = Instance.new("TextButton")
-		button.Name = "Theme"
-		button.BackgroundTransparency = 1
-		button.AutomaticSize = Enum.AutomaticSize.X
-		button.Size = UDim2.fromOffset(0, 40)
-		button.Text = ""
-		button.LayoutOrder = 1
-		button.Parent = bar
-		local row = Instance.new("UIListLayout", button)
-		row.FillDirection = Enum.FillDirection.Horizontal
-		row.VerticalAlignment = Enum.VerticalAlignment.Center
-		row.Padding = UDim.new(0, 8)
-		row.SortOrder = Enum.SortOrder.LayoutOrder
-
-		local swatch = Instance.new("Frame")
-		swatch.Size = UDim2.fromOffset(16, 16)
-		swatch.LayoutOrder = 1
-		swatch.Parent = button
-		Instance.new("UICorner", swatch).CornerRadius = UDim.new(1, 0)
-		local name = Instance.new("TextLabel")
-		name.BackgroundTransparency = 1
-		name.AutomaticSize = Enum.AutomaticSize.X
-		name.Size = UDim2.fromOffset(0, 40)
-		name.FontFace = FONT
-		name.TextSize = 14
-		name.TextColor3 = Color3.new(1, 1, 1)
-		name.LayoutOrder = 2
-		name.Parent = button
-		if settings.ThemeKey and UserInputService.KeyboardEnabled then
-			local key = Instance.new("TextLabel")
-			key.Size = UDim2.fromOffset(20, 20)
-			key.BackgroundColor3 = Color3.new(1, 1, 1)
-			key.BackgroundTransparency = 0.85
-			key.FontFace = FONT
-			key.TextSize = 11
-			key.TextColor3 = Color3.fromRGB(200, 204, 214)
-			key.Text = settings.ThemeKey.Name
-			key.LayoutOrder = 3
-			key.Parent = button
-			Instance.new("UICorner", key).CornerRadius = UDim.new(0, 5)
-		end
-		label("|", 16, Color3.fromRGB(90, 96, 110), 2)
-		hud.button, hud.swatch, hud.name = button, swatch, name
-	end
-	hud.speed = label("0", 18, Color3.new(1, 1, 1), 3)
-	label("km/h", 11, Color3.fromRGB(150, 156, 170), 4)
-	gui.Parent = player:WaitForChild("PlayerGui")
-	return hud
 end
 
-local function showTheme(hud)
-	if hud and hud.name then
-		hud.name.Text = string.upper(body:GetAttribute("Theme") or "")
-		hud.swatch.BackgroundColor3 = themeColor()
+local lastHonk = 0
+local function honk()
+	if not ride or not hornSound or os.clock() - lastHonk < (settings.HornCooldown or 0) then
+		return
+	end
+	lastHonk = os.clock()
+	hornSound.TimePosition = 0
+	hornSound:Play()
+	hornRemote:FireServer()
+	if ride.hud then
+		ride.hud:pulseHorn()
 	end
 end
 
@@ -169,9 +104,7 @@ local function nextTheme()
 	local name = order[index % #order + 1]
 	Shared.applyTheme(body, settings, name)
 	setTheme:FireServer(name)
-	if ride then
-		showTheme(ride.hud)
-	end
+	showTheme()
 end
 
 ---------------------------------------------------------------------------
@@ -189,11 +122,8 @@ local function step(dt)
 	end
 	local velocity = rootPart.AssemblyLinearVelocity
 	local actual = flat(velocity).Magnitude
-	if r.hud and r.hud.speed then
-		local shown = tostring(math.floor(actual + 0.5))
-		if r.hud.speed.Text ~= shown then
-			r.hud.speed.Text = shown
-		end
+	if r.hud then
+		r.hud:setSpeed(actual)
 	end
 	if humanoid:GetState() == Enum.HumanoidStateType.Climbing then
 		r.speed = 0
@@ -252,7 +182,7 @@ local function stopRiding()
 		connection:Disconnect()
 	end
 	if r.hud then
-		r.hud.gui:Destroy()
+		r.hud:destroy()
 	end
 	local humanoid = r.humanoid
 	if humanoid.Parent then
@@ -292,9 +222,12 @@ local function startRiding()
 		connections = {},
 	}
 
+	local scale = Shared.riderScale(settings, humanoid, rootPart, ride.hipHeight)
+	mount.Part0 = nil
+	Shared.fit(body, scale)
 	mount.C0 = Shared.mountOffset(humanoid, rootPart, ride.hipHeight)
 	mount.Part0 = rootPart
-	humanoid.HipHeight = ride.hipHeight + (body:GetAttribute("DeckHeight") or 0.5)
+	humanoid.HipHeight = ride.hipHeight + (body:GetAttribute("DeckHeight") or 0.5) * scale
 	-- JumpHeight grows with the square of JumpPower.
 	humanoid.JumpHeight = ride.jumpHeight * settings.JumpBoost
 	humanoid.JumpPower = ride.jumpPower * math.sqrt(settings.JumpBoost)
@@ -315,20 +248,35 @@ local function startRiding()
 		end
 	end))
 	table.insert(ride.connections, UserInputService.InputBegan:Connect(function(input, processed)
-		if not processed and settings.ThemeKey and input.KeyCode == settings.ThemeKey then
+		if processed then
+			return
+		end
+		if settings.ThemeKey and input.KeyCode == settings.ThemeKey then
 			nextTheme()
+		elseif settings.HornKey and input.KeyCode == settings.HornKey then
+			honk()
 		end
 	end))
 
 	if settings.ShowHud then
-		ride.hud = makeHud()
-		showTheme(ride.hud)
-		if ride.hud.button then
-			table.insert(ride.connections, ride.hud.button.Activated:Connect(nextTheme))
+		local camera = workspace.CurrentCamera
+		ride.hud = Hud.new(settings, {
+			keyboard = UserInputService.KeyboardEnabled,
+			touchOnly = UserInputService.TouchEnabled and not UserInputService.KeyboardEnabled,
+			viewport = if camera then camera.ViewportSize else Vector2.new(1280, 720),
+		}, hornSound ~= nil)
+		ride.hud.gui.Parent = player:WaitForChild("PlayerGui")
+		showTheme()
+		if ride.hud.themeButton then
+			table.insert(ride.connections, ride.hud.themeButton.Activated:Connect(nextTheme))
+		end
+		if ride.hud.hornButton then
+			-- On press, not on release: a horn should sound the moment it's touched.
+			table.insert(ride.connections, ride.hud.hornButton.MouseButton1Down:Connect(honk))
 		end
 		table.insert(ride.connections, body:GetAttributeChangedSignal("Theme"):Connect(function()
 			if ride then
-				showTheme(ride.hud)
+				showTheme()
 			end
 		end))
 	end
