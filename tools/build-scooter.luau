@@ -11,7 +11,8 @@
 	a character. This script:
 	  * scales it to fit an R6/R15 rider (hands reach the grips, both feet fit
 	    on the deck) and turns it to face the way the character faces (-Z)
-	  * renames every part and gives it a Role for the colour themes
+	  * renames every part and gives it a Role for the colour themes; the
+	    deck keeps its own texture (the "NOCTIS DISTRICT" design)
 	  * joins it with Welds and Motor6Ds so the handlebar steers and the
 	    wheels spin (Root -> Steer -> FrontSpin, Root -> RearSpin)
 	  * adds a headlight, underglow and the rider's hand/foot anchors
@@ -37,7 +38,11 @@ local ANIMATOR_OUTPUT = "StarterPlayerScripts/ScooterAnimator.rbxmx"
 -- above the deck: an R6 rider's arms point forward-down to reach them.
 local SCALE = 0.36
 -- Width scales (the original is 1.35 studs wide at the deck, 6 at the bar).
-local DECK_WIDTH = 1.0 -- deck (1.35 studs): room for both feet
+-- The textured top of the deck (with the "NOCTIS DISTRICT" design) keeps its
+-- original proportions so the design isn't stretched; the deck base under it
+-- is widened instead, so both feet still have room.
+local BASE_WIDTH = 1.25 -- deck base (1.35 studs)
+local DECK_WIDTH = 1.0 -- neck, hinge, strip under the deck
 local WHEEL_WIDTH = 0.85 -- wheels, forks, fender
 local BAR_WIDTH = 0.636 -- handlebar: grips 1.5 studs either side, where R6 hands are
 -- The rider stands this far behind the middle of the deck.
@@ -49,14 +54,17 @@ local KICK_X = 1.05 -- the kicking foot passes this far right of the middle (und
 ---------------------------------------------------------------------------
 -- Part map: original name -> new name, group, Role, width rule
 --   group: Chassis (fixed) / Steering / FrontWheel / RearWheel
---   fit:   deck / wheel = that width, tube = round tube, bar = handlebar width
+--   fit:   base / deck / wheel = that width, logo = same scale as the length
+--          (keeps the deck texture in proportion), tube = round tube,
+--          bar = handlebar width
+--   Role "Original" keeps the part's original look (texture, colour, material).
 ---------------------------------------------------------------------------
 
 local MAP = {
 	-- top level of the original model
 	[""] = {
-		Cube_9_2 = { "Deck", "Chassis", "Grip", "deck" },
-		Cube_2 = { "DeckBase", "Chassis", "Paint", "deck" },
+		Cube_9_2 = { "Deck", "Chassis", "Original", "logo" }, -- textured: "NOCTIS DISTRICT"
+		Cube_2 = { "DeckBase", "Chassis", "Paint", "base" },
 		Cube_7 = { "GlowStrip", "Chassis", "Glow", "deck" },
 		Cube_3 = { "Neck", "Chassis", "Paint", "deck" },
 		Cube_4 = { "Hinge", "Chassis", "Trim", "deck" },
@@ -65,10 +73,10 @@ local MAP = {
 		Cube_6 = { "HeadTube", "Chassis", "Paint", "tube" },
 		Tube_2_2 = { "HeadClamp", "Chassis", "Accent", "tube" },
 		Tube_2 = { "ClampLever", "Chassis", "Metal", "tube" },
-		Tube_5 = { "BoltRearLeft", "Chassis", "Metal", "deck" },
-		Tube_4 = { "BoltRearRight", "Chassis", "Metal", "deck" },
-		Tube_6 = { "BoltFrontLeft", "Chassis", "Metal", "deck" },
-		Tube_7 = { "BoltFrontRight", "Chassis", "Metal", "deck" },
+		Tube_5 = { "BoltRearLeft", "Chassis", "Metal", "logo" },
+		Tube_4 = { "BoltRearRight", "Chassis", "Metal", "logo" },
+		Tube_6 = { "BoltFrontLeft", "Chassis", "Metal", "logo" },
+		Tube_7 = { "BoltFrontRight", "Chassis", "Metal", "logo" },
 		Tube_4_2 = { "RearFender", "Chassis", "Paint", "wheel" },
 		Cube_9 = { "FenderPlate", "Chassis", "Trim", "wheel" },
 		Cylinder_1 = { "FenderPivot", "Chassis", "Metal", "wheel" },
@@ -176,8 +184,8 @@ local tire = byName("Tire").part -- either wheel: both sit on the ground
 local DECK_HEIGHT = (deckTop - (tire.CFrame.Position.Y - tire.Size.Y / 2)) * SCALE
 local WHEEL_RADIUS = tire.Size.Y / 2 * SCALE
 
-local POSITION_Z = { deck = DECK_WIDTH, wheel = WHEEL_WIDTH, tube = WHEEL_WIDTH, bar = BAR_WIDTH }
-local SIZE_Z = { deck = DECK_WIDTH, wheel = WHEEL_WIDTH, tube = SCALE, bar = BAR_WIDTH }
+local POSITION_Z = { logo = SCALE, base = BASE_WIDTH, deck = DECK_WIDTH, wheel = WHEEL_WIDTH, tube = WHEEL_WIDTH, bar = BAR_WIDTH }
+local SIZE_Z = { logo = SCALE, base = BASE_WIDTH, deck = DECK_WIDTH, wheel = WHEEL_WIDTH, tube = SCALE, bar = BAR_WIDTH }
 
 -- Root sits on the deck surface; the file puts the wheels on y = 0.
 local BASE = Vector3.new(0, DECK_HEIGHT, 0)
@@ -317,13 +325,22 @@ for _, item in found do
 	built[item.group .. "/" .. item.name] = part
 end
 
--- The deck's grip texture on the original is replaced by the Grip material.
-local deck = built["Chassis/Deck"]
-if roblox.Content then
-	deck.TextureContent = roblox.Content.none
-else
-	deck.TextureID = ""
+-- The deck keeps its texture (the "NOCTIS DISTRICT" design).
+local function textureOf(part)
+	local ok, id = pcall(function()
+		return part.TextureID
+	end)
+	if ok and type(id) == "string" then
+		return id
+	end
+	local okContent, content = pcall(function()
+		return part.TextureContent
+	end)
+	return if okContent and content then tostring(content) else ""
 end
+local deck = built["Chassis/Deck"]
+local DECK_TEXTURE = "110495909110501"
+assert(textureOf(deck):find(DECK_TEXTURE, 1, true), "the deck lost its texture")
 
 -- Headlight: a small lamp on the front of the column, turning with the bar.
 local lampHeight = 0.85
@@ -418,7 +435,10 @@ local toolFile = rbxm.legacyContent(roblox.serializeModel({ tool }))
 local types = rbxm.propertyTypes(toolFile, "MeshPart")
 assert(types.MeshId == 0x01 and not types.MeshContent, "MeshPart.MeshId must be saved as a string")
 fs.writeFile(TOOL_OUTPUT, toolFile)
-print(`Wrote {TOOL_OUTPUT} ({count(tool)} instances, theme {themeName})`)
+local written = roblox.deserializeModel(rbxm.cleanForLune(toolFile))[1]
+local writtenDeck = written:FindFirstChild("Body"):FindFirstChild("Chassis"):FindFirstChild("Deck")
+assert(textureOf(writtenDeck):find(DECK_TEXTURE, 1, true), `{TOOL_OUTPUT}: the deck lost its texture`)
+print(`Wrote {TOOL_OUTPUT} ({count(tool)} instances, theme {themeName}, deck texture kept)`)
 
 fs.writeDir("StarterPlayerScripts")
 fs.writeFile(ANIMATOR_OUTPUT, roblox.serializeModel({ animator }, true))
@@ -438,6 +458,7 @@ if table.find(process.args, "--dump") then
 				name = part.Name,
 				group = part.Parent.Name,
 				role = part:GetAttribute("Role"),
+				color = { part.Color.R, part.Color.G, part.Color.B },
 				shape = if part:IsA("Part") then part.Shape.Name else "Mesh",
 				size = { part.Size.X, part.Size.Y, part.Size.Z },
 				cframe = { p.X, p.Y, p.Z, r00, r01, r02, r10, r11, r12, r20, r21, r22 },

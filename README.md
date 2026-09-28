@@ -121,7 +121,7 @@ Skuter tendang "scooter noctis" dijadikan **Tool**. Pemain memilihnya dari hotba
 ![Malam](docs/scooter-night.png)
 </details>
 
-> Gambar skuter di atas adalah render perkiraan. Mesh skuternya adalah aset Roblox yang tidak bisa diunduh di sini, jadi tiap part digambar sebagai bentuk sederhana dengan ukuran, posisi, dan warna yang sama. Warna dan posenya sesuai, tetapi bentuk detailnya di game mengikuti mesh aslinya. Gambar GUI dirender dari GUI yang sama dengan yang dibuat script. Tombol JUMP, thumbstick, dan slot hotbar di gambar hanya tiruan milik Roblox untuk menunjukkan posisinya.
+> Gambar skuter di atas adalah render perkiraan. Mesh skuternya adalah aset Roblox yang tidak bisa diunduh di sini, jadi tiap part digambar sebagai bentuk sederhana dengan ukuran, posisi, dan warna yang sama. Warna dan posenya sesuai, tetapi bentuk detailnya di game mengikuti mesh aslinya. Permukaan dek di gambar tampil abu-abu polos; di game dek memakai tekstur aslinya dengan tulisan NOCTIS DISTRICT. Gambar GUI dirender dari GUI yang sama dengan yang dibuat script. Tombol JUMP, thumbstick, dan slot hotbar di gambar hanya tiruan milik Roblox untuk menunjukkan posisinya.
 
 ### Cara pasang
 
@@ -147,12 +147,14 @@ Di bawah layar ada speedometer (km/jam) dan tombol ganti warna. Tombol klakson a
 
 ### Tema warna
 
-Ada 8 tema: **Noctis** (bawaan, biru malam + amber, senada dengan menu garasi), **Violet**, **Cyber**, **Street**, **Arctic**, **Candy**, **Gold**, dan **Army**. Semuanya memakai material bawaan Roblox (SmoothPlastic mengilap, Metal, Foil, Asphalt untuk grip tape, Rubber untuk ban, Neon untuk velg dan strip bawah dek), jadi tidak ada gambar yang perlu di-upload.
+Ada 8 tema: **Noctis** (bawaan, biru malam + amber, senada dengan menu garasi), **Violet**, **Cyber**, **Street**, **Arctic**, **Candy**, **Gold**, dan **Army**. Semuanya memakai material bawaan Roblox (SmoothPlastic mengilap, Metal, Foil, Rubber untuk ban, Neon untuk velg dan strip bawah dek), jadi tidak ada gambar yang perlu di-upload.
+
+Permukaan dek dengan tulisan **NOCTIS DISTRICT** tidak ikut tema. Teksturnya tetap seperti model aslinya, dan tema hanya mewarnai bagian lain.
 
 Untuk mengatur warna, buka `StarterPack > Scooter > Settings`:
 
 - **Tema bawaan:** ubah `Settings.Theme = "Noctis"` ke nama tema lain.
-- **Tema sendiri (misalnya warna map-mu):** salin salah satu tabel di `Settings.Themes`, ganti nama dan warnanya, lalu tambahkan namanya ke `Settings.ThemeOrder`. Keterangan setiap bagian (Paint, Trim, Grip, Metal, Accent, Rubber, Rim, Glow, Light) ada di dalam Settings.
+- **Tema sendiri (misalnya warna map-mu):** salin salah satu tabel di `Settings.Themes`, ganti nama dan warnanya, lalu tambahkan namanya ke `Settings.ThemeOrder`. Keterangan setiap bagian (Paint, Trim, Metal, Accent, Rubber, Rim, Glow, Light) ada di dalam Settings.
 - **Satu warna untuk semua pemain:** `Settings.PlayersCanChangeTheme = false`.
 
 ### Klakson
@@ -198,11 +200,12 @@ Semua animasi dihitung oleh script (IK), bukan AnimationTrack, jadi tidak ada ID
 
 `tools/build-scooter.luau` mengubah model asli dengan langkah berikut:
 
-- **Ukuran:** model asli sekitar 2× tinggi karakter. Profilnya diperkecil ke 0,36× sehingga stang berada 2,7 stud di atas dek, pas untuk tangan R6. Dek dibuat lebih lebar (1,35 stud) supaya dua kaki muat. Hasilnya dek 0,49 stud dari tanah dan roda berdiameter 0,68 stud.
+- **Ukuran:** model asli sekitar 2× tinggi karakter. Profilnya diperkecil ke 0,36× sehingga stang berada 2,7 stud di atas dek, pas untuk tangan R6. Hasilnya dek 0,49 stud dari tanah dan roda berdiameter 0,68 stud.
+- **Dek:** permukaan dek yang bertekstur (tulisan NOCTIS DISTRICT) diperkecil dengan proporsi yang sama persis dengan aslinya (1,94 × 0,49 stud), jadi tulisannya tidak gepeng atau melar. Alas dek di bawahnya dilebarkan jadi 1,35 stud supaya kedua kaki tetap muat.
 - **Nama part:** 40 part diberi nama yang jelas (Deck, Column, Handlebar, GripLeft, Tire, Spoke1 …), dan setiap part diberi atribut `Role` untuk tema.
 - **Sambungan:** part dirakit dengan Weld dan Motor6D sehingga stang bisa belok di sumbu tiangnya dan kedua roda bisa berputar. Semua part massless dan tidak bertabrakan, jadi tidak mengganggu gerak karakter.
 - **Tambahan:** lampu depan (SpotLight), lampu kolong (PointLight), titik pegangan tangan dan jalur tendangan untuk animasi, RemoteEvent `SetTheme` dan `Horn`, dan modul GUI `ScooterHud`.
-- **Tekstur:** tekstur asli di permukaan dek diganti material grip tape (Asphalt).
+- **Tekstur:** tekstur asli dek (NOCTIS DISTRICT) tetap dipakai. Build akan gagal kalau tekstur itu sampai hilang dari file hasil. Part lain yang sebelumnya abu-abu polos diberi warna dan material dari tema.
 - **Format file:** file dari Studio versi baru menyimpan Tags dengan format yang belum bisa dibaca Lune. Tags-nya kosong, jadi dibuang saat build (`tools/lib/rbxm.luau`). File hasil build menyimpan `MeshId` sebagai teks biasa, sama seperti yang disimpan Studio.
 
 ### Pengujian

@@ -57,7 +57,6 @@ Settings.RollSound = "" -- opsional: "rbxassetid://..." suara roda (loop), mis. 
 
 	  Paint   bodi utama: alas dek, leher, tabung kemudi, spakbor
 	  Trim    warna kedua: tiang & setang, garpu roda, engsel
-	  Grip    permukaan dek (grip tape)
 	  Metal   baut, as roda, tuas
 	  Accent  klem setang & klem tiang
 	  Rubber  ban dan handgrip
@@ -65,9 +64,11 @@ Settings.RollSound = "" -- opsional: "rbxassetid://..." suara roda (loop), mis. 
 	  Glow    strip di bawah dek
 	  Light   warna cahaya lampu kolong + warna tema di tombol (nil = tanpa lampu kolong)
 
+	Permukaan dek (tulisan "NOCTIS DISTRICT") tidak ikut tema: teksturnya
+	tetap seperti model aslinya (Role "Original").
+
 	Material yang bagus: SmoothPlastic (cat mengilap, pakai Reflectance),
-	Plastic (doff), Metal, Foil (krom), Neon (menyala), Asphalt / Sand
-	(grip tape), Rubber, Leather.
+	Plastic (doff), Metal, Foil (krom), Neon (menyala), Rubber, Leather.
 ]]
 local function look(r, g, b, material, reflectance)
 	return { Color = Color3.fromRGB(r, g, b), Material = material, Reflectance = reflectance or 0 }
@@ -79,7 +80,6 @@ Settings.Themes = {
 	Noctis = { -- biru malam + amber, senada dengan menu garasi
 		Paint = look(32, 38, 56, M.SmoothPlastic, 0.12),
 		Trim = look(22, 24, 30, M.Metal),
-		Grip = look(28, 29, 34, M.Asphalt),
 		Metal = look(190, 194, 204, M.Metal),
 		Accent = look(255, 178, 48, M.SmoothPlastic, 0.05),
 		Rubber = look(24, 24, 27, M.Rubber),
@@ -90,7 +90,6 @@ Settings.Themes = {
 	Violet = { -- ungu neon
 		Paint = look(28, 21, 46, M.SmoothPlastic, 0.12),
 		Trim = look(16, 16, 22, M.Metal),
-		Grip = look(26, 26, 32, M.Asphalt),
 		Metal = look(180, 180, 195, M.Metal),
 		Accent = look(150, 115, 255, M.SmoothPlastic, 0.05),
 		Rubber = look(22, 20, 26, M.Rubber),
@@ -101,7 +100,6 @@ Settings.Themes = {
 	Cyber = { -- grafit + biru muda
 		Paint = look(42, 46, 56, M.SmoothPlastic, 0.15),
 		Trim = look(20, 22, 28, M.Metal),
-		Grip = look(26, 28, 32, M.Asphalt),
 		Metal = look(196, 202, 212, M.Metal),
 		Accent = look(0, 210, 255, M.SmoothPlastic, 0.05),
 		Rubber = look(22, 24, 27, M.Rubber),
@@ -112,7 +110,6 @@ Settings.Themes = {
 	Street = { -- merah + hitam, gaya kota
 		Paint = look(196, 30, 38, M.SmoothPlastic, 0.12),
 		Trim = look(26, 26, 28, M.Metal),
-		Grip = look(30, 30, 32, M.Asphalt),
 		Metal = look(205, 208, 215, M.Metal),
 		Accent = look(240, 240, 240, M.SmoothPlastic, 0.05),
 		Rubber = look(24, 24, 26, M.Rubber),
@@ -123,7 +120,6 @@ Settings.Themes = {
 	Arctic = { -- putih bersih + biru
 		Paint = look(236, 239, 244, M.SmoothPlastic, 0.08),
 		Trim = look(48, 52, 60, M.Metal),
-		Grip = look(40, 42, 48, M.Asphalt),
 		Metal = look(200, 205, 215, M.Metal),
 		Accent = look(0, 162, 255, M.SmoothPlastic, 0.05),
 		Rubber = look(30, 30, 34, M.Rubber),
@@ -134,7 +130,6 @@ Settings.Themes = {
 	Candy = { -- pastel pink + mint
 		Paint = look(255, 176, 204, M.SmoothPlastic, 0.05),
 		Trim = look(250, 248, 252, M.SmoothPlastic, 0.05),
-		Grip = look(92, 80, 106, M.Sand),
 		Metal = look(220, 220, 230, M.Metal),
 		Accent = look(130, 222, 200, M.SmoothPlastic),
 		Rubber = look(64, 56, 72, M.Rubber),
@@ -145,7 +140,6 @@ Settings.Themes = {
 	Gold = { -- hitam piano + emas
 		Paint = look(14, 14, 16, M.SmoothPlastic, 0.2),
 		Trim = look(20, 20, 22, M.Metal),
-		Grip = look(24, 24, 26, M.Asphalt),
 		Metal = look(218, 172, 60, M.Foil),
 		Accent = look(230, 185, 70, M.Foil),
 		Rubber = look(18, 18, 20, M.Rubber),
@@ -156,7 +150,6 @@ Settings.Themes = {
 	Army = { -- hijau army doff, tanpa lampu kolong
 		Paint = look(86, 98, 62, M.Plastic),
 		Trim = look(44, 46, 38, M.Metal),
-		Grip = look(46, 44, 40, M.Asphalt),
 		Metal = look(150, 150, 140, M.Metal),
 		Accent = look(196, 160, 98, M.Plastic),
 		Rubber = look(30, 30, 28, M.Rubber),

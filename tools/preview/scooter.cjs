@@ -168,7 +168,10 @@ function render({ data, shot }) {
 			if (!p.role) continue;
 			const hubName = hubOf[p.group];
 			let look = theme[p.role];
-			if (p.role === "Lamp") {
+			if (p.role === "Original") {
+				// Keeps its own texture in the game (can't be shown here): drawn in its base colour.
+				look = { color: p.color, material: "Plastic" };
+			} else if (p.role === "Lamp") {
 				look = { color: [0.92, 0.92, 0.89], material: night ? "Neon" : "SmoothPlastic", reflectance: 0.2 };
 			}
 			const mat = material(look, night);
@@ -292,8 +295,8 @@ function render({ data, shot }) {
 			const scene = world(false);
 			scene.add(buildScooter(name, null, false));
 			const camera = new THREE.PerspectiveCamera(30, w / h, 0.1, 100);
-			camera.position.set(7.2, 3.3, -5.4);
-			camera.lookAt(0, 1.3, -0.3);
+			camera.position.set(7.4, 3.5, -5.6);
+			camera.lookAt(0, 1.6, -0.3);
 			const x = (i % cols) * w, y = Math.floor(i / cols) * h;
 			panel(scene, camera, x, y, w, h);
 			label(name.toUpperCase() + (i === 0 ? "  (bawaan)" : ""), x + 22, y + 16, "#1d2230", 18);

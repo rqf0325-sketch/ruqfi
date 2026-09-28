@@ -268,22 +268,22 @@ local function finish(rider)
 end
 
 -- Worth working out the pose: on screen (with a margin) and not too far away.
-local function inView(camera, position)
+local function inView(camera, point)
 	if not camera then
 		return true
 	end
-	local offset = camera.CFrame.Position - position
+	local offset = camera.CFrame.Position - point
 	if offset.Magnitude > CULL_DISTANCE then
 		return false
 	end
 	if offset.Magnitude < 12 then
 		return true
 	end
-	local point = camera:WorldToViewportPoint(position)
+	local onScreen = camera:WorldToViewportPoint(point)
 	local size = camera.ViewportSize
 	local margin = SCREEN_MARGIN * math.max(size.X, size.Y)
-	return point.Z > 0 and point.X > -margin and point.X < size.X + margin
-		and point.Y > -margin and point.Y < size.Y + margin
+	return onScreen.Z > 0 and onScreen.X > -margin and onScreen.X < size.X + margin
+		and onScreen.Y > -margin and onScreen.Y < size.Y + margin
 end
 
 local function update(rider, dt, camera)
