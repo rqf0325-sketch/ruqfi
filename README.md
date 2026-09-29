@@ -1,9 +1,10 @@
 # Vehicle Spawner + Player Menu untuk Roblox
 
-Repo ini berisi dua sistem yang berdiri sendiri:
+Repo ini berisi tiga sistem yang berdiri sendiri:
 
 - **[Vehicle Spawner + HD Road Glide ST CVO](#vehicle-spawner--hd-road-glide-st-cvo)**: menu spawn kendaraan dan motornya.
 - **[Player Menu](#player-menu-ketuk-pemain-lain)**: ketuk pemain lain untuk membuka kartu profil (Like, Follow, Carry, Add Friend, Private Chat) plus nametag di atas kepala.
+- **[AutoLights Control Panel](#autolights-control-panel)**: perbaikan script AutoLights (G-Lights Phantom) plus panel untuk mematikan Sync, Dance Floor, Pyro, dan tombol lainnya.
 
 ## Vehicle Spawner + HD Road Glide ST CVO
 
@@ -187,6 +188,96 @@ Semua pilihan lain (jarak, cooldown, carry, chat, nama DataStore, nametag) dijel
 
 Semua yang dikirim tombol dicek ulang di server: target harus ada di server yang sama, cooldown dan jarak dipaksa, Carry butuh persetujuan, chat disaring dan dicek `CanUsersDirectChatAsync`, dan semua remote dibatasi lajunya.
 
+## AutoLights Control Panel
+
+Perbaikan untuk script **AutoLights** (PHANTOM G-LIGHTS by Jin Development) yang kamu kirim, ditambah **panel kontrol** untuk mematikan Sync dan mengatur lampunya langsung dari dalam game. Watermark **PAUL** ada di panel dan di script baru; kredit Jin Development dan logika lisensinya tidak diubah.
+
+![Panel AutoLights](docs/autolights-panel.png)
+
+<details>
+<summary>Panel saat Sync dimatikan</summary>
+
+![Panel saat Sync OFF](docs/autolights-panel-off.png)
+
+</details>
+
+> Gambar di atas adalah render preview.
+
+### Cara pasang
+
+Klik kanan service tujuannya, pilih **Insert from File...**, lalu pilih filenya.
+
+| File | Klik kanan di |
+|---|---|
+| `ServerScriptService/AutoLightsServer.rbxmx` | **ServerScriptService** |
+| `StarterPlayer/StarterPlayerScripts/AutoLightsTelemetry.rbxmx` | **StarterPlayerScripts** |
+| `StarterGui/AutoLightsPanel.rbxmx` | **StarterGui** |
+
+**Hapus dulu** folder `AutoLightsServer` yang lama dan `AutoLightsTelemetry` yang lama, supaya tidak ada dua salinan yang jalan bersamaan. `AutoLightsServer` yang baru sudah berisi semuanya (script asli, script yang diperbaiki, dan `AutoLightsControl`).
+
+### Cara pakai panel
+
+- Tekan **K** atau tombol **💡 LIGHTS** untuk membuka dan menutup panel.
+- Panel **hanya muncul untuk operator**: pemilik game (atau pemilik grup kalau game milik grup), pemain di `CONTROL.UserIds`, anggota `CONTROL.GroupId` dengan rank minimal `CONTROL.MinRank`. Di Roblox Studio semua orang dihitung operator supaya bisa dites sendirian. Aturan ini dicek ulang **di server** setiap tombol ditekan, jadi pemain biasa tidak bisa menyalakan panelnya lewat client.
+- Semua operator melihat status yang sama secara langsung.
+
+| Kontrol | Fungsi |
+|---|---|
+| **Sync** | Menyala/mati. Saat mati, client berhenti mengirim data audio, deteksi beat berhenti, dan floor serta lampu tidak bereaksi lagi |
+| **Dance Floor** | Lantai dansa menyala/mati (memudar ke hitam kalau dimatikan) |
+| **Auto Pattern** | Ganti pola otomatis atau kunci pola yang sedang dipakai |
+| **◀ ▶ (pola)** | Pilih dari 12 pola lantai; memilih pola otomatis mengunci polanya |
+| **Brightness − / +** | Kecerahan lantai 10% sampai 100% |
+| **FLASH TEST** | Menyalakan lantai sekali untuk mengecek |
+| **Pyro** | Sakelar Pyro; kalau mati semua semburan diblokir |
+| **CO2 / CONFETTI / SMOKE** | Semburan efek |
+| **STOP PYRO** | Mematikan semua pyro seketika |
+| **BLACKOUT** | Mematikan Sync, lantai, pyro, dan semua lampu G-Lights sekaligus |
+| **RESTORE** | Menyalakan lagi Sync dan lantai, lampu kembali ke putih hangat |
+
+Pengaturan ada di `AutoLightsServer > AutoLightsSyncConfig > CONTROL`:
+
+```lua
+CONTROL = {
+    PublicAccess = false,   -- true = semua pemain boleh (tidak disarankan)
+    UserIds      = {},      -- UserId tambahan, mis. { 123456789 }
+    GroupId      = 0,       -- (opsional) grup yang anggotanya boleh
+    MinRank      = 1,
+    SyncOnAtStart       = true,
+    DanceFloorOnAtStart = true,
+    PyroOnAtStart       = true,
+    Watermark           = "PAUL",
+}
+```
+
+Script lain bisa membaca status lewat attribute di `ReplicatedStorage > AutoLights` (`SyncEnabled`, `DanceFloorEnabled`, `PyroEnabled`, `Bpm`, `BeatCount`, dan lain-lain).
+
+### Yang diperbaiki
+
+**Client (`AutoLightsTelemetry`)**
+- Tulisan pada teks peringatan rusak (karakter aneh); sekarang disimpan sebagai UTF-8.
+- Tidak lagi menunggu 10 detik untuk remote `State` yang tidak pernah dibuat server, dan `GetBoot` ditanyakan di latar belakang.
+- Pengecekan lisensi berjalan di latar belakang, jadi telemetri langsung mulai walaupun folder lisensi belum ada (dulu bisa tertahan sampai 15 detik).
+- Tidak error lagi kalau remote `AudioTelemetry` tidak ada; berhenti mengirim saat Sync dimatikan.
+
+**Server (`DanceFloorSync` dan modul)**
+- Nilai `DF_*` di Config sekarang benar-benar dipakai (kecerahan, kecepatan pudar, jumlah bar per pola).
+- Lantai yang dihapus dari Workspace dibersihkan; warna tile hanya ditulis saat berubah; tidak ada lagi `_G`.
+- Data telemetri divalidasi (NaN, tak hingga, nilai raksasa) dan dibatasi lajunya per pemain. Kalau pemain yang mengirim data dibisukan, pengirim lain yang suaranya bergerak mengambil alih setelah 1,5 detik, jadi pertunjukan tidak macet.
+- `RhythmRunner`: langkah `Delay` sekarang dijalankan, kecepatan kembali ke idle setelah beat, nama level `Med` dan `Medium` dianggap sama, `branch` tidak salah cabang, dan `HardResetAll` dikenali.
+- `PresetRunner`: preset lama berhenti saat preset baru dimulai, dan preset tanpa loop tidak lagi membekukan server.
+- `ShowEngine`: perintah MANUAL divalidasi, id preset harus string, `beatIndex` kosong tidak lagi error.
+- `PermissionService` sekarang memakai aturan operator yang sama dengan panel; `ThrottleService` melupakan pemain yang keluar.
+
+**Yang tidak diubah**: script yang di-obfuscate (`AutoLightsAutoSync`, `GlightsDuplicateAlias`, `BeatService`, `GLightsAdapter`, `PyroService`, `LoggerService`) dipakai persis apa adanya, dengan status Disabled asli. Isinya tidak bisa diaudit, jadi perbaikan di atas hanya untuk script yang terbaca.
+
+### Catatan penting
+
+- Di model yang kamu kirim, `AutoLightsAutoSync` **mati** (Disabled) dan hanya `DanceFloorSync` yang aktif. Sakelar **Sync**, **Dance Floor**, pola, kecerahan, dan **FLASH TEST** bekerja sendiri tanpa script vendor.
+- Tombol **Pyro**, semburan, dan lampu G-Lights (BLACKOUT/RESTORE) baru aktif kalau sistem vendornya jalan, yaitu folder `ReplicatedStorage > GLightsPhantomLicense` ada (dibuat oleh `AutoLightsAutoSync` kalau kamu mengaktifkannya). Kalau tidak ada, tombolnya diredupkan dan panel menulis "Pyro system not detected". Ini bagian dari lisensi vendor dan tidak dilewati.
+- Sakelar Sync dan Pyro juga membungkus kelas `BeatService` dan `PyroService` milik vendor. Karena kodenya di-obfuscate, bagian ini kerja terbaik (best effort) dan sudah dites hanya dengan pengganti tiruan.
+- Sistem ini belum dicoba langsung di Roblox Studio; yang teruji adalah compile, linter, dan simulasi end-to-end (lihat **Build ulang**). Coba dulu di Studio (Play) sebelum dipublish.
+
 ## Build ulang (opsional)
 
 File-file di atas dibuat dari `src/` dan `vehicles/original/` menggunakan [Lune](https://github.com/lune-org/lune):
@@ -208,4 +299,14 @@ lune run tools/test-player-menu.luau     # tes end-to-end di dunia Roblox tiruan
 
 `test-player-menu` menjalankan script asli hasil build (server, client, nametag) lalu mensimulasikan ketuk pemain, Like, Follow, Carry, Private Chat, role, dan penyimpanan. Ini bukan Roblox, jadi fisika dan tampilan tidak ikut teruji.
 
-Preview PNG: jalankan build dengan `-- --tree`, lalu `node tools/preview/render.cjs` (butuh Playwright dan font Montserrat di `build/fonts`). Tambahkan `playermenu` di belakang perintah untuk merender hanya preview Player Menu.
+AutoLights dibangun terpisah. Script vendor asli ada di `autolights/vendor` (diekstrak dari `.rbxm` dengan `python3 tools/autolights/extract.py <file.rbxm> <folder>`, butuh `pip install lz4`), script yang diperbaiki dan baru ada di `autolights/src`; file di `src` menggantikan file vendor dengan nama yang sama:
+
+```sh
+lune run tools/build-autolights.luau     # AutoLightsServer, AutoLightsTelemetry, AutoLightsPanel
+lune run tools/check.luau
+lune run tools/test-autolights.luau      # tes end-to-end di dunia Roblox tiruan
+```
+
+`test-autolights` menjalankan script asli hasil build: aturan operator, remote Control, beat dan lantai, sakelar, pola, kecerahan, jembatan ke modul vendor (diganti pengganti tiruan karena ter-obfuscate), modul yang diperbaiki, client telemetri, dan panel. Fisika dan tampilan tidak ikut teruji.
+
+Preview PNG: jalankan build dengan `-- --tree`, lalu `node tools/preview/render.cjs` (butuh Playwright dan font Montserrat di `build/fonts`). Tambahkan `playermenu` (atau `autolights`) di belakang perintah untuk merender hanya preview Player Menu (atau AutoLights).

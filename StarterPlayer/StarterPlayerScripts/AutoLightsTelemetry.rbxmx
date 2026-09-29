@@ -1,0 +1,415 @@
+<roblox version="4">
+  <Item class="LocalScript" referent="0">
+    <Properties>
+      <string name="Name">AutoLightsTelemetry</string>
+      <string name="Source"><![CDATA[-- ============================================================
+-- G-LIGHTS PHANTOM SYSTEM  — Jin Development
+-- AutoLightsTelemetryAuto.client.lua
+-- Place in: StarterPlayerScripts
+--
+-- LICENSE PROTECTION v1.0 — INTEGRATED
+--   • Heartbeat monitor — if server stops pinging, shows
+--     warning screen and fires tamper alert.
+--   • Script/folder removal detection — any deletion of the
+--     license folder or its remotes triggers warning + kick.
+--   • Non-admin / visitor players exit silently — no UI shown.
+--
+-- TELEMETRY:
+--   Auto-detects any playing Sound in SoundService and sends
+--   RMS loudness to the server for beat detection.
+--   No panel or user input needed — just drop in and it works.
+--
+-- IMPORTANT: Do NOT obfuscate this script.
+--   It contains no sensitive data — all secrets live server-side.
+--   Obfuscating breaks heartbeat timing and causes false
+--   "Connection Lost" warnings.
+--
+-- Patch notes (PAUL) — the license code is untouched (same lines, same logic); it only runs in
+-- the background now (task.spawn) instead of holding telemetry back for up to 15 s:
+--   • saved as UTF-8 (the dashes in the warning texts were broken characters)
+--   • no longer waits 10 s for a "State" remote that the server never creates, and
+--     GetBoot is asked for in the background (its script may be switched off)
+--   • no more errors when the AudioTelemetry remote is missing
+--   • stops sending while the Control Panel's Sync switch is OFF
+-- ============================================================
+
+local Players           = game:GetService("Players")
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+local TweenService      = game:GetService("TweenService")
+local SoundService      = game:GetService("SoundService")
+
+local player    = Players.LocalPlayer
+local playerGui = player:WaitForChild("PlayerGui")
+
+-- --------------------------------------------------------------
+-- WARNING UI
+-- Shown when license is invalid OR tamper is detected.
+-- --------------------------------------------------------------
+local function showLicenseWarning(data)
+	local existing = playerGui:FindFirstChild("GLightsPhantomWarning")
+	if existing then existing:Destroy() end
+
+	local reason       = (data and data.reason)       or "UNAUTHORIZED"
+	local groupId      = (data and data.groupId)       or 0
+	local playerRank   = (data and data.playerRank)    or 0
+	local playerRole   = (data and data.playerRole)    or "Guest"
+	local requiredRank = (data and data.requiredRank)  or 0
+	local userId       = (data and data.userId)        or player.UserId
+
+	local warningGui = Instance.new("ScreenGui")
+	warningGui.Name            = "GLightsPhantomWarning"
+	warningGui.ResetOnSpawn    = false
+	warningGui.ZIndexBehavior  = Enum.ZIndexBehavior.Sibling
+	warningGui.DisplayOrder    = 999999999
+	warningGui.IgnoreGuiInset  = true
+	warningGui.Parent          = playerGui
+
+	-- Backdrop
+	local backdrop = Instance.new("Frame")
+	backdrop.Size                   = UDim2.new(1, 0, 1, 0)
+	backdrop.BackgroundColor3       = Color3.fromRGB(4, 4, 7)
+	backdrop.BackgroundTransparency = 1
+	backdrop.BorderSizePixel        = 0
+	backdrop.Parent                 = warningGui
+
+	local noise = Instance.new("ImageLabel")
+	noise.Size                = UDim2.fromScale(1, 1)
+	noise.BackgroundTransparency = 1
+	noise.Image               = "rbxassetid://6026984224"
+	noise.ImageTransparency   = 0.94
+	noise.ScaleType           = Enum.ScaleType.Tile
+	noise.TileSize            = UDim2.fromOffset(128, 128)
+	noise.ZIndex              = 1
+	noise.Parent              = backdrop
+
+	-- Card
+	local card = Instance.new("Frame")
+	card.AnchorPoint          = Vector2.new(0.5, 0.5)
+	card.Position             = UDim2.new(0.5, 0, 0.5, 0)
+	card.Size                 = UDim2.new(0, 0, 0, 0)
+	card.BackgroundColor3     = Color3.fromRGB(11, 11, 16)
+	card.BackgroundTransparency = 1
+	card.BorderSizePixel      = 0
+	card.Parent               = warningGui
+
+	local cardCorner = Instance.new("UICorner")
+	cardCorner.CornerRadius = UDim.new(0, 16)
+	cardCorner.Parent       = card
+
+	local cardStroke = Instance.new("UIStroke")
+	cardStroke.Thickness       = 1.2
+	cardStroke.Color           = Color3.fromRGB(255, 255, 255)
+	cardStroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
+	cardStroke.Transparency    = 0.55
+	cardStroke.Parent          = card
+
+	local strokeGrad = Instance.new("UIGradient")
+	strokeGrad.Color = ColorSequence.new({
+		ColorSequenceKeypoint.new(0,   Color3.fromRGB(4,   4,   7)),
+		ColorSequenceKeypoint.new(0.5, Color3.fromRGB(255, 255, 255)),
+		ColorSequenceKeypoint.new(1,   Color3.fromRGB(4,   4,   7)),
+	})
+	strokeGrad.Parent = cardStroke
+	TweenService:Create(strokeGrad, TweenInfo.new(4, Enum.EasingStyle.Linear, Enum.EasingDirection.InOut, -1), {Rotation=360}):Play()
+	TweenService:Create(cardStroke, TweenInfo.new(2, Enum.EasingStyle.Sine,   Enum.EasingDirection.InOut, -1, true), {Transparency=0.78}):Play()
+
+	-- Accent bar
+	local accentBar = Instance.new("Frame")
+	accentBar.Size             = UDim2.new(0, 3, 1, 0)
+	accentBar.BackgroundColor3 = Color3.fromRGB(230, 120, 120)
+	accentBar.BorderSizePixel  = 0
+	accentBar.Parent           = card
+	local ac = Instance.new("UICorner"); ac.CornerRadius = UDim.new(0, 3); ac.Parent = accentBar
+
+	-- Pulsing status dot
+	local statusDot = Instance.new("Frame")
+	statusDot.Size             = UDim2.new(0, 8, 0, 8)
+	statusDot.Position         = UDim2.new(0, 20, 0, 26)
+	statusDot.BackgroundColor3 = Color3.fromRGB(230, 120, 120)
+	statusDot.BorderSizePixel  = 0
+	statusDot.Parent           = card
+	local dc = Instance.new("UICorner"); dc.CornerRadius = UDim.new(1, 0); dc.Parent = statusDot
+	TweenService:Create(statusDot, TweenInfo.new(1.2, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut, -1, true), {BackgroundTransparency=0.6}):Play()
+
+	-- Title
+	local title = Instance.new("TextLabel")
+	title.Size               = UDim2.new(1, -50, 0, 28)
+	title.Position           = UDim2.new(0, 35, 0, 18)
+	title.BackgroundTransparency = 1
+	title.Text               = "G-LIGHTS PHANTOM — ACCESS DENIED"
+	title.Font               = Enum.Font.GothamBlack
+	title.TextSize           = 15
+	title.TextColor3         = Color3.fromRGB(255, 255, 255)
+	title.TextXAlignment     = Enum.TextXAlignment.Left
+	title.Parent             = card
+
+	-- Divider
+	local divider = Instance.new("Frame")
+	divider.Size             = UDim2.new(1, -30, 0, 1)
+	divider.Position         = UDim2.new(0, 15, 0, 54)
+	divider.BackgroundColor3 = Color3.fromRGB(50, 50, 62)
+	divider.BorderSizePixel  = 0
+	divider.Parent           = card
+
+	-- Body message
+	local message = Instance.new("TextLabel")
+	message.Size             = UDim2.new(1, -40, 0, 95)
+	message.Position         = UDim2.new(0, 20, 0, 65)
+	message.BackgroundTransparency = 1
+	message.Text             = "This G-Lights Phantom System requires proper group authorization.\n\nYou do not have sufficient permissions to operate this system.\n\nPlease contact a server administrator if you believe this is an error."
+	message.Font             = Enum.Font.Gotham
+	message.TextSize         = 12
+	message.TextColor3       = Color3.fromRGB(140, 140, 155)
+	message.TextXAlignment   = Enum.TextXAlignment.Left
+	message.TextYAlignment   = Enum.TextYAlignment.Top
+	message.TextWrapped      = true
+	message.Parent           = card
+
+	-- Info panel
+	local infoPanel = Instance.new("Frame")
+	infoPanel.Size             = UDim2.new(1, -40, 0, 100)
+	infoPanel.Position         = UDim2.new(0, 20, 0, 170)
+	infoPanel.BackgroundColor3 = Color3.fromRGB(18, 18, 24)
+	infoPanel.BorderSizePixel  = 0
+	infoPanel.Parent           = card
+	local ipc = Instance.new("UICorner"); ipc.CornerRadius = UDim.new(0, 8); ipc.Parent = infoPanel
+	local ips = Instance.new("UIStroke")
+	ips.Color = Color3.fromRGB(50, 50, 62); ips.Thickness = 1; ips.Transparency = 0.5
+	ips.ApplyStrokeMode = Enum.ApplyStrokeMode.Border; ips.Parent = infoPanel
+
+	local infoText = Instance.new("TextLabel")
+	infoText.Size            = UDim2.new(1, -20, 1, -20)
+	infoText.Position        = UDim2.new(0, 10, 0, 10)
+	infoText.BackgroundTransparency = 1
+	infoText.Text            = string.format(
+		"GROUP AUTHORIZATION\nGroup ID: %d\nYour Rank: %d (%s)\nRequired Rank: %d+\nUser ID: %d",
+		groupId, playerRank, playerRole, requiredRank, userId
+	)
+	infoText.Font            = Enum.Font.GothamMedium
+	infoText.TextSize        = 11
+	infoText.TextColor3      = Color3.fromRGB(140, 140, 155)
+	infoText.TextXAlignment  = Enum.TextXAlignment.Left
+	infoText.TextYAlignment  = Enum.TextYAlignment.Top
+	infoText.TextWrapped     = true
+	infoText.Parent          = infoPanel
+
+	-- Footer
+	local footerText = Instance.new("TextLabel")
+	footerText.Size            = UDim2.new(1, -40, 0, 20)
+	footerText.Position        = UDim2.new(0, 20, 1, -35)
+	footerText.BackgroundTransparency = 1
+	footerText.Text            = "Jin Development — G-Lights Phantom License Protection"
+	footerText.Font            = Enum.Font.Gotham
+	footerText.TextSize        = 10
+	footerText.TextColor3      = Color3.fromRGB(140, 140, 155)
+	footerText.TextXAlignment  = Enum.TextXAlignment.Center
+	footerText.TextTransparency = 0.4
+	footerText.Parent          = card
+
+	-- Animate in
+	TweenService:Create(backdrop, TweenInfo.new(0.6, Enum.EasingStyle.Quart, Enum.EasingDirection.Out),
+		{BackgroundTransparency = 0.15}):Play()
+	TweenService:Create(card, TweenInfo.new(0.8, Enum.EasingStyle.Back, Enum.EasingDirection.Out),
+		{Size = UDim2.new(0, 460, 0, 330), BackgroundTransparency = 0}):Play()
+end
+
+-- --------------------------------------------------------------
+-- WAIT FOR LICENSE FOLDER
+-- --------------------------------------------------------------
+task.spawn(function() -- (PAUL) background: telemetry below starts at once
+local LICENSE_FOLDER_NAME = "GLightsPhantomLicense"
+local licenseFolder = nil
+local deadline = tick() + 15
+
+repeat
+	licenseFolder = ReplicatedStorage:FindFirstChild(LICENSE_FOLDER_NAME)
+	if not licenseFolder then task.wait(0.3) end
+until licenseFolder or tick() > deadline
+
+if not licenseFolder then
+	warn("[GLightsLicense] License folder not found within timeout — skipping client check")
+	-- Still run telemetry — non-destructive fallback
+else
+
+	-- -- REMOTES --------------------------------------------------
+	local showWarningEvent = licenseFolder:WaitForChild("ShowWarning",    10)
+	local heartbeatEvent   = licenseFolder:WaitForChild("Heartbeat",      10)
+	local tamperAlert      = licenseFolder:WaitForChild("TamperAlert",    10)
+	local validator        = licenseFolder:WaitForChild("ValidateLicense", 10)
+
+	if not (showWarningEvent and heartbeatEvent and tamperAlert and validator) then
+		warn("[GLightsLicense] Critical remotes missing — client check skipped")
+	else
+
+		-- -- SERVER-TRIGGERED WARNING (owner unauthorized) -------------
+		showWarningEvent.OnClientEvent:Connect(function(warningData)
+			showLicenseWarning(warningData)
+		end)
+
+		-- -- HEARTBEAT MONITOR -----------------------------------------
+		-- Server pings every 5s. Timeout is 20s — generous enough to
+		-- survive init delays. Non-admins never receive a ping and exit
+		-- silently after the timeout window passes.
+		local HEARTBEAT_TIMEOUT = 20
+		local lastHeartbeat     = tick()
+		local tamperDetected    = false
+		local licenseOk         = true
+
+		heartbeatEvent.OnClientEvent:Connect(function()
+			lastHeartbeat = tick()
+			pcall(function() validator:InvokeServer(math.random(100000, 999999)) end)
+		end)
+
+		task.spawn(function()
+			local receivedFirst = false
+			heartbeatEvent.OnClientEvent:Connect(function()
+				receivedFirst = true
+			end)
+			-- If no heartbeat ever arrives, this player is a visitor — exit silently
+			task.wait(HEARTBEAT_TIMEOUT + 5)
+			if not receivedFirst then return end
+
+			-- We're a tracked admin/operator — monitor for future timeouts
+			while task.wait(3) do
+				if not licenseOk then break end
+				local gap = tick() - lastHeartbeat
+				if gap > HEARTBEAT_TIMEOUT then
+					tamperDetected = true
+					licenseOk      = false
+					pcall(function() tamperAlert:FireServer("HEARTBEAT_TIMEOUT") end)
+					showLicenseWarning({
+						reason       = "HEARTBEAT_TIMEOUT",
+						groupId      = 0,
+						playerRank   = 0,
+						playerRole   = "Connection Lost",
+						requiredRank = 0,
+						userId       = player.UserId,
+					})
+					break
+				end
+			end
+		end)
+
+		-- -- SCRIPT/FOLDER REMOVAL DETECTION ---------------------------
+		-- If any license remote or the folder itself is deleted from
+		-- the game tree, immediately fire tamper alert + show warning.
+		-- This catches exploiters trying to delete the license system.
+		local function onObjectRemoved(obj, label)
+			if not licenseOk then return end
+			if not obj:IsDescendantOf(game) then
+				tamperDetected = true
+				licenseOk      = false
+				pcall(function()
+					if tamperAlert and tamperAlert:IsDescendantOf(game) then
+						tamperAlert:FireServer("OBJECT_REMOVED:" .. tostring(label))
+					end
+				end)
+				showLicenseWarning({
+					reason       = "OBJECT_REMOVED",
+					groupId      = 0,
+					playerRank   = 0,
+					playerRole   = "Tampering Detected",
+					requiredRank = 0,
+					userId       = player.UserId,
+				})
+			end
+		end
+
+		licenseFolder.AncestryChanged:Connect(function()
+			onObjectRemoved(licenseFolder, "LicenseFolder")
+		end)
+		for _, obj in ipairs({heartbeatEvent, tamperAlert, validator, showWarningEvent}) do
+			local name = obj.Name
+			obj.AncestryChanged:Connect(function()
+				onObjectRemoved(obj, name)
+			end)
+		end
+
+		print("[GLightsLicense] Client v1.0 active — heartbeat timeout:", HEARTBEAT_TIMEOUT .. "s")
+	end
+end
+end) -- (PAUL) end of the background license check
+
+-- --------------------------------------------------------------
+-- TELEMETRY — AUTO SOUND DETECTION
+-- --------------------------------------------------------------
+local autoRoot = ReplicatedStorage:WaitForChild("AutoLights", 10)
+if not autoRoot then return end  -- AutoSync server not present
+
+local remotes = autoRoot:WaitForChild("Remotes", 10)
+if not remotes then return end
+
+local RE_AudioTelemetry = remotes:WaitForChild("AudioTelemetry", 10)
+if not RE_AudioTelemetry then
+	warn("[AutoLights] AudioTelemetry remote not found — telemetry disabled")
+	return
+end
+
+-- -- CONFIG ----------------------------------------------------
+local SEND_HZ       = 20
+local SEND_INTERVAL = 1 / SEND_HZ
+local FALLBACK_PATH = "SoundService.ServerMusic"
+
+-- -- BOOT: get preferred sound path from server ----------------
+-- GetBoot is created by AutoLightsAutoSync, which may be switched off; it only carries
+-- the preferred sound path, so telemetry starts right away and asks in the background.
+local soundPath = FALLBACK_PATH
+task.spawn(function()
+	local RF_GetBoot = remotes:FindFirstChild("GetBoot") or remotes:WaitForChild("GetBoot", 10)
+	if not RF_GetBoot then return end
+	local ok, boot = pcall(function() return RF_GetBoot:InvokeServer() end)
+	if ok and type(boot) == "table" then
+		soundPath = tostring(boot.defaultSoundPath or boot.soundPath or FALLBACK_PATH)
+	end
+end)
+
+-- -- SOUND RESOLVER --------------------------------------------
+local function resolveDotPath(path)
+	local node = game
+	for part in string.gmatch(path, "[^%.]+") do
+		if not node then return nil end
+		node = node:FindFirstChild(part)
+	end
+	return node
+end
+
+local function findBestPlayingSound()
+	local s = resolveDotPath(soundPath)
+	if s and s:IsA("Sound") and s.IsPlaying then return s end
+	local best, bestLoud = nil, -1
+	for _, child in ipairs(SoundService:GetDescendants()) do
+		if child:IsA("Sound") and child.IsPlaying then
+			local loud = child.PlaybackLoudness or 0
+			if loud > bestLoud then
+				bestLoud = loud
+				best = child
+			end
+		end
+	end
+	return best
+end
+
+-- -- TELEMETRY LOOP --------------------------------------------
+task.spawn(function()
+	local lastT = os.clock()
+	while true do
+		task.wait(SEND_INTERVAL)
+		local nowT = os.clock()
+		local dt   = math.clamp(nowT - lastT, 0.001, 0.2)
+		lastT      = nowT
+
+		-- Control Panel: Sync switch OFF = send nothing
+		if autoRoot:GetAttribute("SyncEnabled") ~= false then
+			local sound = findBestPlayingSound()
+			local rms   = 0
+			if sound then
+				rms = math.max(0, sound.PlaybackLoudness or 0)
+			end
+			RE_AudioTelemetry:FireServer({ rms = rms, dt = dt })
+		end
+	end
+end)
+]]></string>
+    </Properties>
+  </Item>
+</roblox>

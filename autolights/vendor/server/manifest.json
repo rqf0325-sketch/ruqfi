@@ -1,0 +1,104 @@
+[
+ {
+  "name": "AutoLightsServer",
+  "class": "Folder",
+  "children": [
+   {
+    "name": "AutoLightsAutoSync",
+    "class": "Script",
+    "disabled": true,
+    "file": "AutoLightsServer.AutoLightsAutoSync.luau"
+   },
+   {
+    "name": "AutoLightsSyncConfig",
+    "class": "ModuleScript",
+    "disabled": false,
+    "file": "AutoLightsServer.AutoLightsSyncConfig.luau"
+   },
+   {
+    "name": "DanceFloorSync",
+    "class": "Script",
+    "disabled": false,
+    "file": "AutoLightsServer.DanceFloorSync.luau"
+   },
+   {
+    "name": "GlightsDuplicateAlias",
+    "class": "Script",
+    "disabled": true,
+    "file": "AutoLightsServer.GlightsDuplicateAlias.luau"
+   },
+   {
+    "name": "Modules",
+    "class": "Folder",
+    "children": [
+     {
+      "name": "BeatService",
+      "class": "ModuleScript",
+      "disabled": false,
+      "file": "AutoLightsServer.Modules.BeatService.luau"
+     },
+     {
+      "name": "BeatSyncEngine",
+      "class": "ModuleScript",
+      "disabled": false,
+      "file": "AutoLightsServer.Modules.BeatSyncEngine.luau"
+     },
+     {
+      "name": "GLightsAdapter",
+      "class": "ModuleScript",
+      "disabled": false,
+      "file": "AutoLightsServer.Modules.GLightsAdapter.luau"
+     },
+     {
+      "name": "LoggerService",
+      "class": "ModuleScript",
+      "disabled": false,
+      "file": "AutoLightsServer.Modules.LoggerService.luau"
+     },
+     {
+      "name": "PermissionService",
+      "class": "ModuleScript",
+      "disabled": false,
+      "file": "AutoLightsServer.Modules.PermissionService.luau"
+     },
+     {
+      "name": "PresetRunner",
+      "class": "ModuleScript",
+      "disabled": false,
+      "file": "AutoLightsServer.Modules.PresetRunner.luau"
+     },
+     {
+      "name": "PyroAdapter",
+      "class": "ModuleScript",
+      "disabled": false,
+      "file": "AutoLightsServer.Modules.PyroAdapter.luau"
+     },
+     {
+      "name": "PyroService",
+      "class": "ModuleScript",
+      "disabled": false,
+      "file": "AutoLightsServer.Modules.PyroService.luau"
+     },
+     {
+      "name": "RhythmRunner",
+      "class": "ModuleScript",
+      "disabled": false,
+      "file": "AutoLightsServer.Modules.RhythmRunner.luau"
+     },
+     {
+      "name": "ShowEngine",
+      "class": "ModuleScript",
+      "disabled": false,
+      "file": "AutoLightsServer.Modules.ShowEngine.luau"
+     },
+     {
+      "name": "ThrottleService",
+      "class": "ModuleScript",
+      "disabled": false,
+      "file": "AutoLightsServer.Modules.ThrottleService.luau"
+     }
+    ]
+   }
+  ]
+ }
+]

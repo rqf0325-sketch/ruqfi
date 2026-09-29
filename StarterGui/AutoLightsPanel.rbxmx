@@ -1,0 +1,3679 @@
+<roblox version="4">
+  <Item class="ScreenGui" referent="0">
+    <Properties>
+      <string name="Name">AutoLightsPanel</string>
+      <bool name="ResetOnSpawn">false</bool>
+      <token name="ScreenInsets">1</token>
+      <token name="ZIndexBehavior">1</token>
+    </Properties>
+    <Item class="TextButton" referent="1">
+      <Properties>
+        <string name="Name">OpenButton</string>
+        <Vector2 name="AnchorPoint">
+          <X>1</X>
+          <Y>0.5</Y>
+        </Vector2>
+        <bool name="AutoButtonColor">false</bool>
+        <Color3 name="BackgroundColor3">
+          <R>0.023529412</R>
+          <G>0.02745098</G>
+          <B>0.047058824</B>
+        </Color3>
+        <float name="BackgroundTransparency">0.25</float>
+        <int name="BorderSizePixel">0</int>
+        <UDim2 name="Position">
+          <XS>1</XS>
+          <XO>-16</XO>
+          <YS>0.5</YS>
+          <YO>0</YO>
+        </UDim2>
+        <UDim2 name="Size">
+          <XS>0</XS>
+          <XO>60</XO>
+          <YS>0</YS>
+          <YO>60</YO>
+        </UDim2>
+        <string name="Text"></string>
+        <bool name="Visible">false</bool>
+        <int name="ZIndex">2</int>
+      </Properties>
+      <Item class="UIScale" referent="2">
+        <Properties>
+          <string name="Name">ResponsiveScale</string>
+          <float name="Scale">1</float>
+        </Properties>
+      </Item>
+      <Item class="UICorner" referent="3">
+        <Properties>
+          <string name="Name">UICorner</string>
+          <UDim name="CornerRadius">
+            <S>0.3</S>
+            <O>0</O>
+          </UDim>
+        </Properties>
+      </Item>
+      <Item class="UIStroke" referent="4">
+        <Properties>
+          <string name="Name">Outline</string>
+          <token name="ApplyStrokeMode">1</token>
+          <Color3 name="Color">
+            <R>0.21960784</R>
+            <G>0.88235295</G>
+            <B>1</B>
+          </Color3>
+          <float name="Thickness">1.5</float>
+          <float name="Transparency">0.4</float>
+        </Properties>
+      </Item>
+      <Item class="TextLabel" referent="5">
+        <Properties>
+          <string name="Name">Emoji</string>
+          <Color3 name="BackgroundColor3">
+            <R>1</R>
+            <G>1</G>
+            <B>1</B>
+          </Color3>
+          <float name="BackgroundTransparency">1</float>
+          <int name="BorderSizePixel">0</int>
+          <Font name="FontFace">
+            <Family>
+              <url>rbxasset://fonts/families/Montserrat.json</url>
+            </Family>
+            <Weight>400</Weight>
+            <Style>Normal</Style>
+          </Font>
+          <UDim2 name="Position">
+            <XS>0</XS>
+            <XO>0</XO>
+            <YS>0.13333334</YS>
+            <YO>0</YO>
+          </UDim2>
+          <UDim2 name="Size">
+            <XS>1</XS>
+            <XO>0</XO>
+            <YS>0.46666667</YS>
+            <YO>0</YO>
+          </UDim2>
+          <string name="Text">💡</string>
+          <Color3 name="TextColor3">
+            <R>1</R>
+            <G>1</G>
+            <B>1</B>
+          </Color3>
+          <float name="TextSize">22</float>
+          <token name="TextTruncate">0</token>
+          <token name="TextXAlignment">2</token>
+          <token name="TextYAlignment">1</token>
+        </Properties>
+      </Item>
+      <Item class="TextLabel" referent="6">
+        <Properties>
+          <string name="Name">Title</string>
+          <Color3 name="BackgroundColor3">
+            <R>1</R>
+            <G>1</G>
+            <B>1</B>
+          </Color3>
+          <float name="BackgroundTransparency">1</float>
+          <int name="BorderSizePixel">0</int>
+          <Font name="FontFace">
+            <Family>
+              <url>rbxasset://fonts/families/Montserrat.json</url>
+            </Family>
+            <Weight>800</Weight>
+            <Style>Normal</Style>
+          </Font>
+          <UDim2 name="Position">
+            <XS>0</XS>
+            <XO>0</XO>
+            <YS>0.6666667</YS>
+            <YO>0</YO>
+          </UDim2>
+          <UDim2 name="Size">
+            <XS>1</XS>
+            <XO>0</XO>
+            <YS>0.2</YS>
+            <YO>0</YO>
+          </UDim2>
+          <string name="Text">LIGHTS</string>
+          <Color3 name="TextColor3">
+            <R>0.21960784</R>
+            <G>0.88235295</G>
+            <B>1</B>
+          </Color3>
+          <float name="TextSize">9</float>
+          <token name="TextTruncate">0</token>
+          <token name="TextXAlignment">2</token>
+          <token name="TextYAlignment">1</token>
+        </Properties>
+      </Item>
+    </Item>
+    <Item class="Frame" referent="7">
+      <Properties>
+        <string name="Name">Panel</string>
+        <Vector2 name="AnchorPoint">
+          <X>1</X>
+          <Y>0.5</Y>
+        </Vector2>
+        <Color3 name="BackgroundColor3">
+          <R>0.023529412</R>
+          <G>0.02745098</G>
+          <B>0.047058824</B>
+        </Color3>
+        <float name="BackgroundTransparency">0.3</float>
+        <int name="BorderSizePixel">0</int>
+        <UDim2 name="Position">
+          <XS>1</XS>
+          <XO>-16</XO>
+          <YS>0.5</YS>
+          <YO>0</YO>
+        </UDim2>
+        <UDim2 name="Size">
+          <XS>0</XS>
+          <XO>420</XO>
+          <YS>0</YS>
+          <YO>510</YO>
+        </UDim2>
+        <int name="ZIndex">3</int>
+      </Properties>
+      <Item class="UIScale" referent="8">
+        <Properties>
+          <string name="Name">ResponsiveScale</string>
+          <float name="Scale">1</float>
+        </Properties>
+      </Item>
+      <Item class="UICorner" referent="9">
+        <Properties>
+          <string name="Name">UICorner</string>
+          <UDim name="CornerRadius">
+            <S>0.052380953</S>
+            <O>0</O>
+          </UDim>
+        </Properties>
+      </Item>
+      <Item class="UIStroke" referent="10">
+        <Properties>
+          <string name="Name">Outline</string>
+          <token name="ApplyStrokeMode">1</token>
+          <Color3 name="Color">
+            <R>1</R>
+            <G>1</G>
+            <B>1</B>
+          </Color3>
+          <float name="Thickness">1.5</float>
+          <float name="Transparency">0.7</float>
+        </Properties>
+      </Item>
+      <Item class="TextLabel" referent="11">
+        <Properties>
+          <string name="Name">WatermarkBig</string>
+          <Color3 name="BackgroundColor3">
+            <R>1</R>
+            <G>1</G>
+            <B>1</B>
+          </Color3>
+          <float name="BackgroundTransparency">1</float>
+          <int name="BorderSizePixel">0</int>
+          <Font name="FontFace">
+            <Family>
+              <url>rbxasset://fonts/families/Montserrat.json</url>
+            </Family>
+            <Weight>800</Weight>
+            <Style>Normal</Style>
+          </Font>
+          <UDim2 name="Position">
+            <XS>0</XS>
+            <XO>0</XO>
+            <YS>0.49019608</YS>
+            <YO>0</YO>
+          </UDim2>
+          <float name="Rotation">-10</float>
+          <UDim2 name="Size">
+            <XS>1</XS>
+            <XO>0</XO>
+            <YS>0.29411766</YS>
+            <YO>0</YO>
+          </UDim2>
+          <string name="Text">PAUL</string>
+          <Color3 name="TextColor3">
+            <R>1</R>
+            <G>1</G>
+            <B>1</B>
+          </Color3>
+          <float name="TextSize">120</float>
+          <float name="TextTransparency">0.94</float>
+          <token name="TextTruncate">0</token>
+          <token name="TextXAlignment">2</token>
+          <token name="TextYAlignment">1</token>
+          <int name="ZIndex">0</int>
+        </Properties>
+      </Item>
+      <Item class="TextLabel" referent="12">
+        <Properties>
+          <string name="Name">Eyebrow</string>
+          <Color3 name="BackgroundColor3">
+            <R>1</R>
+            <G>1</G>
+            <B>1</B>
+          </Color3>
+          <float name="BackgroundTransparency">1</float>
+          <int name="BorderSizePixel">0</int>
+          <Font name="FontFace">
+            <Family>
+              <url>rbxasset://fonts/families/Montserrat.json</url>
+            </Family>
+            <Weight>800</Weight>
+            <Style>Normal</Style>
+          </Font>
+          <UDim2 name="Position">
+            <XS>0.04761905</XS>
+            <XO>0</XO>
+            <YS>0.03137255</YS>
+            <YO>0</YO>
+          </UDim2>
+          <UDim2 name="Size">
+            <XS>0.47619048</XS>
+            <XO>0</XO>
+            <YS>0.023529412</YS>
+            <YO>0</YO>
+          </UDim2>
+          <string name="Text">CONTROL PANEL</string>
+          <Color3 name="TextColor3">
+            <R>0.21960784</R>
+            <G>0.88235295</G>
+            <B>1</B>
+          </Color3>
+          <float name="TextSize">10</float>
+          <token name="TextTruncate">1</token>
+          <token name="TextXAlignment">0</token>
+          <token name="TextYAlignment">1</token>
+        </Properties>
+      </Item>
+      <Item class="TextLabel" referent="13">
+        <Properties>
+          <string name="Name">Title</string>
+          <Color3 name="BackgroundColor3">
+            <R>1</R>
+            <G>1</G>
+            <B>1</B>
+          </Color3>
+          <float name="BackgroundTransparency">1</float>
+          <int name="BorderSizePixel">0</int>
+          <Font name="FontFace">
+            <Family>
+              <url>rbxasset://fonts/families/Montserrat.json</url>
+            </Family>
+            <Weight>800</Weight>
+            <Style>Normal</Style>
+          </Font>
+          <UDim2 name="Position">
+            <XS>0.04761905</XS>
+            <XO>0</XO>
+            <YS>0.05882353</YS>
+            <YO>0</YO>
+          </UDim2>
+          <UDim2 name="Size">
+            <XS>0.52380955</XS>
+            <XO>0</XO>
+            <YS>0.05882353</YS>
+            <YO>0</YO>
+          </UDim2>
+          <string name="Text">AutoLights</string>
+          <Color3 name="TextColor3">
+            <R>0.9647059</R>
+            <G>0.96862745</G>
+            <B>0.98039216</B>
+          </Color3>
+          <float name="TextSize">24</float>
+          <token name="TextTruncate">1</token>
+          <token name="TextXAlignment">0</token>
+          <token name="TextYAlignment">1</token>
+        </Properties>
+      </Item>
+      <Item class="TextButton" referent="14">
+        <Properties>
+          <string name="Name">CloseButton</string>
+          <bool name="AutoButtonColor">false</bool>
+          <Color3 name="BackgroundColor3">
+            <R>1</R>
+            <G>1</G>
+            <B>1</B>
+          </Color3>
+          <float name="BackgroundTransparency">0.92</float>
+          <int name="BorderSizePixel">0</int>
+          <UDim2 name="Position">
+            <XS>0.8761905</XS>
+            <XO>0</XO>
+            <YS>0.03137255</YS>
+            <YO>0</YO>
+          </UDim2>
+          <UDim2 name="Size">
+            <XS>0.08095238</XS>
+            <XO>0</XO>
+            <YS>0.06666667</YS>
+            <YO>0</YO>
+          </UDim2>
+          <string name="Text"></string>
+        </Properties>
+        <Item class="UICorner" referent="15">
+          <Properties>
+            <string name="Name">UICorner</string>
+            <UDim name="CornerRadius">
+              <S>0.5</S>
+              <O>0</O>
+            </UDim>
+          </Properties>
+        </Item>
+        <Item class="UIStroke" referent="16">
+          <Properties>
+            <string name="Name">Outline</string>
+            <token name="ApplyStrokeMode">1</token>
+            <Color3 name="Color">
+              <R>1</R>
+              <G>1</G>
+              <B>1</B>
+            </Color3>
+            <float name="Thickness">1</float>
+            <float name="Transparency">0.9</float>
+          </Properties>
+        </Item>
+        <Item class="TextLabel" referent="17">
+          <Properties>
+            <string name="Name">Icon</string>
+            <Color3 name="BackgroundColor3">
+              <R>1</R>
+              <G>1</G>
+              <B>1</B>
+            </Color3>
+            <float name="BackgroundTransparency">1</float>
+            <int name="BorderSizePixel">0</int>
+            <Font name="FontFace">
+              <Family>
+                <url>rbxasset://fonts/families/Montserrat.json</url>
+              </Family>
+              <Weight>700</Weight>
+              <Style>Normal</Style>
+            </Font>
+            <UDim2 name="Position">
+              <XS>0</XS>
+              <XO>0</XO>
+              <YS>0</YS>
+              <YO>0</YO>
+            </UDim2>
+            <UDim2 name="Size">
+              <XS>1</XS>
+              <XO>0</XO>
+              <YS>0.9411765</YS>
+              <YO>0</YO>
+            </UDim2>
+            <string name="Text">×</string>
+            <Color3 name="TextColor3">
+              <R>0.76862746</R>
+              <G>0.78431374</G>
+              <B>0.84705883</B>
+            </Color3>
+            <float name="TextSize">22</float>
+            <token name="TextTruncate">0</token>
+            <token name="TextXAlignment">2</token>
+            <token name="TextYAlignment">1</token>
+          </Properties>
+        </Item>
+      </Item>
+      <Item class="Frame" referent="18">
+        <Properties>
+          <string name="Name">SyncChip</string>
+          <Color3 name="BackgroundColor3">
+            <R>0.23921569</R>
+            <G>0.8627451</G>
+            <B>0.5921569</B>
+          </Color3>
+          <float name="BackgroundTransparency">0.84</float>
+          <int name="BorderSizePixel">0</int>
+          <UDim2 name="Position">
+            <XS>0.5619048</XS>
+            <XO>0</XO>
+            <YS>0.047058824</YS>
+            <YO>0</YO>
+          </UDim2>
+          <UDim2 name="Size">
+            <XS>0.2904762</XS>
+            <XO>0</XO>
+            <YS>0.050980393</YS>
+            <YO>0</YO>
+          </UDim2>
+        </Properties>
+        <Item class="UICorner" referent="19">
+          <Properties>
+            <string name="Name">UICorner</string>
+            <UDim name="CornerRadius">
+              <S>0.5</S>
+              <O>0</O>
+            </UDim>
+          </Properties>
+        </Item>
+        <Item class="UIStroke" referent="20">
+          <Properties>
+            <string name="Name">Outline</string>
+            <token name="ApplyStrokeMode">1</token>
+            <Color3 name="Color">
+              <R>0.23921569</R>
+              <G>0.8627451</G>
+              <B>0.5921569</B>
+            </Color3>
+            <float name="Thickness">1</float>
+            <float name="Transparency">0.55</float>
+          </Properties>
+        </Item>
+        <Item class="Frame" referent="21">
+          <Properties>
+            <string name="Name">Dot</string>
+            <Color3 name="BackgroundColor3">
+              <R>0.23921569</R>
+              <G>0.8627451</G>
+              <B>0.5921569</B>
+            </Color3>
+            <float name="BackgroundTransparency">0</float>
+            <int name="BorderSizePixel">0</int>
+            <UDim2 name="Position">
+              <XS>0.09836066</XS>
+              <XO>0</XO>
+              <YS>0.34615386</YS>
+              <YO>0</YO>
+            </UDim2>
+            <UDim2 name="Size">
+              <XS>0.06557377</XS>
+              <XO>0</XO>
+              <YS>0.30769232</YS>
+              <YO>0</YO>
+            </UDim2>
+          </Properties>
+          <Item class="UICorner" referent="22">
+            <Properties>
+              <string name="Name">UICorner</string>
+              <UDim name="CornerRadius">
+                <S>0.5</S>
+                <O>0</O>
+              </UDim>
+            </Properties>
+          </Item>
+        </Item>
+        <Item class="TextLabel" referent="23">
+          <Properties>
+            <string name="Name">Label</string>
+            <Color3 name="BackgroundColor3">
+              <R>1</R>
+              <G>1</G>
+              <B>1</B>
+            </Color3>
+            <float name="BackgroundTransparency">1</float>
+            <int name="BorderSizePixel">0</int>
+            <Font name="FontFace">
+              <Family>
+                <url>rbxasset://fonts/families/Montserrat.json</url>
+              </Family>
+              <Weight>800</Weight>
+              <Style>Normal</Style>
+            </Font>
+            <UDim2 name="Position">
+              <XS>0.21311475</XS>
+              <XO>0</XO>
+              <YS>0</YS>
+              <YO>0</YO>
+            </UDim2>
+            <UDim2 name="Size">
+              <XS>0.75409836</XS>
+              <XO>0</XO>
+              <YS>1</YS>
+              <YO>0</YO>
+            </UDim2>
+            <string name="Text">SYNC ON</string>
+            <Color3 name="TextColor3">
+              <R>0.23921569</R>
+              <G>0.8627451</G>
+              <B>0.5921569</B>
+            </Color3>
+            <float name="TextSize">10</float>
+            <token name="TextTruncate">0</token>
+            <token name="TextXAlignment">0</token>
+            <token name="TextYAlignment">1</token>
+          </Properties>
+        </Item>
+      </Item>
+      <Item class="Frame" referent="24">
+        <Properties>
+          <string name="Name">BeatTile</string>
+          <Color3 name="BackgroundColor3">
+            <R>1</R>
+            <G>1</G>
+            <B>1</B>
+          </Color3>
+          <float name="BackgroundTransparency">0.9</float>
+          <int name="BorderSizePixel">0</int>
+          <UDim2 name="Position">
+            <XS>0.042857144</XS>
+            <XO>0</XO>
+            <YS>0.14509805</YS>
+            <YO>0</YO>
+          </UDim2>
+          <UDim2 name="Size">
+            <XS>0.9142857</XS>
+            <XO>0</XO>
+            <YS>0.09019608</YS>
+            <YO>0</YO>
+          </UDim2>
+        </Properties>
+        <Item class="UICorner" referent="25">
+          <Properties>
+            <string name="Name">UICorner</string>
+            <UDim name="CornerRadius">
+              <S>0.3043478</S>
+              <O>0</O>
+            </UDim>
+          </Properties>
+        </Item>
+        <Item class="UIStroke" referent="26">
+          <Properties>
+            <string name="Name">Outline</string>
+            <token name="ApplyStrokeMode">1</token>
+            <Color3 name="Color">
+              <R>1</R>
+              <G>1</G>
+              <B>1</B>
+            </Color3>
+            <float name="Thickness">1</float>
+            <float name="Transparency">0.85</float>
+          </Properties>
+        </Item>
+        <Item class="Frame" referent="27">
+          <Properties>
+            <string name="Name">BeatDot</string>
+            <Color3 name="BackgroundColor3">
+              <R>1</R>
+              <G>0.32156864</G>
+              <B>0.5882353</B>
+            </Color3>
+            <float name="BackgroundTransparency">0.2</float>
+            <int name="BorderSizePixel">0</int>
+            <UDim2 name="Position">
+              <XS>0.041666668</XS>
+              <XO>0</XO>
+              <YS>0.32608697</YS>
+              <YO>0</YO>
+            </UDim2>
+            <UDim2 name="Size">
+              <XS>0.041666668</XS>
+              <XO>0</XO>
+              <YS>0.3478261</YS>
+              <YO>0</YO>
+            </UDim2>
+          </Properties>
+          <Item class="UICorner" referent="28">
+            <Properties>
+              <string name="Name">UICorner</string>
+              <UDim name="CornerRadius">
+                <S>0.5</S>
+                <O>0</O>
+              </UDim>
+            </Properties>
+          </Item>
+        </Item>
+        <Item class="TextLabel" referent="29">
+          <Properties>
+            <string name="Name">Bpm</string>
+            <Color3 name="BackgroundColor3">
+              <R>1</R>
+              <G>1</G>
+              <B>1</B>
+            </Color3>
+            <float name="BackgroundTransparency">1</float>
+            <int name="BorderSizePixel">0</int>
+            <Font name="FontFace">
+              <Family>
+                <url>rbxasset://fonts/families/Montserrat.json</url>
+              </Family>
+              <Weight>800</Weight>
+              <Style>Normal</Style>
+            </Font>
+            <UDim2 name="Position">
+              <XS>0.114583336</XS>
+              <XO>0</XO>
+              <YS>0</YS>
+              <YO>0</YO>
+            </UDim2>
+            <UDim2 name="Size">
+              <XS>0.28645834</XS>
+              <XO>0</XO>
+              <YS>1</YS>
+              <YO>0</YO>
+            </UDim2>
+            <string name="Text">124 BPM</string>
+            <Color3 name="TextColor3">
+              <R>0.9647059</R>
+              <G>0.96862745</G>
+              <B>0.98039216</B>
+            </Color3>
+            <float name="TextSize">15</float>
+            <token name="TextTruncate">1</token>
+            <token name="TextXAlignment">0</token>
+            <token name="TextYAlignment">1</token>
+          </Properties>
+        </Item>
+        <Item class="TextLabel" referent="30">
+          <Properties>
+            <string name="Name">PatternName</string>
+            <Color3 name="BackgroundColor3">
+              <R>1</R>
+              <G>1</G>
+              <B>1</B>
+            </Color3>
+            <float name="BackgroundTransparency">1</float>
+            <int name="BorderSizePixel">0</int>
+            <Font name="FontFace">
+              <Family>
+                <url>rbxasset://fonts/families/Montserrat.json</url>
+              </Family>
+              <Weight>600</Weight>
+              <Style>Normal</Style>
+            </Font>
+            <UDim2 name="Position">
+              <XS>0.390625</XS>
+              <XO>0</XO>
+              <YS>0</YS>
+              <YO>0</YO>
+            </UDim2>
+            <UDim2 name="Size">
+              <XS>0.5729167</XS>
+              <XO>0</XO>
+              <YS>1</YS>
+              <YO>0</YO>
+            </UDim2>
+            <string name="Text">Ripple</string>
+            <Color3 name="TextColor3">
+              <R>0.76862746</R>
+              <G>0.78431374</G>
+              <B>0.84705883</B>
+            </Color3>
+            <float name="TextSize">12</float>
+            <token name="TextTruncate">1</token>
+            <token name="TextXAlignment">1</token>
+            <token name="TextYAlignment">1</token>
+          </Properties>
+        </Item>
+      </Item>
+      <Item class="Frame" referent="31">
+        <Properties>
+          <string name="Name">Left</string>
+          <Color3 name="BackgroundColor3">
+            <R>1</R>
+            <G>1</G>
+            <B>1</B>
+          </Color3>
+          <float name="BackgroundTransparency">1</float>
+          <int name="BorderSizePixel">0</int>
+          <UDim2 name="Position">
+            <XS>0.042857144</XS>
+            <XO>0</XO>
+            <YS>0.2627451</YS>
+            <YO>0</YO>
+          </UDim2>
+          <UDim2 name="Size">
+            <XS>0.43809524</XS>
+            <XO>0</XO>
+            <YS>0.627451</YS>
+            <YO>0</YO>
+          </UDim2>
+        </Properties>
+        <Item class="TextLabel" referent="32">
+          <Properties>
+            <string name="Name">SyncLabel</string>
+            <Color3 name="BackgroundColor3">
+              <R>1</R>
+              <G>1</G>
+              <B>1</B>
+            </Color3>
+            <float name="BackgroundTransparency">1</float>
+            <int name="BorderSizePixel">0</int>
+            <Font name="FontFace">
+              <Family>
+                <url>rbxasset://fonts/families/Montserrat.json</url>
+              </Family>
+              <Weight>800</Weight>
+              <Style>Normal</Style>
+            </Font>
+            <UDim2 name="Position">
+              <XS>0.010869565</XS>
+              <XO>0</XO>
+              <YS>0</YS>
+              <YO>0</YO>
+            </UDim2>
+            <UDim2 name="Size">
+              <XS>0.8695652</XS>
+              <XO>0</XO>
+              <YS>0.0375</YS>
+              <YO>0</YO>
+            </UDim2>
+            <string name="Text">SYNC</string>
+            <Color3 name="TextColor3">
+              <R>0.627451</R>
+              <G>0.64705884</G>
+              <B>0.7294118</B>
+            </Color3>
+            <float name="TextSize">10</float>
+            <token name="TextTruncate">1</token>
+            <token name="TextXAlignment">0</token>
+            <token name="TextYAlignment">1</token>
+          </Properties>
+        </Item>
+        <Item class="TextButton" referent="33">
+          <Properties>
+            <string name="Name">Toggle_Sync</string>
+            <bool name="AutoButtonColor">false</bool>
+            <Color3 name="BackgroundColor3">
+              <R>1</R>
+              <G>1</G>
+              <B>1</B>
+            </Color3>
+            <float name="BackgroundTransparency">0.9</float>
+            <int name="BorderSizePixel">0</int>
+            <UDim2 name="Position">
+              <XS>0</XS>
+              <XO>0</XO>
+              <YS>0.05625</YS>
+              <YO>0</YO>
+            </UDim2>
+            <UDim2 name="Size">
+              <XS>1</XS>
+              <XO>0</XO>
+              <YS>0.1375</YS>
+              <YO>0</YO>
+            </UDim2>
+            <string name="Text"></string>
+          </Properties>
+          <Item class="UICorner" referent="34">
+            <Properties>
+              <string name="Name">UICorner</string>
+              <UDim name="CornerRadius">
+                <S>0.27272728</S>
+                <O>0</O>
+              </UDim>
+            </Properties>
+          </Item>
+          <Item class="UIStroke" referent="35">
+            <Properties>
+              <string name="Name">Outline</string>
+              <token name="ApplyStrokeMode">1</token>
+              <Color3 name="Color">
+                <R>1</R>
+                <G>1</G>
+                <B>1</B>
+              </Color3>
+              <float name="Thickness">1</float>
+              <float name="Transparency">0.85</float>
+            </Properties>
+          </Item>
+          <Item class="TextLabel" referent="36">
+            <Properties>
+              <string name="Name">Title</string>
+              <Color3 name="BackgroundColor3">
+                <R>1</R>
+                <G>1</G>
+                <B>1</B>
+              </Color3>
+              <float name="BackgroundTransparency">1</float>
+              <int name="BorderSizePixel">0</int>
+              <Font name="FontFace">
+                <Family>
+                  <url>rbxasset://fonts/families/Montserrat.json</url>
+                </Family>
+                <Weight>700</Weight>
+                <Style>Normal</Style>
+              </Font>
+              <UDim2 name="Position">
+                <XS>0.06521739</XS>
+                <XO>0</XO>
+                <YS>0.1590909</YS>
+                <YO>0</YO>
+              </UDim2>
+              <UDim2 name="Size">
+                <XS>0.6195652</XS>
+                <XO>0</XO>
+                <YS>0.36363637</YS>
+                <YO>0</YO>
+              </UDim2>
+              <string name="Text">Beat Sync</string>
+              <Color3 name="TextColor3">
+                <R>0.9647059</R>
+                <G>0.96862745</G>
+                <B>0.98039216</B>
+              </Color3>
+              <float name="TextSize">12</float>
+              <token name="TextTruncate">1</token>
+              <token name="TextXAlignment">0</token>
+              <token name="TextYAlignment">1</token>
+            </Properties>
+          </Item>
+          <Item class="TextLabel" referent="37">
+            <Properties>
+              <string name="Name">Subtitle</string>
+              <Color3 name="BackgroundColor3">
+                <R>1</R>
+                <G>1</G>
+                <B>1</B>
+              </Color3>
+              <float name="BackgroundTransparency">1</float>
+              <int name="BorderSizePixel">0</int>
+              <Font name="FontFace">
+                <Family>
+                  <url>rbxasset://fonts/families/Montserrat.json</url>
+                </Family>
+                <Weight>500</Weight>
+                <Style>Normal</Style>
+              </Font>
+              <UDim2 name="Position">
+                <XS>0.06521739</XS>
+                <XO>0</XO>
+                <YS>0.54545456</YS>
+                <YO>0</YO>
+              </UDim2>
+              <UDim2 name="Size">
+                <XS>0.6195652</XS>
+                <XO>0</XO>
+                <YS>0.27272728</YS>
+                <YO>0</YO>
+              </UDim2>
+              <string name="Text">Lights follow the music</string>
+              <Color3 name="TextColor3">
+                <R>0.76862746</R>
+                <G>0.78431374</G>
+                <B>0.84705883</B>
+              </Color3>
+              <float name="TextSize">9</float>
+              <token name="TextTruncate">1</token>
+              <token name="TextXAlignment">0</token>
+              <token name="TextYAlignment">1</token>
+            </Properties>
+          </Item>
+          <Item class="Frame" referent="38">
+            <Properties>
+              <string name="Name">Track</string>
+              <Color3 name="BackgroundColor3">
+                <R>0.23921569</R>
+                <G>0.8627451</G>
+                <B>0.5921569</B>
+              </Color3>
+              <float name="BackgroundTransparency">0</float>
+              <int name="BorderSizePixel">0</int>
+              <UDim2 name="Position">
+                <XS>0.7173913</XS>
+                <XO>0</XO>
+                <YS>0.25</YS>
+                <YO>0</YO>
+              </UDim2>
+              <UDim2 name="Size">
+                <XS>0.2173913</XS>
+                <XO>0</XO>
+                <YS>0.5</YS>
+                <YO>0</YO>
+              </UDim2>
+            </Properties>
+            <Item class="UICorner" referent="39">
+              <Properties>
+                <string name="Name">UICorner</string>
+                <UDim name="CornerRadius">
+                  <S>0.5</S>
+                  <O>0</O>
+                </UDim>
+              </Properties>
+            </Item>
+            <Item class="Frame" referent="40">
+              <Properties>
+                <string name="Name">Knob</string>
+                <Color3 name="BackgroundColor3">
+                  <R>1</R>
+                  <G>1</G>
+                  <B>1</B>
+                </Color3>
+                <float name="BackgroundTransparency">0</float>
+                <int name="BorderSizePixel">0</int>
+                <UDim2 name="Position">
+                  <XS>0.5</XS>
+                  <XO>0</XO>
+                  <YS>0.13636364</YS>
+                  <YO>0</YO>
+                </UDim2>
+                <UDim2 name="Size">
+                  <XS>0.4</XS>
+                  <XO>0</XO>
+                  <YS>0.72727275</YS>
+                  <YO>0</YO>
+                </UDim2>
+              </Properties>
+              <Item class="UICorner" referent="41">
+                <Properties>
+                  <string name="Name">UICorner</string>
+                  <UDim name="CornerRadius">
+                    <S>0.5</S>
+                    <O>0</O>
+                  </UDim>
+                </Properties>
+              </Item>
+            </Item>
+          </Item>
+        </Item>
+        <Item class="TextButton" referent="42">
+          <Properties>
+            <string name="Name">Toggle_DanceFloor</string>
+            <bool name="AutoButtonColor">false</bool>
+            <Color3 name="BackgroundColor3">
+              <R>1</R>
+              <G>1</G>
+              <B>1</B>
+            </Color3>
+            <float name="BackgroundTransparency">0.9</float>
+            <int name="BorderSizePixel">0</int>
+            <UDim2 name="Position">
+              <XS>0</XS>
+              <XO>0</XO>
+              <YS>0.21875</YS>
+              <YO>0</YO>
+            </UDim2>
+            <UDim2 name="Size">
+              <XS>1</XS>
+              <XO>0</XO>
+              <YS>0.1375</YS>
+              <YO>0</YO>
+            </UDim2>
+            <string name="Text"></string>
+          </Properties>
+          <Item class="UICorner" referent="43">
+            <Properties>
+              <string name="Name">UICorner</string>
+              <UDim name="CornerRadius">
+                <S>0.27272728</S>
+                <O>0</O>
+              </UDim>
+            </Properties>
+          </Item>
+          <Item class="UIStroke" referent="44">
+            <Properties>
+              <string name="Name">Outline</string>
+              <token name="ApplyStrokeMode">1</token>
+              <Color3 name="Color">
+                <R>1</R>
+                <G>1</G>
+                <B>1</B>
+              </Color3>
+              <float name="Thickness">1</float>
+              <float name="Transparency">0.85</float>
+            </Properties>
+          </Item>
+          <Item class="TextLabel" referent="45">
+            <Properties>
+              <string name="Name">Title</string>
+              <Color3 name="BackgroundColor3">
+                <R>1</R>
+                <G>1</G>
+                <B>1</B>
+              </Color3>
+              <float name="BackgroundTransparency">1</float>
+              <int name="BorderSizePixel">0</int>
+              <Font name="FontFace">
+                <Family>
+                  <url>rbxasset://fonts/families/Montserrat.json</url>
+                </Family>
+                <Weight>700</Weight>
+                <Style>Normal</Style>
+              </Font>
+              <UDim2 name="Position">
+                <XS>0.06521739</XS>
+                <XO>0</XO>
+                <YS>0.1590909</YS>
+                <YO>0</YO>
+              </UDim2>
+              <UDim2 name="Size">
+                <XS>0.6195652</XS>
+                <XO>0</XO>
+                <YS>0.36363637</YS>
+                <YO>0</YO>
+              </UDim2>
+              <string name="Text">Dance Floor</string>
+              <Color3 name="TextColor3">
+                <R>0.9647059</R>
+                <G>0.96862745</G>
+                <B>0.98039216</B>
+              </Color3>
+              <float name="TextSize">12</float>
+              <token name="TextTruncate">1</token>
+              <token name="TextXAlignment">0</token>
+              <token name="TextYAlignment">1</token>
+            </Properties>
+          </Item>
+          <Item class="TextLabel" referent="46">
+            <Properties>
+              <string name="Name">Subtitle</string>
+              <Color3 name="BackgroundColor3">
+                <R>1</R>
+                <G>1</G>
+                <B>1</B>
+              </Color3>
+              <float name="BackgroundTransparency">1</float>
+              <int name="BorderSizePixel">0</int>
+              <Font name="FontFace">
+                <Family>
+                  <url>rbxasset://fonts/families/Montserrat.json</url>
+                </Family>
+                <Weight>500</Weight>
+                <Style>Normal</Style>
+              </Font>
+              <UDim2 name="Position">
+                <XS>0.06521739</XS>
+                <XO>0</XO>
+                <YS>0.54545456</YS>
+                <YO>0</YO>
+              </UDim2>
+              <UDim2 name="Size">
+                <XS>0.6195652</XS>
+                <XO>0</XO>
+                <YS>0.27272728</YS>
+                <YO>0</YO>
+              </UDim2>
+              <string name="Text">Tiles on the floor</string>
+              <Color3 name="TextColor3">
+                <R>0.76862746</R>
+                <G>0.78431374</G>
+                <B>0.84705883</B>
+              </Color3>
+              <float name="TextSize">9</float>
+              <token name="TextTruncate">1</token>
+              <token name="TextXAlignment">0</token>
+              <token name="TextYAlignment">1</token>
+            </Properties>
+          </Item>
+          <Item class="Frame" referent="47">
+            <Properties>
+              <string name="Name">Track</string>
+              <Color3 name="BackgroundColor3">
+                <R>0.23921569</R>
+                <G>0.8627451</G>
+                <B>0.5921569</B>
+              </Color3>
+              <float name="BackgroundTransparency">0</float>
+              <int name="BorderSizePixel">0</int>
+              <UDim2 name="Position">
+                <XS>0.7173913</XS>
+                <XO>0</XO>
+                <YS>0.25</YS>
+                <YO>0</YO>
+              </UDim2>
+              <UDim2 name="Size">
+                <XS>0.2173913</XS>
+                <XO>0</XO>
+                <YS>0.5</YS>
+                <YO>0</YO>
+              </UDim2>
+            </Properties>
+            <Item class="UICorner" referent="48">
+              <Properties>
+                <string name="Name">UICorner</string>
+                <UDim name="CornerRadius">
+                  <S>0.5</S>
+                  <O>0</O>
+                </UDim>
+              </Properties>
+            </Item>
+            <Item class="Frame" referent="49">
+              <Properties>
+                <string name="Name">Knob</string>
+                <Color3 name="BackgroundColor3">
+                  <R>1</R>
+                  <G>1</G>
+                  <B>1</B>
+                </Color3>
+                <float name="BackgroundTransparency">0</float>
+                <int name="BorderSizePixel">0</int>
+                <UDim2 name="Position">
+                  <XS>0.5</XS>
+                  <XO>0</XO>
+                  <YS>0.13636364</YS>
+                  <YO>0</YO>
+                </UDim2>
+                <UDim2 name="Size">
+                  <XS>0.4</XS>
+                  <XO>0</XO>
+                  <YS>0.72727275</YS>
+                  <YO>0</YO>
+                </UDim2>
+              </Properties>
+              <Item class="UICorner" referent="50">
+                <Properties>
+                  <string name="Name">UICorner</string>
+                  <UDim name="CornerRadius">
+                    <S>0.5</S>
+                    <O>0</O>
+                  </UDim>
+                </Properties>
+              </Item>
+            </Item>
+          </Item>
+        </Item>
+        <Item class="TextButton" referent="51">
+          <Properties>
+            <string name="Name">Toggle_AutoPattern</string>
+            <bool name="AutoButtonColor">false</bool>
+            <Color3 name="BackgroundColor3">
+              <R>1</R>
+              <G>1</G>
+              <B>1</B>
+            </Color3>
+            <float name="BackgroundTransparency">0.9</float>
+            <int name="BorderSizePixel">0</int>
+            <UDim2 name="Position">
+              <XS>0</XS>
+              <XO>0</XO>
+              <YS>0.38125</YS>
+              <YO>0</YO>
+            </UDim2>
+            <UDim2 name="Size">
+              <XS>1</XS>
+              <XO>0</XO>
+              <YS>0.1375</YS>
+              <YO>0</YO>
+            </UDim2>
+            <string name="Text"></string>
+          </Properties>
+          <Item class="UICorner" referent="52">
+            <Properties>
+              <string name="Name">UICorner</string>
+              <UDim name="CornerRadius">
+                <S>0.27272728</S>
+                <O>0</O>
+              </UDim>
+            </Properties>
+          </Item>
+          <Item class="UIStroke" referent="53">
+            <Properties>
+              <string name="Name">Outline</string>
+              <token name="ApplyStrokeMode">1</token>
+              <Color3 name="Color">
+                <R>1</R>
+                <G>1</G>
+                <B>1</B>
+              </Color3>
+              <float name="Thickness">1</float>
+              <float name="Transparency">0.85</float>
+            </Properties>
+          </Item>
+          <Item class="TextLabel" referent="54">
+            <Properties>
+              <string name="Name">Title</string>
+              <Color3 name="BackgroundColor3">
+                <R>1</R>
+                <G>1</G>
+                <B>1</B>
+              </Color3>
+              <float name="BackgroundTransparency">1</float>
+              <int name="BorderSizePixel">0</int>
+              <Font name="FontFace">
+                <Family>
+                  <url>rbxasset://fonts/families/Montserrat.json</url>
+                </Family>
+                <Weight>700</Weight>
+                <Style>Normal</Style>
+              </Font>
+              <UDim2 name="Position">
+                <XS>0.06521739</XS>
+                <XO>0</XO>
+                <YS>0.1590909</YS>
+                <YO>0</YO>
+              </UDim2>
+              <UDim2 name="Size">
+                <XS>0.6195652</XS>
+                <XO>0</XO>
+                <YS>0.36363637</YS>
+                <YO>0</YO>
+              </UDim2>
+              <string name="Text">Auto Pattern</string>
+              <Color3 name="TextColor3">
+                <R>0.9647059</R>
+                <G>0.96862745</G>
+                <B>0.98039216</B>
+              </Color3>
+              <float name="TextSize">12</float>
+              <token name="TextTruncate">1</token>
+              <token name="TextXAlignment">0</token>
+              <token name="TextYAlignment">1</token>
+            </Properties>
+          </Item>
+          <Item class="TextLabel" referent="55">
+            <Properties>
+              <string name="Name">Subtitle</string>
+              <Color3 name="BackgroundColor3">
+                <R>1</R>
+                <G>1</G>
+                <B>1</B>
+              </Color3>
+              <float name="BackgroundTransparency">1</float>
+              <int name="BorderSizePixel">0</int>
+              <Font name="FontFace">
+                <Family>
+                  <url>rbxasset://fonts/families/Montserrat.json</url>
+                </Family>
+                <Weight>500</Weight>
+                <Style>Normal</Style>
+              </Font>
+              <UDim2 name="Position">
+                <XS>0.06521739</XS>
+                <XO>0</XO>
+                <YS>0.54545456</YS>
+                <YO>0</YO>
+              </UDim2>
+              <UDim2 name="Size">
+                <XS>0.6195652</XS>
+                <XO>0</XO>
+                <YS>0.27272728</YS>
+                <YO>0</YO>
+              </UDim2>
+              <string name="Text">Changes every few bars</string>
+              <Color3 name="TextColor3">
+                <R>0.76862746</R>
+                <G>0.78431374</G>
+                <B>0.84705883</B>
+              </Color3>
+              <float name="TextSize">9</float>
+              <token name="TextTruncate">1</token>
+              <token name="TextXAlignment">0</token>
+              <token name="TextYAlignment">1</token>
+            </Properties>
+          </Item>
+          <Item class="Frame" referent="56">
+            <Properties>
+              <string name="Name">Track</string>
+              <Color3 name="BackgroundColor3">
+                <R>0.23921569</R>
+                <G>0.8627451</G>
+                <B>0.5921569</B>
+              </Color3>
+              <float name="BackgroundTransparency">0</float>
+              <int name="BorderSizePixel">0</int>
+              <UDim2 name="Position">
+                <XS>0.7173913</XS>
+                <XO>0</XO>
+                <YS>0.25</YS>
+                <YO>0</YO>
+              </UDim2>
+              <UDim2 name="Size">
+                <XS>0.2173913</XS>
+                <XO>0</XO>
+                <YS>0.5</YS>
+                <YO>0</YO>
+              </UDim2>
+            </Properties>
+            <Item class="UICorner" referent="57">
+              <Properties>
+                <string name="Name">UICorner</string>
+                <UDim name="CornerRadius">
+                  <S>0.5</S>
+                  <O>0</O>
+                </UDim>
+              </Properties>
+            </Item>
+            <Item class="Frame" referent="58">
+              <Properties>
+                <string name="Name">Knob</string>
+                <Color3 name="BackgroundColor3">
+                  <R>1</R>
+                  <G>1</G>
+                  <B>1</B>
+                </Color3>
+                <float name="BackgroundTransparency">0</float>
+                <int name="BorderSizePixel">0</int>
+                <UDim2 name="Position">
+                  <XS>0.5</XS>
+                  <XO>0</XO>
+                  <YS>0.13636364</YS>
+                  <YO>0</YO>
+                </UDim2>
+                <UDim2 name="Size">
+                  <XS>0.4</XS>
+                  <XO>0</XO>
+                  <YS>0.72727275</YS>
+                  <YO>0</YO>
+                </UDim2>
+              </Properties>
+              <Item class="UICorner" referent="59">
+                <Properties>
+                  <string name="Name">UICorner</string>
+                  <UDim name="CornerRadius">
+                    <S>0.5</S>
+                    <O>0</O>
+                  </UDim>
+                </Properties>
+              </Item>
+            </Item>
+          </Item>
+        </Item>
+        <Item class="Frame" referent="60">
+          <Properties>
+            <string name="Name">PatternRow</string>
+            <Color3 name="BackgroundColor3">
+              <R>1</R>
+              <G>1</G>
+              <B>1</B>
+            </Color3>
+            <float name="BackgroundTransparency">0.9</float>
+            <int name="BorderSizePixel">0</int>
+            <UDim2 name="Position">
+              <XS>0</XS>
+              <XO>0</XO>
+              <YS>0.54375</YS>
+              <YO>0</YO>
+            </UDim2>
+            <UDim2 name="Size">
+              <XS>1</XS>
+              <XO>0</XO>
+              <YS>0.125</YS>
+              <YO>0</YO>
+            </UDim2>
+          </Properties>
+          <Item class="UICorner" referent="61">
+            <Properties>
+              <string name="Name">UICorner</string>
+              <UDim name="CornerRadius">
+                <S>0.3</S>
+                <O>0</O>
+              </UDim>
+            </Properties>
+          </Item>
+          <Item class="UIStroke" referent="62">
+            <Properties>
+              <string name="Name">Outline</string>
+              <token name="ApplyStrokeMode">1</token>
+              <Color3 name="Color">
+                <R>1</R>
+                <G>1</G>
+                <B>1</B>
+              </Color3>
+              <float name="Thickness">1</float>
+              <float name="Transparency">0.85</float>
+            </Properties>
+          </Item>
+          <Item class="TextButton" referent="63">
+            <Properties>
+              <string name="Name">Prev</string>
+              <bool name="AutoButtonColor">false</bool>
+              <Color3 name="BackgroundColor3">
+                <R>1</R>
+                <G>1</G>
+                <B>1</B>
+              </Color3>
+              <float name="BackgroundTransparency">0.92</float>
+              <int name="BorderSizePixel">0</int>
+              <UDim2 name="Position">
+                <XS>0.027173912</XS>
+                <XO>0</XO>
+                <YS>0.1</YS>
+                <YO>0</YO>
+              </UDim2>
+              <UDim2 name="Size">
+                <XS>0.17391305</XS>
+                <XO>0</XO>
+                <YS>0.8</YS>
+                <YO>0</YO>
+              </UDim2>
+              <string name="Text"></string>
+            </Properties>
+            <Item class="UICorner" referent="64">
+              <Properties>
+                <string name="Name">UICorner</string>
+                <UDim name="CornerRadius">
+                  <S>0.5</S>
+                  <O>0</O>
+                </UDim>
+              </Properties>
+            </Item>
+            <Item class="UIStroke" referent="65">
+              <Properties>
+                <string name="Name">Outline</string>
+                <token name="ApplyStrokeMode">1</token>
+                <Color3 name="Color">
+                  <R>1</R>
+                  <G>1</G>
+                  <B>1</B>
+                </Color3>
+                <float name="Thickness">1</float>
+                <float name="Transparency">0.9</float>
+              </Properties>
+            </Item>
+            <Item class="TextLabel" referent="66">
+              <Properties>
+                <string name="Name">Icon</string>
+                <Color3 name="BackgroundColor3">
+                  <R>1</R>
+                  <G>1</G>
+                  <B>1</B>
+                </Color3>
+                <float name="BackgroundTransparency">1</float>
+                <int name="BorderSizePixel">0</int>
+                <Font name="FontFace">
+                  <Family>
+                    <url>rbxasset://fonts/families/Montserrat.json</url>
+                  </Family>
+                  <Weight>700</Weight>
+                  <Style>Normal</Style>
+                </Font>
+                <UDim2 name="Position">
+                  <XS>0</XS>
+                  <XO>0</XO>
+                  <YS>0</YS>
+                  <YO>0</YO>
+                </UDim2>
+                <UDim2 name="Size">
+                  <XS>1</XS>
+                  <XO>0</XO>
+                  <YS>0.9375</YS>
+                  <YO>0</YO>
+                </UDim2>
+                <string name="Text">‹</string>
+                <Color3 name="TextColor3">
+                  <R>0.76862746</R>
+                  <G>0.78431374</G>
+                  <B>0.84705883</B>
+                </Color3>
+                <float name="TextSize">24</float>
+                <token name="TextTruncate">0</token>
+                <token name="TextXAlignment">2</token>
+                <token name="TextYAlignment">1</token>
+              </Properties>
+            </Item>
+          </Item>
+          <Item class="TextLabel" referent="67">
+            <Properties>
+              <string name="Name">PatternText</string>
+              <Color3 name="BackgroundColor3">
+                <R>1</R>
+                <G>1</G>
+                <B>1</B>
+              </Color3>
+              <float name="BackgroundTransparency">1</float>
+              <int name="BorderSizePixel">0</int>
+              <Font name="FontFace">
+                <Family>
+                  <url>rbxasset://fonts/families/Montserrat.json</url>
+                </Family>
+                <Weight>700</Weight>
+                <Style>Normal</Style>
+              </Font>
+              <UDim2 name="Position">
+                <XS>0.2173913</XS>
+                <XO>0</XO>
+                <YS>0</YS>
+                <YO>0</YO>
+              </UDim2>
+              <UDim2 name="Size">
+                <XS>0.5652174</XS>
+                <XO>0</XO>
+                <YS>1</YS>
+                <YO>0</YO>
+              </UDim2>
+              <string name="Text">Ripple   3/12</string>
+              <Color3 name="TextColor3">
+                <R>0.9647059</R>
+                <G>0.96862745</G>
+                <B>0.98039216</B>
+              </Color3>
+              <float name="TextSize">11</float>
+              <token name="TextTruncate">1</token>
+              <token name="TextXAlignment">2</token>
+              <token name="TextYAlignment">1</token>
+            </Properties>
+          </Item>
+          <Item class="TextButton" referent="68">
+            <Properties>
+              <string name="Name">Next</string>
+              <bool name="AutoButtonColor">false</bool>
+              <Color3 name="BackgroundColor3">
+                <R>1</R>
+                <G>1</G>
+                <B>1</B>
+              </Color3>
+              <float name="BackgroundTransparency">0.92</float>
+              <int name="BorderSizePixel">0</int>
+              <UDim2 name="Position">
+                <XS>0.79891306</XS>
+                <XO>0</XO>
+                <YS>0.1</YS>
+                <YO>0</YO>
+              </UDim2>
+              <UDim2 name="Size">
+                <XS>0.17391305</XS>
+                <XO>0</XO>
+                <YS>0.8</YS>
+                <YO>0</YO>
+              </UDim2>
+              <string name="Text"></string>
+            </Properties>
+            <Item class="UICorner" referent="69">
+              <Properties>
+                <string name="Name">UICorner</string>
+                <UDim name="CornerRadius">
+                  <S>0.5</S>
+                  <O>0</O>
+                </UDim>
+              </Properties>
+            </Item>
+            <Item class="UIStroke" referent="70">
+              <Properties>
+                <string name="Name">Outline</string>
+                <token name="ApplyStrokeMode">1</token>
+                <Color3 name="Color">
+                  <R>1</R>
+                  <G>1</G>
+                  <B>1</B>
+                </Color3>
+                <float name="Thickness">1</float>
+                <float name="Transparency">0.9</float>
+              </Properties>
+            </Item>
+            <Item class="TextLabel" referent="71">
+              <Properties>
+                <string name="Name">Icon</string>
+                <Color3 name="BackgroundColor3">
+                  <R>1</R>
+                  <G>1</G>
+                  <B>1</B>
+                </Color3>
+                <float name="BackgroundTransparency">1</float>
+                <int name="BorderSizePixel">0</int>
+                <Font name="FontFace">
+                  <Family>
+                    <url>rbxasset://fonts/families/Montserrat.json</url>
+                  </Family>
+                  <Weight>700</Weight>
+                  <Style>Normal</Style>
+                </Font>
+                <UDim2 name="Position">
+                  <XS>0</XS>
+                  <XO>0</XO>
+                  <YS>0</YS>
+                  <YO>0</YO>
+                </UDim2>
+                <UDim2 name="Size">
+                  <XS>1</XS>
+                  <XO>0</XO>
+                  <YS>0.9375</YS>
+                  <YO>0</YO>
+                </UDim2>
+                <string name="Text">›</string>
+                <Color3 name="TextColor3">
+                  <R>0.76862746</R>
+                  <G>0.78431374</G>
+                  <B>0.84705883</B>
+                </Color3>
+                <float name="TextSize">24</float>
+                <token name="TextTruncate">0</token>
+                <token name="TextXAlignment">2</token>
+                <token name="TextYAlignment">1</token>
+              </Properties>
+            </Item>
+          </Item>
+        </Item>
+        <Item class="Frame" referent="72">
+          <Properties>
+            <string name="Name">BrightnessRow</string>
+            <Color3 name="BackgroundColor3">
+              <R>1</R>
+              <G>1</G>
+              <B>1</B>
+            </Color3>
+            <float name="BackgroundTransparency">0.9</float>
+            <int name="BorderSizePixel">0</int>
+            <UDim2 name="Position">
+              <XS>0</XS>
+              <XO>0</XO>
+              <YS>0.69375</YS>
+              <YO>0</YO>
+            </UDim2>
+            <UDim2 name="Size">
+              <XS>1</XS>
+              <XO>0</XO>
+              <YS>0.125</YS>
+              <YO>0</YO>
+            </UDim2>
+          </Properties>
+          <Item class="UICorner" referent="73">
+            <Properties>
+              <string name="Name">UICorner</string>
+              <UDim name="CornerRadius">
+                <S>0.3</S>
+                <O>0</O>
+              </UDim>
+            </Properties>
+          </Item>
+          <Item class="UIStroke" referent="74">
+            <Properties>
+              <string name="Name">Outline</string>
+              <token name="ApplyStrokeMode">1</token>
+              <Color3 name="Color">
+                <R>1</R>
+                <G>1</G>
+                <B>1</B>
+              </Color3>
+              <float name="Thickness">1</float>
+              <float name="Transparency">0.85</float>
+            </Properties>
+          </Item>
+          <Item class="TextButton" referent="75">
+            <Properties>
+              <string name="Name">Minus</string>
+              <bool name="AutoButtonColor">false</bool>
+              <Color3 name="BackgroundColor3">
+                <R>1</R>
+                <G>1</G>
+                <B>1</B>
+              </Color3>
+              <float name="BackgroundTransparency">0.92</float>
+              <int name="BorderSizePixel">0</int>
+              <UDim2 name="Position">
+                <XS>0.027173912</XS>
+                <XO>0</XO>
+                <YS>0.1</YS>
+                <YO>0</YO>
+              </UDim2>
+              <UDim2 name="Size">
+                <XS>0.17391305</XS>
+                <XO>0</XO>
+                <YS>0.8</YS>
+                <YO>0</YO>
+              </UDim2>
+              <string name="Text"></string>
+            </Properties>
+            <Item class="UICorner" referent="76">
+              <Properties>
+                <string name="Name">UICorner</string>
+                <UDim name="CornerRadius">
+                  <S>0.5</S>
+                  <O>0</O>
+                </UDim>
+              </Properties>
+            </Item>
+            <Item class="UIStroke" referent="77">
+              <Properties>
+                <string name="Name">Outline</string>
+                <token name="ApplyStrokeMode">1</token>
+                <Color3 name="Color">
+                  <R>1</R>
+                  <G>1</G>
+                  <B>1</B>
+                </Color3>
+                <float name="Thickness">1</float>
+                <float name="Transparency">0.9</float>
+              </Properties>
+            </Item>
+            <Item class="TextLabel" referent="78">
+              <Properties>
+                <string name="Name">Icon</string>
+                <Color3 name="BackgroundColor3">
+                  <R>1</R>
+                  <G>1</G>
+                  <B>1</B>
+                </Color3>
+                <float name="BackgroundTransparency">1</float>
+                <int name="BorderSizePixel">0</int>
+                <Font name="FontFace">
+                  <Family>
+                    <url>rbxasset://fonts/families/Montserrat.json</url>
+                  </Family>
+                  <Weight>700</Weight>
+                  <Style>Normal</Style>
+                </Font>
+                <UDim2 name="Position">
+                  <XS>0</XS>
+                  <XO>0</XO>
+                  <YS>0</YS>
+                  <YO>0</YO>
+                </UDim2>
+                <UDim2 name="Size">
+                  <XS>1</XS>
+                  <XO>0</XO>
+                  <YS>0.9375</YS>
+                  <YO>0</YO>
+                </UDim2>
+                <string name="Text">−</string>
+                <Color3 name="TextColor3">
+                  <R>0.76862746</R>
+                  <G>0.78431374</G>
+                  <B>0.84705883</B>
+                </Color3>
+                <float name="TextSize">20</float>
+                <token name="TextTruncate">0</token>
+                <token name="TextXAlignment">2</token>
+                <token name="TextYAlignment">1</token>
+              </Properties>
+            </Item>
+          </Item>
+          <Item class="Frame" referent="79">
+            <Properties>
+              <string name="Name">Track</string>
+              <Color3 name="BackgroundColor3">
+                <R>1</R>
+                <G>1</G>
+                <B>1</B>
+              </Color3>
+              <float name="BackgroundTransparency">0.8</float>
+              <int name="BorderSizePixel">0</int>
+              <UDim2 name="Position">
+                <XS>0.23913044</XS>
+                <XO>0</XO>
+                <YS>0.375</YS>
+                <YO>0</YO>
+              </UDim2>
+              <UDim2 name="Size">
+                <XS>0.36956522</XS>
+                <XO>0</XO>
+                <YS>0.25</YS>
+                <YO>0</YO>
+              </UDim2>
+            </Properties>
+            <Item class="UICorner" referent="80">
+              <Properties>
+                <string name="Name">UICorner</string>
+                <UDim name="CornerRadius">
+                  <S>0.5</S>
+                  <O>0</O>
+                </UDim>
+              </Properties>
+            </Item>
+            <Item class="Frame" referent="81">
+              <Properties>
+                <string name="Name">Fill</string>
+                <Color3 name="BackgroundColor3">
+                  <R>0.21960784</R>
+                  <G>0.88235295</G>
+                  <B>1</B>
+                </Color3>
+                <float name="BackgroundTransparency">0</float>
+                <int name="BorderSizePixel">0</int>
+                <UDim2 name="Position">
+                  <XS>0</XS>
+                  <XO>0</XO>
+                  <YS>0</YS>
+                  <YO>0</YO>
+                </UDim2>
+                <UDim2 name="Size">
+                  <XS>0.7941176</XS>
+                  <XO>0</XO>
+                  <YS>1</YS>
+                  <YO>0</YO>
+                </UDim2>
+              </Properties>
+              <Item class="UICorner" referent="82">
+                <Properties>
+                  <string name="Name">UICorner</string>
+                  <UDim name="CornerRadius">
+                    <S>0.5</S>
+                    <O>0</O>
+                  </UDim>
+                </Properties>
+              </Item>
+              <Item class="UIGradient" referent="83">
+                <Properties>
+                  <string name="Name">UIGradient</string>
+                  <ColorSequence name="Color">0 0.21960784 0.88235295 1 0 1 0.21960784 0.88235295 1 0 </ColorSequence>
+                  <float name="Rotation">0</float>
+                  <NumberSequence name="Transparency">0 0 0 1 0 0 </NumberSequence>
+                </Properties>
+              </Item>
+            </Item>
+          </Item>
+          <Item class="TextLabel" referent="84">
+            <Properties>
+              <string name="Name">Value</string>
+              <Color3 name="BackgroundColor3">
+                <R>1</R>
+                <G>1</G>
+                <B>1</B>
+              </Color3>
+              <float name="BackgroundTransparency">1</float>
+              <int name="BorderSizePixel">0</int>
+              <Font name="FontFace">
+                <Family>
+                  <url>rbxasset://fonts/families/Montserrat.json</url>
+                </Family>
+                <Weight>800</Weight>
+                <Style>Normal</Style>
+              </Font>
+              <UDim2 name="Position">
+                <XS>0.6195652</XS>
+                <XO>0</XO>
+                <YS>0</YS>
+                <YO>0</YO>
+              </UDim2>
+              <UDim2 name="Size">
+                <XS>0.16304348</XS>
+                <XO>0</XO>
+                <YS>1</YS>
+                <YO>0</YO>
+              </UDim2>
+              <string name="Text">80%</string>
+              <Color3 name="TextColor3">
+                <R>0.9647059</R>
+                <G>0.96862745</G>
+                <B>0.98039216</B>
+              </Color3>
+              <float name="TextSize">10</float>
+              <token name="TextTruncate">0</token>
+              <token name="TextXAlignment">2</token>
+              <token name="TextYAlignment">1</token>
+            </Properties>
+          </Item>
+          <Item class="TextButton" referent="85">
+            <Properties>
+              <string name="Name">Plus</string>
+              <bool name="AutoButtonColor">false</bool>
+              <Color3 name="BackgroundColor3">
+                <R>1</R>
+                <G>1</G>
+                <B>1</B>
+              </Color3>
+              <float name="BackgroundTransparency">0.92</float>
+              <int name="BorderSizePixel">0</int>
+              <UDim2 name="Position">
+                <XS>0.79891306</XS>
+                <XO>0</XO>
+                <YS>0.1</YS>
+                <YO>0</YO>
+              </UDim2>
+              <UDim2 name="Size">
+                <XS>0.17391305</XS>
+                <XO>0</XO>
+                <YS>0.8</YS>
+                <YO>0</YO>
+              </UDim2>
+              <string name="Text"></string>
+            </Properties>
+            <Item class="UICorner" referent="86">
+              <Properties>
+                <string name="Name">UICorner</string>
+                <UDim name="CornerRadius">
+                  <S>0.5</S>
+                  <O>0</O>
+                </UDim>
+              </Properties>
+            </Item>
+            <Item class="UIStroke" referent="87">
+              <Properties>
+                <string name="Name">Outline</string>
+                <token name="ApplyStrokeMode">1</token>
+                <Color3 name="Color">
+                  <R>1</R>
+                  <G>1</G>
+                  <B>1</B>
+                </Color3>
+                <float name="Thickness">1</float>
+                <float name="Transparency">0.9</float>
+              </Properties>
+            </Item>
+            <Item class="TextLabel" referent="88">
+              <Properties>
+                <string name="Name">Icon</string>
+                <Color3 name="BackgroundColor3">
+                  <R>1</R>
+                  <G>1</G>
+                  <B>1</B>
+                </Color3>
+                <float name="BackgroundTransparency">1</float>
+                <int name="BorderSizePixel">0</int>
+                <Font name="FontFace">
+                  <Family>
+                    <url>rbxasset://fonts/families/Montserrat.json</url>
+                  </Family>
+                  <Weight>700</Weight>
+                  <Style>Normal</Style>
+                </Font>
+                <UDim2 name="Position">
+                  <XS>0</XS>
+                  <XO>0</XO>
+                  <YS>0</YS>
+                  <YO>0</YO>
+                </UDim2>
+                <UDim2 name="Size">
+                  <XS>1</XS>
+                  <XO>0</XO>
+                  <YS>0.9375</YS>
+                  <YO>0</YO>
+                </UDim2>
+                <string name="Text">+</string>
+                <Color3 name="TextColor3">
+                  <R>0.76862746</R>
+                  <G>0.78431374</G>
+                  <B>0.84705883</B>
+                </Color3>
+                <float name="TextSize">20</float>
+                <token name="TextTruncate">0</token>
+                <token name="TextXAlignment">2</token>
+                <token name="TextYAlignment">1</token>
+              </Properties>
+            </Item>
+          </Item>
+        </Item>
+        <Item class="TextButton" referent="89">
+          <Properties>
+            <string name="Name">Flash</string>
+            <bool name="AutoButtonColor">false</bool>
+            <Color3 name="BackgroundColor3">
+              <R>1</R>
+              <G>0.74509805</G>
+              <B>0.21960784</B>
+            </Color3>
+            <float name="BackgroundTransparency">0.72</float>
+            <int name="BorderSizePixel">0</int>
+            <UDim2 name="Position">
+              <XS>0</XS>
+              <XO>0</XO>
+              <YS>0.84375</YS>
+              <YO>0</YO>
+            </UDim2>
+            <UDim2 name="Size">
+              <XS>1</XS>
+              <XO>0</XO>
+              <YS>0.11875</YS>
+              <YO>0</YO>
+            </UDim2>
+            <string name="Text"></string>
+          </Properties>
+          <Item class="UICorner" referent="90">
+            <Properties>
+              <string name="Name">UICorner</string>
+              <UDim name="CornerRadius">
+                <S>0.31578946</S>
+                <O>0</O>
+              </UDim>
+            </Properties>
+          </Item>
+          <Item class="UIStroke" referent="91">
+            <Properties>
+              <string name="Name">Outline</string>
+              <token name="ApplyStrokeMode">1</token>
+              <Color3 name="Color">
+                <R>1</R>
+                <G>0.74509805</G>
+                <B>0.21960784</B>
+              </Color3>
+              <float name="Thickness">1</float>
+              <float name="Transparency">0.45</float>
+            </Properties>
+          </Item>
+          <Item class="TextLabel" referent="92">
+            <Properties>
+              <string name="Name">Icon</string>
+              <Color3 name="BackgroundColor3">
+                <R>1</R>
+                <G>1</G>
+                <B>1</B>
+              </Color3>
+              <float name="BackgroundTransparency">1</float>
+              <int name="BorderSizePixel">0</int>
+              <Font name="FontFace">
+                <Family>
+                  <url>rbxasset://fonts/families/Montserrat.json</url>
+                </Family>
+                <Weight>400</Weight>
+                <Style>Normal</Style>
+              </Font>
+              <UDim2 name="Position">
+                <XS>0.032608695</XS>
+                <XO>0</XO>
+                <YS>0</YS>
+                <YO>0</YO>
+              </UDim2>
+              <UDim2 name="Size">
+                <XS>0.13043478</XS>
+                <XO>0</XO>
+                <YS>1</YS>
+                <YO>0</YO>
+              </UDim2>
+              <string name="Text">⚡</string>
+              <Color3 name="TextColor3">
+                <R>1</R>
+                <G>1</G>
+                <B>1</B>
+              </Color3>
+              <float name="TextSize">14</float>
+              <token name="TextTruncate">0</token>
+              <token name="TextXAlignment">2</token>
+              <token name="TextYAlignment">1</token>
+            </Properties>
+          </Item>
+          <Item class="TextLabel" referent="93">
+            <Properties>
+              <string name="Name">Label</string>
+              <Color3 name="BackgroundColor3">
+                <R>1</R>
+                <G>1</G>
+                <B>1</B>
+              </Color3>
+              <float name="BackgroundTransparency">1</float>
+              <int name="BorderSizePixel">0</int>
+              <Font name="FontFace">
+                <Family>
+                  <url>rbxasset://fonts/families/Montserrat.json</url>
+                </Family>
+                <Weight>800</Weight>
+                <Style>Normal</Style>
+              </Font>
+              <UDim2 name="Position">
+                <XS>0.17391305</XS>
+                <XO>0</XO>
+                <YS>0</YS>
+                <YO>0</YO>
+              </UDim2>
+              <UDim2 name="Size">
+                <XS>0.8043478</XS>
+                <XO>0</XO>
+                <YS>1</YS>
+                <YO>0</YO>
+              </UDim2>
+              <string name="Text">FLASH TEST</string>
+              <Color3 name="TextColor3">
+                <R>0.9647059</R>
+                <G>0.96862745</G>
+                <B>0.98039216</B>
+              </Color3>
+              <float name="TextSize">11</float>
+              <token name="TextTruncate">1</token>
+              <token name="TextXAlignment">0</token>
+              <token name="TextYAlignment">1</token>
+            </Properties>
+          </Item>
+        </Item>
+      </Item>
+      <Item class="Frame" referent="94">
+        <Properties>
+          <string name="Name">Right</string>
+          <Color3 name="BackgroundColor3">
+            <R>1</R>
+            <G>1</G>
+            <B>1</B>
+          </Color3>
+          <float name="BackgroundTransparency">1</float>
+          <int name="BorderSizePixel">0</int>
+          <UDim2 name="Position">
+            <XS>0.5190476</XS>
+            <XO>0</XO>
+            <YS>0.2627451</YS>
+            <YO>0</YO>
+          </UDim2>
+          <UDim2 name="Size">
+            <XS>0.43809524</XS>
+            <XO>0</XO>
+            <YS>0.627451</YS>
+            <YO>0</YO>
+          </UDim2>
+        </Properties>
+        <Item class="TextLabel" referent="95">
+          <Properties>
+            <string name="Name">EffectsLabel</string>
+            <Color3 name="BackgroundColor3">
+              <R>1</R>
+              <G>1</G>
+              <B>1</B>
+            </Color3>
+            <float name="BackgroundTransparency">1</float>
+            <int name="BorderSizePixel">0</int>
+            <Font name="FontFace">
+              <Family>
+                <url>rbxasset://fonts/families/Montserrat.json</url>
+              </Family>
+              <Weight>800</Weight>
+              <Style>Normal</Style>
+            </Font>
+            <UDim2 name="Position">
+              <XS>0.010869565</XS>
+              <XO>0</XO>
+              <YS>0</YS>
+              <YO>0</YO>
+            </UDim2>
+            <UDim2 name="Size">
+              <XS>0.8695652</XS>
+              <XO>0</XO>
+              <YS>0.0375</YS>
+              <YO>0</YO>
+            </UDim2>
+            <string name="Text">EFFECTS</string>
+            <Color3 name="TextColor3">
+              <R>0.627451</R>
+              <G>0.64705884</G>
+              <B>0.7294118</B>
+            </Color3>
+            <float name="TextSize">10</float>
+            <token name="TextTruncate">1</token>
+            <token name="TextXAlignment">0</token>
+            <token name="TextYAlignment">1</token>
+          </Properties>
+        </Item>
+        <Item class="TextButton" referent="96">
+          <Properties>
+            <string name="Name">Toggle_Pyro</string>
+            <bool name="AutoButtonColor">false</bool>
+            <Color3 name="BackgroundColor3">
+              <R>1</R>
+              <G>1</G>
+              <B>1</B>
+            </Color3>
+            <float name="BackgroundTransparency">0.9</float>
+            <int name="BorderSizePixel">0</int>
+            <UDim2 name="Position">
+              <XS>0</XS>
+              <XO>0</XO>
+              <YS>0.05625</YS>
+              <YO>0</YO>
+            </UDim2>
+            <UDim2 name="Size">
+              <XS>1</XS>
+              <XO>0</XO>
+              <YS>0.1375</YS>
+              <YO>0</YO>
+            </UDim2>
+            <string name="Text"></string>
+          </Properties>
+          <Item class="UICorner" referent="97">
+            <Properties>
+              <string name="Name">UICorner</string>
+              <UDim name="CornerRadius">
+                <S>0.27272728</S>
+                <O>0</O>
+              </UDim>
+            </Properties>
+          </Item>
+          <Item class="UIStroke" referent="98">
+            <Properties>
+              <string name="Name">Outline</string>
+              <token name="ApplyStrokeMode">1</token>
+              <Color3 name="Color">
+                <R>1</R>
+                <G>1</G>
+                <B>1</B>
+              </Color3>
+              <float name="Thickness">1</float>
+              <float name="Transparency">0.85</float>
+            </Properties>
+          </Item>
+          <Item class="TextLabel" referent="99">
+            <Properties>
+              <string name="Name">Title</string>
+              <Color3 name="BackgroundColor3">
+                <R>1</R>
+                <G>1</G>
+                <B>1</B>
+              </Color3>
+              <float name="BackgroundTransparency">1</float>
+              <int name="BorderSizePixel">0</int>
+              <Font name="FontFace">
+                <Family>
+                  <url>rbxasset://fonts/families/Montserrat.json</url>
+                </Family>
+                <Weight>700</Weight>
+                <Style>Normal</Style>
+              </Font>
+              <UDim2 name="Position">
+                <XS>0.06521739</XS>
+                <XO>0</XO>
+                <YS>0.1590909</YS>
+                <YO>0</YO>
+              </UDim2>
+              <UDim2 name="Size">
+                <XS>0.6195652</XS>
+                <XO>0</XO>
+                <YS>0.36363637</YS>
+                <YO>0</YO>
+              </UDim2>
+              <string name="Text">Pyro</string>
+              <Color3 name="TextColor3">
+                <R>0.9647059</R>
+                <G>0.96862745</G>
+                <B>0.98039216</B>
+              </Color3>
+              <float name="TextSize">12</float>
+              <token name="TextTruncate">1</token>
+              <token name="TextXAlignment">0</token>
+              <token name="TextYAlignment">1</token>
+            </Properties>
+          </Item>
+          <Item class="TextLabel" referent="100">
+            <Properties>
+              <string name="Name">Subtitle</string>
+              <Color3 name="BackgroundColor3">
+                <R>1</R>
+                <G>1</G>
+                <B>1</B>
+              </Color3>
+              <float name="BackgroundTransparency">1</float>
+              <int name="BorderSizePixel">0</int>
+              <Font name="FontFace">
+                <Family>
+                  <url>rbxasset://fonts/families/Montserrat.json</url>
+                </Family>
+                <Weight>500</Weight>
+                <Style>Normal</Style>
+              </Font>
+              <UDim2 name="Position">
+                <XS>0.06521739</XS>
+                <XO>0</XO>
+                <YS>0.54545456</YS>
+                <YO>0</YO>
+              </UDim2>
+              <UDim2 name="Size">
+                <XS>0.6195652</XS>
+                <XO>0</XO>
+                <YS>0.27272728</YS>
+                <YO>0</YO>
+              </UDim2>
+              <string name="Text">Fire, CO2, smoke, confetti</string>
+              <Color3 name="TextColor3">
+                <R>0.76862746</R>
+                <G>0.78431374</G>
+                <B>0.84705883</B>
+              </Color3>
+              <float name="TextSize">9</float>
+              <token name="TextTruncate">1</token>
+              <token name="TextXAlignment">0</token>
+              <token name="TextYAlignment">1</token>
+            </Properties>
+          </Item>
+          <Item class="Frame" referent="101">
+            <Properties>
+              <string name="Name">Track</string>
+              <Color3 name="BackgroundColor3">
+                <R>0.23921569</R>
+                <G>0.8627451</G>
+                <B>0.5921569</B>
+              </Color3>
+              <float name="BackgroundTransparency">0</float>
+              <int name="BorderSizePixel">0</int>
+              <UDim2 name="Position">
+                <XS>0.7173913</XS>
+                <XO>0</XO>
+                <YS>0.25</YS>
+                <YO>0</YO>
+              </UDim2>
+              <UDim2 name="Size">
+                <XS>0.2173913</XS>
+                <XO>0</XO>
+                <YS>0.5</YS>
+                <YO>0</YO>
+              </UDim2>
+            </Properties>
+            <Item class="UICorner" referent="102">
+              <Properties>
+                <string name="Name">UICorner</string>
+                <UDim name="CornerRadius">
+                  <S>0.5</S>
+                  <O>0</O>
+                </UDim>
+              </Properties>
+            </Item>
+            <Item class="Frame" referent="103">
+              <Properties>
+                <string name="Name">Knob</string>
+                <Color3 name="BackgroundColor3">
+                  <R>1</R>
+                  <G>1</G>
+                  <B>1</B>
+                </Color3>
+                <float name="BackgroundTransparency">0</float>
+                <int name="BorderSizePixel">0</int>
+                <UDim2 name="Position">
+                  <XS>0.5</XS>
+                  <XO>0</XO>
+                  <YS>0.13636364</YS>
+                  <YO>0</YO>
+                </UDim2>
+                <UDim2 name="Size">
+                  <XS>0.4</XS>
+                  <XO>0</XO>
+                  <YS>0.72727275</YS>
+                  <YO>0</YO>
+                </UDim2>
+              </Properties>
+              <Item class="UICorner" referent="104">
+                <Properties>
+                  <string name="Name">UICorner</string>
+                  <UDim name="CornerRadius">
+                    <S>0.5</S>
+                    <O>0</O>
+                  </UDim>
+                </Properties>
+              </Item>
+            </Item>
+          </Item>
+        </Item>
+        <Item class="TextButton" referent="105">
+          <Properties>
+            <string name="Name">Fire_CO2</string>
+            <bool name="AutoButtonColor">false</bool>
+            <Color3 name="BackgroundColor3">
+              <R>1</R>
+              <G>1</G>
+              <B>1</B>
+            </Color3>
+            <float name="BackgroundTransparency">0.9</float>
+            <int name="BorderSizePixel">0</int>
+            <UDim2 name="Position">
+              <XS>0</XS>
+              <XO>0</XO>
+              <YS>0.21875</YS>
+              <YO>0</YO>
+            </UDim2>
+            <UDim2 name="Size">
+              <XS>0.47826087</XS>
+              <XO>0</XO>
+              <YS>0.1125</YS>
+              <YO>0</YO>
+            </UDim2>
+            <string name="Text"></string>
+          </Properties>
+          <Item class="UICorner" referent="106">
+            <Properties>
+              <string name="Name">UICorner</string>
+              <UDim name="CornerRadius">
+                <S>0.33333334</S>
+                <O>0</O>
+              </UDim>
+            </Properties>
+          </Item>
+          <Item class="UIStroke" referent="107">
+            <Properties>
+              <string name="Name">Outline</string>
+              <token name="ApplyStrokeMode">1</token>
+              <Color3 name="Color">
+                <R>1</R>
+                <G>1</G>
+                <B>1</B>
+              </Color3>
+              <float name="Thickness">1</float>
+              <float name="Transparency">0.85</float>
+            </Properties>
+          </Item>
+          <Item class="TextLabel" referent="108">
+            <Properties>
+              <string name="Name">Icon</string>
+              <Color3 name="BackgroundColor3">
+                <R>1</R>
+                <G>1</G>
+                <B>1</B>
+              </Color3>
+              <float name="BackgroundTransparency">1</float>
+              <int name="BorderSizePixel">0</int>
+              <Font name="FontFace">
+                <Family>
+                  <url>rbxasset://fonts/families/Montserrat.json</url>
+                </Family>
+                <Weight>400</Weight>
+                <Style>Normal</Style>
+              </Font>
+              <UDim2 name="Position">
+                <XS>0.06818182</XS>
+                <XO>0</XO>
+                <YS>0</YS>
+                <YO>0</YO>
+              </UDim2>
+              <UDim2 name="Size">
+                <XS>0.27272728</XS>
+                <XO>0</XO>
+                <YS>1</YS>
+                <YO>0</YO>
+              </UDim2>
+              <string name="Text">💨</string>
+              <Color3 name="TextColor3">
+                <R>1</R>
+                <G>1</G>
+                <B>1</B>
+              </Color3>
+              <float name="TextSize">14</float>
+              <token name="TextTruncate">0</token>
+              <token name="TextXAlignment">2</token>
+              <token name="TextYAlignment">1</token>
+            </Properties>
+          </Item>
+          <Item class="TextLabel" referent="109">
+            <Properties>
+              <string name="Name">Label</string>
+              <Color3 name="BackgroundColor3">
+                <R>1</R>
+                <G>1</G>
+                <B>1</B>
+              </Color3>
+              <float name="BackgroundTransparency">1</float>
+              <int name="BorderSizePixel">0</int>
+              <Font name="FontFace">
+                <Family>
+                  <url>rbxasset://fonts/families/Montserrat.json</url>
+                </Family>
+                <Weight>800</Weight>
+                <Style>Normal</Style>
+              </Font>
+              <UDim2 name="Position">
+                <XS>0.36363637</XS>
+                <XO>0</XO>
+                <YS>0</YS>
+                <YO>0</YO>
+              </UDim2>
+              <UDim2 name="Size">
+                <XS>0.59090906</XS>
+                <XO>0</XO>
+                <YS>1</YS>
+                <YO>0</YO>
+              </UDim2>
+              <string name="Text">CO2</string>
+              <Color3 name="TextColor3">
+                <R>0.9647059</R>
+                <G>0.96862745</G>
+                <B>0.98039216</B>
+              </Color3>
+              <float name="TextSize">10</float>
+              <token name="TextTruncate">1</token>
+              <token name="TextXAlignment">0</token>
+              <token name="TextYAlignment">1</token>
+            </Properties>
+          </Item>
+        </Item>
+        <Item class="TextButton" referent="110">
+          <Properties>
+            <string name="Name">Fire_CONFETTI</string>
+            <bool name="AutoButtonColor">false</bool>
+            <Color3 name="BackgroundColor3">
+              <R>1</R>
+              <G>1</G>
+              <B>1</B>
+            </Color3>
+            <float name="BackgroundTransparency">0.9</float>
+            <int name="BorderSizePixel">0</int>
+            <UDim2 name="Position">
+              <XS>0.5217391</XS>
+              <XO>0</XO>
+              <YS>0.21875</YS>
+              <YO>0</YO>
+            </UDim2>
+            <UDim2 name="Size">
+              <XS>0.47826087</XS>
+              <XO>0</XO>
+              <YS>0.1125</YS>
+              <YO>0</YO>
+            </UDim2>
+            <string name="Text"></string>
+          </Properties>
+          <Item class="UICorner" referent="111">
+            <Properties>
+              <string name="Name">UICorner</string>
+              <UDim name="CornerRadius">
+                <S>0.33333334</S>
+                <O>0</O>
+              </UDim>
+            </Properties>
+          </Item>
+          <Item class="UIStroke" referent="112">
+            <Properties>
+              <string name="Name">Outline</string>
+              <token name="ApplyStrokeMode">1</token>
+              <Color3 name="Color">
+                <R>1</R>
+                <G>1</G>
+                <B>1</B>
+              </Color3>
+              <float name="Thickness">1</float>
+              <float name="Transparency">0.85</float>
+            </Properties>
+          </Item>
+          <Item class="TextLabel" referent="113">
+            <Properties>
+              <string name="Name">Icon</string>
+              <Color3 name="BackgroundColor3">
+                <R>1</R>
+                <G>1</G>
+                <B>1</B>
+              </Color3>
+              <float name="BackgroundTransparency">1</float>
+              <int name="BorderSizePixel">0</int>
+              <Font name="FontFace">
+                <Family>
+                  <url>rbxasset://fonts/families/Montserrat.json</url>
+                </Family>
+                <Weight>400</Weight>
+                <Style>Normal</Style>
+              </Font>
+              <UDim2 name="Position">
+                <XS>0.06818182</XS>
+                <XO>0</XO>
+                <YS>0</YS>
+                <YO>0</YO>
+              </UDim2>
+              <UDim2 name="Size">
+                <XS>0.27272728</XS>
+                <XO>0</XO>
+                <YS>1</YS>
+                <YO>0</YO>
+              </UDim2>
+              <string name="Text">🎉</string>
+              <Color3 name="TextColor3">
+                <R>1</R>
+                <G>1</G>
+                <B>1</B>
+              </Color3>
+              <float name="TextSize">14</float>
+              <token name="TextTruncate">0</token>
+              <token name="TextXAlignment">2</token>
+              <token name="TextYAlignment">1</token>
+            </Properties>
+          </Item>
+          <Item class="TextLabel" referent="114">
+            <Properties>
+              <string name="Name">Label</string>
+              <Color3 name="BackgroundColor3">
+                <R>1</R>
+                <G>1</G>
+                <B>1</B>
+              </Color3>
+              <float name="BackgroundTransparency">1</float>
+              <int name="BorderSizePixel">0</int>
+              <Font name="FontFace">
+                <Family>
+                  <url>rbxasset://fonts/families/Montserrat.json</url>
+                </Family>
+                <Weight>800</Weight>
+                <Style>Normal</Style>
+              </Font>
+              <UDim2 name="Position">
+                <XS>0.36363637</XS>
+                <XO>0</XO>
+                <YS>0</YS>
+                <YO>0</YO>
+              </UDim2>
+              <UDim2 name="Size">
+                <XS>0.59090906</XS>
+                <XO>0</XO>
+                <YS>1</YS>
+                <YO>0</YO>
+              </UDim2>
+              <string name="Text">CONFETTI</string>
+              <Color3 name="TextColor3">
+                <R>0.9647059</R>
+                <G>0.96862745</G>
+                <B>0.98039216</B>
+              </Color3>
+              <float name="TextSize">9</float>
+              <token name="TextTruncate">1</token>
+              <token name="TextXAlignment">0</token>
+              <token name="TextYAlignment">1</token>
+            </Properties>
+          </Item>
+        </Item>
+        <Item class="TextButton" referent="115">
+          <Properties>
+            <string name="Name">Fire_SMOKE</string>
+            <bool name="AutoButtonColor">false</bool>
+            <Color3 name="BackgroundColor3">
+              <R>1</R>
+              <G>1</G>
+              <B>1</B>
+            </Color3>
+            <float name="BackgroundTransparency">0.9</float>
+            <int name="BorderSizePixel">0</int>
+            <UDim2 name="Position">
+              <XS>0</XS>
+              <XO>0</XO>
+              <YS>0.35625</YS>
+              <YO>0</YO>
+            </UDim2>
+            <UDim2 name="Size">
+              <XS>0.47826087</XS>
+              <XO>0</XO>
+              <YS>0.1125</YS>
+              <YO>0</YO>
+            </UDim2>
+            <string name="Text"></string>
+          </Properties>
+          <Item class="UICorner" referent="116">
+            <Properties>
+              <string name="Name">UICorner</string>
+              <UDim name="CornerRadius">
+                <S>0.33333334</S>
+                <O>0</O>
+              </UDim>
+            </Properties>
+          </Item>
+          <Item class="UIStroke" referent="117">
+            <Properties>
+              <string name="Name">Outline</string>
+              <token name="ApplyStrokeMode">1</token>
+              <Color3 name="Color">
+                <R>1</R>
+                <G>1</G>
+                <B>1</B>
+              </Color3>
+              <float name="Thickness">1</float>
+              <float name="Transparency">0.85</float>
+            </Properties>
+          </Item>
+          <Item class="TextLabel" referent="118">
+            <Properties>
+              <string name="Name">Icon</string>
+              <Color3 name="BackgroundColor3">
+                <R>1</R>
+                <G>1</G>
+                <B>1</B>
+              </Color3>
+              <float name="BackgroundTransparency">1</float>
+              <int name="BorderSizePixel">0</int>
+              <Font name="FontFace">
+                <Family>
+                  <url>rbxasset://fonts/families/Montserrat.json</url>
+                </Family>
+                <Weight>400</Weight>
+                <Style>Normal</Style>
+              </Font>
+              <UDim2 name="Position">
+                <XS>0.06818182</XS>
+                <XO>0</XO>
+                <YS>0</YS>
+                <YO>0</YO>
+              </UDim2>
+              <UDim2 name="Size">
+                <XS>0.27272728</XS>
+                <XO>0</XO>
+                <YS>1</YS>
+                <YO>0</YO>
+              </UDim2>
+              <string name="Text">🌫️</string>
+              <Color3 name="TextColor3">
+                <R>1</R>
+                <G>1</G>
+                <B>1</B>
+              </Color3>
+              <float name="TextSize">14</float>
+              <token name="TextTruncate">0</token>
+              <token name="TextXAlignment">2</token>
+              <token name="TextYAlignment">1</token>
+            </Properties>
+          </Item>
+          <Item class="TextLabel" referent="119">
+            <Properties>
+              <string name="Name">Label</string>
+              <Color3 name="BackgroundColor3">
+                <R>1</R>
+                <G>1</G>
+                <B>1</B>
+              </Color3>
+              <float name="BackgroundTransparency">1</float>
+              <int name="BorderSizePixel">0</int>
+              <Font name="FontFace">
+                <Family>
+                  <url>rbxasset://fonts/families/Montserrat.json</url>
+                </Family>
+                <Weight>800</Weight>
+                <Style>Normal</Style>
+              </Font>
+              <UDim2 name="Position">
+                <XS>0.36363637</XS>
+                <XO>0</XO>
+                <YS>0</YS>
+                <YO>0</YO>
+              </UDim2>
+              <UDim2 name="Size">
+                <XS>0.59090906</XS>
+                <XO>0</XO>
+                <YS>1</YS>
+                <YO>0</YO>
+              </UDim2>
+              <string name="Text">SMOKE</string>
+              <Color3 name="TextColor3">
+                <R>0.9647059</R>
+                <G>0.96862745</G>
+                <B>0.98039216</B>
+              </Color3>
+              <float name="TextSize">10</float>
+              <token name="TextTruncate">1</token>
+              <token name="TextXAlignment">0</token>
+              <token name="TextYAlignment">1</token>
+            </Properties>
+          </Item>
+        </Item>
+        <Item class="TextButton" referent="120">
+          <Properties>
+            <string name="Name">StopPyro</string>
+            <bool name="AutoButtonColor">false</bool>
+            <Color3 name="BackgroundColor3">
+              <R>1</R>
+              <G>0.33333334</G>
+              <B>0.4</B>
+            </Color3>
+            <float name="BackgroundTransparency">0.72</float>
+            <int name="BorderSizePixel">0</int>
+            <UDim2 name="Position">
+              <XS>0.5217391</XS>
+              <XO>0</XO>
+              <YS>0.35625</YS>
+              <YO>0</YO>
+            </UDim2>
+            <UDim2 name="Size">
+              <XS>0.47826087</XS>
+              <XO>0</XO>
+              <YS>0.1125</YS>
+              <YO>0</YO>
+            </UDim2>
+            <string name="Text"></string>
+          </Properties>
+          <Item class="UICorner" referent="121">
+            <Properties>
+              <string name="Name">UICorner</string>
+              <UDim name="CornerRadius">
+                <S>0.33333334</S>
+                <O>0</O>
+              </UDim>
+            </Properties>
+          </Item>
+          <Item class="UIStroke" referent="122">
+            <Properties>
+              <string name="Name">Outline</string>
+              <token name="ApplyStrokeMode">1</token>
+              <Color3 name="Color">
+                <R>1</R>
+                <G>0.33333334</G>
+                <B>0.4</B>
+              </Color3>
+              <float name="Thickness">1</float>
+              <float name="Transparency">0.45</float>
+            </Properties>
+          </Item>
+          <Item class="TextLabel" referent="123">
+            <Properties>
+              <string name="Name">Icon</string>
+              <Color3 name="BackgroundColor3">
+                <R>1</R>
+                <G>1</G>
+                <B>1</B>
+              </Color3>
+              <float name="BackgroundTransparency">1</float>
+              <int name="BorderSizePixel">0</int>
+              <Font name="FontFace">
+                <Family>
+                  <url>rbxasset://fonts/families/Montserrat.json</url>
+                </Family>
+                <Weight>400</Weight>
+                <Style>Normal</Style>
+              </Font>
+              <UDim2 name="Position">
+                <XS>0.06818182</XS>
+                <XO>0</XO>
+                <YS>0</YS>
+                <YO>0</YO>
+              </UDim2>
+              <UDim2 name="Size">
+                <XS>0.27272728</XS>
+                <XO>0</XO>
+                <YS>1</YS>
+                <YO>0</YO>
+              </UDim2>
+              <string name="Text">⛔</string>
+              <Color3 name="TextColor3">
+                <R>1</R>
+                <G>1</G>
+                <B>1</B>
+              </Color3>
+              <float name="TextSize">14</float>
+              <token name="TextTruncate">0</token>
+              <token name="TextXAlignment">2</token>
+              <token name="TextYAlignment">1</token>
+            </Properties>
+          </Item>
+          <Item class="TextLabel" referent="124">
+            <Properties>
+              <string name="Name">Label</string>
+              <Color3 name="BackgroundColor3">
+                <R>1</R>
+                <G>1</G>
+                <B>1</B>
+              </Color3>
+              <float name="BackgroundTransparency">1</float>
+              <int name="BorderSizePixel">0</int>
+              <Font name="FontFace">
+                <Family>
+                  <url>rbxasset://fonts/families/Montserrat.json</url>
+                </Family>
+                <Weight>800</Weight>
+                <Style>Normal</Style>
+              </Font>
+              <UDim2 name="Position">
+                <XS>0.36363637</XS>
+                <XO>0</XO>
+                <YS>0</YS>
+                <YO>0</YO>
+              </UDim2>
+              <UDim2 name="Size">
+                <XS>0.59090906</XS>
+                <XO>0</XO>
+                <YS>1</YS>
+                <YO>0</YO>
+              </UDim2>
+              <string name="Text">STOP</string>
+              <Color3 name="TextColor3">
+                <R>0.9647059</R>
+                <G>0.96862745</G>
+                <B>0.98039216</B>
+              </Color3>
+              <float name="TextSize">10</float>
+              <token name="TextTruncate">1</token>
+              <token name="TextXAlignment">0</token>
+              <token name="TextYAlignment">1</token>
+            </Properties>
+          </Item>
+        </Item>
+        <Item class="TextLabel" referent="125">
+          <Properties>
+            <string name="Name">LightsLabel</string>
+            <Color3 name="BackgroundColor3">
+              <R>1</R>
+              <G>1</G>
+              <B>1</B>
+            </Color3>
+            <float name="BackgroundTransparency">1</float>
+            <int name="BorderSizePixel">0</int>
+            <Font name="FontFace">
+              <Family>
+                <url>rbxasset://fonts/families/Montserrat.json</url>
+              </Family>
+              <Weight>800</Weight>
+              <Style>Normal</Style>
+            </Font>
+            <UDim2 name="Position">
+              <XS>0.010869565</XS>
+              <XO>0</XO>
+              <YS>0.525</YS>
+              <YO>0</YO>
+            </UDim2>
+            <UDim2 name="Size">
+              <XS>0.8695652</XS>
+              <XO>0</XO>
+              <YS>0.0375</YS>
+              <YO>0</YO>
+            </UDim2>
+            <string name="Text">LIGHTS</string>
+            <Color3 name="TextColor3">
+              <R>0.627451</R>
+              <G>0.64705884</G>
+              <B>0.7294118</B>
+            </Color3>
+            <float name="TextSize">10</float>
+            <token name="TextTruncate">1</token>
+            <token name="TextXAlignment">0</token>
+            <token name="TextYAlignment">1</token>
+          </Properties>
+        </Item>
+        <Item class="TextButton" referent="126">
+          <Properties>
+            <string name="Name">Blackout</string>
+            <bool name="AutoButtonColor">false</bool>
+            <Color3 name="BackgroundColor3">
+              <R>1</R>
+              <G>0.33333334</G>
+              <B>0.4</B>
+            </Color3>
+            <float name="BackgroundTransparency">0.72</float>
+            <int name="BorderSizePixel">0</int>
+            <UDim2 name="Position">
+              <XS>0</XS>
+              <XO>0</XO>
+              <YS>0.58125</YS>
+              <YO>0</YO>
+            </UDim2>
+            <UDim2 name="Size">
+              <XS>1</XS>
+              <XO>0</XO>
+              <YS>0.1375</YS>
+              <YO>0</YO>
+            </UDim2>
+            <string name="Text"></string>
+          </Properties>
+          <Item class="UICorner" referent="127">
+            <Properties>
+              <string name="Name">UICorner</string>
+              <UDim name="CornerRadius">
+                <S>0.27272728</S>
+                <O>0</O>
+              </UDim>
+            </Properties>
+          </Item>
+          <Item class="UIStroke" referent="128">
+            <Properties>
+              <string name="Name">Outline</string>
+              <token name="ApplyStrokeMode">1</token>
+              <Color3 name="Color">
+                <R>1</R>
+                <G>0.33333334</G>
+                <B>0.4</B>
+              </Color3>
+              <float name="Thickness">1</float>
+              <float name="Transparency">0.45</float>
+            </Properties>
+          </Item>
+          <Item class="TextLabel" referent="129">
+            <Properties>
+              <string name="Name">Icon</string>
+              <Color3 name="BackgroundColor3">
+                <R>1</R>
+                <G>1</G>
+                <B>1</B>
+              </Color3>
+              <float name="BackgroundTransparency">1</float>
+              <int name="BorderSizePixel">0</int>
+              <Font name="FontFace">
+                <Family>
+                  <url>rbxasset://fonts/families/Montserrat.json</url>
+                </Family>
+                <Weight>400</Weight>
+                <Style>Normal</Style>
+              </Font>
+              <UDim2 name="Position">
+                <XS>0.032608695</XS>
+                <XO>0</XO>
+                <YS>0</YS>
+                <YO>0</YO>
+              </UDim2>
+              <UDim2 name="Size">
+                <XS>0.13043478</XS>
+                <XO>0</XO>
+                <YS>1</YS>
+                <YO>0</YO>
+              </UDim2>
+              <string name="Text">🌑</string>
+              <Color3 name="TextColor3">
+                <R>1</R>
+                <G>1</G>
+                <B>1</B>
+              </Color3>
+              <float name="TextSize">14</float>
+              <token name="TextTruncate">0</token>
+              <token name="TextXAlignment">2</token>
+              <token name="TextYAlignment">1</token>
+            </Properties>
+          </Item>
+          <Item class="TextLabel" referent="130">
+            <Properties>
+              <string name="Name">Label</string>
+              <Color3 name="BackgroundColor3">
+                <R>1</R>
+                <G>1</G>
+                <B>1</B>
+              </Color3>
+              <float name="BackgroundTransparency">1</float>
+              <int name="BorderSizePixel">0</int>
+              <Font name="FontFace">
+                <Family>
+                  <url>rbxasset://fonts/families/Montserrat.json</url>
+                </Family>
+                <Weight>800</Weight>
+                <Style>Normal</Style>
+              </Font>
+              <UDim2 name="Position">
+                <XS>0.17391305</XS>
+                <XO>0</XO>
+                <YS>0</YS>
+                <YO>0</YO>
+              </UDim2>
+              <UDim2 name="Size">
+                <XS>0.8043478</XS>
+                <XO>0</XO>
+                <YS>1</YS>
+                <YO>0</YO>
+              </UDim2>
+              <string name="Text">BLACKOUT</string>
+              <Color3 name="TextColor3">
+                <R>0.9647059</R>
+                <G>0.96862745</G>
+                <B>0.98039216</B>
+              </Color3>
+              <float name="TextSize">11</float>
+              <token name="TextTruncate">1</token>
+              <token name="TextXAlignment">0</token>
+              <token name="TextYAlignment">1</token>
+            </Properties>
+          </Item>
+        </Item>
+        <Item class="TextButton" referent="131">
+          <Properties>
+            <string name="Name">Restore</string>
+            <bool name="AutoButtonColor">false</bool>
+            <Color3 name="BackgroundColor3">
+              <R>0.23921569</R>
+              <G>0.8627451</G>
+              <B>0.5921569</B>
+            </Color3>
+            <float name="BackgroundTransparency">0.72</float>
+            <int name="BorderSizePixel">0</int>
+            <UDim2 name="Position">
+              <XS>0</XS>
+              <XO>0</XO>
+              <YS>0.74375</YS>
+              <YO>0</YO>
+            </UDim2>
+            <UDim2 name="Size">
+              <XS>1</XS>
+              <XO>0</XO>
+              <YS>0.1375</YS>
+              <YO>0</YO>
+            </UDim2>
+            <string name="Text"></string>
+          </Properties>
+          <Item class="UICorner" referent="132">
+            <Properties>
+              <string name="Name">UICorner</string>
+              <UDim name="CornerRadius">
+                <S>0.27272728</S>
+                <O>0</O>
+              </UDim>
+            </Properties>
+          </Item>
+          <Item class="UIStroke" referent="133">
+            <Properties>
+              <string name="Name">Outline</string>
+              <token name="ApplyStrokeMode">1</token>
+              <Color3 name="Color">
+                <R>0.23921569</R>
+                <G>0.8627451</G>
+                <B>0.5921569</B>
+              </Color3>
+              <float name="Thickness">1</float>
+              <float name="Transparency">0.45</float>
+            </Properties>
+          </Item>
+          <Item class="TextLabel" referent="134">
+            <Properties>
+              <string name="Name">Icon</string>
+              <Color3 name="BackgroundColor3">
+                <R>1</R>
+                <G>1</G>
+                <B>1</B>
+              </Color3>
+              <float name="BackgroundTransparency">1</float>
+              <int name="BorderSizePixel">0</int>
+              <Font name="FontFace">
+                <Family>
+                  <url>rbxasset://fonts/families/Montserrat.json</url>
+                </Family>
+                <Weight>400</Weight>
+                <Style>Normal</Style>
+              </Font>
+              <UDim2 name="Position">
+                <XS>0.032608695</XS>
+                <XO>0</XO>
+                <YS>0</YS>
+                <YO>0</YO>
+              </UDim2>
+              <UDim2 name="Size">
+                <XS>0.13043478</XS>
+                <XO>0</XO>
+                <YS>1</YS>
+                <YO>0</YO>
+              </UDim2>
+              <string name="Text">💡</string>
+              <Color3 name="TextColor3">
+                <R>1</R>
+                <G>1</G>
+                <B>1</B>
+              </Color3>
+              <float name="TextSize">14</float>
+              <token name="TextTruncate">0</token>
+              <token name="TextXAlignment">2</token>
+              <token name="TextYAlignment">1</token>
+            </Properties>
+          </Item>
+          <Item class="TextLabel" referent="135">
+            <Properties>
+              <string name="Name">Label</string>
+              <Color3 name="BackgroundColor3">
+                <R>1</R>
+                <G>1</G>
+                <B>1</B>
+              </Color3>
+              <float name="BackgroundTransparency">1</float>
+              <int name="BorderSizePixel">0</int>
+              <Font name="FontFace">
+                <Family>
+                  <url>rbxasset://fonts/families/Montserrat.json</url>
+                </Family>
+                <Weight>800</Weight>
+                <Style>Normal</Style>
+              </Font>
+              <UDim2 name="Position">
+                <XS>0.17391305</XS>
+                <XO>0</XO>
+                <YS>0</YS>
+                <YO>0</YO>
+              </UDim2>
+              <UDim2 name="Size">
+                <XS>0.8043478</XS>
+                <XO>0</XO>
+                <YS>1</YS>
+                <YO>0</YO>
+              </UDim2>
+              <string name="Text">RESTORE</string>
+              <Color3 name="TextColor3">
+                <R>0.9647059</R>
+                <G>0.96862745</G>
+                <B>0.98039216</B>
+              </Color3>
+              <float name="TextSize">11</float>
+              <token name="TextTruncate">1</token>
+              <token name="TextXAlignment">0</token>
+              <token name="TextYAlignment">1</token>
+            </Properties>
+          </Item>
+        </Item>
+      </Item>
+      <Item class="Frame" referent="136">
+        <Properties>
+          <string name="Name">Toast</string>
+          <Color3 name="BackgroundColor3">
+            <R>1</R>
+            <G>1</G>
+            <B>1</B>
+          </Color3>
+          <float name="BackgroundTransparency">0.9</float>
+          <int name="BorderSizePixel">0</int>
+          <UDim2 name="Position">
+            <XS>0.042857144</XS>
+            <XO>0</XO>
+            <YS>0.8980392</YS>
+            <YO>0</YO>
+          </UDim2>
+          <UDim2 name="Size">
+            <XS>0.9142857</XS>
+            <XO>0</XO>
+            <YS>0.050980393</YS>
+            <YO>0</YO>
+          </UDim2>
+          <bool name="Visible">false</bool>
+        </Properties>
+        <Item class="UICorner" referent="137">
+          <Properties>
+            <string name="Name">UICorner</string>
+            <UDim name="CornerRadius">
+              <S>0.5</S>
+              <O>0</O>
+            </UDim>
+          </Properties>
+        </Item>
+        <Item class="Frame" referent="138">
+          <Properties>
+            <string name="Name">Dot</string>
+            <Color3 name="BackgroundColor3">
+              <R>0.23921569</R>
+              <G>0.8627451</G>
+              <B>0.5921569</B>
+            </Color3>
+            <float name="BackgroundTransparency">0</float>
+            <int name="BorderSizePixel">0</int>
+            <UDim2 name="Position">
+              <XS>0.03125</XS>
+              <XO>0</XO>
+              <YS>0.34615386</YS>
+              <YO>0</YO>
+            </UDim2>
+            <UDim2 name="Size">
+              <XS>0.020833334</XS>
+              <XO>0</XO>
+              <YS>0.30769232</YS>
+              <YO>0</YO>
+            </UDim2>
+          </Properties>
+          <Item class="UICorner" referent="139">
+            <Properties>
+              <string name="Name">UICorner</string>
+              <UDim name="CornerRadius">
+                <S>0.5</S>
+                <O>0</O>
+              </UDim>
+            </Properties>
+          </Item>
+        </Item>
+        <Item class="TextLabel" referent="140">
+          <Properties>
+            <string name="Name">Message</string>
+            <Color3 name="BackgroundColor3">
+              <R>1</R>
+              <G>1</G>
+              <B>1</B>
+            </Color3>
+            <float name="BackgroundTransparency">1</float>
+            <int name="BorderSizePixel">0</int>
+            <Font name="FontFace">
+              <Family>
+                <url>rbxasset://fonts/families/Montserrat.json</url>
+              </Family>
+              <Weight>600</Weight>
+              <Style>Normal</Style>
+            </Font>
+            <UDim2 name="Position">
+              <XS>0.072916664</XS>
+              <XO>0</XO>
+              <YS>0</YS>
+              <YO>0</YO>
+            </UDim2>
+            <UDim2 name="Size">
+              <XS>0.9114583</XS>
+              <XO>0</XO>
+              <YS>1</YS>
+              <YO>0</YO>
+            </UDim2>
+            <string name="Text">Sync OFF</string>
+            <Color3 name="TextColor3">
+              <R>0.9647059</R>
+              <G>0.96862745</G>
+              <B>0.98039216</B>
+            </Color3>
+            <float name="TextSize">10</float>
+            <token name="TextTruncate">1</token>
+            <token name="TextXAlignment">0</token>
+            <token name="TextYAlignment">1</token>
+          </Properties>
+        </Item>
+      </Item>
+      <Item class="TextLabel" referent="141">
+        <Properties>
+          <string name="Name">Credit</string>
+          <Color3 name="BackgroundColor3">
+            <R>1</R>
+            <G>1</G>
+            <B>1</B>
+          </Color3>
+          <float name="BackgroundTransparency">1</float>
+          <int name="BorderSizePixel">0</int>
+          <Font name="FontFace">
+            <Family>
+              <url>rbxasset://fonts/families/Montserrat.json</url>
+            </Family>
+            <Weight>500</Weight>
+            <Style>Normal</Style>
+          </Font>
+          <UDim2 name="Position">
+            <XS>0.04761905</XS>
+            <XO>0</XO>
+            <YS>0.95686275</YS>
+            <YO>0</YO>
+          </UDim2>
+          <UDim2 name="Size">
+            <XS>0.5714286</XS>
+            <XO>0</XO>
+            <YS>0.023529412</YS>
+            <YO>0</YO>
+          </UDim2>
+          <string name="Text">G-Lights Phantom  •  Jin Development</string>
+          <Color3 name="TextColor3">
+            <R>0.627451</R>
+            <G>0.64705884</G>
+            <B>0.7294118</B>
+          </Color3>
+          <float name="TextSize">9</float>
+          <token name="TextTruncate">1</token>
+          <token name="TextXAlignment">0</token>
+          <token name="TextYAlignment">1</token>
+        </Properties>
+      </Item>
+      <Item class="TextLabel" referent="142">
+        <Properties>
+          <string name="Name">Watermark</string>
+          <Color3 name="BackgroundColor3">
+            <R>1</R>
+            <G>1</G>
+            <B>1</B>
+          </Color3>
+          <float name="BackgroundTransparency">1</float>
+          <int name="BorderSizePixel">0</int>
+          <Font name="FontFace">
+            <Family>
+              <url>rbxasset://fonts/families/Montserrat.json</url>
+            </Family>
+            <Weight>800</Weight>
+            <Style>Normal</Style>
+          </Font>
+          <UDim2 name="Position">
+            <XS>0.6904762</XS>
+            <XO>0</XO>
+            <YS>0.9490196</YS>
+            <YO>0</YO>
+          </UDim2>
+          <UDim2 name="Size">
+            <XS>0.26666668</XS>
+            <XO>0</XO>
+            <YS>0.03529412</YS>
+            <YO>0</YO>
+          </UDim2>
+          <string name="Text">PAUL</string>
+          <Color3 name="TextColor3">
+            <R>0.21960784</R>
+            <G>0.88235295</G>
+            <B>1</B>
+          </Color3>
+          <float name="TextSize">14</float>
+          <token name="TextTruncate">0</token>
+          <token name="TextXAlignment">1</token>
+          <token name="TextYAlignment">1</token>
+        </Properties>
+      </Item>
+    </Item>
+    <Item class="LocalScript" referent="143">
+      <Properties>
+        <string name="Name">AutoLightsPanelClient</string>
+        <string name="Source"><![CDATA[--[[
+	AutoLightsPanelClient (LocalScript inside StarterGui.AutoLightsPanel)  —  by PAUL
+
+	Runs the AutoLights Control Panel: switches for Sync, Dance Floor, Auto Pattern and Pyro,
+	pattern / brightness / flash controls, pyro bursts, and Blackout / Restore.
+
+	  • The panel is only shown to operators (Player attribute AutoLightsOperator, set by
+	    AutoLightsControl). Press K or the LIGHTS button to open it.
+	  • What the switches show comes from the attributes on ReplicatedStorage.AutoLights, so
+	    every operator sees the same state live. Buttons only ask the server (Control remote);
+	    the server checks that the player is an operator on every call.
+]]
+
+local Players = game:GetService("Players")
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+local TweenService = game:GetService("TweenService")
+local UserInputService = game:GetService("UserInputService")
+
+local TOGGLE_KEY = Enum.KeyCode.K
+
+local player = Players.LocalPlayer
+local gui = script.Parent
+
+local panel = gui:WaitForChild("Panel")
+local openButton = gui:WaitForChild("OpenButton")
+local left = panel:WaitForChild("Left")
+local right = panel:WaitForChild("Right")
+local beatTile = panel:WaitForChild("BeatTile")
+local syncChip = panel:WaitForChild("SyncChip")
+local toast = panel:WaitForChild("Toast")
+
+local COLORS = {
+	Green = Color3.fromRGB(61, 220, 151),
+	Red = Color3.fromRGB(255, 85, 102),
+	Amber = Color3.fromRGB(255, 190, 56),
+	White = Color3.new(1, 1, 1),
+	Pink = Color3.fromRGB(255, 82, 150),
+}
+
+panel.Visible = false
+openButton.Visible = false
+toast.Visible = false
+
+local autoRoot = ReplicatedStorage:WaitForChild("AutoLights", 30)
+local remotes = autoRoot and autoRoot:WaitForChild("Remotes", 10)
+local control = remotes and remotes:WaitForChild("Control", 30)
+if not control then
+	warn("[AutoLightsPanel] Control remote not found; is AutoLightsControl running on the server?")
+	return
+end
+
+local function tween(instance, time, props, style, direction)
+	local t = TweenService:Create(instance, TweenInfo.new(time, style or Enum.EasingStyle.Quad, direction or Enum.EasingDirection.Out), props)
+	t:Play()
+	return t
+end
+
+local function attr(name, default)
+	local value = autoRoot:GetAttribute(name)
+	if value == nil then
+		return default
+	end
+	return value
+end
+
+---------------------------------------------------------------------------
+-- Layout
+---------------------------------------------------------------------------
+
+local function layout()
+	local size = gui.AbsoluteSize
+	if size.X <= 0 or size.Y <= 0 then
+		return
+	end
+	panel.ResponsiveScale.Scale = math.clamp(math.min(size.X * 0.94 / 420, size.Y * 0.92 / 510), 0.55, 1.1)
+	openButton.ResponsiveScale.Scale = math.clamp(size.Y / 720, 0.75, 1.1)
+end
+
+gui:GetPropertyChangedSignal("AbsoluteSize"):Connect(layout)
+layout()
+
+---------------------------------------------------------------------------
+-- Toast
+---------------------------------------------------------------------------
+
+local toastToken = 0
+
+local function showToast(text, ok)
+	toastToken += 1
+	local token = toastToken
+	toast.Message.Text = text
+	toast.Dot.BackgroundColor3 = if ok then COLORS.Green else COLORS.Red
+	toast.Visible = true
+	task.delay(2.5, function()
+		if toastToken == token then
+			toast.Visible = false
+		end
+	end)
+end
+
+---------------------------------------------------------------------------
+-- Showing the state
+---------------------------------------------------------------------------
+
+local function setSwitch(row, on)
+	local track = row.Track
+	tween(track, 0.15, {
+		BackgroundColor3 = if on then COLORS.Green else COLORS.White,
+		BackgroundTransparency = if on then 0 else 0.7,
+	})
+	tween(track.Knob, 0.15, { Position = UDim2.fromScale(if on then 0.5 else 0.05, 3 / 22) })
+end
+
+-- Dim a control (and make it unclickable) when it cannot be used.
+local function setEnabled(target, enabled)
+	target.Interactable = enabled
+	local dim = if enabled then 0 else 0.6
+	for _, child in target:GetChildren() do
+		if child:IsA("TextLabel") then
+			child.TextTransparency = dim
+		end
+	end
+end
+
+local function refresh()
+	local sync = attr("SyncEnabled", true) ~= false
+	local floor = attr("DanceFloorEnabled", true) ~= false
+	local pyro = attr("PyroEnabled", true) ~= false
+	local blackout = attr("Blackout", false) == true
+	local hasPyro = attr("HasPyro", false) == true
+	local brightness = math.clamp(tonumber(attr("DFBrightness", 1)) or 1, 0.1, 1)
+	local count = math.max(1, math.floor(tonumber(attr("DFPatternCount", 12)) or 12))
+	local now = math.floor(tonumber(attr("DFPatternNow", 1)) or 1)
+	local name = tostring(attr("DFPatternName", ""))
+	local bpm = tonumber(attr("Bpm", nil))
+
+	-- status chip
+	local chipColor, chipText = COLORS.Green, "SYNC ON"
+	if blackout then
+		chipColor, chipText = COLORS.Red, "BLACKOUT"
+	elseif not sync then
+		chipColor, chipText = COLORS.Amber, "SYNC OFF"
+	end
+	syncChip.Label.Text = chipText
+	syncChip.Label.TextColor3 = chipColor
+	syncChip.Dot.BackgroundColor3 = chipColor
+	syncChip.BackgroundColor3 = chipColor
+	syncChip.Outline.Color = chipColor
+
+	-- switches
+	setSwitch(left.Toggle_Sync, sync)
+	setSwitch(left.Toggle_DanceFloor, floor)
+	setSwitch(left.Toggle_AutoPattern, attr("DFAutoPattern", true) ~= false)
+	setSwitch(right.Toggle_Pyro, pyro and hasPyro)
+
+	-- beat tile
+	beatTile.Bpm.Text = if bpm then `{bpm} BPM` else "– BPM"
+	beatTile.PatternName.Text = if name ~= "" then name else "–"
+	beatTile.Bpm.TextTransparency = if sync then 0 else 0.6
+
+	-- pattern + brightness
+	left.PatternRow.PatternText.Text = if name ~= "" then `{name}   {now}/{count}` else "–"
+	left.BrightnessRow.Track.Fill.Size = UDim2.fromScale(brightness, 1)
+	left.BrightnessRow.Value.Text = `{math.floor(brightness * 100 + 0.5)}%`
+
+	-- what can be used right now
+	setEnabled(left.Flash, floor)
+	setEnabled(right.Toggle_Pyro, hasPyro)
+	right.Toggle_Pyro.Subtitle.Text = if hasPyro then "Fire, CO2, smoke, confetti" else "Pyro system not detected"
+	for _, name2 in { "Fire_CO2", "Fire_CONFETTI", "Fire_SMOKE", "StopPyro" } do
+		setEnabled(right[name2], hasPyro and (pyro or name2 == "StopPyro"))
+	end
+
+	local watermark = tostring(attr("Watermark", "PAUL"))
+	if watermark == "" then
+		watermark = "PAUL"
+	end
+	panel.Watermark.Text = watermark
+	panel.WatermarkBig.Text = watermark
+end
+
+autoRoot.AttributeChanged:Connect(function(name)
+	if name == "BeatCount" then
+		beatTile.BeatDot.BackgroundTransparency = 0
+		tween(beatTile.BeatDot, 0.25, { BackgroundTransparency = 0.8 })
+		return
+	end
+	if name == "DFPulse" then
+		return
+	end
+	refresh()
+end)
+
+---------------------------------------------------------------------------
+-- Talking to the server
+---------------------------------------------------------------------------
+
+local busy = {}
+
+local function send(action, value)
+	if busy[action] then
+		return
+	end
+	busy[action] = true
+	task.spawn(function()
+		local ok, result = pcall(function()
+			return control:InvokeServer(action, value)
+		end)
+		busy[action] = nil
+		if ok and type(result) == "table" then
+			showToast(result.message or (if result.ok then "Done" else "Failed"), result.ok == true)
+		else
+			showToast("No answer from the server", false)
+		end
+	end)
+end
+
+local function bind(button, action, valueFn)
+	button.Activated:Connect(function()
+		send(action, if valueFn then valueFn() else nil)
+	end)
+end
+
+bind(left.Toggle_Sync, "Sync", function() return attr("SyncEnabled", true) == false end)
+bind(left.Toggle_DanceFloor, "DanceFloor", function() return attr("DanceFloorEnabled", true) == false end)
+bind(left.Toggle_AutoPattern, "AutoPattern", function() return attr("DFAutoPattern", true) == false end)
+bind(right.Toggle_Pyro, "Pyro", function() return attr("PyroEnabled", true) == false end)
+
+bind(left.PatternRow.Prev, "PrevPattern")
+bind(left.PatternRow.Next, "NextPattern")
+bind(left.Flash, "Pulse")
+
+local function brightnessStep(delta)
+	return function()
+		local current = tonumber(attr("DFBrightness", 1)) or 1
+		return math.clamp(math.floor((current + delta) * 10 + 0.5) / 10, 0.1, 1)
+	end
+end
+bind(left.BrightnessRow.Minus, "Brightness", brightnessStep(-0.1))
+bind(left.BrightnessRow.Plus, "Brightness", brightnessStep(0.1))
+
+for _, kind in { "CO2", "CONFETTI", "SMOKE" } do
+	bind(right["Fire_" .. kind], "Fire", function() return kind end)
+end
+bind(right.StopPyro, "StopPyro")
+bind(right.Blackout, "Blackout")
+bind(right.Restore, "Restore")
+
+---------------------------------------------------------------------------
+-- Open / close (operators only)
+---------------------------------------------------------------------------
+
+local panelHome = panel.Position
+local isOpen = false
+local closeToken = 0
+
+local function isOperator()
+	return player:GetAttribute("AutoLightsOperator") == true
+end
+
+local function openPanel()
+	if not isOperator() or isOpen then
+		return
+	end
+	isOpen = true
+	closeToken += 1
+	refresh()
+	panel.Position = panelHome + UDim2.fromOffset(50, 0)
+	panel.Visible = true
+	tween(panel, 0.3, { Position = panelHome }, Enum.EasingStyle.Quart)
+end
+
+local function closePanel()
+	if not isOpen then
+		return
+	end
+	isOpen = false
+	closeToken += 1
+	local token = closeToken
+	tween(panel, 0.2, { Position = panelHome + UDim2.fromOffset(50, 0) }, Enum.EasingStyle.Quad, Enum.EasingDirection.In)
+	task.delay(0.2, function()
+		if closeToken == token then
+			panel.Visible = false
+		end
+	end)
+end
+
+local function updateOperator()
+	local operator = isOperator()
+	openButton.Visible = operator
+	if not operator then
+		closePanel()
+	end
+end
+
+openButton.Activated:Connect(function()
+	if isOpen then closePanel() else openPanel() end
+end)
+panel.CloseButton.Activated:Connect(closePanel)
+
+UserInputService.InputBegan:Connect(function(input, processed)
+	if not processed and input.KeyCode == TOGGLE_KEY and isOperator() then
+		if isOpen then closePanel() else openPanel() end
+	end
+end)
+
+player:GetAttributeChangedSignal("AutoLightsOperator"):Connect(updateOperator)
+updateOperator()
+refresh()
+]]></string>
+      </Properties>
+    </Item>
+  </Item>
+</roblox>

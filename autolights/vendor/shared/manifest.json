@@ -1,0 +1,58 @@
+[
+ {
+  "name": "AutoLights",
+  "class": "Folder",
+  "children": [
+   {
+    "name": "Remotes",
+    "class": "Folder",
+    "children": [
+     {
+      "name": "AudioTelemetry",
+      "class": "RemoteEvent"
+     },
+     {
+      "name": "BeatEvent",
+      "class": "RemoteEvent"
+     },
+     {
+      "name": "RequestState",
+      "class": "RemoteFunction"
+     },
+     {
+      "name": "ShowCommand",
+      "class": "RemoteEvent"
+     },
+     {
+      "name": "StateUpdate",
+      "class": "RemoteEvent"
+     }
+    ]
+   },
+   {
+    "name": "Shared",
+    "class": "Folder",
+    "children": [
+     {
+      "name": "Palette",
+      "class": "ModuleScript",
+      "disabled": false,
+      "file": "AutoLights.Shared.Palette.luau"
+     },
+     {
+      "name": "PresetLibrary",
+      "class": "ModuleScript",
+      "disabled": false,
+      "file": "AutoLights.Shared.PresetLibrary.luau"
+     },
+     {
+      "name": "RhythmLibrary",
+      "class": "ModuleScript",
+      "disabled": false,
+      "file": "AutoLights.Shared.RhythmLibrary.luau"
+     }
+    ]
+   }
+  ]
+ }
+]

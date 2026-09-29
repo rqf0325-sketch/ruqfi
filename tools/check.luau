@@ -18,6 +18,9 @@ local FILES = {
 	"StarterGui/PlayerMenuGui.rbxmx",
 	"ReplicatedStorage/PlayerMenu.rbxmx",
 	"ServerScriptService/PlayerMenuServer.rbxmx",
+	"ServerScriptService/AutoLightsServer.rbxmx",
+	"StarterPlayer/StarterPlayerScripts/AutoLightsTelemetry.rbxmx",
+	"StarterGui/AutoLightsPanel.rbxmx",
 }
 
 local checked, failed = 0, 0

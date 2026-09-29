@@ -27,6 +27,9 @@ const SHOTS = [
 	{ tree: "build/pm-profile.json", file: "docs/playermenu-profile.png", width: 384, height: 560, scene: "tiles" },
 	{ tree: "build/pm-chat.json", file: "docs/playermenu-chat.png", width: 384, height: 560, scene: "tiles" },
 	{ tree: "build/pm-nametag.json", file: "docs/playermenu-nametag.png", width: 760, height: 130 },
+	// build/ap-*.json: `lune run tools/build-autolights.luau -- --tree`
+	{ tree: "build/ap-panel.json", file: "docs/autolights-panel.png", width: 960, height: 540, scene: "tiles" },
+	{ tree: "build/ap-off.json", file: "docs/autolights-panel-off.png", width: 960, height: 540, scene: "tiles" },
 ];
 
 const fontFaces = [400, 500, 600, 700, 800]
