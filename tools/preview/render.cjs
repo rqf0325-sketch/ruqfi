@@ -105,7 +105,16 @@ function renderGui({ tree, topInset }) {
 		const corner = kid(n, "UICorner");
 		if (corner) el.style.borderRadius = `${corner.props.CornerRadius.s * Math.min(w, h) + corner.props.CornerRadius.o}px`;
 		const stroke = kid(n, "UIStroke");
-		if (stroke && stroke.props.Enabled !== false) el.style.boxShadow = `0 0 0 ${stroke.props.Thickness}px ${rgba(stroke.props.Color, stroke.props.Transparency)}`;
+		if (stroke && stroke.props.Enabled !== false) {
+			// A UIGradient inside a UIStroke tints it; the preview is static, so use the gradient near its start.
+			let strokeColor = stroke.props.Color;
+			const strokeGradient = kid(stroke, "UIGradient");
+			if (strokeGradient) {
+				const [r, g, b] = sample(strokeGradient.props.Color, 0.3, ["r", "g", "b"]);
+				strokeColor = { r: strokeColor.r * r, g: strokeColor.g * g, b: strokeColor.b * b };
+			}
+			el.style.boxShadow = `0 0 0 ${stroke.props.Thickness}px ${rgba(strokeColor, stroke.props.Transparency)}`;
+		}
 		if (p.ClipsDescendants || n.class === "ScrollingFrame") el.style.overflow = "hidden";
 		parentEl.appendChild(el);
 
@@ -131,6 +140,14 @@ function renderGui({ tree, topInset }) {
 					whiteSpace: p.TextWrapped ? "normal" : "pre", lineHeight: "1", fontFamily: "Montserrat, 'Noto Color Emoji'",
 					fontWeight: String(p.FontFace.weight), color: rgba(color, p.TextTransparency ?? 0),
 				});
+				// A UIGradient on a label with no background tints its text.
+				const textGradient = kid(n, "UIGradient");
+				if (textGradient && p.BackgroundTransparency >= 1) {
+					span.style.background = background({ BackgroundColor3: color, BackgroundTransparency: p.TextTransparency ?? 0 }, textGradient);
+					span.style.webkitBackgroundClip = "text";
+					span.style.backgroundClip = "text";
+					span.style.color = "transparent";
+				}
 				if (p.RichText) span.innerHTML = text.replace(/<font color="(#[0-9A-Fa-f]{6})">/g, '<span style="color:$1">').replace(/<\/font>/g, "</span>");
 				else span.textContent = text;
 				box.appendChild(span);

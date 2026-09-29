@@ -30,9 +30,15 @@ Config.Settings = {
 	-- Posisi & jumlah ---------------------------------------------------------------
 	-- "TopCenter", "TopLeft", "TopRight", "BottomCenter", "BottomLeft", "BottomRight"
 	Position = "TopCenter",
-	MaxVisible = 3, -- notifikasi yang tampil bersamaan; sisanya antre
+	MaxVisible = 3, -- notifikasi yang tampil bersamaan; sisanya antre (di layar pendek otomatis lebih sedikit)
 	MaxQueue = 30, -- antrean terlalu panjang: yang paling lama dibuang
 	RushQueueAt = 4, -- antrean sepanjang ini atau lebih = notifikasi tampil lebih singkat
+
+	-- Efek ----------------------------------------------------------------------
+	-- Border berputar, kilau, aura, cincin avatar, percikan, dan confetti.
+	-- false = kartu tampil diam (lebih ringan untuk HP kentang).
+	Effects = true,
+	CountUp = true, -- angka donasi berhitung naik dari nol
 
 	-- Suara (kosongkan Sound / set SoundEnabled = false untuk mematikan) ------------
 	-- Ganti dengan "rbxassetid://ID" milikmu. Tiap tingkat bisa punya suara sendiri (Tier.Sound).
@@ -60,17 +66,19 @@ Config.Settings = {
 
 	Min      : jumlah donasi minimum untuk tingkat ini
 	Emoji    : ikon di lingkaran kiri (kalau donasi punya userId, diganti foto avatar)
-	Color    : warna garis tepi, jumlah donasi, dan lingkaran ikon
-	Tag      : label kecil di sebelah jumlah ("" = tanpa label; usahakan maksimal 9 huruf)
+	Color    : warna border, aura, jumlah donasi, cincin ikon, dan pita
+	Tag      : pita kecil di sudut kanan atas kartu ("" = tanpa pita; usahakan maksimal 9 huruf)
 	Duration : lama tampil (detik)
+	Sparkles : jumlah percikan cahaya saat kartu muncul (0 = tanpa)
+	Confetti : jumlah confetti yang jatuh di layar (0 = tanpa; makin besar donasi makin meriah)
 	Sound    : suara khusus tingkat ini (opsional)
 ]]
 Config.Tiers = {
-	{ Min = 0, Emoji = "🎁", Color = Color3.fromRGB(61, 220, 151), Tag = "", Duration = 5 },
-	{ Min = 10000, Emoji = "💎", Color = Color3.fromRGB(56, 189, 248), Tag = "SUPPORTER", Duration = 6 },
-	{ Min = 50000, Emoji = "🔥", Color = Color3.fromRGB(139, 108, 255), Tag = "HYPE", Duration = 7 },
-	{ Min = 100000, Emoji = "👑", Color = Color3.fromRGB(255, 190, 56), Tag = "SULTAN", Duration = 8 },
-	{ Min = 500000, Emoji = "🚀", Color = Color3.fromRGB(255, 85, 102), Tag = "LEGEND", Duration = 10 },
+	{ Min = 0, Emoji = "🎁", Color = Color3.fromRGB(61, 220, 151), Tag = "", Duration = 5, Sparkles = 6, Confetti = 0 },
+	{ Min = 10000, Emoji = "💎", Color = Color3.fromRGB(56, 189, 248), Tag = "SUPPORTER", Duration = 6, Sparkles = 10, Confetti = 0 },
+	{ Min = 50000, Emoji = "🔥", Color = Color3.fromRGB(139, 108, 255), Tag = "HYPE", Duration = 7, Sparkles = 14, Confetti = 24 },
+	{ Min = 100000, Emoji = "👑", Color = Color3.fromRGB(255, 190, 56), Tag = "SULTAN", Duration = 8, Sparkles = 18, Confetti = 48 },
+	{ Min = 500000, Emoji = "🚀", Color = Color3.fromRGB(255, 85, 102), Tag = "LEGEND", Duration = 10, Sparkles = 24, Confetti = 80 },
 }
 
 return Config

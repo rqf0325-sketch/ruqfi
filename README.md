@@ -97,9 +97,19 @@ Model aslinya punya beberapa masalah yang membuatnya tidak bisa dikendarai norma
 
 ## Donate Alerts (notifikasi donasi)
 
-Notifikasi donasi yang muncul di layar semua pemain: nama donatur, jumlah (default **Rupiah**), pesan, foto avatar (kalau ada), dan bar hitung mundur. Warna, emoji, label, dan lama tampilnya berbeda per tingkat donasi (Rp 10.000, 50.000, 100.000, 500.000 ke atas). Kalau banyak donasi masuk sekaligus, kartunya mengantre dan tampil bertumpuk.
+Notifikasi donasi yang muncul di layar semua pemain, dibuat semewah mungkin karena ini uang sungguhan: nama donatur, jumlah besar (default **Rupiah**), pesan, foto avatar (kalau ada), pita tingkat donasi, dan bar hitung mundur. Warna, emoji, pita, dan lama tampilnya berbeda per tingkat (Rp 10.000, 50.000, 100.000, 500.000 ke atas).
+
+Efeknya (semua bisa dimatikan dengan `Settings.Effects = false`):
+
+- Kartu meluncur masuk dengan membal, ikon "muncul" dengan membal, dan angka donasi **berhitung naik** dari nol sampai jumlah akhir lalu "membal".
+- Border bergradien yang berputar, kilau yang menyapu kartu tiap beberapa detik, aura cahaya berdenyut, dan cincin avatar yang berputar.
+- Percikan cahaya saat muncul dan sesekali sesudahnya.
+- **Confetti** jatuh di seluruh layar untuk donasi besar (makin besar donasi, makin banyak).
+- Kalau banyak donasi masuk sekaligus, kartunya mengantre dan tampil bertumpuk. Di layar pendek (HP landscape) jumlah kartu yang tampil otomatis dikurangi supaya tidak terpotong.
 
 ![Donate Alerts](docs/preview-donate.png)
+
+> Gambar ini render statis dari tiga tingkat donasi (hijau, ungu "HYPE", emas "SULTAN"). Border berputar, kilau, angka berhitung, percikan, dan confetti hanya terlihat saat game berjalan.
 
 <details>
 <summary>Tampilan di HP</summary>
@@ -156,14 +166,15 @@ Semuanya ada di `ReplicatedStorage > DonateAlerts > Config`:
 - `Headline`, `TargetHeadline`, `AnonymousName`: teks pada kartu.
 - `Position`: `TopCenter`, `TopLeft`, `TopRight`, `BottomCenter`, `BottomLeft`, atau `BottomRight`.
 - `MaxVisible`, `MaxQueue`, `RushQueueAt`: berapa kartu tampil bersamaan, panjang antrean, dan kapan kartu mulai tampil lebih singkat.
+- `Effects`, `CountUp`: matikan efek berputar/kilau/percikan/confetti (untuk HP yang berat) atau angka berhitung naik.
 - `Sound`, `Volume`, `SoundEnabled`: suara notifikasi. Ganti dengan `rbxassetid://` milikmu.
-- `Tiers`: batas jumlah, emoji, warna, label, lama tampil, dan suara tiap tingkat.
+- `Tiers`: batas jumlah, emoji, warna, pita, lama tampil, jumlah percikan (`Sparkles`), jumlah confetti (`Confetti`), dan suara tiap tingkat.
 - `FilterText`, `FilterUserId`: nama dan pesan donatur difilter Roblox sebelum tampil ke pemain lain (atas nama pemilik game; untuk game milik grup isi `FilterUserId`).
 
 ## Catatan
 
 - Sistem ini belum dicoba langsung di Roblox Studio. Semua script sudah lolos compile Luau dan linter (selene), dan semua path objek yang dipakai script sudah dicek ada di file model. Tetap coba dulu di Studio (Play) sebelum dipublish.
-- Donate Alerts juga belum dicoba di Studio (animasi, suara, perintah chat, dan MessagingService belum pernah berjalan). Yang sudah dicek: semua script lolos compile Luau, semua path objek yang dipakai client ada di file model, dan fungsi format rupiah, pemilihan tingkat, serta pembersih teks sudah dites di Lune. Belum dicek dengan selene. Suara bawaan `Sound` hanya contoh, ganti dengan ID audio milikmu.
+- Donate Alerts juga belum dicoba di Studio: tampilan animasi (border, kilau, percikan, confetti), suara, perintah chat, dan MessagingService belum pernah dilihat berjalan. Yang sudah dicek: semua script lolos compile Luau, `tools/test-donate-alerts.luau` menjalankan client yang asli dengan Roblox API tiruan (alert muncul dan mengantre, angka berhitung sampai jumlah akhir, confetti muncul lalu bersih, perintah tes terkirim ke server), dan fungsi format rupiah, pemilihan tingkat, serta pembersih teks dites di Lune. Belum dicek dengan selene. Suara bawaan `Sound` hanya contoh, ganti dengan ID audio milikmu.
 - Statistik di panel detail (Top Speed, dan lain-lain) hanya tampilan dan diisi manual di Config. Performa motor asli diatur di `Tuner` di dalam model motornya.
 - Kalau motor muncul menghadap arah yang salah, ubah `SpawnRotation` di Config.
 
@@ -176,6 +187,7 @@ lune run tools/build.luau                # GUI, Config/Remotes, script server (g
 lune run tools/patch-road-glide.luau     # motor → ServerStorage/Vehicles.rbxm
 lune run tools/check.luau                # compile semua script di file model
 lune run tools/test-rider-visuals.luau   # tes badan pengendara R6 (kepala, wajah, rambut)
+lune run tools/test-donate-alerts.luau   # tes client Donate Alerts dengan Roblox API tiruan (~12 detik)
 ```
 
 Preview PNG: jalankan kedua build dengan `-- --tree` (Donate Alerts ikut dari `tools/build.luau`), lalu `node tools/preview/render.cjs` (butuh Playwright dan font Montserrat di `build/fonts`).
