@@ -1,9 +1,9 @@
 --[[
 	PlayerMenuNametags (LocalScript inside StarterGui.PlayerMenuGui)
 
-	Puts the NametagTemplate (title / name / role) above every player's head.
+	Puts the NametagTemplate (name / role) above every player's head.
 	The text and colors come from the Player attributes that
-	PlayerMenuServer publishes (PMTitle, PMRole, PMRoleColor, ...), so changing
+	PlayerMenuServer publishes (PMRole, PMRoleColor, ...), so changing
 	an attribute on the server updates the tag right away.
 	Restyle the tag by editing NametagTemplate in the GUI.
 ]]
@@ -44,14 +44,10 @@ local function applyTag(target, tag)
 	if not stack then
 		return
 	end
-	local title = target:GetAttribute("PMTitle") or ""
 	local role = target:GetAttribute("PMRole") or ""
 	local roleColor = target:GetAttribute("PMRoleColor") or WHITE
 	local colorA = target:GetAttribute("PMNameColorA")
 	local colorB = target:GetAttribute("PMNameColorB")
-
-	stack.Title.Text = title
-	stack.Title.Visible = title ~= ""
 
 	stack.PlayerName.Text = target.DisplayName
 	local gradient = stack.PlayerName:FindFirstChildOfClass("UIGradient")

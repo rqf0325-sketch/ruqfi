@@ -53,15 +53,14 @@ local COMMUNITY_IMAGE_TRANSPARENCY = 0.6 -- PlayerMenuClient uses Config.Setting
 
 -- Contoh isi untuk tampilan di Studio (diganti data pemain saat game berjalan).
 local SAMPLE = {
-	title = "✨RAKYAT KECIL✨",
 	name = "SweetPie",
 	username = "@SweetPie0325",
 	role = "ADMINISTRATOR",
 	roleColor = C.Orange,
 	friends = "329",
 	followers = "0",
-	kisses = "174",
-	community = "Rakyat Kecil",
+	likes = "174",
+	community = "Community",
 }
 
 ---------------------------------------------------------------------------
@@ -183,12 +182,12 @@ end
 -- Home page pieces
 ---------------------------------------------------------------------------
 
-local function statTile(parent, name, x, w, value, caption, kiss)
-	local tile = place(kiss and "TextButton" or "Frame", parent, name, x, 0, w, 62, {
-		BackgroundTransparency = if kiss then 0 else GLASS,
+local function statTile(parent, name, x, w, value, caption, like)
+	local tile = place(like and "TextButton" or "Frame", parent, name, x, 0, w, 62, {
+		BackgroundTransparency = if like then 0 else GLASS,
 		BackgroundColor3 = C.White,
 	})
-	if kiss then
+	if like then
 		apply(tile.inst, { Text = "", AutoButtonColor = false })
 		gradient(tile, C.Pink, C.Coral, 25)
 		add("UIScale", tile, { Name = "Pulse", Scale = 1 })
@@ -197,8 +196,8 @@ local function statTile(parent, name, x, w, value, caption, kiss)
 	end
 	corner(tile, 14)
 	label(tile, "Value", value, 0, 9, w, 26, 21, C.White, W.ExtraBold, Center)
-	label(tile, "Caption", caption, 0, 37, w, 14, 9, kiss and C.White or C.Muted, W.Bold, Center, {
-		TextTransparency = kiss and 0.1 or 0,
+	label(tile, "Caption", caption, 0, 37, w, 14, 9, like and C.White or C.Muted, W.Bold, Center, {
+		TextTransparency = like and 0.1 or 0,
 	})
 	return tile
 end
@@ -239,11 +238,11 @@ local INFO_ROWS = {
 	{ "AccountAge", "Account age", "3 yr 4 mo" },
 	{ "Membership", "Membership", "Premium" },
 	{ "Role", "Role", "ADMINISTRATOR" },
-	{ "Community", "Community", "Rakyat Kecil" },
+	{ "Community", "Community", "Community" },
 	{ "InServer", "In this server", "12 min" },
 	{ "Followers", "Followers", "0" },
 	{ "Following", "Following", "12" },
-	{ "Kisses", "Kisses received", "174" },
+	{ "Likes", "Likes received", "174" },
 }
 
 local function pageHeader(page, title)
@@ -326,7 +325,7 @@ local function bubbleTemplate(list, name, mine)
 end
 
 ---------------------------------------------------------------------------
--- Overhead nametag: title / name / role. PlayerMenuNametags clones this
+-- Overhead nametag: name / role. PlayerMenuNametags clones this
 -- for every character, so you can restyle it in Studio.
 ---------------------------------------------------------------------------
 
@@ -334,7 +333,7 @@ local function nametag()
 	local tag = Instance.new("BillboardGui")
 	apply(tag, {
 		Name = "NametagTemplate",
-		Size = UDim2.fromOffset(240, 78),
+		Size = UDim2.fromOffset(240, 56),
 		StudsOffset = Vector3.new(0, 2.2, 0),
 		ExtentsOffset = Vector3.new(0, 0.5, 0), -- the bottom edge sits at StudsOffset at any distance
 		LightInfluence = 0,
@@ -343,8 +342,8 @@ local function nametag()
 		AlwaysOnTop = false,
 		Enabled = false,
 	})
-	local root = { inst = tag, w = 240, h = 78 }
-	local stack = place("Frame", root, "Stack", 0, 0, 240, 78)
+	local root = { inst = tag, w = 240, h = 56 }
+	local stack = place("Frame", root, "Stack", 0, 0, 240, 56)
 	add("UIListLayout", stack, {
 		FillDirection = Enum.FillDirection.Vertical,
 		HorizontalAlignment = Enum.HorizontalAlignment.Center,
@@ -363,21 +362,15 @@ local function nametag()
 		})
 	end
 
-	local title = label(stack, "Title", SAMPLE.title, 0, 0, 240, 17, 13, C.White, W.Bold, Center, {
-		LayoutOrder = 1,
-		Size = UDim2.new(1, 0, 0, 17),
-	})
-	textStroke(title.inst, 0.25, 1.2)
-
 	local name = label(stack, "PlayerName", SAMPLE.name, 0, 0, 240, 24, 20, C.White, W.ExtraBold, Center, {
-		LayoutOrder = 2,
+		LayoutOrder = 1,
 		Size = UDim2.new(1, 0, 0, 24),
 	})
 	gradient(name, Color3.fromRGB(255, 88, 168), Color3.fromRGB(255, 176, 222), 0)
 	textStroke(name.inst, 0.2, 1.4)
 
 	local role = chip(stack, "RoleChip", SAMPLE.role, 0, 0, 108, 17, 9, SAMPLE.roleColor, 0.3)
-	apply(role.inst, { LayoutOrder = 3, Size = UDim2.fromOffset(108, 17) })
+	apply(role.inst, { LayoutOrder = 2, Size = UDim2.fromOffset(108, 17) })
 	role.inst.Label.TextColor3 = C.White
 	role.inst.Label.Size = UDim2.new(1, 0, 1, 0)
 	role.inst.Outline.Transparency = 0.2
@@ -494,18 +487,17 @@ local function build()
 	})
 
 	-- Identity
-	label(home, "Title", SAMPLE.title, 128, 58, 166, 16, 11, SAMPLE.roleColor, W.Bold)
-	local name = label(home, "DisplayName", SAMPLE.name, 128, 76, 166, 28, 23, C.Text, W.ExtraBold)
+	local name = label(home, "DisplayName", SAMPLE.name, 128, 68, 166, 28, 23, C.Text, W.ExtraBold)
 	apply(name.inst, { TextScaled = true })
 	add("UITextSizeConstraint", name, { MaxTextSize = 23, MinTextSize = 11 })
-	label(home, "Username", SAMPLE.username, 128, 106, 166, 16, 12, C.Muted, W.Medium)
-	chip(home, "RoleChip", SAMPLE.role, 128, 130, 112, 24, 10, SAMPLE.roleColor)
+	label(home, "Username", SAMPLE.username, 128, 98, 166, 16, 12, C.Muted, W.Medium)
+	chip(home, "RoleChip", SAMPLE.role, 128, 122, 112, 24, 10, SAMPLE.roleColor)
 
 	-- Stats
 	local stats = place("Frame", home, "Stats", 18, 174, 276, 62)
 	statTile(stats, "Friends", 0, 86, SAMPLE.friends, "FRIENDS")
 	statTile(stats, "Followers", 95, 86, SAMPLE.followers, "FOLLOWERS")
-	statTile(stats, "Kiss", 190, 86, "💋 " .. SAMPLE.kisses, "KISSES", true)
+	statTile(stats, "Like", 190, 86, "❤️ " .. SAMPLE.likes, "LIKES", true)
 
 	-- Actions
 	label(home, "ActionsLabel", "ACTIONS", 20, 252, 200, 12, 10, C.Dim, W.ExtraBold)
@@ -634,7 +626,7 @@ local function build()
 		BackgroundColor3 = C.Green,
 	})
 	circle(toastDot)
-	label(toast, "Message", "You kissed SweetPie 💋", 40, 0, 276, 46, 13, C.Text, W.SemiBold)
+	label(toast, "Message", "You liked SweetPie ❤️", 40, 0, 276, 46, 13, C.Text, W.SemiBold)
 
 	-- Carry request -------------------------------------------------------------
 	local request = place("Frame", screen, "CarryRequest", 0.5, 0, 340, 104, {

@@ -3,7 +3,7 @@
 Repo ini berisi dua sistem yang berdiri sendiri:
 
 - **[Vehicle Spawner + HD Road Glide ST CVO](#vehicle-spawner--hd-road-glide-st-cvo)**: menu spawn kendaraan dan motornya.
-- **[Player Menu](#player-menu-ketuk-pemain-lain)**: ketuk pemain lain untuk membuka kartu profil (Kiss, Follow, Carry, Add Friend, Private Chat) plus nametag di atas kepala.
+- **[Player Menu](#player-menu-ketuk-pemain-lain)**: ketuk pemain lain untuk membuka kartu profil (Like, Follow, Carry, Add Friend, Private Chat) plus nametag di atas kepala.
 
 ## Vehicle Spawner + HD Road Glide ST CVO
 
@@ -108,7 +108,7 @@ Model aslinya punya beberapa masalah yang membuatnya tidak bisa dikendarai norma
 
 ## Player Menu (ketuk pemain lain)
 
-Klik (PC) atau ketuk (HP) karakter pemain lain, lalu muncul **kartu profilnya** di sisi kiri layar, jadi karakternya tetap kelihatan. Latar kartu **transparan**, dan kalau pemain itu punya **komunitas** (group Roblox), **ikon komunitasnya jadi latar kartu**. Di atas kepala setiap pemain ada **nametag** tiga baris: judul, nama, dan role.
+Klik (PC) atau ketuk (HP) karakter pemain lain, lalu muncul **kartu profilnya** di sisi kiri layar, jadi karakternya tetap kelihatan. Latar kartu **transparan**, dan kalau pemain itu punya **komunitas** (group Roblox), **ikon komunitasnya jadi latar kartu**. Di atas kepala setiap pemain ada **nametag**: nama dan role.
 
 ![Kartu pemain](docs/playermenu-desktop.png)
 
@@ -146,14 +146,14 @@ ReplicatedStorage/PlayerMenu            (Config, Remotes)
 ServerScriptService/PlayerMenuServer
 ```
 
-Aktifkan **Game Settings → Security → Enable Studio Access to API Services** kalau ingin angka Kiss dan Follow tersimpan saat testing di Studio. Tanpa itu sistemnya tetap jalan, angkanya hanya tidak tersimpan.
+Aktifkan **Game Settings → Security → Enable Studio Access to API Services** kalau ingin angka Like dan Follow tersimpan saat testing di Studio. Tanpa itu sistemnya tetap jalan, angkanya hanya tidak tersimpan.
 
 ### Cara main
 
 - **Ketuk pemain lain** untuk membuka kartunya. Tombol **×** menutupnya. Ketuk pemain lain lagi untuk berpindah kartu.
-- **💋 Kiss**: ketuk kotak pink untuk mengirim kiss. Angkanya bertambah, hati-hati melayang di atas kepala pemain itu (terlihat semua orang), dan tersimpan. Ada jeda `KissCooldown` per pemain.
+- **❤️ Like**: ketuk kotak pink bergambar love untuk memberi like. Angkanya bertambah, hati melayang di atas kepala pemain itu (terlihat semua orang), dan tersimpan. Ada jeda `LikeCooldown` per pemain.
 - **Komunitas**: server mengambil komunitas utama pemain (kalau tidak ada, komunitas pertama yang dia ikuti) dan menampilkan ikonnya sebagai latar kartu, dengan nama komunitasnya di chip atas. Isi `Community.PreferGroupId` di Config supaya komunitas game-mu didahulukan kalau pemain ada di sana. Matikan dengan `Community.Enabled = false`.
-- **Profile**: ID, umur akun, Premium, role, komunitas, lama di server, dan jumlah Followers, Following, Kisses.
+- **Profile**: ID, umur akun, Premium, role, komunitas, lama di server, dan jumlah Followers, Following, Likes.
 - **Carry**: menggendong pemain di punggung. Yang digendong menerima popup **Accept / Decline** dulu (`CarryRequiresConsent`). Yang menggendong menekan **PUT DOWN**; yang digendong bisa turun dengan **lompat** atau tombol **GET DOWN**.
 - **Add Friend**: membuka permintaan pertemanan bawaan Roblox.
 - **Follow**: mengikuti pemain. Followers dihitung di dalam game ini, bukan followers Roblox.
@@ -166,7 +166,7 @@ gui.OpenPlayer:Fire(player)          -- Player atau UserId
 gui.OpenPlayer:Fire(player, "Chat")  -- "Home", "Profile", atau "Chat"
 ```
 
-### Role, judul, dan nametag
+### Role dan nametag
 
 Edit `ReplicatedStorage > PlayerMenu > Config`:
 
@@ -175,10 +175,9 @@ Config.Roles = {
     { Name = "ADMINISTRATOR", Color = Color3.fromRGB(255, 128, 31), UserIds = { 123456789 } },
     { Name = "VIP", Color = Color3.fromRGB(255, 208, 84), GamepassId = 987654321 },
 }
-Config.Titles = { [123456789] = "✨RAKYAT KECIL✨" }
 ```
 
-Role juga bisa dari grup (`GroupId` + `MinRank`). Server menyimpan hasilnya di attribute Player (`PMRole`, `PMRoleColor`, `PMTitle`, ...); script lain boleh mengubahnya kapan saja dan kartu serta nametag ikut berubah. Tampilan nametag ada di `PlayerMenuGui > NametagTemplate`, bebas diubah di Studio.
+Role juga bisa dari grup (`GroupId` + `MinRank`). Server menyimpan hasilnya di attribute Player (`PMRole`, `PMRoleColor`, ...); script lain boleh mengubahnya kapan saja dan kartu serta nametag ikut berubah. Tampilan nametag ada di `PlayerMenuGui > NametagTemplate`, bebas diubah di Studio.
 
 Semua pilihan lain (jarak, cooldown, carry, chat, nama DataStore, nametag) dijelaskan di dalam Config.
 
@@ -207,6 +206,6 @@ lune run tools/check.luau                # compile semua script di file model
 lune run tools/test-player-menu.luau     # tes end-to-end di dunia Roblox tiruan (2 pemain)
 ```
 
-`test-player-menu` menjalankan script asli hasil build (server, client, nametag) lalu mensimulasikan ketuk pemain, Kiss, Follow, Carry, Private Chat, role, dan penyimpanan. Ini bukan Roblox, jadi fisika dan tampilan tidak ikut teruji.
+`test-player-menu` menjalankan script asli hasil build (server, client, nametag) lalu mensimulasikan ketuk pemain, Like, Follow, Carry, Private Chat, role, dan penyimpanan. Ini bukan Roblox, jadi fisika dan tampilan tidak ikut teruji.
 
 Preview PNG: jalankan build dengan `-- --tree`, lalu `node tools/preview/render.cjs` (butuh Playwright dan font Montserrat di `build/fonts`). Tambahkan `playermenu` di belakang perintah untuk merender hanya preview Player Menu.

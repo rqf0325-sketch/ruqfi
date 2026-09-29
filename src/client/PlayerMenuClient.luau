@@ -1,9 +1,9 @@
 --[[
 	PlayerMenuClient (LocalScript inside StarterGui.PlayerMenuGui)
 
-	Tap / click another player to open their card: name, stats, Kiss, and the
+	Tap / click another player to open their card: name, stats, Like, and the
 	actions Profile, Carry, Add Friend, Follow and Private Chat. Also runs the
-	carry request popup, the toast, and the hearts when someone is kissed.
+	carry request popup, the toast, and the hearts that float up when someone is liked.
 	The server re-checks everything the buttons ask for.
 
 	Other scripts can open a card with the OpenPlayer BindableEvent:
@@ -26,7 +26,7 @@ local shared = ReplicatedStorage:WaitForChild("PlayerMenu")
 local Config = require(shared:WaitForChild("Config"))
 local Settings = Config.Settings
 local remotes = shared:WaitForChild("Remotes")
-local kissRemote = remotes:WaitForChild("Kiss")
+local likeRemote = remotes:WaitForChild("Like")
 local followRemote = remotes:WaitForChild("Follow")
 local carryRemote = remotes:WaitForChild("Carry")
 local chatRemote = remotes:WaitForChild("SendMessage")
@@ -50,7 +50,7 @@ local viewport = portrait:WaitForChild("ModelView")
 local communityChip = home:WaitForChild("CommunityChip")
 local stats = home:WaitForChild("Stats")
 local actions = home:WaitForChild("Actions")
-local kissTile = stats:WaitForChild("Kiss")
+local likeTile = stats:WaitForChild("Like")
 local messages = chatPage:WaitForChild("Messages")
 local chatInput = chatPage:WaitForChild("InputBar"):WaitForChild("Field"):WaitForChild("InputBox")
 local sendButton = chatPage.InputBar:WaitForChild("SendButton")
@@ -64,7 +64,7 @@ local COLORS = {
 	Red = Color3.fromRGB(255, 85, 102),
 	Blue = Color3.fromRGB(77, 171, 255),
 }
-local HEARTS = { "💋", "❤️", "💖", "💕", "💗" }
+local HEARTS = { "❤️", "💖", "💕", "💗", "💓" }
 
 local state = {
 	target = nil, -- Player shown on the card
@@ -252,9 +252,9 @@ local function worldHearts(target)
 	end
 	Debris:AddItem(billboard, 2.6)
 
-	if Settings.KissSoundId ~= "" then
+	if Settings.LikeSoundId ~= "" then
 		local sound = Instance.new("Sound")
-		sound.SoundId = Settings.KissSoundId
+		sound.SoundId = Settings.LikeSoundId
 		sound.RollOffMaxDistance = 60
 		sound.Parent = head
 		sound:Play()
@@ -399,13 +399,9 @@ local function refreshIdentity()
 		return
 	end
 	local role, color = targetRole(target)
-	local title = target:GetAttribute("PMTitle") or ""
 
 	home.DisplayName.Text = target.DisplayName
 	home.Username.Text = "@" .. target.Name
-	home.Title.Text = title
-	home.Title.Visible = title ~= ""
-	home.Title.TextColor3 = color
 	home.RoleChip.Visible = role ~= ""
 	home.RoleChip.Label.Text = role
 	home.RoleChip.Label.TextColor3 = color
@@ -456,7 +452,7 @@ local function refreshStats()
 	end
 	stats.Friends.Value.Text = if Settings.ShowFriendCount then formatCount(target:GetAttribute("PMFriends")) else "–"
 	stats.Followers.Value.Text = formatCount(target:GetAttribute("PMFollowers"))
-	kissTile.Value.Text = "💋 " .. formatCount(target:GetAttribute("PMKisses"))
+	likeTile.Value.Text = "❤️ " .. formatCount(target:GetAttribute("PMLikes"))
 end
 
 local function refreshProfile()
@@ -476,7 +472,7 @@ local function refreshProfile()
 		InServer = if type(joined) == "number" then formatDuration(math.max(0, workspace:GetServerTimeNow() - joined)) else "–",
 		Followers = formatCount(target:GetAttribute("PMFollowers")),
 		Following = formatCount(target:GetAttribute("PMFollowing")),
-		Kisses = formatCount(target:GetAttribute("PMKisses")),
+		Likes = formatCount(target:GetAttribute("PMLikes")),
 	}
 	for key, text in rows do
 		local row = info:FindFirstChild("Row_" .. key)
@@ -510,10 +506,10 @@ local function refreshActions()
 	local isSelf = target == player
 	local carry = state.carry
 
-	-- Kiss
-	kissTile.Interactable = not isSelf
-	kissTile.Value.TextTransparency = if isSelf then 0.5 else 0
-	kissTile.Caption.Text = if isSelf then "YOU" else "KISSES"
+	-- Like
+	likeTile.Interactable = not isSelf
+	likeTile.Value.TextTransparency = if isSelf then 0.5 else 0
+	likeTile.Caption.Text = if isSelf then "YOU" else "LIKES"
 
 	-- Carry
 	local carryTile = actions.Carry
@@ -728,8 +724,8 @@ local function openCard(target, page)
 		refreshIdentity()
 		refreshCommunity()
 		refreshStats()
-		if name == "PMKisses" then
-			pulse(kissTile.Pulse)
+		if name == "PMLikes" then
+			pulse(likeTile.Pulse)
 		end
 		if state.page == "Profile" then
 			refreshProfile()
@@ -801,16 +797,16 @@ local function invoke(remote, ...)
 	return { ok = false, message = "Something went wrong" }
 end
 
-local function doKiss()
+local function doLike()
 	local target = state.target
 	if not target or target == player then
 		return
 	end
-	pulse(kissTile.Pulse)
-	once("Kiss", function()
-		local result = invoke(kissRemote, target.UserId)
+	pulse(likeTile.Pulse)
+	once("Like", function()
+		local result = invoke(likeRemote, target.UserId)
 		if not result.ok then
-			showToast(result.message or "Can't kiss right now", false)
+			showToast(result.message or "Can't like right now", false)
 		end
 	end)
 end
@@ -874,7 +870,7 @@ local function doFollow()
 	end)
 end
 
-kissTile.Activated:Connect(doKiss)
+likeTile.Activated:Connect(doLike)
 actions.Profile.Activated:Connect(function()
 	showPage("Profile")
 end)
@@ -997,7 +993,7 @@ end)
 
 local handlers = {}
 
-function handlers.Kissed(data)
+function handlers.Liked(data)
 	local giver = Players:GetPlayerByUserId(data.from)
 	local receiver = Players:GetPlayerByUserId(data.to)
 	if not receiver then
@@ -1008,7 +1004,7 @@ function handlers.Kissed(data)
 		cardHearts()
 	end
 	if receiver == player and giver then
-		showToast(`💋 {giver.DisplayName} kissed you`, true)
+		showToast(`❤️ {giver.DisplayName} liked you`, true)
 	end
 end
 
@@ -1142,7 +1138,7 @@ for _, child in messages:GetChildren() do
 end
 fitChip(home.RoleChip, 24)
 fitChip(communityChip, 24)
-kissTile.Pulse.Scale = 1
+likeTile.Pulse.Scale = 1
 card.Visible = false
 profilePage.Visible = false
 chatPage.Visible = false

@@ -3,13 +3,13 @@
 	(ReplicatedStorage > PlayerMenu > Config)
 
 	Ketuk / klik pemain lain untuk membuka kartu profilnya: nama, statistik
-	(Friends, Followers, Kiss), Carry, Add Friend, Follow, dan Private Chat.
-	Di atas kepala setiap pemain ada nametag: judul, nama, dan role.
+	(Friends, Followers, Like), Carry, Add Friend, Follow, dan Private Chat.
+	Di atas kepala setiap pemain ada nametag: nama dan role.
 	Latar kartu transparan; kalau pemain punya komunitas (group Roblox),
 	ikon komunitasnya jadi latar kartu.
 
-	Role dan judul dibaca server saat pemain masuk, lalu disimpan sebagai
-	attribute di Player (PMRole, PMRoleColor, PMTitle, ...). Script lain boleh
+	Role dibaca server saat pemain masuk, lalu disimpan sebagai
+	attribute di Player (PMRole, PMRoleColor, ...). Script lain boleh
 	mengubah attribute itu kapan saja, nametag dan kartu ikut berubah.
 ]]
 
@@ -19,10 +19,10 @@ Config.Settings = {
 	TapToOpen = true, -- klik / ketuk karakter pemain lain untuk membuka kartunya
 	OpenDistance = 0, -- jarak maksimal ke pemain yang diketuk (stud), 0 = tanpa batas
 
-	-- Kiss (angka 💋 di kartu, tersimpan di DataStore)
-	KissCooldown = 2, -- detik antar kiss ke pemain yang sama
-	KissMaxDistance = 0, -- jarak maksimal saat kiss (stud), 0 = tanpa batas
-	KissSoundId = "", -- "rbxassetid://123..." suara saat kiss (kosong = tanpa suara)
+	-- Like (angka ❤️ di kartu, tersimpan di DataStore)
+	LikeCooldown = 2, -- detik antar like ke pemain yang sama
+	LikeMaxDistance = 0, -- jarak maksimal saat like (stud), 0 = tanpa batas
+	LikeSoundId = "", -- "rbxassetid://123..." suara saat like (kosong = tanpa suara)
 
 	-- Follow (Followers dihitung di dalam game ini, bukan followers Roblox)
 	FollowEnabled = true,
@@ -48,7 +48,7 @@ Config.Settings = {
 		ImageTransparency = 0.6, -- 0 = ikon jelas, 1 = tidak terlihat
 	},
 	DataStoreName = "PlayerMenu_v1",
-	SaveData = true, -- false = Kiss dan Follow tidak disimpan (reset tiap sesi)
+	SaveData = true, -- false = Like dan Follow tidak disimpan (reset tiap sesi)
 
 	-- Nametag di atas kepala
 	Nametags = {
@@ -67,7 +67,6 @@ Config.Settings = {
 	Name       : teks role di kartu dan nametag
 	Color      : warna role (chip, cincin avatar, cahaya kartu)
 	NameColors : (opsional) dua warna gradien untuk nama di nametag
-	Title      : (opsional) judul bawaan untuk role ini
 	UserIds    : daftar UserId yang mendapat role ini
 	GroupId    : (opsional) ID grup; pemain dengan rank >= MinRank mendapat role ini
 	GamepassId : (opsional) ID gamepass; pemilik gamepass mendapat role ini
@@ -88,12 +87,5 @@ Config.Roles = {
 		GamepassId = 0,
 	},
 }
-
--- Judul per pemain: [UserId] = "teks", tampil di atas nama.
-Config.Titles = {
-	-- [123456789] = "✨RAKYAT KECIL✨",
-}
-
-Config.DefaultTitle = "" -- judul untuk pemain tanpa judul khusus (kosong = tidak ada)
 
 return Config

@@ -2,7 +2,7 @@
 	Smoke test for the Player Menu: runs the real scripts from the built model
 	files (PlayerMenuServer, PlayerMenuClient, PlayerMenuNametags) inside a small
 	fake Roblox world with two players, and drives them end to end: tap a
-	player, Kiss, Follow, Carry (request / accept / put down), Private Chat,
+	player, Like, Follow, Carry (request / accept / put down), Private Chat,
 	roles, saving, and the nametags.
 
 	  lune run tools/build-player-menu.luau
@@ -655,8 +655,7 @@ local function scenario()
 	-- Config tweaks for the test: A is an administrator.
 	local Config = makeEnv(serverModel).require(sharedModel:FindFirstChild("Config"))
 	Config.Roles[1].UserIds = { 1 }
-	Config.Titles[1] = "✨RAKYAT KECIL✨"
-	Config.Settings.KissCooldown = 2
+	Config.Settings.LikeCooldown = 2
 
 	local playerA = makePlayer(1, "SweetPie0325", "SweetPie")
 	local playerB = makePlayer(2, "PaulTheVIP", "Paul")
@@ -667,7 +666,7 @@ local function scenario()
 	local _, humanoidB, rootB = makeCharacter(playerB, roblox.Vector3.new(4, 3, 0))
 
 	-- A has a primary community, B only a non-primary one.
-	groupsByUser[1] = { { Id = 111, Name = "Rakyat Kecil", IsPrimary = false }, { Id = 222, Name = "Primary Club", IsPrimary = true } }
+	groupsByUser[1] = { { Id = 111, Name = "Second Group", IsPrimary = false }, { Id = 222, Name = "Primary Club", IsPrimary = true } }
 	groupsByUser[2] = { { Id = 333, Name = "Only Group", IsPrimary = false } }
 
 	run(serverModel)
@@ -677,18 +676,18 @@ local function scenario()
 	noErrors("server start")
 
 	local remotes = wrap(sharedModel):FindFirstChild("Remotes")
-	local kiss = remotes:FindFirstChild("Kiss")
+	local like = remotes:FindFirstChild("Like")
 	local carry = remotes:FindFirstChild("Carry")
 	local chat = remotes:FindFirstChild("SendMessage")
 	local notifyEvent = remotes:FindFirstChild("Notify")
 
 	-- Attributes / roles -----------------------------------------------------
 	checkEq(playerA:GetAttribute("PMRole"), "ADMINISTRATOR", "role from UserIds")
-	checkEq(playerA:GetAttribute("PMTitle"), "✨RAKYAT KECIL✨", "title from Config.Titles")
+	check(playerA:GetAttribute("PMTitle") == nil, "titles no longer exist")
 	check(playerA:GetAttribute("PMRoleColor") ~= nil, "role color published")
 	checkEq(playerB:GetAttribute("PMRole"), "", "no role for B")
 	checkEq(playerA:GetAttribute("PMFriends"), 329, "friend count")
-	checkEq(playerA:GetAttribute("PMKisses"), 0, "kisses start at 0")
+	checkEq(playerA:GetAttribute("PMLikes"), 0, "likes start at 0")
 	check(type(playerA:GetAttribute("PMJoined")) == "number", "join time published")
 	checkEq(playerA:GetAttribute("PMCommunityId"), 222, "primary community is chosen")
 	checkEq(playerA:GetAttribute("PMCommunityName"), "Primary Club", "community name published")
@@ -715,7 +714,6 @@ local function scenario()
 	if tagB then
 		checkEq(tagB.Stack.PlayerName.Text, "Paul", "nametag shows display name")
 		check(tagB.Stack.RoleChip.Visible == false, "no role chip for B")
-		check(tagB.Stack.Title.Visible == false, "no title for B")
 		check(tagB.Enabled == true, "nametag enabled")
 	end
 	local ownHead = wrap(worldRoot):FindFirstChild("SweetPie0325").Head
@@ -738,7 +736,7 @@ local function scenario()
 	check(home.RoleChip.Visible == false, "no role chip for a member")
 	checkEq(home.Stats.Friends.Value.Text, "3", "friends stat")
 	checkEq(home.Stats.Followers.Value.Text, "0", "followers stat")
-	checkEq(home.Stats.Kiss.Value.Text, "💋 0", "kiss stat")
+	checkEq(home.Stats.Like.Value.Text, "❤️ 0", "like stat")
 	checkEq(home.Actions.Carry.Subtitle.Text, "Piggyback ride", "carry tile idle text")
 	check(home.Actions.Follow.Title.Text == "Follow", "follow tile idle")
 	check(card.ProfilePage.Visible == false and card.ChatPage.Visible == false, "pages hidden")
@@ -758,24 +756,24 @@ local function scenario()
 	advance(0.1)
 	checkEq(home.DisplayName.Text, "Paul", "a drag does not change the card")
 
-	-- Kiss ---------------------------------------------------------------------------
-	local kissesBefore = playerB:GetAttribute("PMKisses")
-	fire(home.Stats.Kiss)
+	-- Like ---------------------------------------------------------------------------
+	local likesBefore = playerB:GetAttribute("PMLikes")
+	fire(home.Stats.Like)
 	advance(1.3)
-	noErrors("kiss")
-	checkEq(playerB:GetAttribute("PMKisses"), kissesBefore + 1, "kiss increments the count")
-	checkEq(home.Stats.Kiss.Value.Text, "💋 1", "card shows the new kiss count")
+	noErrors("like")
+	checkEq(playerB:GetAttribute("PMLikes"), likesBefore + 1, "like increments the count")
+	checkEq(home.Stats.Like.Value.Text, "❤️ 1", "card shows the new like count")
 	check(#card.FxLayer:GetChildren() > 0, "card hearts spawned")
-	fire(home.Stats.Kiss)
+	fire(home.Stats.Like)
 	advance(0.5)
-	checkEq(playerB:GetAttribute("PMKisses"), 1, "kiss cooldown blocks a second kiss")
+	checkEq(playerB:GetAttribute("PMLikes"), 1, "like cooldown blocks a second like")
 	check(gui.Toast.Visible == true and string.find(gui.Toast.Message.Text, "Wait") ~= nil, "cooldown toast: " .. gui.Toast.Message.Text)
 	advance(2.5)
-	fire(home.Stats.Kiss)
+	fire(home.Stats.Like)
 	advance(0.5)
-	checkEq(playerB:GetAttribute("PMKisses"), 2, "kiss works again after the cooldown")
-	check(handlerOf(kiss)(playerA, 1).ok == false, "can't kiss yourself")
-	check(handlerOf(kiss)(playerA, "x").ok == false, "bad target is rejected")
+	checkEq(playerB:GetAttribute("PMLikes"), 2, "like works again after the cooldown")
+	check(handlerOf(like)(playerA, 1).ok == false, "can't like yourself")
+	check(handlerOf(like)(playerA, "x").ok == false, "bad target is rejected")
 
 	-- Follow ------------------------------------------------------------------------------
 	fire(home.Actions.Follow)
@@ -806,7 +804,7 @@ local function scenario()
 	checkEq(rows.Row_Membership.Value.Text, "Premium", "profile membership")
 	checkEq(rows.Row_Role.Value.Text, "Member", "profile role")
 	checkEq(rows.Row_Community.Value.Text, "Only Group", "profile community")
-	checkEq(rows.Row_Kisses.Value.Text, "2", "profile kisses")
+	checkEq(rows.Row_Likes.Value.Text, "2", "profile likes")
 	check(string.find(rows.Row_AccountAge.Value.Text, "yr") ~= nil, "profile account age: " .. rows.Row_AccountAge.Value.Text)
 	fire(card.ProfilePage.BackButton)
 	check(card.ProfilePage.Visible == false and card.Home.Visible == true, "back from profile shows home again")
@@ -951,15 +949,12 @@ local function scenario()
 	check(card.CommunityBackground.Visible == false and home.CommunityChip.Visible == false, "no community: plain card")
 	checkEq(card.CommunityBackground.Image, "", "community image cleared")
 
-	-- Roles: title changes at runtime ---------------------------------------------------------------------------------
-	playerB:SetAttribute("PMTitle", "Dancer")
+	-- Roles: role changes at runtime ---------------------------------------------------------------------------------
 	playerB:SetAttribute("PMRole", "VIP")
 	playerB:SetAttribute("PMRoleColor", roblox.Color3.fromRGB(255, 208, 84))
 	advance(0.2)
-	checkEq(home.Title.Text, "Dancer", "card title updates live")
 	check(home.RoleChip.Visible == true and home.RoleChip.Label.Text == "VIP", "card role chip updates live")
 	if tagB then
-		checkEq(tagB.Stack.Title.Text, "Dancer", "nametag title updates live")
 		checkEq(tagB.Stack.RoleChip.Label.Text, "VIP", "nametag role updates live")
 	end
 
@@ -971,7 +966,7 @@ local function scenario()
 	advance(0.5)
 	noErrors("open own card")
 	check(card.Visible == true and home.DisplayName.Text == "SweetPie", "OpenPlayer event opens a card")
-	check(home.Stats.Kiss.Interactable == false, "can't kiss yourself")
+	check(home.Stats.Like.Interactable == false, "can't like yourself")
 	check(home.Actions.Carry.Interactable == false and home.Actions.Chat.Interactable == false, "own card disables social actions")
 	check(home.RoleChip.Visible == true and home.RoleChip.Label.Text == "ADMINISTRATOR", "own role chip")
 	checkEq(home.CommunityChip.Label.Text, "Primary Club", "own community chip")
@@ -990,14 +985,14 @@ local function scenario()
 	-- Saving ----------------------------------------------------------------------------------------------------------------
 	advance(1)
 	local saved = dataStoreData["u_2"]
-	check(saved ~= nil and saved.Kisses == 2, "B's kisses were saved on leaving")
+	check(saved ~= nil and saved.Likes == 2, "B's likes were saved on leaving")
 	Config.Settings.Community.PreferGroupId = 555
 	groupsByUser[2] = { { Id = 333, Name = "Only Group", IsPrimary = true }, { Id = 555, Name = "Our Game Community", IsPrimary = false } }
 	local rejoined = makePlayer(2, "PaulTheVIP", "Paul")
 	makeCharacter(rejoined, roblox.Vector3.new(4, 3, 0))
 	addPlayer(rejoined)
 	advance(0.5)
-	checkEq(rejoined:GetAttribute("PMKisses"), 2, "kisses are loaded again on rejoin")
+	checkEq(rejoined:GetAttribute("PMLikes"), 2, "likes are loaded again on rejoin")
 	checkEq(rejoined:GetAttribute("PMCommunityId"), 555, "PreferGroupId wins over the primary community")
 	dataStoreFails = true
 	local unlucky = makePlayer(3, "Unlucky", "Unlucky")
@@ -1005,7 +1000,7 @@ local function scenario()
 	addPlayer(unlucky)
 	advance(10)
 	dataStoreFails = false
-	checkEq(unlucky:GetAttribute("PMKisses"), 0, "profile still works when the DataStore fails")
+	checkEq(unlucky:GetAttribute("PMLikes"), 0, "profile still works when the DataStore fails")
 	local updatesBefore = updateCalls
 	removePlayer(unlucky)
 	advance(5)

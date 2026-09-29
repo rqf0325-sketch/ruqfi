@@ -10,14 +10,14 @@
 	enforced, chat is filtered, and carrying needs the other player's consent.
 
 	What it publishes on every Player (attributes), read by the GUI:
-	  PMKisses, PMFollowers, PMFollowing, PMFriends   numbers
-	  PMRole, PMTitle, PMCommunityName                strings
+	  PMLikes, PMFollowers, PMFollowing, PMFriends   numbers
+	  PMRole, PMCommunityName                         strings
 	  PMCommunityId                                   number (group ID of their community)
 	  PMRoleColor, PMNameColorA, PMNameColorB         Color3
 	  PMJoined                                        server time the player joined
-	Other scripts may change the role / title attributes at any time.
+	Other scripts may change the role attributes at any time.
 
-	Kiss and Follow counts live in a DataStore (Settings.DataStoreName).
+	Like and Follow counts live in a DataStore (Settings.DataStoreName).
 	Without Studio API access the counts work but are not saved.
 ]]
 
@@ -44,7 +44,7 @@ local function getOrCreate(parent, className, name)
 end
 
 local remotes = getOrCreate(shared, "Folder", "Remotes")
-local kissRemote = getOrCreate(remotes, "RemoteFunction", "Kiss")
+local likeRemote = getOrCreate(remotes, "RemoteFunction", "Like")
 local followRemote = getOrCreate(remotes, "RemoteFunction", "Follow")
 local carryRemote = getOrCreate(remotes, "RemoteFunction", "Carry")
 local chatRemote = getOrCreate(remotes, "RemoteFunction", "SendMessage")
@@ -115,10 +115,10 @@ local function throttled(player, key, interval)
 end
 
 ---------------------------------------------------------------------------
--- Profiles: kisses, followers and who each player follows
+-- Profiles: likes, followers and who each player follows
 ---------------------------------------------------------------------------
 
-local profiles = {} -- [Player] = { kisses, followers, following, loaded, volatile, dirty }
+local profiles = {} -- [Player] = { likes, followers, following, loaded, volatile, dirty }
 local saving = 0
 
 local store
@@ -162,13 +162,13 @@ local function publish(player, profile)
 	if player.Parent ~= Players then
 		return
 	end
-	player:SetAttribute("PMKisses", profile.kisses)
+	player:SetAttribute("PMLikes", profile.likes)
 	player:SetAttribute("PMFollowers", profile.followers)
 	player:SetAttribute("PMFollowing", followingCount(profile))
 end
 
 local function loadProfile(player)
-	local profile = { kisses = 0, followers = 0, following = {}, loaded = false, volatile = false, dirty = false }
+	local profile = { likes = 0, followers = 0, following = {}, loaded = false, volatile = false, dirty = false }
 	profiles[player] = profile
 
 	if store then
@@ -180,7 +180,7 @@ local function loadProfile(player)
 			profile.volatile = true
 			warn(`[PlayerMenu] Could not load data for {player.Name}; their counts will not be saved this session: {data}`)
 		elseif type(data) == "table" then
-			profile.kisses = tonumber(data.Kisses) or 0
+			profile.likes = tonumber(data.Likes) or tonumber(data.Kisses) or 0 -- Kisses: the name used before
 			profile.followers = tonumber(data.Followers) or 0
 			if type(data.Following) == "table" then
 				for _, userId in data.Following do
@@ -214,7 +214,8 @@ local function saveProfile(userId, profile)
 	local ok, err = withRetry(function()
 		store:UpdateAsync(dataKey(userId), function(old)
 			old = if type(old) == "table" then old else {}
-			old.Kisses = profile.kisses
+			old.Likes = profile.likes
+			old.Kisses = nil
 			old.Followers = profile.followers
 			old.Following = following
 			return old
@@ -228,7 +229,7 @@ local function saveProfile(userId, profile)
 end
 
 ---------------------------------------------------------------------------
--- Roles, titles and friend count
+-- Roles, community and friend count
 ---------------------------------------------------------------------------
 
 local passCache = {}
@@ -277,13 +278,11 @@ local function applyRole(player)
 	if player.Parent ~= Players then
 		return
 	end
-	local title = Config.Titles[player.UserId] or (matched and matched.Title) or Config.DefaultTitle or ""
 	local nameColors = matched and matched.NameColors
 	player:SetAttribute("PMRole", matched and matched.Name or "")
 	player:SetAttribute("PMRoleColor", matched and matched.Color or nil)
 	player:SetAttribute("PMNameColorA", nameColors and nameColors[1] or nil)
 	player:SetAttribute("PMNameColorB", nameColors and nameColors[2] or nil)
-	player:SetAttribute("PMTitle", title)
 end
 
 -- The player's community (Roblox group): their primary one, or the first one.
@@ -333,13 +332,13 @@ local function loadFriendCount(player)
 end
 
 ---------------------------------------------------------------------------
--- Kiss
+-- Like
 ---------------------------------------------------------------------------
 
-local kissClock = {} -- [giver] = { [targetUserId] = os.clock() }
+local likeClock = {} -- [giver] = { [targetUserId] = os.clock() }
 
-kissRemote.OnServerInvoke = function(player, targetUserId)
-	if throttled(player, "Kiss", 0.25) then
+likeRemote.OnServerInvoke = function(player, targetUserId)
+	if throttled(player, "Like", 0.25) then
 		return fail("Slow down")
 	end
 	local target = findTarget(player, targetUserId)
@@ -351,25 +350,25 @@ kissRemote.OnServerInvoke = function(player, targetUserId)
 		return fail("Profile is still loading")
 	end
 
-	local given = kissClock[player]
+	local given = likeClock[player]
 	if not given then
 		given = {}
-		kissClock[player] = given
+		likeClock[player] = given
 	end
-	local remaining = (given[target.UserId] or -math.huge) + Settings.KissCooldown - os.clock()
+	local remaining = (given[target.UserId] or -math.huge) + Settings.LikeCooldown - os.clock()
 	if remaining > 0 then
-		return fail(`Wait {math.ceil(remaining)}s to kiss {target.DisplayName} again`, { wait = remaining })
+		return fail(`Wait {math.ceil(remaining)}s to like {target.DisplayName} again`, { wait = remaining })
 	end
-	if Settings.KissMaxDistance > 0 and distanceBetween(player, target) > Settings.KissMaxDistance then
+	if Settings.LikeMaxDistance > 0 and distanceBetween(player, target) > Settings.LikeMaxDistance then
 		return fail(`{target.DisplayName} is too far away`)
 	end
 
 	given[target.UserId] = os.clock()
-	profile.kisses += 1
+	profile.likes += 1
 	profile.dirty = true
 	publish(target, profile)
-	notifyRemote:FireAllClients("Kissed", { from = player.UserId, to = target.UserId })
-	return { ok = true, count = profile.kisses }
+	notifyRemote:FireAllClients("Liked", { from = player.UserId, to = target.UserId })
+	return { ok = true, count = profile.likes }
 end
 
 ---------------------------------------------------------------------------
@@ -695,7 +694,7 @@ local function onPlayerRemoving(player)
 			pendingCarry[target] = nil
 		end
 	end
-	kissClock[player] = nil
+	likeClock[player] = nil
 	lastCall[player] = nil
 	passCache[player] = nil
 

@@ -65,7 +65,7 @@ script("ModuleScript", "Config", "src/shared/PlayerMenuConfig.luau", shared)
 local remotes = Instance.new("Folder")
 remotes.Name = "Remotes"
 remotes.Parent = shared
-for _, name in { "Kiss", "Follow", "Carry", "SendMessage" } do
+for _, name in { "Like", "Follow", "Carry", "SendMessage" } do
 	local remote = Instance.new("RemoteFunction")
 	remote.Name = name
 	remote.Parent = remotes
@@ -162,23 +162,21 @@ sheet.Size = UDim2.fromScale(1, 1)
 sheet.BackgroundTransparency = 1
 
 local examples = {
-	{ title = "✨RAKYAT KECIL✨", name = "SweetPie", role = "ADMINISTRATOR", color = Color3.fromRGB(255, 128, 31), gradient = true },
-	{ title = "", name = "Paul", role = "VIP", color = Color3.fromRGB(255, 208, 84), gradient = false },
-	{ title = "", name = "Rika", role = "", color = Color3.new(1, 1, 1), gradient = false },
+	{ name = "SweetPie", role = "ADMINISTRATOR", color = Color3.fromRGB(255, 128, 31), gradient = true },
+	{ name = "Paul", role = "VIP", color = Color3.fromRGB(255, 208, 84), gradient = false },
+	{ name = "Rika", role = "", color = Color3.new(1, 1, 1), gradient = false },
 }
 for i, example in examples do
 	local holder = Instance.new("Frame")
 	holder.Name = `Tag{i}`
 	holder.AnchorPoint = Vector2.new(0.5, 1)
 	holder.Position = UDim2.new((i - 0.5) / #examples, 0, 1, -14)
-	holder.Size = UDim2.fromOffset(240, 78)
+	holder.Size = UDim2.fromOffset(240, 56)
 	holder.BackgroundTransparency = 1
 	holder.Parent = sheet
 	local stack = template.Stack:Clone()
 	stack.Size = UDim2.fromScale(1, 1)
 	stack.Parent = holder
-	stack.Title.Text = example.title
-	stack.Title.Visible = example.title ~= ""
 	stack.PlayerName.Text = example.name
 	stack.PlayerName.UIGradient.Enabled = example.gradient
 	stack.RoleChip.Visible = example.role ~= ""
