@@ -1,0 +1,132 @@
+<roblox version="4">
+  <Item class="Folder" referent="0">
+    <Properties>
+      <string name="Name">PlayerMenu</string>
+    </Properties>
+    <Item class="ModuleScript" referent="1">
+      <Properties>
+        <string name="Name">Config</string>
+        <string name="Source"><![CDATA[--[[
+	Player Menu — Config
+	(ReplicatedStorage > PlayerMenu > Config)
+
+	Ketuk / klik pemain lain untuk membuka kartu profilnya: nama, statistik
+	(Friends, Followers, Kiss), Carry, Add Friend, Follow, dan Private Chat.
+	Di atas kepala setiap pemain ada nametag: judul, nama, dan role.
+
+	Role dan judul dibaca server saat pemain masuk, lalu disimpan sebagai
+	attribute di Player (PMRole, PMRoleColor, PMTitle, ...). Script lain boleh
+	mengubah attribute itu kapan saja, nametag dan kartu ikut berubah.
+]]
+
+local Config = {}
+
+Config.Settings = {
+	TapToOpen = true, -- klik / ketuk karakter pemain lain untuk membuka kartunya
+	OpenDistance = 0, -- jarak maksimal ke pemain yang diketuk (stud), 0 = tanpa batas
+
+	-- Kiss (angka 💋 di kartu, tersimpan di DataStore)
+	KissCooldown = 2, -- detik antar kiss ke pemain yang sama
+	KissMaxDistance = 0, -- jarak maksimal saat kiss (stud), 0 = tanpa batas
+	KissSoundId = "", -- "rbxassetid://123..." suara saat kiss (kosong = tanpa suara)
+
+	-- Follow (Followers dihitung di dalam game ini, bukan followers Roblox)
+	FollowEnabled = true,
+
+	-- Carry (menggendong di punggung). Yang digendong bisa turun dengan lompat.
+	CarryEnabled = true,
+	CarryRequiresConsent = true, -- true = yang digendong harus menekan Accept dulu
+	CarryMaxDistance = 12, -- jarak maksimal saat meminta / menerima carry (stud)
+	CarryRequestTimeout = 15, -- detik sebelum permintaan carry hangus
+	CarryOffset = CFrame.new(0, 0.6, 1.3), -- posisi yang digendong relatif ke pembawa (ubah kalau posisinya kurang pas)
+
+	-- Private Chat (pesan pribadi antar dua pemain, disaring oleh Roblox)
+	PrivateChatEnabled = true,
+	ChatMaxLength = 200,
+
+	ShowFriendCount = true, -- jumlah teman Roblox di kartu
+	DataStoreName = "PlayerMenu_v1",
+	SaveData = true, -- false = Kiss dan Follow tidak disimpan (reset tiap sesi)
+
+	-- Nametag di atas kepala
+	Nametags = {
+		Enabled = true,
+		ShowOwn = false, -- tampilkan nametag milik sendiri
+		HideDefaultName = true, -- sembunyikan nama bawaan Roblox
+		MaxDistance = 90, -- jarak tampil (stud)
+		StudsOffset = 2.2, -- tinggi tepi bawah nametag dari tengah kepala (stud)
+		AlwaysOnTop = false, -- true = tetap terlihat menembus tembok
+	},
+}
+
+--[[
+	Role, dicek dari atas ke bawah; yang pertama cocok dipakai.
+
+	Name       : teks role di kartu dan nametag
+	Color      : warna role (chip, cincin avatar, cahaya kartu)
+	NameColors : (opsional) dua warna gradien untuk nama di nametag
+	Title      : (opsional) judul bawaan untuk role ini
+	UserIds    : daftar UserId yang mendapat role ini
+	GroupId    : (opsional) ID grup; pemain dengan rank >= MinRank mendapat role ini
+	GamepassId : (opsional) ID gamepass; pemilik gamepass mendapat role ini
+]]
+Config.Roles = {
+	{
+		Name = "ADMINISTRATOR",
+		Color = Color3.fromRGB(255, 128, 31),
+		NameColors = { Color3.fromRGB(255, 88, 168), Color3.fromRGB(255, 176, 222) },
+		UserIds = {},
+		GroupId = 0,
+		MinRank = 255,
+	},
+	{
+		Name = "VIP",
+		Color = Color3.fromRGB(255, 208, 84),
+		UserIds = {},
+		GamepassId = 0,
+	},
+}
+
+-- Judul per pemain: [UserId] = "teks", tampil di atas nama.
+Config.Titles = {
+	-- [123456789] = "✨RAKYAT KECIL✨",
+}
+
+Config.DefaultTitle = "" -- judul untuk pemain tanpa judul khusus (kosong = tidak ada)
+
+return Config
+]]></string>
+      </Properties>
+    </Item>
+    <Item class="Folder" referent="2">
+      <Properties>
+        <string name="Name">Remotes</string>
+      </Properties>
+      <Item class="RemoteFunction" referent="3">
+        <Properties>
+          <string name="Name">Kiss</string>
+        </Properties>
+      </Item>
+      <Item class="RemoteFunction" referent="4">
+        <Properties>
+          <string name="Name">Follow</string>
+        </Properties>
+      </Item>
+      <Item class="RemoteFunction" referent="5">
+        <Properties>
+          <string name="Name">Carry</string>
+        </Properties>
+      </Item>
+      <Item class="RemoteFunction" referent="6">
+        <Properties>
+          <string name="Name">SendMessage</string>
+        </Properties>
+      </Item>
+      <Item class="RemoteEvent" referent="7">
+        <Properties>
+          <string name="Name">Notify</string>
+        </Properties>
+      </Item>
+    </Item>
+  </Item>
+</roblox>

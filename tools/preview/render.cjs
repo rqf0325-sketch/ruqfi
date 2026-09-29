@@ -1,7 +1,8 @@
 // Renders build/tree.json (from `lune run tools/build.luau -- --tree`) to PNG
 // screenshots, approximating how Roblox lays the GUI out.
 //
-//   node tools/preview/render.cjs
+//   node tools/preview/render.cjs             all screenshots
+//   node tools/preview/render.cjs playermenu  only the ones whose file name contains "playermenu"
 //
 // Needs Playwright and Montserrat woff2 files in build/fonts (npm pack @fontsource/montserrat).
 const fs = require("fs");
@@ -14,10 +15,17 @@ const readTree = (file) => JSON.parse(fs.readFileSync(path.join(ROOT, file), "ut
 
 // build/tree.json: `lune run tools/build.luau -- --tree`
 // build/touch-tree.json: `lune run tools/patch-road-glide.luau -- --tree`
+// build/pm-*.json: `lune run tools/build-player-menu.luau -- --tree`
 const SHOTS = [
 	{ tree: "build/tree.json", file: "docs/preview-desktop.png", width: 1280, height: 720 },
 	{ tree: "build/tree.json", file: "docs/preview-phone.png", width: 844, height: 390 },
 	{ tree: "build/touch-tree.json", file: "docs/preview-touch.png", width: 844, height: 390 },
+	{ tree: "build/pm-desktop.json", file: "docs/playermenu-desktop.png", width: 1280, height: 720 },
+	{ tree: "build/pm-phone.json", file: "docs/playermenu-phone.png", width: 844, height: 390 },
+	{ tree: "build/pm-hud.json", file: "docs/playermenu-hud.png", width: 1280, height: 720 },
+	{ tree: "build/pm-profile.json", file: "docs/playermenu-profile.png", width: 384, height: 560 },
+	{ tree: "build/pm-chat.json", file: "docs/playermenu-chat.png", width: 384, height: 560 },
+	{ tree: "build/pm-nametag.json", file: "docs/playermenu-nametag.png", width: 760, height: 130 },
 ];
 
 const fontFaces = [400, 500, 600, 700, 800]
@@ -34,6 +42,11 @@ function renderGui(tree) {
 	const kid = (n, cls) => kids(n).find((c) => c.class === cls);
 	const rgba = (c, t) => `rgba(${Math.round(c.r * 255)},${Math.round(c.g * 255)},${Math.round(c.b * 255)},${(1 - t).toFixed(3)})`;
 	const texts = [];
+	const TEXT = ["TextLabel", "TextButton", "TextBox"];
+	const gradientOf = (n) => {
+		const g = kid(n, "UIGradient");
+		return g && g.props.Enabled !== false ? g : undefined;
+	};
 
 	function sample(points, t, key) {
 		for (let i = 0; i < points.length - 1; i++) {
@@ -92,12 +105,21 @@ function renderGui(tree) {
 			position: "absolute", left: `${x}px`, top: `${y}px`, width: `${w}px`, height: `${h}px`,
 			zIndex: String(p.ZIndex ?? 1),
 		});
-		if (p.Rotation && GUI.has(n.class)) el.style.transform = `rotate(${p.Rotation}deg)`;
-		if (p.BackgroundTransparency < 1) el.style.background = background(p, kid(n, "UIGradient"));
+		const uiScale = kid(n, "UIScale");
+		const transforms = [];
+		if (uiScale && uiScale.props.Scale !== 1) {
+			transforms.push(`scale(${uiScale.props.Scale})`);
+			el.style.transformOrigin = `${p.AnchorPoint.x * 100}% ${p.AnchorPoint.y * 100}%`;
+		}
+		if (p.Rotation && GUI.has(n.class)) transforms.push(`rotate(${p.Rotation}deg)`);
+		if (transforms.length) el.style.transform = transforms.join(" ");
+		if (p.BackgroundTransparency < 1) el.style.background = background(p, gradientOf(n));
 		const corner = kid(n, "UICorner");
 		if (corner) el.style.borderRadius = `${corner.props.CornerRadius.s * Math.min(w, h) + corner.props.CornerRadius.o}px`;
 		const stroke = kid(n, "UIStroke");
-		if (stroke && stroke.props.Enabled !== false) el.style.boxShadow = `0 0 0 ${stroke.props.Thickness}px ${rgba(stroke.props.Color, stroke.props.Transparency)}`;
+		// Contextual strokes outline the text of a TextLabel; Border strokes outline the box.
+		const textStroke = stroke && TEXT.includes(n.class) && stroke.props.ApplyStrokeMode === "Contextual";
+		if (stroke && stroke.props.Enabled !== false && !textStroke) el.style.boxShadow = `0 0 0 ${stroke.props.Thickness}px ${rgba(stroke.props.Color, stroke.props.Transparency)}`;
 		if (p.ClipsDescendants || n.class === "ScrollingFrame") el.style.overflow = "hidden";
 		parentEl.appendChild(el);
 
@@ -123,11 +145,24 @@ function renderGui(tree) {
 					whiteSpace: "pre", lineHeight: "1", fontFamily: "Montserrat, 'Noto Color Emoji'",
 					fontWeight: String(p.FontFace.weight), color: rgba(color, p.TextTransparency ?? 0),
 				});
+				if (textStroke) {
+					const t = stroke.props.Thickness, c = rgba(stroke.props.Color, stroke.props.Transparency);
+					span.style.textShadow = [[t, 0], [-t, 0], [0, t], [0, -t], [t, t], [-t, -t], [t, -t], [-t, t]].map(([dx, dy]) => `${dx}px ${dy}px 0 ${c}`).join(",");
+				}
+				const textGradient = p.BackgroundTransparency >= 1 ? gradientOf(n) : undefined;
+				if (textGradient) {
+					span.style.background = background({ BackgroundColor3: { r: 1, g: 1, b: 1 }, BackgroundTransparency: 0 }, textGradient);
+					span.style.webkitBackgroundClip = "text";
+					span.style.backgroundClip = "text";
+					span.style.color = "transparent";
+					span.style.textShadow = "none";
+				}
 				if (p.RichText) span.innerHTML = text.replace(/<font color="(#[0-9A-Fa-f]{6})">/g, '<span style="color:$1">').replace(/<\/font>/g, "</span>");
 				else span.textContent = text;
 				box.appendChild(span);
 				el.appendChild(box);
-				texts.push({ span, cw, ch, size: p.TextScaled ? null : p.TextSize });
+				const sizeCap = kid(n, "UITextSizeConstraint");
+				texts.push({ span, cw, ch, size: p.TextScaled ? null : p.TextSize, max: sizeCap ? sizeCap.props.MaxTextSize : Infinity });
 			}
 		}
 
@@ -172,7 +207,7 @@ function renderGui(tree) {
 
 	// TextScaled: largest size that fits the text box on one line.
 	for (const t of texts) {
-		let size = t.size ?? t.ch;
+		let size = Math.min(t.size ?? t.ch, t.max);
 		t.span.style.fontSize = `${size}px`;
 		if (t.size == null) {
 			while (size > 1 && t.span.getBoundingClientRect().width > t.cw + 0.5) {
@@ -198,7 +233,7 @@ html,body{margin:0;height:100%;overflow:hidden}
 	const htmlPath = path.join(ROOT, "build/preview.html");
 	fs.writeFileSync(htmlPath, html);
 	const browser = await chromium.launch();
-	for (const shot of SHOTS) {
+	for (const shot of SHOTS.filter((s) => !process.argv[2] || s.file.includes(process.argv[2]))) {
 		const page = await browser.newPage({ viewport: { width: shot.width, height: shot.height }, deviceScaleFactor: 2 });
 		await page.goto(`file://${htmlPath}`);
 		// Webfonts load lazily; load every weight before TextScaled measuring.

@@ -15,6 +15,9 @@ local FILES = {
 	"ReplicatedStorage/VehicleSpawner.rbxmx",
 	"ServerScriptService/VehicleSpawnerServer.rbxmx",
 	"ServerStorage/Vehicles.rbxm",
+	"StarterGui/PlayerMenuGui.rbxmx",
+	"ReplicatedStorage/PlayerMenu.rbxmx",
+	"ServerScriptService/PlayerMenuServer.rbxmx",
 }
 
 local checked, failed = 0, 0

@@ -1,4 +1,11 @@
-# Vehicle Spawner + HD Road Glide ST CVO
+# Vehicle Spawner + Player Menu untuk Roblox
+
+Repo ini berisi dua sistem yang berdiri sendiri:
+
+- **[Vehicle Spawner + HD Road Glide ST CVO](#vehicle-spawner--hd-road-glide-st-cvo)**: menu spawn kendaraan dan motornya.
+- **[Player Menu](#player-menu-ketuk-pemain-lain)**: ketuk pemain lain untuk membuka kartu profil (Kiss, Follow, Carry, Add Friend, Private Chat) plus nametag di atas kepala.
+
+## Vehicle Spawner + HD Road Glide ST CVO
 
 Menu spawn kendaraan untuk Roblox (GUI + sistem) plus motor **HD Road Glide ST CVO** yang sudah diperbaiki supaya bisa dikendarai normal di **R6** (juga R15), di PC maupun HP.
 
@@ -99,6 +106,84 @@ Model aslinya punya beberapa masalah yang membuatnya tidak bisa dikendarai norma
 - Statistik di panel detail (Top Speed, dan lain-lain) hanya tampilan dan diisi manual di Config. Performa motor asli diatur di `Tuner` di dalam model motornya.
 - Kalau motor muncul menghadap arah yang salah, ubah `SpawnRotation` di Config.
 
+## Player Menu (ketuk pemain lain)
+
+Klik (PC) atau ketuk (HP) karakter pemain lain, lalu muncul **kartu profilnya** di sisi kiri layar, jadi karakternya tetap kelihatan. Di atas kepala setiap pemain ada **nametag** tiga baris: judul, nama, dan role.
+
+![Kartu pemain](docs/playermenu-desktop.png)
+
+<details>
+<summary>Kartu di HP, halaman Profile dan Private Chat, popup, dan nametag</summary>
+
+![Kartu di HP](docs/playermenu-phone.png)
+![Halaman Profile](docs/playermenu-profile.png)
+![Halaman Private Chat](docs/playermenu-chat.png)
+![Popup Carry, tombol Put Down, dan toast](docs/playermenu-hud.png)
+![Nametag](docs/playermenu-nametag.png)
+
+</details>
+
+> Gambar di atas adalah render preview. Di dalam game, lingkaran avatar menampilkan **model 3D pemain** yang bergoyang pelan (headshot dipakai selagi modelnya belum siap).
+
+### Cara pasang
+
+Sama seperti spawner: klik kanan service tujuannya, pilih **Insert from File...**, lalu pilih filenya.
+
+| File | Klik kanan di |
+|---|---|
+| `StarterGui/PlayerMenuGui.rbxmx` | **StarterGui** |
+| `ReplicatedStorage/PlayerMenu.rbxmx` | **ReplicatedStorage** |
+| `ServerScriptService/PlayerMenuServer.rbxmx` | **ServerScriptService** |
+
+Hasilnya:
+
+```
+StarterGui/PlayerMenuGui                (kartu, popup, NametagTemplate + LocalScript PlayerMenuClient dan PlayerMenuNametags)
+ReplicatedStorage/PlayerMenu            (Config, Remotes)
+ServerScriptService/PlayerMenuServer
+```
+
+Aktifkan **Game Settings → Security → Enable Studio Access to API Services** kalau ingin angka Kiss dan Follow tersimpan saat testing di Studio. Tanpa itu sistemnya tetap jalan, angkanya hanya tidak tersimpan.
+
+### Cara main
+
+- **Ketuk pemain lain** untuk membuka kartunya. Tombol **×** menutupnya. Ketuk pemain lain lagi untuk berpindah kartu.
+- **💋 Kiss**: ketuk kotak pink untuk mengirim kiss. Angkanya bertambah, hati-hati melayang di atas kepala pemain itu (terlihat semua orang), dan tersimpan. Ada jeda `KissCooldown` per pemain.
+- **Profile**: ID, umur akun, Premium, role, lama di server, dan jumlah Followers, Following, Kisses.
+- **Carry**: menggendong pemain di punggung. Yang digendong menerima popup **Accept / Decline** dulu (`CarryRequiresConsent`). Yang menggendong menekan **PUT DOWN**; yang digendong bisa turun dengan **lompat** atau tombol **GET DOWN**.
+- **Add Friend**: membuka permintaan pertemanan bawaan Roblox.
+- **Follow**: mengikuti pemain. Followers dihitung di dalam game ini, bukan followers Roblox.
+- **Private Chat**: pesan pribadi antar dua pemain. Teks disaring Roblox untuk penerimanya. Pesan masuk muncul sebagai toast (ketuk untuk membalas) dan titik merah di tombolnya.
+
+Membuka kartu dari script lain (misalnya dari leaderboard):
+
+```lua
+gui.OpenPlayer:Fire(player)          -- Player atau UserId
+gui.OpenPlayer:Fire(player, "Chat")  -- "Home", "Profile", atau "Chat"
+```
+
+### Role, judul, dan nametag
+
+Edit `ReplicatedStorage > PlayerMenu > Config`:
+
+```lua
+Config.Roles = {
+    { Name = "ADMINISTRATOR", Color = Color3.fromRGB(255, 128, 31), UserIds = { 123456789 } },
+    { Name = "VIP", Color = Color3.fromRGB(255, 208, 84), GamepassId = 987654321 },
+}
+Config.Titles = { [123456789] = "✨RAKYAT KECIL✨" }
+```
+
+Role juga bisa dari grup (`GroupId` + `MinRank`). Server menyimpan hasilnya di attribute Player (`PMRole`, `PMRoleColor`, `PMTitle`, ...); script lain boleh mengubahnya kapan saja dan kartu serta nametag ikut berubah. Tampilan nametag ada di `PlayerMenuGui > NametagTemplate`, bebas diubah di Studio.
+
+Semua pilihan lain (jarak, cooldown, carry, chat, nama DataStore, nametag) dijelaskan di dalam Config.
+
+> Player Menu juga belum dicoba langsung di Roblox Studio; yang teruji adalah tes di bagian **Build ulang** (compile, lint, dan simulasi end-to-end). Yang paling perlu dicoba di Studio: posisi yang digendong (`CarryOffset` di Config), bingkai model 3D di lingkaran avatar, dan ketuk karakter di HP.
+
+### Keamanan
+
+Semua yang dikirim tombol dicek ulang di server: target harus ada di server yang sama, cooldown dan jarak dipaksa, Carry butuh persetujuan, chat disaring dan dicek `CanUsersDirectChatAsync`, dan semua remote dibatasi lajunya.
+
 ## Build ulang (opsional)
 
 File-file di atas dibuat dari `src/` dan `vehicles/original/` menggunakan [Lune](https://github.com/lune-org/lune):
@@ -110,4 +195,14 @@ lune run tools/check.luau                # compile semua script di file model
 lune run tools/test-rider-visuals.luau   # tes badan pengendara R6 (kepala, wajah, rambut)
 ```
 
-Preview PNG: jalankan kedua build dengan `-- --tree`, lalu `node tools/preview/render.cjs` (butuh Playwright dan font Montserrat di `build/fonts`).
+Player Menu dibangun terpisah:
+
+```sh
+lune run tools/build-player-menu.luau    # GUI, Config/Remotes, script server
+lune run tools/check.luau                # compile semua script di file model
+lune run tools/test-player-menu.luau     # tes end-to-end di dunia Roblox tiruan (2 pemain)
+```
+
+`test-player-menu` menjalankan script asli hasil build (server, client, nametag) lalu mensimulasikan ketuk pemain, Kiss, Follow, Carry, Private Chat, role, dan penyimpanan. Ini bukan Roblox, jadi fisika dan tampilan tidak ikut teruji.
+
+Preview PNG: jalankan build dengan `-- --tree`, lalu `node tools/preview/render.cjs` (butuh Playwright dan font Montserrat di `build/fonts`). Tambahkan `playermenu` di belakang perintah untuk merender hanya preview Player Menu.
