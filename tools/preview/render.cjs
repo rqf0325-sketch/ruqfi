@@ -20,11 +20,12 @@ const SHOTS = [
 	{ tree: "build/tree.json", file: "docs/preview-desktop.png", width: 1280, height: 720 },
 	{ tree: "build/tree.json", file: "docs/preview-phone.png", width: 844, height: 390 },
 	{ tree: "build/touch-tree.json", file: "docs/preview-touch.png", width: 844, height: 390 },
-	{ tree: "build/pm-desktop.json", file: "docs/playermenu-desktop.png", width: 1280, height: 720 },
-	{ tree: "build/pm-phone.json", file: "docs/playermenu-phone.png", width: 844, height: 390 },
-	{ tree: "build/pm-hud.json", file: "docs/playermenu-hud.png", width: 1280, height: 720 },
-	{ tree: "build/pm-profile.json", file: "docs/playermenu-profile.png", width: 384, height: 560 },
-	{ tree: "build/pm-chat.json", file: "docs/playermenu-chat.png", width: 384, height: 560 },
+	{ tree: "build/pm-desktop.json", file: "docs/playermenu-desktop.png", width: 960, height: 540, scene: "tiles" },
+	{ tree: "build/pm-plain.json", file: "docs/playermenu-plain.png", width: 960, height: 540, scene: "tiles" },
+	{ tree: "build/pm-phone.json", file: "docs/playermenu-phone.png", width: 844, height: 390, scene: "tiles" },
+	{ tree: "build/pm-hud.json", file: "docs/playermenu-hud.png", width: 960, height: 540, scene: "tiles" },
+	{ tree: "build/pm-profile.json", file: "docs/playermenu-profile.png", width: 384, height: 560, scene: "tiles" },
+	{ tree: "build/pm-chat.json", file: "docs/playermenu-chat.png", width: 384, height: 560, scene: "tiles" },
 	{ tree: "build/pm-nametag.json", file: "docs/playermenu-nametag.png", width: 760, height: 130 },
 ];
 
@@ -120,6 +121,16 @@ function renderGui(tree) {
 		// Contextual strokes outline the text of a TextLabel; Border strokes outline the box.
 		const textStroke = stroke && TEXT.includes(n.class) && stroke.props.ApplyStrokeMode === "Contextual";
 		if (stroke && stroke.props.Enabled !== false && !textStroke) el.style.boxShadow = `0 0 0 ${stroke.props.Thickness}px ${rgba(stroke.props.Color, stroke.props.Transparency)}`;
+		if (n.class === "ImageLabel" && typeof p.Image === "string" && p.Image.startsWith("preview:")) {
+			// Sample pictures for the previews live in tools/preview (Roblox images are not fetched).
+			Object.assign(el.style, {
+				backgroundImage: `url("file://${tree.previewDir}/${p.Image.slice(8)}")`,
+				backgroundSize: p.ScaleType === "Fit" ? "contain" : "cover",
+				backgroundPosition: "center",
+				backgroundRepeat: "no-repeat",
+				opacity: String(1 - (p.ImageTransparency ?? 0)),
+			});
+		}
 		if (p.ClipsDescendants || n.class === "ScrollingFrame") el.style.overflow = "hidden";
 		parentEl.appendChild(el);
 
@@ -227,7 +238,33 @@ html,body{margin:0;height:100%;overflow:hidden}
     radial-gradient(ellipse at 75% 10%, #2e3c33 0%, transparent 40%),
     radial-gradient(ellipse at 60% 90%, #6d7c8f 0%, transparent 55%),
     linear-gradient(180deg, #1d2a24 0%, #33423a 38%, #707d8b 62%, #8793a1 100%);}
+#screen.tiles{background:
+    linear-gradient(180deg,#1b2129 0%,#2a323d 34%,rgba(0,0,0,0) 34%),
+    repeating-conic-gradient(#eef2ff 0% 25%,#2b3a9c 0% 50%) 0 0/84px 84px;}
+.npc{position:absolute;background:#15151c;border-radius:14px 14px 6px 6px}
+.npc.head{border-radius:50%;background:#e8b98f}
+.bench{position:absolute;background:#6b4a2b;border-radius:4px}
 </style></head><body><div id="screen"></div></body></html>`;
+
+// A few blocks behind the card so the see-through background is visible.
+function addScene(scene) {
+	const screen = document.getElementById("screen");
+	if (scene !== "tiles") return;
+	screen.classList.add("tiles");
+	const w = screen.clientWidth, h = screen.clientHeight;
+	const box = (cls, x, y, bw, bh) => {
+		const d = document.createElement("div");
+		d.className = cls;
+		Object.assign(d.style, { left: `${x * w}px`, top: `${y * h}px`, width: `${bw * w}px`, height: `${bh * h}px` });
+		screen.appendChild(d);
+	};
+	box("bench", 0.05, 0.36, 0.5, 0.05);
+	box("bench", 0.34, 0.5, 0.55, 0.05);
+	box("npc", 0.1, 0.5, 0.09, 0.28);
+	box("npc head", 0.115, 0.43, 0.05, 0.09);
+	box("npc", 0.62, 0.52, 0.08, 0.26);
+	box("npc head", 0.64, 0.45, 0.045, 0.085);
+}
 
 (async () => {
 	const htmlPath = path.join(ROOT, "build/preview.html");
@@ -243,7 +280,10 @@ html,body{margin:0;height:100%;overflow:hidden}
 			await page.close();
 			continue;
 		}
-		await page.evaluate(renderGui, readTree(shot.tree));
+		const tree = readTree(shot.tree);
+		tree.previewDir = path.join(ROOT, "tools/preview");
+		await page.evaluate(addScene, shot.scene);
+		await page.evaluate(renderGui, tree);
 		await page.screenshot({ path: path.join(ROOT, shot.file) });
 		console.log(`Wrote ${shot.file}`);
 		await page.close();

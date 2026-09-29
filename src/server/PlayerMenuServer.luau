@@ -7,7 +7,8 @@
 
 	What it publishes on every Player (attributes), read by the GUI:
 	  PMKisses, PMFollowers, PMFollowing, PMFriends   numbers
-	  PMRole, PMTitle                                 strings
+	  PMRole, PMTitle, PMCommunityName                strings
+	  PMCommunityId                                   number (group ID of their community)
 	  PMRoleColor, PMNameColorA, PMNameColorB         Color3
 	  PMJoined                                        server time the player joined
 	Other scripts may change the role / title attributes at any time.
@@ -17,6 +18,7 @@
 ]]
 
 local DataStoreService = game:GetService("DataStoreService")
+local GroupService = game:GetService("GroupService")
 local MarketplaceService = game:GetService("MarketplaceService")
 local Players = game:GetService("Players")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
@@ -278,6 +280,35 @@ local function applyRole(player)
 	player:SetAttribute("PMNameColorA", nameColors and nameColors[1] or nil)
 	player:SetAttribute("PMNameColorB", nameColors and nameColors[2] or nil)
 	player:SetAttribute("PMTitle", title)
+end
+
+-- The player's community (Roblox group): their primary one, or the first one.
+local function loadCommunity(player)
+	local community = Settings.Community
+	if not community or not community.Enabled then
+		return
+	end
+	local ok, groups = pcall(GroupService.GetGroupsAsync, GroupService, player.UserId)
+	if not ok or type(groups) ~= "table" then
+		return
+	end
+
+	local chosen
+	for _, group in groups do
+		if community.PreferGroupId and community.PreferGroupId ~= 0 and group.Id == community.PreferGroupId then
+			chosen = group
+			break
+		elseif group.IsPrimary and not chosen then
+			chosen = group
+		end
+	end
+	if not chosen and community.FallbackToAnyGroup then
+		chosen = groups[1]
+	end
+	if chosen and player.Parent == Players then
+		player:SetAttribute("PMCommunityId", chosen.Id)
+		player:SetAttribute("PMCommunityName", chosen.Name)
+	end
 end
 
 local function loadFriendCount(player)
@@ -643,6 +674,7 @@ local function onPlayerAdded(player)
 	player:SetAttribute("PMJoined", workspace:GetServerTimeNow())
 	task.spawn(loadProfile, player)
 	task.spawn(applyRole, player)
+	task.spawn(loadCommunity, player)
 	if Settings.ShowFriendCount then
 		task.spawn(loadFriendCount, player)
 	end

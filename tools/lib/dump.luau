@@ -9,7 +9,7 @@ local PROPS = {
 	"PaddingTop", "PaddingBottom", "PaddingLeft", "PaddingRight",
 	"FillDirection", "Padding", "HorizontalAlignment", "VerticalAlignment",
 	"CellSize", "CellPadding", "AspectRatio", "AspectType", "DominantAxis", "Enabled",
-	"Scale", "MaxTextSize", "MinTextSize", "ApplyStrokeMode",
+	"Scale", "MaxTextSize", "MinTextSize", "ApplyStrokeMode", "Image", "ImageTransparency", "ScaleType",
 }
 
 local function encode(value)

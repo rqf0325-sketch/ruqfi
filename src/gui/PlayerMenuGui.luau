@@ -15,20 +15,20 @@
 	jadi tampilannya sama di PC, tablet, dan HP.
 
 	Halaman kartu: Home (aksi), ProfilePage (detail), ChatPage (private chat).
+
+	Latar kartu transparan (kaca gelap tipis), dunia game tetap terlihat.
+	CommunityBackground diisi PlayerMenuClient dengan ikon komunitas pemain
+	kalau dia punya; kalau tidak, kartu polos transparan.
 ]]
 
 local GUI_NAME = "PlayerMenuGui"
 local FONT_FAMILY = "rbxasset://fonts/families/Montserrat.json"
 
 local C = {
-	PanelTop = Color3.fromRGB(31, 32, 48),
-	PanelBottom = Color3.fromRGB(13, 14, 22),
-	Tile = Color3.fromRGB(35, 37, 54),
-	TileHover = Color3.fromRGB(45, 48, 69),
-	Field = Color3.fromRGB(26, 28, 41),
+	Panel = Color3.fromRGB(6, 7, 12),
 	Text = Color3.fromRGB(246, 247, 250),
-	Muted = Color3.fromRGB(148, 153, 174),
-	Dim = Color3.fromRGB(99, 104, 126),
+	Muted = Color3.fromRGB(196, 200, 216),
+	Dim = Color3.fromRGB(160, 165, 186),
 	Pink = Color3.fromRGB(255, 82, 150),
 	Coral = Color3.fromRGB(255, 132, 96),
 	Violet = Color3.fromRGB(139, 108, 255),
@@ -46,6 +46,11 @@ local Left, Center, Right = Enum.TextXAlignment.Left, Enum.TextXAlignment.Center
 
 local CARD_W, CARD_H = 312, 458
 
+-- Transparency of the card and of the tiles on it: the world shows through.
+local CARD_TRANSPARENCY = 0.36
+local GLASS = 0.9
+local COMMUNITY_IMAGE_TRANSPARENCY = 0.6 -- PlayerMenuClient uses Config.Settings.Community.ImageTransparency
+
 -- Contoh isi untuk tampilan di Studio (diganti data pemain saat game berjalan).
 local SAMPLE = {
 	title = "✨RAKYAT KECIL✨",
@@ -56,6 +61,7 @@ local SAMPLE = {
 	friends = "329",
 	followers = "0",
 	kisses = "174",
+	community = "Rakyat Kecil",
 }
 
 ---------------------------------------------------------------------------
@@ -173,28 +179,21 @@ local function iconButton(parent, name, text, x, y, size, textSize)
 	return button
 end
 
-local function panelBackground(node, radius)
-	node.inst.BackgroundTransparency = 0
-	node.inst.BackgroundColor3 = C.White
-	corner(node, radius)
-	gradient(node, C.PanelTop, C.PanelBottom, 90)
-end
-
 ---------------------------------------------------------------------------
 -- Home page pieces
 ---------------------------------------------------------------------------
 
 local function statTile(parent, name, x, w, value, caption, kiss)
 	local tile = place(kiss and "TextButton" or "Frame", parent, name, x, 0, w, 62, {
-		BackgroundTransparency = 0,
-		BackgroundColor3 = C.Tile,
+		BackgroundTransparency = if kiss then 0 else GLASS,
+		BackgroundColor3 = C.White,
 	})
 	if kiss then
-		apply(tile.inst, { Text = "", AutoButtonColor = false, BackgroundColor3 = C.White })
+		apply(tile.inst, { Text = "", AutoButtonColor = false })
 		gradient(tile, C.Pink, C.Coral, 25)
 		add("UIScale", tile, { Name = "Pulse", Scale = 1 })
 	else
-		stroke(tile, C.White, 0.93)
+		stroke(tile, C.White, 0.85)
 	end
 	corner(tile, 14)
 	label(tile, "Value", value, 0, 9, w, 26, 21, C.White, W.ExtraBold, Center)
@@ -206,15 +205,15 @@ end
 
 local function actionTile(parent, name, x, y, w, icon, tint, title, subtitle, wide)
 	local tile = place("TextButton", parent, name, x, y, w, 52, {
-		BackgroundTransparency = 0,
-		BackgroundColor3 = C.Tile,
+		BackgroundTransparency = GLASS,
+		BackgroundColor3 = C.White,
 		Text = "",
 		AutoButtonColor = false,
 	})
 	corner(tile, 14)
-	stroke(tile, C.White, 0.93)
+	stroke(tile, C.White, 0.85)
 	local iconChip = place("Frame", tile, "IconChip", 10, 11, 30, 30, {
-		BackgroundTransparency = 0.8,
+		BackgroundTransparency = 0.75,
 		BackgroundColor3 = tint,
 	})
 	corner(iconChip, 9)
@@ -240,6 +239,7 @@ local INFO_ROWS = {
 	{ "AccountAge", "Account age", "3 yr 4 mo" },
 	{ "Membership", "Membership", "Premium" },
 	{ "Role", "Role", "ADMINISTRATOR" },
+	{ "Community", "Community", "Rakyat Kecil" },
 	{ "InServer", "In this server", "12 min" },
 	{ "Followers", "Followers", "0" },
 	{ "Following", "Following", "12" },
@@ -257,8 +257,8 @@ local function bubbleSample(list, order, mine, text, width)
 	local row = place("Frame", list, "Sample" .. order, 0, 0, 276, 34, { LayoutOrder = order })
 	local x = if mine then 276 - width else 0
 	local bubble = place("Frame", row, "Bubble", x, 0, width, 34, {
-		BackgroundTransparency = 0,
-		BackgroundColor3 = if mine then C.White else C.Tile,
+		BackgroundTransparency = if mine then 0 else 0.86,
+		BackgroundColor3 = C.White,
 	})
 	corner(bubble, 15)
 	if mine then
@@ -288,8 +288,8 @@ local function bubbleTemplate(list, name, mine)
 	apply(bubble, {
 		Name = "Bubble",
 		BorderSizePixel = 0,
-		BackgroundColor3 = if mine then C.White else C.Tile,
-		BackgroundTransparency = 0,
+		BackgroundColor3 = C.White,
+		BackgroundTransparency = if mine then 0 else 0.86,
 		AutomaticSize = Enum.AutomaticSize.XY,
 		Size = UDim2.new(0, 0, 0, 0),
 	})
@@ -405,16 +405,27 @@ local function build()
 	card.inst.Position = UDim2.new(0, 20, 0.5, 0)
 	card.inst.Size = UDim2.fromOffset(CARD_W, CARD_H)
 	add("UIScale", card, { Name = "ResponsiveScale", Scale = 1 })
-	panelBackground(card, 24)
-	card.inst.BackgroundTransparency = 0.04
-	stroke(card, C.White, 0.86, 1.5)
+	card.inst.BackgroundColor3 = C.Panel
+	card.inst.BackgroundTransparency = CARD_TRANSPARENCY
+	corner(card, 24)
+	stroke(card, C.White, 0.7, 1.5)
 
-	local glow = place("Frame", card, "Glow", 0, 0, CARD_W, 190, {
-		BackgroundTransparency = 0,
-		BackgroundColor3 = SAMPLE.roleColor,
+	-- The player's community icon (PlayerMenuClient sets Image), dimmed, with a
+	-- soft dark scrim so the text stays readable on top of it.
+	local community = place("ImageLabel", card, "CommunityBackground", 0, 0, CARD_W, CARD_H, {
+		Image = "",
+		ImageTransparency = COMMUNITY_IMAGE_TRANSPARENCY,
+		ScaleType = Enum.ScaleType.Crop,
+		ZIndex = 0,
 	})
-	corner(glow, 24)
-	gradient(glow, C.White, C.White, 90, fade(0.55, 1))
+	corner(community, 24)
+	local scrim = place("Frame", card, "CommunityScrim", 0, 0, CARD_W, CARD_H, {
+		BackgroundTransparency = 0,
+		BackgroundColor3 = C.Black,
+		ZIndex = 0,
+	})
+	corner(scrim, 24)
+	gradient(scrim, C.White, C.White, 90, fade(0.8, 0.35))
 
 	-- Home --------------------------------------------------------------------
 	local home = place("Frame", card, "Home", 0, 0, CARD_W, CARD_H)
@@ -432,6 +443,14 @@ local function build()
 	circle(statusDot)
 	label(status, "Label", "IN SERVER", 25, 0, 68, 24, 9, C.Green, W.ExtraBold, Left, { TextTruncate = Enum.TextTruncate.None })
 
+	local communityChip = place("Frame", home, "CommunityChip", 122, 17, 112, 24, {
+		BackgroundTransparency = 0.86,
+		BackgroundColor3 = C.White,
+	})
+	circle(communityChip)
+	stroke(communityChip, C.White, 0.8)
+	label(communityChip, "Label", SAMPLE.community, 0, 0, 112, 24, 9, C.Muted, W.Bold, Center, { TextTruncate = Enum.TextTruncate.None })
+
 	iconButton(home, "CloseButton", "×", 260, 12, 34, 22)
 
 	-- Avatar
@@ -440,12 +459,11 @@ local function build()
 	circle(ring)
 	stroke(ring, SAMPLE.roleColor, 0, 3)
 	local portrait = place("Frame", avatar, "Portrait", 7, 7, 82, 82, {
-		BackgroundTransparency = 0,
-		BackgroundColor3 = C.Field,
+		BackgroundTransparency = 0.5,
+		BackgroundColor3 = C.Black,
 		ClipsDescendants = true,
 	})
 	circle(portrait)
-	gradient(portrait, C.Tile, C.Field, 90)
 	label(portrait, "Silhouette", "👤", 0, 0, 82, 82, 36, C.White, W.Regular, Center, {
 		TextTransparency = 0.5,
 		TextTruncate = Enum.TextTruncate.None,
@@ -471,7 +489,7 @@ local function build()
 	add("UIStroke", onlineDot, {
 		Name = "Outline",
 		ApplyStrokeMode = Enum.ApplyStrokeMode.Border,
-		Color = C.PanelBottom,
+		Color = C.Panel,
 		Thickness = 3,
 	})
 
@@ -500,11 +518,10 @@ local function build()
 
 	-- Profile page -------------------------------------------------------------
 	local profile = place("Frame", card, "ProfilePage", 0, 0, CARD_W, CARD_H, { ZIndex = 2, Visible = false })
-	panelBackground(profile, 24)
 	pageHeader(profile, "PROFILE")
 	local miniAvatar = place("ImageLabel", profile, "MiniAvatar", 18, 62, 56, 56, {
-		BackgroundTransparency = 0,
-		BackgroundColor3 = C.Field,
+		BackgroundTransparency = 0.5,
+		BackgroundColor3 = C.Black,
 		Image = "",
 		ScaleType = Enum.ScaleType.Crop,
 	})
@@ -517,25 +534,25 @@ local function build()
 	label(profile, "MiniName", SAMPLE.name, 84, 68, 210, 24, 18, C.Text, W.ExtraBold)
 	label(profile, "MiniUser", SAMPLE.username, 84, 94, 210, 16, 12, C.Muted, W.Medium)
 
-	local info = place("Frame", profile, "Info", 18, 136, 276, 8 * 38, {
-		BackgroundTransparency = 0,
-		BackgroundColor3 = C.Tile,
+	local rowHeight = 34
+	local info = place("Frame", profile, "Info", 18, 136, 276, #INFO_ROWS * rowHeight, {
+		BackgroundTransparency = GLASS,
+		BackgroundColor3 = C.White,
 	})
 	corner(info, 16)
-	stroke(info, C.White, 0.93)
+	stroke(info, C.White, 0.85)
 	for i, row in INFO_ROWS do
-		local line = place("Frame", info, "Row_" .. row[1], 0, (i - 1) * 38, 276, 38)
-		label(line, "Key", row[2], 16, 0, 120, 38, 11, C.Muted, W.SemiBold)
-		label(line, "Value", row[3], 130, 0, 130, 38, 12, C.Text, W.Bold, Right)
+		local line = place("Frame", info, "Row_" .. row[1], 0, (i - 1) * rowHeight, 276, rowHeight)
+		label(line, "Key", row[2], 16, 0, 110, rowHeight, 11, C.Muted, W.SemiBold)
+		label(line, "Value", row[3], 120, 0, 140, rowHeight, 12, C.Text, W.Bold, Right)
 		if i > 1 then
-			local rule = place("Frame", line, "Rule", 14, 0, 248, 1, { BackgroundTransparency = 0.94 })
+			local rule = place("Frame", line, "Rule", 14, 0, 248, 1, { BackgroundTransparency = 0.88 })
 			rule.inst.Size = UDim2.new(248 / 276, 0, 0, 1)
 		end
 	end
 
 	-- Chat page ----------------------------------------------------------------
 	local chat = place("Frame", card, "ChatPage", 0, 0, CARD_W, CARD_H, { ZIndex = 2, Visible = false })
-	panelBackground(chat, 24)
 	pageHeader(chat, SAMPLE.name)
 
 	local messages = place("ScrollingFrame", chat, "Messages", 18, 62, 276, 326, {
@@ -567,11 +584,11 @@ local function build()
 
 	local inputBar = place("Frame", chat, "InputBar", 18, 398, 276, 42)
 	local field = place("Frame", inputBar, "Field", 0, 0, 228, 42, {
-		BackgroundTransparency = 0,
-		BackgroundColor3 = C.Field,
+		BackgroundTransparency = 0.55,
+		BackgroundColor3 = C.Black,
 	})
 	corner(field, 21)
-	stroke(field, C.White, 0.92)
+	stroke(field, C.White, 0.85)
 	local inputBox = place("TextBox", field, "InputBox", 16, 0, 200, 42, {
 		Text = "",
 		PlaceholderText = "Message...",
@@ -600,8 +617,8 @@ local function build()
 	-- Toast -------------------------------------------------------------------
 	local toast = place("TextButton", screen, "Toast", 0.5, 1, 330, 46, {
 		AnchorPoint = Vector2.new(0.5, 1),
-		BackgroundTransparency = 0.04,
-		BackgroundColor3 = Color3.fromRGB(19, 20, 30),
+		BackgroundTransparency = 0.3,
+		BackgroundColor3 = C.Panel,
 		Text = "",
 		AutoButtonColor = false,
 		ZIndex = 10,
@@ -622,8 +639,8 @@ local function build()
 	-- Carry request -------------------------------------------------------------
 	local request = place("Frame", screen, "CarryRequest", 0.5, 0, 340, 104, {
 		AnchorPoint = Vector2.new(0.5, 0),
-		BackgroundTransparency = 0,
-		BackgroundColor3 = Color3.fromRGB(19, 20, 30),
+		BackgroundTransparency = 0.3,
+		BackgroundColor3 = C.Panel,
 		ZIndex = 9,
 		Visible = false,
 		ClipsDescendants = true,
@@ -670,8 +687,8 @@ local function build()
 	-- Carry bar (while carrying / being carried) ---------------------------------
 	local bar = place("Frame", screen, "CarryBar", 0.5, 1, 300, 46, {
 		AnchorPoint = Vector2.new(0.5, 1),
-		BackgroundTransparency = 0.04,
-		BackgroundColor3 = Color3.fromRGB(19, 20, 30),
+		BackgroundTransparency = 0.3,
+		BackgroundColor3 = C.Panel,
 		ZIndex = 8,
 		Visible = false,
 	})

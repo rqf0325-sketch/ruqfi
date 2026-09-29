@@ -18,7 +18,7 @@ Menu spawn kendaraan untuk Roblox (GUI + sistem) plus motor **HD Road Glide ST C
 ![Kontrol motor di HP](docs/preview-touch.png)
 </details>
 
-> Gambar di atas adalah render preview. Di dalam game, kartu dan panel detail menampilkan **model 3D motornya** (panel detail berputar pelan). Ikon 🏍️ hanya muncul kalau modelnya belum ada.
+> Gambar di atas adalah render preview (ikon komunitas di gambar hanya contoh). Di dalam game, kartu dan panel detail menampilkan **model 3D motornya** (panel detail berputar pelan). Ikon 🏍️ hanya muncul kalau modelnya belum ada.
 
 ## Cara pasang
 
@@ -108,13 +108,16 @@ Model aslinya punya beberapa masalah yang membuatnya tidak bisa dikendarai norma
 
 ## Player Menu (ketuk pemain lain)
 
-Klik (PC) atau ketuk (HP) karakter pemain lain, lalu muncul **kartu profilnya** di sisi kiri layar, jadi karakternya tetap kelihatan. Di atas kepala setiap pemain ada **nametag** tiga baris: judul, nama, dan role.
+Klik (PC) atau ketuk (HP) karakter pemain lain, lalu muncul **kartu profilnya** di sisi kiri layar, jadi karakternya tetap kelihatan. Latar kartu **transparan**, dan kalau pemain itu punya **komunitas** (group Roblox), **ikon komunitasnya jadi latar kartu**. Di atas kepala setiap pemain ada **nametag** tiga baris: judul, nama, dan role.
 
 ![Kartu pemain](docs/playermenu-desktop.png)
 
 <details>
 <summary>Kartu di HP, halaman Profile dan Private Chat, popup, dan nametag</summary>
 
+Pemain tanpa komunitas mendapat kartu transparan polos:
+
+![Kartu tanpa komunitas](docs/playermenu-plain.png)
 ![Kartu di HP](docs/playermenu-phone.png)
 ![Halaman Profile](docs/playermenu-profile.png)
 ![Halaman Private Chat](docs/playermenu-chat.png)
@@ -149,7 +152,8 @@ Aktifkan **Game Settings → Security → Enable Studio Access to API Services**
 
 - **Ketuk pemain lain** untuk membuka kartunya. Tombol **×** menutupnya. Ketuk pemain lain lagi untuk berpindah kartu.
 - **💋 Kiss**: ketuk kotak pink untuk mengirim kiss. Angkanya bertambah, hati-hati melayang di atas kepala pemain itu (terlihat semua orang), dan tersimpan. Ada jeda `KissCooldown` per pemain.
-- **Profile**: ID, umur akun, Premium, role, lama di server, dan jumlah Followers, Following, Kisses.
+- **Komunitas**: server mengambil komunitas utama pemain (kalau tidak ada, komunitas pertama yang dia ikuti) dan menampilkan ikonnya sebagai latar kartu, dengan nama komunitasnya di chip atas. Isi `Community.PreferGroupId` di Config supaya komunitas game-mu didahulukan kalau pemain ada di sana. Matikan dengan `Community.Enabled = false`.
+- **Profile**: ID, umur akun, Premium, role, komunitas, lama di server, dan jumlah Followers, Following, Kisses.
 - **Carry**: menggendong pemain di punggung. Yang digendong menerima popup **Accept / Decline** dulu (`CarryRequiresConsent`). Yang menggendong menekan **PUT DOWN**; yang digendong bisa turun dengan **lompat** atau tombol **GET DOWN**.
 - **Add Friend**: membuka permintaan pertemanan bawaan Roblox.
 - **Follow**: mengikuti pemain. Followers dihitung di dalam game ini, bukan followers Roblox.

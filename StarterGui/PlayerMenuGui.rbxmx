@@ -14,11 +14,11 @@
           <Y>0.5</Y>
         </Vector2>
         <Color3 name="BackgroundColor3">
-          <R>1</R>
-          <G>1</G>
-          <B>1</B>
+          <R>0.023529412</R>
+          <G>0.02745098</G>
+          <B>0.047058824</B>
         </Color3>
-        <float name="BackgroundTransparency">0.04</float>
+        <float name="BackgroundTransparency">0.36</float>
         <int name="BorderSizePixel">0</int>
         <UDim2 name="Position">
           <XS>0</XS>
@@ -50,15 +50,7 @@
           </UDim>
         </Properties>
       </Item>
-      <Item class="UIGradient" referent="4">
-        <Properties>
-          <string name="Name">UIGradient</string>
-          <ColorSequence name="Color">0 0.12156863 0.1254902 0.1882353 0 1 0.12156863 0.1254902 0.1882353 0 </ColorSequence>
-          <float name="Rotation">90</float>
-          <NumberSequence name="Transparency">0 0 0 1 0 0 </NumberSequence>
-        </Properties>
-      </Item>
-      <Item class="UIStroke" referent="5">
+      <Item class="UIStroke" referent="4">
         <Properties>
           <string name="Name">Outline</string>
           <token name="ApplyStrokeMode">1</token>
@@ -68,16 +60,56 @@
             <B>1</B>
           </Color3>
           <float name="Thickness">1.5</float>
-          <float name="Transparency">0.86</float>
+          <float name="Transparency">0.7</float>
         </Properties>
       </Item>
-      <Item class="Frame" referent="6">
+      <Item class="ImageLabel" referent="5">
         <Properties>
-          <string name="Name">Glow</string>
+          <string name="Name">CommunityBackground</string>
           <Color3 name="BackgroundColor3">
             <R>1</R>
-            <G>0.5019608</G>
-            <B>0.12156863</B>
+            <G>1</G>
+            <B>1</B>
+          </Color3>
+          <float name="BackgroundTransparency">1</float>
+          <int name="BorderSizePixel">0</int>
+          <Content name="ImageContent">
+            <null>
+            </null>
+          </Content>
+          <float name="ImageTransparency">0.6</float>
+          <UDim2 name="Position">
+            <XS>0</XS>
+            <XO>0</XO>
+            <YS>0</YS>
+            <YO>0</YO>
+          </UDim2>
+          <token name="ScaleType">4</token>
+          <UDim2 name="Size">
+            <XS>1</XS>
+            <XO>0</XO>
+            <YS>1</YS>
+            <YO>0</YO>
+          </UDim2>
+          <int name="ZIndex">0</int>
+        </Properties>
+        <Item class="UICorner" referent="6">
+          <Properties>
+            <string name="Name">UICorner</string>
+            <UDim name="CornerRadius">
+              <S>0.07692308</S>
+              <O>0</O>
+            </UDim>
+          </Properties>
+        </Item>
+      </Item>
+      <Item class="Frame" referent="7">
+        <Properties>
+          <string name="Name">CommunityScrim</string>
+          <Color3 name="BackgroundColor3">
+            <R>0</R>
+            <G>0</G>
+            <B>0</B>
           </Color3>
           <float name="BackgroundTransparency">0</float>
           <int name="BorderSizePixel">0</int>
@@ -90,29 +122,30 @@
           <UDim2 name="Size">
             <XS>1</XS>
             <XO>0</XO>
-            <YS>0.41484717</YS>
+            <YS>1</YS>
             <YO>0</YO>
           </UDim2>
+          <int name="ZIndex">0</int>
         </Properties>
-        <Item class="UICorner" referent="7">
+        <Item class="UICorner" referent="8">
           <Properties>
             <string name="Name">UICorner</string>
             <UDim name="CornerRadius">
-              <S>0.12631579</S>
+              <S>0.07692308</S>
               <O>0</O>
             </UDim>
           </Properties>
         </Item>
-        <Item class="UIGradient" referent="8">
+        <Item class="UIGradient" referent="9">
           <Properties>
             <string name="Name">UIGradient</string>
             <ColorSequence name="Color">0 1 1 1 0 1 1 1 1 0 </ColorSequence>
             <float name="Rotation">90</float>
-            <NumberSequence name="Transparency">0 0.55 0 1 1 0 </NumberSequence>
+            <NumberSequence name="Transparency">0 0.8 0 1 0.35 0 </NumberSequence>
           </Properties>
         </Item>
       </Item>
-      <Item class="Frame" referent="9">
+      <Item class="Frame" referent="10">
         <Properties>
           <string name="Name">Home</string>
           <Color3 name="BackgroundColor3">
@@ -135,7 +168,7 @@
             <YO>0</YO>
           </UDim2>
         </Properties>
-        <Item class="Frame" referent="10">
+        <Item class="Frame" referent="11">
           <Properties>
             <string name="Name">StatusChip</string>
             <Color3 name="BackgroundColor3">
@@ -158,7 +191,7 @@
               <YO>0</YO>
             </UDim2>
           </Properties>
-          <Item class="UICorner" referent="11">
+          <Item class="UICorner" referent="12">
             <Properties>
               <string name="Name">UICorner</string>
               <UDim name="CornerRadius">
@@ -167,7 +200,7 @@
               </UDim>
             </Properties>
           </Item>
-          <Item class="UIStroke" referent="12">
+          <Item class="UIStroke" referent="13">
             <Properties>
               <string name="Name">Outline</string>
               <token name="ApplyStrokeMode">1</token>
@@ -180,7 +213,7 @@
               <float name="Transparency">0.65</float>
             </Properties>
           </Item>
-          <Item class="Frame" referent="13">
+          <Item class="Frame" referent="14">
             <Properties>
               <string name="Name">Dot</string>
               <Color3 name="BackgroundColor3">
@@ -203,7 +236,7 @@
                 <YO>0</YO>
               </UDim2>
             </Properties>
-            <Item class="UICorner" referent="14">
+            <Item class="UICorner" referent="15">
               <Properties>
                 <string name="Name">UICorner</string>
                 <UDim name="CornerRadius">
@@ -213,7 +246,7 @@
               </Properties>
             </Item>
           </Item>
-          <Item class="TextLabel" referent="15">
+          <Item class="TextLabel" referent="16">
             <Properties>
               <string name="Name">Label</string>
               <Color3 name="BackgroundColor3">
@@ -255,7 +288,94 @@
             </Properties>
           </Item>
         </Item>
-        <Item class="TextButton" referent="16">
+        <Item class="Frame" referent="17">
+          <Properties>
+            <string name="Name">CommunityChip</string>
+            <Color3 name="BackgroundColor3">
+              <R>1</R>
+              <G>1</G>
+              <B>1</B>
+            </Color3>
+            <float name="BackgroundTransparency">0.86</float>
+            <int name="BorderSizePixel">0</int>
+            <UDim2 name="Position">
+              <XS>0.39102563</XS>
+              <XO>0</XO>
+              <YS>0.037117902</YS>
+              <YO>0</YO>
+            </UDim2>
+            <UDim2 name="Size">
+              <XS>0.35897437</XS>
+              <XO>0</XO>
+              <YS>0.052401748</YS>
+              <YO>0</YO>
+            </UDim2>
+          </Properties>
+          <Item class="UICorner" referent="18">
+            <Properties>
+              <string name="Name">UICorner</string>
+              <UDim name="CornerRadius">
+                <S>0.5</S>
+                <O>0</O>
+              </UDim>
+            </Properties>
+          </Item>
+          <Item class="UIStroke" referent="19">
+            <Properties>
+              <string name="Name">Outline</string>
+              <token name="ApplyStrokeMode">1</token>
+              <Color3 name="Color">
+                <R>1</R>
+                <G>1</G>
+                <B>1</B>
+              </Color3>
+              <float name="Thickness">1</float>
+              <float name="Transparency">0.8</float>
+            </Properties>
+          </Item>
+          <Item class="TextLabel" referent="20">
+            <Properties>
+              <string name="Name">Label</string>
+              <Color3 name="BackgroundColor3">
+                <R>1</R>
+                <G>1</G>
+                <B>1</B>
+              </Color3>
+              <float name="BackgroundTransparency">1</float>
+              <int name="BorderSizePixel">0</int>
+              <Font name="FontFace">
+                <Family>
+                  <url>rbxasset://fonts/families/Montserrat.json</url>
+                </Family>
+                <Weight>700</Weight>
+                <Style>Normal</Style>
+              </Font>
+              <UDim2 name="Position">
+                <XS>0</XS>
+                <XO>0</XO>
+                <YS>0</YS>
+                <YO>0</YO>
+              </UDim2>
+              <UDim2 name="Size">
+                <XS>1</XS>
+                <XO>0</XO>
+                <YS>1</YS>
+                <YO>0</YO>
+              </UDim2>
+              <string name="Text">Rakyat Kecil</string>
+              <Color3 name="TextColor3">
+                <R>0.76862746</R>
+                <G>0.78431374</G>
+                <B>0.84705883</B>
+              </Color3>
+              <float name="TextSize">9</float>
+              <token name="TextTruncate">0</token>
+              <token name="TextXAlignment">2</token>
+              <token name="TextYAlignment">1</token>
+            </Properties>
+          </Item>
+        </Item>
+        <Item class="TextButton" referent="21">
           <Properties>
             <string name="Name">CloseButton</string>
             <bool name="AutoButtonColor">false</bool>
@@ -280,7 +400,7 @@
             </UDim2>
             <string name="Text"></string>
           </Properties>
-          <Item class="UICorner" referent="17">
+          <Item class="UICorner" referent="22">
             <Properties>
               <string name="Name">UICorner</string>
               <UDim name="CornerRadius">
@@ -289,7 +409,7 @@
               </UDim>
             </Properties>
           </Item>
-          <Item class="UIStroke" referent="18">
+          <Item class="UIStroke" referent="23">
             <Properties>
               <string name="Name">Outline</string>
               <token name="ApplyStrokeMode">1</token>
@@ -302,7 +422,7 @@
               <float name="Transparency">0.9</float>
             </Properties>
           </Item>
-          <Item class="TextLabel" referent="19">
+          <Item class="TextLabel" referent="24">
             <Properties>
               <string name="Name">Icon</string>
               <Color3 name="BackgroundColor3">
@@ -333,9 +453,9 @@
               </UDim2>
               <string name="Text">×</string>
               <Color3 name="TextColor3">
-                <R>0.5803922</R>
-                <G>0.6</G>
-                <B>0.68235296</B>
+                <R>0.76862746</R>
+                <G>0.78431374</G>
+                <B>0.84705883</B>
               </Color3>
               <float name="TextSize">22</float>
               <token name="TextTruncate">0</token>
@@ -344,7 +464,7 @@
             </Properties>
           </Item>
         </Item>
-        <Item class="Frame" referent="20">
+        <Item class="Frame" referent="25">
           <Properties>
             <string name="Name">Avatar</string>
             <Color3 name="BackgroundColor3">
@@ -367,7 +487,7 @@
               <YO>0</YO>
             </UDim2>
           </Properties>
-          <Item class="Frame" referent="21">
+          <Item class="Frame" referent="26">
             <Properties>
               <string name="Name">Ring</string>
               <Color3 name="BackgroundColor3">
@@ -390,7 +510,7 @@
                 <YO>0</YO>
               </UDim2>
             </Properties>
-            <Item class="UICorner" referent="22">
+            <Item class="UICorner" referent="27">
               <Properties>
                 <string name="Name">UICorner</string>
                 <UDim name="CornerRadius">
@@ -399,7 +519,7 @@
                 </UDim>
               </Properties>
             </Item>
-            <Item class="UIStroke" referent="23">
+            <Item class="UIStroke" referent="28">
               <Properties>
                 <string name="Name">Outline</string>
                 <token name="ApplyStrokeMode">1</token>
@@ -413,15 +533,15 @@
               </Properties>
             </Item>
           </Item>
-          <Item class="Frame" referent="24">
+          <Item class="Frame" referent="29">
             <Properties>
               <string name="Name">Portrait</string>
               <Color3 name="BackgroundColor3">
-                <R>0.101960786</R>
-                <G>0.10980392</G>
-                <B>0.16078432</B>
+                <R>0</R>
+                <G>0</G>
+                <B>0</B>
               </Color3>
-              <float name="BackgroundTransparency">0</float>
+              <float name="BackgroundTransparency">0.5</float>
               <int name="BorderSizePixel">0</int>
               <bool name="ClipsDescendants">true</bool>
               <UDim2 name="Position">
@@ -437,7 +557,7 @@
                 <YO>0</YO>
               </UDim2>
             </Properties>
-            <Item class="UICorner" referent="25">
+            <Item class="UICorner" referent="30">
               <Properties>
                 <string name="Name">UICorner</string>
                 <UDim name="CornerRadius">
@@ -446,15 +566,7 @@
                 </UDim>
               </Properties>
             </Item>
-            <Item class="UIGradient" referent="26">
-              <Properties>
-                <string name="Name">UIGradient</string>
-                <ColorSequence name="Color">0 0.13725491 0.14509805 0.21176471 0 1 0.13725491 0.14509805 0.21176471 0 </ColorSequence>
-                <float name="Rotation">90</float>
-                <NumberSequence name="Transparency">0 0 0 1 0 0 </NumberSequence>
-              </Properties>
-            </Item>
-            <Item class="TextLabel" referent="27">
+            <Item class="TextLabel" referent="31">
               <Properties>
                 <string name="Name">Silhouette</string>
                 <Color3 name="BackgroundColor3">
@@ -496,7 +608,7 @@
                 <token name="TextYAlignment">1</token>
               </Properties>
             </Item>
-            <Item class="ImageLabel" referent="28">
+            <Item class="ImageLabel" referent="32">
               <Properties>
                 <string name="Name">Headshot</string>
                 <Color3 name="BackgroundColor3">
@@ -526,7 +638,7 @@
                 <int name="ZIndex">2</int>
               </Properties>
             </Item>
-            <Item class="ViewportFrame" referent="29">
+            <Item class="ViewportFrame" referent="33">
               <Properties>
                 <string name="Name">ModelView</string>
                 <Color3 name="Ambient">
@@ -568,7 +680,7 @@
               </Properties>
             </Item>
           </Item>
-          <Item class="Frame" referent="30">
+          <Item class="Frame" referent="34">
             <Properties>
               <string name="Name">OnlineDot</string>
               <Color3 name="BackgroundColor3">
@@ -592,7 +704,7 @@
               </UDim2>
               <int name="ZIndex">4</int>
             </Properties>
-            <Item class="UICorner" referent="31">
+            <Item class="UICorner" referent="35">
               <Properties>
                 <string name="Name">UICorner</string>
                 <UDim name="CornerRadius">
@@ -601,21 +713,21 @@
                 </UDim>
               </Properties>
             </Item>
-            <Item class="UIStroke" referent="32">
+            <Item class="UIStroke" referent="36">
               <Properties>
                 <string name="Name">Outline</string>
                 <token name="ApplyStrokeMode">1</token>
                 <Color3 name="Color">
-                  <R>0.050980393</R>
-                  <G>0.05490196</G>
-                  <B>0.08627451</B>
+                  <R>0.023529412</R>
+                  <G>0.02745098</G>
+                  <B>0.047058824</B>
                 </Color3>
                 <float name="Thickness">3</float>
               </Properties>
             </Item>
           </Item>
         </Item>
-        <Item class="TextLabel" referent="33">
+        <Item class="TextLabel" referent="37">
           <Properties>
             <string name="Name">Title</string>
             <Color3 name="BackgroundColor3">
@@ -656,7 +768,7 @@
             <token name="TextYAlignment">1</token>
           </Properties>
         </Item>
-        <Item class="TextLabel" referent="34">
+        <Item class="TextLabel" referent="38">
           <Properties>
             <string name="Name">DisplayName</string>
             <Color3 name="BackgroundColor3">
@@ -697,7 +809,7 @@
             <token name="TextXAlignment">0</token>
             <token name="TextYAlignment">1</token>
           </Properties>
-          <Item class="UITextSizeConstraint" referent="35">
+          <Item class="UITextSizeConstraint" referent="39">
             <Properties>
               <string name="Name">UITextSizeConstraint</string>
               <int name="MaxTextSize">23</int>
@@ -705,7 +817,7 @@
             </Properties>
           </Item>
         </Item>
-        <Item class="TextLabel" referent="36">
+        <Item class="TextLabel" referent="40">
           <Properties>
             <string name="Name">Username</string>
             <Color3 name="BackgroundColor3">
@@ -736,9 +848,9 @@
             </UDim2>
             <string name="Text">@SweetPie0325</string>
             <Color3 name="TextColor3">
-              <R>0.5803922</R>
-              <G>0.6</G>
-              <B>0.68235296</B>
+              <R>0.76862746</R>
+              <G>0.78431374</G>
+              <B>0.84705883</B>
             </Color3>
             <float name="TextSize">12</float>
             <token name="TextTruncate">1</token>
@@ -746,7 +858,7 @@
             <token name="TextYAlignment">1</token>
           </Properties>
         </Item>
-        <Item class="Frame" referent="37">
+        <Item class="Frame" referent="41">
           <Properties>
             <string name="Name">RoleChip</string>
             <Color3 name="BackgroundColor3">
@@ -769,7 +881,7 @@
               <YO>0</YO>
             </UDim2>
           </Properties>
-          <Item class="UICorner" referent="38">
+          <Item class="UICorner" referent="42">
             <Properties>
               <string name="Name">UICorner</string>
               <UDim name="CornerRadius">
@@ -778,7 +890,7 @@
               </UDim>
             </Properties>
           </Item>
-          <Item class="UIStroke" referent="39">
+          <Item class="UIStroke" referent="43">
             <Properties>
               <string name="Name">Outline</string>
               <token name="ApplyStrokeMode">1</token>
@@ -791,7 +903,7 @@
               <float name="Transparency">0.55</float>
             </Properties>
           </Item>
-          <Item class="TextLabel" referent="40">
+          <Item class="TextLabel" referent="44">
             <Properties>
               <string name="Name">Label</string>
               <Color3 name="BackgroundColor3">
@@ -833,7 +945,7 @@
             </Properties>
           </Item>
         </Item>
-        <Item class="Frame" referent="41">
+        <Item class="Frame" referent="45">
           <Properties>
             <string name="Name">Stats</string>
             <Color3 name="BackgroundColor3">
@@ -856,15 +968,15 @@
               <YO>0</YO>
             </UDim2>
           </Properties>
-          <Item class="Frame" referent="42">
+          <Item class="Frame" referent="46">
             <Properties>
               <string name="Name">Friends</string>
               <Color3 name="BackgroundColor3">
-                <R>0.13725491</R>
-                <G>0.14509805</G>
-                <B>0.21176471</B>
+                <R>1</R>
+                <G>1</G>
+                <B>1</B>
               </Color3>
-              <float name="BackgroundTransparency">0</float>
+              <float name="BackgroundTransparency">0.9</float>
               <int name="BorderSizePixel">0</int>
               <UDim2 name="Position">
                 <XS>0</XS>
@@ -879,7 +991,7 @@
                 <YO>0</YO>
               </UDim2>
             </Properties>
-            <Item class="UIStroke" referent="43">
+            <Item class="UIStroke" referent="47">
               <Properties>
                 <string name="Name">Outline</string>
                 <token name="ApplyStrokeMode">1</token>
@@ -889,10 +1001,10 @@
                   <B>1</B>
                 </Color3>
                 <float name="Thickness">1</float>
-                <float name="Transparency">0.93</float>
+                <float name="Transparency">0.85</float>
               </Properties>
             </Item>
-            <Item class="UICorner" referent="44">
+            <Item class="UICorner" referent="48">
               <Properties>
                 <string name="Name">UICorner</string>
                 <UDim name="CornerRadius">
@@ -901,7 +1013,7 @@
                 </UDim>
               </Properties>
             </Item>
-            <Item class="TextLabel" referent="45">
+            <Item class="TextLabel" referent="49">
               <Properties>
                 <string name="Name">Value</string>
                 <Color3 name="BackgroundColor3">
@@ -942,7 +1054,7 @@
                 <token name="TextYAlignment">1</token>
               </Properties>
             </Item>
-            <Item class="TextLabel" referent="46">
+            <Item class="TextLabel" referent="50">
               <Properties>
                 <string name="Name">Caption</string>
                 <Color3 name="BackgroundColor3">
@@ -973,9 +1085,9 @@
                 </UDim2>
                 <string name="Text">FRIENDS</string>
                 <Color3 name="TextColor3">
-                  <R>0.5803922</R>
-                  <G>0.6</G>
-                  <B>0.68235296</B>
+                  <R>0.76862746</R>
+                  <G>0.78431374</G>
+                  <B>0.84705883</B>
                 </Color3>
                 <float name="TextSize">9</float>
                 <float name="TextTransparency">0</float>
@@ -985,15 +1097,15 @@
               </Properties>
             </Item>
           </Item>
-          <Item class="Frame" referent="47">
+          <Item class="Frame" referent="51">
             <Properties>
               <string name="Name">Followers</string>
               <Color3 name="BackgroundColor3">
-                <R>0.13725491</R>
-                <G>0.14509805</G>
-                <B>0.21176471</B>
+                <R>1</R>
+                <G>1</G>
+                <B>1</B>
               </Color3>
-              <float name="BackgroundTransparency">0</float>
+              <float name="BackgroundTransparency">0.9</float>
               <int name="BorderSizePixel">0</int>
               <UDim2 name="Position">
                 <XS>0.3442029</XS>
@@ -1008,7 +1120,7 @@
                 <YO>0</YO>
               </UDim2>
             </Properties>
-            <Item class="UIStroke" referent="48">
+            <Item class="UIStroke" referent="52">
               <Properties>
                 <string name="Name">Outline</string>
                 <token name="ApplyStrokeMode">1</token>
@@ -1018,10 +1130,10 @@
                   <B>1</B>
                 </Color3>
                 <float name="Thickness">1</float>
-                <float name="Transparency">0.93</float>
+                <float name="Transparency">0.85</float>
               </Properties>
             </Item>
-            <Item class="UICorner" referent="49">
+            <Item class="UICorner" referent="53">
               <Properties>
                 <string name="Name">UICorner</string>
                 <UDim name="CornerRadius">
@@ -1030,7 +1142,7 @@
                 </UDim>
               </Properties>
             </Item>
-            <Item class="TextLabel" referent="50">
+            <Item class="TextLabel" referent="54">
               <Properties>
                 <string name="Name">Value</string>
                 <Color3 name="BackgroundColor3">
@@ -1071,7 +1183,7 @@
                 <token name="TextYAlignment">1</token>
               </Properties>
             </Item>
-            <Item class="TextLabel" referent="51">
+            <Item class="TextLabel" referent="55">
               <Properties>
                 <string name="Name">Caption</string>
                 <Color3 name="BackgroundColor3">
@@ -1102,9 +1214,9 @@
                 </UDim2>
                 <string name="Text">FOLLOWERS</string>
                 <Color3 name="TextColor3">
-                  <R>0.5803922</R>
-                  <G>0.6</G>
-                  <B>0.68235296</B>
+                  <R>0.76862746</R>
+                  <G>0.78431374</G>
+                  <B>0.84705883</B>
                 </Color3>
                 <float name="TextSize">9</float>
                 <float name="TextTransparency">0</float>
@@ -1114,7 +1226,7 @@
               </Properties>
             </Item>
           </Item>
-          <Item class="TextButton" referent="52">
+          <Item class="TextButton" referent="56">
             <Properties>
               <string name="Name">Kiss</string>
               <bool name="AutoButtonColor">false</bool>
@@ -1139,7 +1251,7 @@
               </UDim2>
               <string name="Text"></string>
             </Properties>
-            <Item class="UIGradient" referent="53">
+            <Item class="UIGradient" referent="57">
               <Properties>
                 <string name="Name">UIGradient</string>
                 <ColorSequence name="Color">0 1 0.32156864 0.5882353 0 1 1 0.32156864 0.5882353 0 </ColorSequence>
@@ -1147,13 +1259,13 @@
                 <NumberSequence name="Transparency">0 0 0 1 0 0 </NumberSequence>
               </Properties>
             </Item>
-            <Item class="UIScale" referent="54">
+            <Item class="UIScale" referent="58">
               <Properties>
                 <string name="Name">Pulse</string>
                 <float name="Scale">1</float>
               </Properties>
             </Item>
-            <Item class="UICorner" referent="55">
+            <Item class="UICorner" referent="59">
               <Properties>
                 <string name="Name">UICorner</string>
                 <UDim name="CornerRadius">
@@ -1162,7 +1274,7 @@
                 </UDim>
               </Properties>
             </Item>
-            <Item class="TextLabel" referent="56">
+            <Item class="TextLabel" referent="60">
               <Properties>
                 <string name="Name">Value</string>
                 <Color3 name="BackgroundColor3">
@@ -1203,7 +1315,7 @@
                 <token name="TextYAlignment">1</token>
               </Properties>
             </Item>
-            <Item class="TextLabel" referent="57">
+            <Item class="TextLabel" referent="61">
               <Properties>
                 <string name="Name">Caption</string>
                 <Color3 name="BackgroundColor3">
@@ -1247,7 +1359,7 @@
             </Item>
           </Item>
         </Item>
-        <Item class="TextLabel" referent="58">
+        <Item class="TextLabel" referent="62">
           <Properties>
             <string name="Name">ActionsLabel</string>
             <Color3 name="BackgroundColor3">
@@ -1278,9 +1390,9 @@
             </UDim2>
             <string name="Text">ACTIONS</string>
             <Color3 name="TextColor3">
-              <R>0.3882353</R>
-              <G>0.40784314</G>
-              <B>0.49411765</B>
+              <R>0.627451</R>
+              <G>0.64705884</G>
+              <B>0.7294118</B>
             </Color3>
             <float name="TextSize">10</float>
             <token name="TextTruncate">1</token>
@@ -1288,7 +1400,7 @@
             <token name="TextYAlignment">1</token>
           </Properties>
         </Item>
-        <Item class="Frame" referent="59">
+        <Item class="Frame" referent="63">
           <Properties>
             <string name="Name">Actions</string>
             <Color3 name="BackgroundColor3">
@@ -1311,16 +1423,16 @@
               <YO>0</YO>
             </UDim2>
           </Properties>
-          <Item class="TextButton" referent="60">
+          <Item class="TextButton" referent="64">
             <Properties>
               <string name="Name">Profile</string>
               <bool name="AutoButtonColor">false</bool>
               <Color3 name="BackgroundColor3">
-                <R>0.13725491</R>
-                <G>0.14509805</G>
-                <B>0.21176471</B>
+                <R>1</R>
+                <G>1</G>
+                <B>1</B>
               </Color3>
-              <float name="BackgroundTransparency">0</float>
+              <float name="BackgroundTransparency">0.9</float>
               <int name="BorderSizePixel">0</int>
               <UDim2 name="Position">
                 <XS>0</XS>
@@ -1336,7 +1448,7 @@
               </UDim2>
               <string name="Text"></string>
             </Properties>
-            <Item class="UICorner" referent="61">
+            <Item class="UICorner" referent="65">
               <Properties>
                 <string name="Name">UICorner</string>
                 <UDim name="CornerRadius">
@@ -1345,7 +1457,7 @@
                 </UDim>
               </Properties>
             </Item>
-            <Item class="UIStroke" referent="62">
+            <Item class="UIStroke" referent="66">
               <Properties>
                 <string name="Name">Outline</string>
                 <token name="ApplyStrokeMode">1</token>
@@ -1355,10 +1467,10 @@
                   <B>1</B>
                 </Color3>
                 <float name="Thickness">1</float>
-                <float name="Transparency">0.93</float>
+                <float name="Transparency">0.85</float>
               </Properties>
             </Item>
-            <Item class="Frame" referent="63">
+            <Item class="Frame" referent="67">
               <Properties>
                 <string name="Name">IconChip</string>
                 <Color3 name="BackgroundColor3">
@@ -1366,7 +1478,7 @@
                   <G>0.42352942</G>
                   <B>1</B>
                 </Color3>
-                <float name="BackgroundTransparency">0.8</float>
+                <float name="BackgroundTransparency">0.75</float>
                 <int name="BorderSizePixel">0</int>
                 <UDim2 name="Position">
                   <XS>0.07462686</XS>
@@ -1381,7 +1493,7 @@
                   <YO>0</YO>
                 </UDim2>
               </Properties>
-              <Item class="UICorner" referent="64">
+              <Item class="UICorner" referent="68">
                 <Properties>
                   <string name="Name">UICorner</string>
                   <UDim name="CornerRadius">
@@ -1390,7 +1502,7 @@
                   </UDim>
                 </Properties>
               </Item>
-              <Item class="TextLabel" referent="65">
+              <Item class="TextLabel" referent="69">
                 <Properties>
                   <string name="Name">Icon</string>
                   <Color3 name="BackgroundColor3">
@@ -1432,7 +1544,7 @@
                 </Properties>
               </Item>
             </Item>
-            <Item class="TextLabel" referent="66">
+            <Item class="TextLabel" referent="70">
               <Properties>
                 <string name="Name">Title</string>
                 <Color3 name="BackgroundColor3">
@@ -1473,7 +1585,7 @@
                 <token name="TextYAlignment">1</token>
               </Properties>
             </Item>
-            <Item class="TextLabel" referent="67">
+            <Item class="TextLabel" referent="71">
               <Properties>
                 <string name="Name">Subtitle</string>
                 <Color3 name="BackgroundColor3">
@@ -1504,9 +1616,9 @@
                 </UDim2>
                 <string name="Text">View details</string>
                 <Color3 name="TextColor3">
-                  <R>0.5803922</R>
-                  <G>0.6</G>
-                  <B>0.68235296</B>
+                  <R>0.76862746</R>
+                  <G>0.78431374</G>
+                  <B>0.84705883</B>
                 </Color3>
                 <float name="TextSize">10</float>
                 <token name="TextTruncate">1</token>
@@ -1515,16 +1627,16 @@
               </Properties>
             </Item>
           </Item>
-          <Item class="TextButton" referent="68">
+          <Item class="TextButton" referent="72">
             <Properties>
               <string name="Name">Carry</string>
               <bool name="AutoButtonColor">false</bool>
               <Color3 name="BackgroundColor3">
-                <R>0.13725491</R>
-                <G>0.14509805</G>
-                <B>0.21176471</B>
+                <R>1</R>
+                <G>1</G>
+                <B>1</B>
               </Color3>
-              <float name="BackgroundTransparency">0</float>
+              <float name="BackgroundTransparency">0.9</float>
               <int name="BorderSizePixel">0</int>
               <UDim2 name="Position">
                 <XS>0.51449275</XS>
@@ -1540,7 +1652,7 @@
               </UDim2>
               <string name="Text"></string>
             </Properties>
-            <Item class="UICorner" referent="69">
+            <Item class="UICorner" referent="73">
               <Properties>
                 <string name="Name">UICorner</string>
                 <UDim name="CornerRadius">
@@ -1549,7 +1661,7 @@
                 </UDim>
               </Properties>
             </Item>
-            <Item class="UIStroke" referent="70">
+            <Item class="UIStroke" referent="74">
               <Properties>
                 <string name="Name">Outline</string>
                 <token name="ApplyStrokeMode">1</token>
@@ -1559,10 +1671,10 @@
                   <B>1</B>
                 </Color3>
                 <float name="Thickness">1</float>
-                <float name="Transparency">0.93</float>
+                <float name="Transparency">0.85</float>
               </Properties>
             </Item>
-            <Item class="Frame" referent="71">
+            <Item class="Frame" referent="75">
               <Properties>
                 <string name="Name">IconChip</string>
                 <Color3 name="BackgroundColor3">
@@ -1570,7 +1682,7 @@
                   <G>0.74509805</G>
                   <B>0.21960784</B>
                 </Color3>
-                <float name="BackgroundTransparency">0.8</float>
+                <float name="BackgroundTransparency">0.75</float>
                 <int name="BorderSizePixel">0</int>
                 <UDim2 name="Position">
                   <XS>0.07462686</XS>
@@ -1585,7 +1697,7 @@
                   <YO>0</YO>
                 </UDim2>
               </Properties>
-              <Item class="UICorner" referent="72">
+              <Item class="UICorner" referent="76">
                 <Properties>
                   <string name="Name">UICorner</string>
                   <UDim name="CornerRadius">
@@ -1594,7 +1706,7 @@
                   </UDim>
                 </Properties>
               </Item>
-              <Item class="TextLabel" referent="73">
+              <Item class="TextLabel" referent="77">
                 <Properties>
                   <string name="Name">Icon</string>
                   <Color3 name="BackgroundColor3">
@@ -1636,7 +1748,7 @@
                 </Properties>
               </Item>
             </Item>
-            <Item class="TextLabel" referent="74">
+            <Item class="TextLabel" referent="78">
               <Properties>
                 <string name="Name">Title</string>
                 <Color3 name="BackgroundColor3">
@@ -1677,7 +1789,7 @@
                 <token name="TextYAlignment">1</token>
               </Properties>
             </Item>
-            <Item class="TextLabel" referent="75">
+            <Item class="TextLabel" referent="79">
               <Properties>
                 <string name="Name">Subtitle</string>
                 <Color3 name="BackgroundColor3">
@@ -1708,9 +1820,9 @@
                 </UDim2>
                 <string name="Text">Piggyback ride</string>
                 <Color3 name="TextColor3">
-                  <R>0.5803922</R>
-                  <G>0.6</G>
-                  <B>0.68235296</B>
+                  <R>0.76862746</R>
+                  <G>0.78431374</G>
+                  <B>0.84705883</B>
                 </Color3>
                 <float name="TextSize">10</float>
                 <token name="TextTruncate">1</token>
@@ -1719,16 +1831,16 @@
               </Properties>
             </Item>
           </Item>
-          <Item class="TextButton" referent="76">
+          <Item class="TextButton" referent="80">
             <Properties>
               <string name="Name">AddFriend</string>
               <bool name="AutoButtonColor">false</bool>
               <Color3 name="BackgroundColor3">
-                <R>0.13725491</R>
-                <G>0.14509805</G>
-                <B>0.21176471</B>
+                <R>1</R>
+                <G>1</G>
+                <B>1</B>
               </Color3>
-              <float name="BackgroundTransparency">0</float>
+              <float name="BackgroundTransparency">0.9</float>
               <int name="BorderSizePixel">0</int>
               <UDim2 name="Position">
                 <XS>0</XS>
@@ -1744,7 +1856,7 @@
               </UDim2>
               <string name="Text"></string>
             </Properties>
-            <Item class="UICorner" referent="77">
+            <Item class="UICorner" referent="81">
               <Properties>
                 <string name="Name">UICorner</string>
                 <UDim name="CornerRadius">
@@ -1753,7 +1865,7 @@
                 </UDim>
               </Properties>
             </Item>
-            <Item class="UIStroke" referent="78">
+            <Item class="UIStroke" referent="82">
               <Properties>
                 <string name="Name">Outline</string>
                 <token name="ApplyStrokeMode">1</token>
@@ -1763,10 +1875,10 @@
                   <B>1</B>
                 </Color3>
                 <float name="Thickness">1</float>
-                <float name="Transparency">0.93</float>
+                <float name="Transparency">0.85</float>
               </Properties>
             </Item>
-            <Item class="Frame" referent="79">
+            <Item class="Frame" referent="83">
               <Properties>
                 <string name="Name">IconChip</string>
                 <Color3 name="BackgroundColor3">
@@ -1774,7 +1886,7 @@
                   <G>0.8627451</G>
                   <B>0.5921569</B>
                 </Color3>
-                <float name="BackgroundTransparency">0.8</float>
+                <float name="BackgroundTransparency">0.75</float>
                 <int name="BorderSizePixel">0</int>
                 <UDim2 name="Position">
                   <XS>0.07462686</XS>
@@ -1789,7 +1901,7 @@
                   <YO>0</YO>
                 </UDim2>
               </Properties>
-              <Item class="UICorner" referent="80">
+              <Item class="UICorner" referent="84">
                 <Properties>
                   <string name="Name">UICorner</string>
                   <UDim name="CornerRadius">
@@ -1798,7 +1910,7 @@
                   </UDim>
                 </Properties>
               </Item>
-              <Item class="TextLabel" referent="81">
+              <Item class="TextLabel" referent="85">
                 <Properties>
                   <string name="Name">Icon</string>
                   <Color3 name="BackgroundColor3">
@@ -1840,7 +1952,7 @@
                 </Properties>
               </Item>
             </Item>
-            <Item class="TextLabel" referent="82">
+            <Item class="TextLabel" referent="86">
               <Properties>
                 <string name="Name">Title</string>
                 <Color3 name="BackgroundColor3">
@@ -1881,7 +1993,7 @@
                 <token name="TextYAlignment">1</token>
               </Properties>
             </Item>
-            <Item class="TextLabel" referent="83">
+            <Item class="TextLabel" referent="87">
               <Properties>
                 <string name="Name">Subtitle</string>
                 <Color3 name="BackgroundColor3">
@@ -1912,9 +2024,9 @@
                 </UDim2>
                 <string name="Text">Send request</string>
                 <Color3 name="TextColor3">
-                  <R>0.5803922</R>
-                  <G>0.6</G>
-                  <B>0.68235296</B>
+                  <R>0.76862746</R>
+                  <G>0.78431374</G>
+                  <B>0.84705883</B>
                 </Color3>
                 <float name="TextSize">10</float>
                 <token name="TextTruncate">1</token>
@@ -1923,16 +2035,16 @@
               </Properties>
             </Item>
           </Item>
-          <Item class="TextButton" referent="84">
+          <Item class="TextButton" referent="88">
             <Properties>
               <string name="Name">Follow</string>
               <bool name="AutoButtonColor">false</bool>
               <Color3 name="BackgroundColor3">
-                <R>0.13725491</R>
-                <G>0.14509805</G>
-                <B>0.21176471</B>
+                <R>1</R>
+                <G>1</G>
+                <B>1</B>
               </Color3>
-              <float name="BackgroundTransparency">0</float>
+              <float name="BackgroundTransparency">0.9</float>
               <int name="BorderSizePixel">0</int>
               <UDim2 name="Position">
                 <XS>0.51449275</XS>
@@ -1948,7 +2060,7 @@
               </UDim2>
               <string name="Text"></string>
             </Properties>
-            <Item class="UICorner" referent="85">
+            <Item class="UICorner" referent="89">
               <Properties>
                 <string name="Name">UICorner</string>
                 <UDim name="CornerRadius">
@@ -1957,7 +2069,7 @@
                 </UDim>
               </Properties>
             </Item>
-            <Item class="UIStroke" referent="86">
+            <Item class="UIStroke" referent="90">
               <Properties>
                 <string name="Name">Outline</string>
                 <token name="ApplyStrokeMode">1</token>
@@ -1967,10 +2079,10 @@
                   <B>1</B>
                 </Color3>
                 <float name="Thickness">1</float>
-                <float name="Transparency">0.93</float>
+                <float name="Transparency">0.85</float>
               </Properties>
             </Item>
-            <Item class="Frame" referent="87">
+            <Item class="Frame" referent="91">
               <Properties>
                 <string name="Name">IconChip</string>
                 <Color3 name="BackgroundColor3">
@@ -1978,7 +2090,7 @@
                   <G>0.32156864</G>
                   <B>0.5882353</B>
                 </Color3>
-                <float name="BackgroundTransparency">0.8</float>
+                <float name="BackgroundTransparency">0.75</float>
                 <int name="BorderSizePixel">0</int>
                 <UDim2 name="Position">
                   <XS>0.07462686</XS>
@@ -1993,7 +2105,7 @@
                   <YO>0</YO>
                 </UDim2>
               </Properties>
-              <Item class="UICorner" referent="88">
+              <Item class="UICorner" referent="92">
                 <Properties>
                   <string name="Name">UICorner</string>
                   <UDim name="CornerRadius">
@@ -2002,7 +2114,7 @@
                   </UDim>
                 </Properties>
               </Item>
-              <Item class="TextLabel" referent="89">
+              <Item class="TextLabel" referent="93">
                 <Properties>
                   <string name="Name">Icon</string>
                   <Color3 name="BackgroundColor3">
@@ -2044,7 +2156,7 @@
                 </Properties>
               </Item>
             </Item>
-            <Item class="TextLabel" referent="90">
+            <Item class="TextLabel" referent="94">
               <Properties>
                 <string name="Name">Title</string>
                 <Color3 name="BackgroundColor3">
@@ -2085,7 +2197,7 @@
                 <token name="TextYAlignment">1</token>
               </Properties>
             </Item>
-            <Item class="TextLabel" referent="91">
+            <Item class="TextLabel" referent="95">
               <Properties>
                 <string name="Name">Subtitle</string>
                 <Color3 name="BackgroundColor3">
@@ -2116,9 +2228,9 @@
                 </UDim2>
                 <string name="Text">Follow player</string>
                 <Color3 name="TextColor3">
-                  <R>0.5803922</R>
-                  <G>0.6</G>
-                  <B>0.68235296</B>
+                  <R>0.76862746</R>
+                  <G>0.78431374</G>
+                  <B>0.84705883</B>
                 </Color3>
                 <float name="TextSize">10</float>
                 <token name="TextTruncate">1</token>
@@ -2127,16 +2239,16 @@
               </Properties>
             </Item>
           </Item>
-          <Item class="TextButton" referent="92">
+          <Item class="TextButton" referent="96">
             <Properties>
               <string name="Name">Chat</string>
               <bool name="AutoButtonColor">false</bool>
               <Color3 name="BackgroundColor3">
-                <R>0.13725491</R>
-                <G>0.14509805</G>
-                <B>0.21176471</B>
+                <R>1</R>
+                <G>1</G>
+                <B>1</B>
               </Color3>
-              <float name="BackgroundTransparency">0</float>
+              <float name="BackgroundTransparency">0.9</float>
               <int name="BorderSizePixel">0</int>
               <UDim2 name="Position">
                 <XS>0</XS>
@@ -2152,7 +2264,7 @@
               </UDim2>
               <string name="Text"></string>
             </Properties>
-            <Item class="UICorner" referent="93">
+            <Item class="UICorner" referent="97">
               <Properties>
                 <string name="Name">UICorner</string>
                 <UDim name="CornerRadius">
@@ -2161,7 +2273,7 @@
                 </UDim>
               </Properties>
             </Item>
-            <Item class="UIStroke" referent="94">
+            <Item class="UIStroke" referent="98">
               <Properties>
                 <string name="Name">Outline</string>
                 <token name="ApplyStrokeMode">1</token>
@@ -2171,10 +2283,10 @@
                   <B>1</B>
                 </Color3>
                 <float name="Thickness">1</float>
-                <float name="Transparency">0.93</float>
+                <float name="Transparency">0.85</float>
               </Properties>
             </Item>
-            <Item class="Frame" referent="95">
+            <Item class="Frame" referent="99">
               <Properties>
                 <string name="Name">IconChip</string>
                 <Color3 name="BackgroundColor3">
@@ -2182,7 +2294,7 @@
                   <G>0.67058825</G>
                   <B>1</B>
                 </Color3>
-                <float name="BackgroundTransparency">0.8</float>
+                <float name="BackgroundTransparency">0.75</float>
                 <int name="BorderSizePixel">0</int>
                 <UDim2 name="Position">
                   <XS>0.036231883</XS>
@@ -2197,7 +2309,7 @@
                   <YO>0</YO>
                 </UDim2>
               </Properties>
-              <Item class="UICorner" referent="96">
+              <Item class="UICorner" referent="100">
                 <Properties>
                   <string name="Name">UICorner</string>
                   <UDim name="CornerRadius">
@@ -2206,7 +2318,7 @@
                   </UDim>
                 </Properties>
               </Item>
-              <Item class="TextLabel" referent="97">
+              <Item class="TextLabel" referent="101">
                 <Properties>
                   <string name="Name">Icon</string>
                   <Color3 name="BackgroundColor3">
@@ -2248,7 +2360,7 @@
                 </Properties>
               </Item>
             </Item>
-            <Item class="TextLabel" referent="98">
+            <Item class="TextLabel" referent="102">
               <Properties>
                 <string name="Name">Title</string>
                 <Color3 name="BackgroundColor3">
@@ -2289,7 +2401,7 @@
                 <token name="TextYAlignment">1</token>
               </Properties>
             </Item>
-            <Item class="TextLabel" referent="99">
+            <Item class="TextLabel" referent="103">
               <Properties>
                 <string name="Name">Subtitle</string>
                 <Color3 name="BackgroundColor3">
@@ -2320,9 +2432,9 @@
                 </UDim2>
                 <string name="Text">Send a message</string>
                 <Color3 name="TextColor3">
-                  <R>0.5803922</R>
-                  <G>0.6</G>
-                  <B>0.68235296</B>
+                  <R>0.76862746</R>
+                  <G>0.78431374</G>
+                  <B>0.84705883</B>
                 </Color3>
                 <float name="TextSize">10</float>
                 <token name="TextTruncate">1</token>
@@ -2330,7 +2442,7 @@
                 <token name="TextYAlignment">1</token>
               </Properties>
             </Item>
-            <Item class="Frame" referent="100">
+            <Item class="Frame" referent="104">
               <Properties>
                 <string name="Name">Badge</string>
                 <Color3 name="BackgroundColor3">
@@ -2354,7 +2466,7 @@
                 </UDim2>
                 <bool name="Visible">false</bool>
               </Properties>
-              <Item class="UICorner" referent="101">
+              <Item class="UICorner" referent="105">
                 <Properties>
                   <string name="Name">UICorner</string>
                   <UDim name="CornerRadius">
@@ -2363,7 +2475,7 @@
                   </UDim>
                 </Properties>
               </Item>
-              <Item class="TextLabel" referent="102">
+              <Item class="TextLabel" referent="106">
                 <Properties>
                   <string name="Name">Count</string>
                   <Color3 name="BackgroundColor3">
@@ -2405,7 +2517,7 @@
                 </Properties>
               </Item>
             </Item>
-            <Item class="TextLabel" referent="103">
+            <Item class="TextLabel" referent="107">
               <Properties>
                 <string name="Name">Chevron</string>
                 <Color3 name="BackgroundColor3">
@@ -2436,9 +2548,9 @@
                 </UDim2>
                 <string name="Text">›</string>
                 <Color3 name="TextColor3">
-                  <R>0.3882353</R>
-                  <G>0.40784314</G>
-                  <B>0.49411765</B>
+                  <R>0.627451</R>
+                  <G>0.64705884</G>
+                  <B>0.7294118</B>
                 </Color3>
                 <float name="TextSize">22</float>
                 <token name="TextTruncate">0</token>
@@ -2449,7 +2561,7 @@
           </Item>
         </Item>
       </Item>
-      <Item class="Frame" referent="104">
+      <Item class="Frame" referent="108">
         <Properties>
           <string name="Name">ProfilePage</string>
           <Color3 name="BackgroundColor3">
@@ -2457,7 +2569,7 @@
             <G>1</G>
             <B>1</B>
           </Color3>
-          <float name="BackgroundTransparency">0</float>
+          <float name="BackgroundTransparency">1</float>
           <int name="BorderSizePixel">0</int>
           <UDim2 name="Position">
             <XS>0</XS>
@@ -2474,24 +2586,7 @@
           <bool name="Visible">false</bool>
           <int name="ZIndex">2</int>
         </Properties>
-        <Item class="UICorner" referent="105">
-          <Properties>
-            <string name="Name">UICorner</string>
-            <UDim name="CornerRadius">
-              <S>0.07692308</S>
-              <O>0</O>
-            </UDim>
-          </Properties>
-        </Item>
-        <Item class="UIGradient" referent="106">
-          <Properties>
-            <string name="Name">UIGradient</string>
-            <ColorSequence name="Color">0 0.12156863 0.1254902 0.1882353 0 1 0.12156863 0.1254902 0.1882353 0 </ColorSequence>
-            <float name="Rotation">90</float>
-            <NumberSequence name="Transparency">0 0 0 1 0 0 </NumberSequence>
-          </Properties>
-        </Item>
-        <Item class="TextButton" referent="107">
+        <Item class="TextButton" referent="109">
           <Properties>
             <string name="Name">BackButton</string>
             <bool name="AutoButtonColor">false</bool>
@@ -2516,7 +2611,7 @@
             </UDim2>
             <string name="Text"></string>
           </Properties>
-          <Item class="UICorner" referent="108">
+          <Item class="UICorner" referent="110">
             <Properties>
               <string name="Name">UICorner</string>
               <UDim name="CornerRadius">
@@ -2525,7 +2620,7 @@
               </UDim>
             </Properties>
           </Item>
-          <Item class="UIStroke" referent="109">
+          <Item class="UIStroke" referent="111">
             <Properties>
               <string name="Name">Outline</string>
               <token name="ApplyStrokeMode">1</token>
@@ -2538,7 +2633,7 @@
               <float name="Transparency">0.9</float>
             </Properties>
           </Item>
-          <Item class="TextLabel" referent="110">
+          <Item class="TextLabel" referent="112">
             <Properties>
               <string name="Name">Icon</string>
               <Color3 name="BackgroundColor3">
@@ -2569,9 +2664,9 @@
               </UDim2>
               <string name="Text">‹</string>
               <Color3 name="TextColor3">
-                <R>0.5803922</R>
-                <G>0.6</G>
-                <B>0.68235296</B>
+                <R>0.76862746</R>
+                <G>0.78431374</G>
+                <B>0.84705883</B>
               </Color3>
               <float name="TextSize">24</float>
               <token name="TextTruncate">0</token>
@@ -2580,7 +2675,7 @@
             </Properties>
           </Item>
         </Item>
-        <Item class="TextLabel" referent="111">
+        <Item class="TextLabel" referent="113">
           <Properties>
             <string name="Name">PageTitle</string>
             <Color3 name="BackgroundColor3">
@@ -2621,7 +2716,7 @@
             <token name="TextYAlignment">1</token>
           </Properties>
         </Item>
-        <Item class="TextButton" referent="112">
+        <Item class="TextButton" referent="114">
           <Properties>
             <string name="Name">CloseButton</string>
             <bool name="AutoButtonColor">false</bool>
@@ -2646,7 +2741,7 @@
             </UDim2>
             <string name="Text"></string>
           </Properties>
-          <Item class="UICorner" referent="113">
+          <Item class="UICorner" referent="115">
             <Properties>
               <string name="Name">UICorner</string>
               <UDim name="CornerRadius">
@@ -2655,7 +2750,7 @@
               </UDim>
             </Properties>
           </Item>
-          <Item class="UIStroke" referent="114">
+          <Item class="UIStroke" referent="116">
             <Properties>
               <string name="Name">Outline</string>
               <token name="ApplyStrokeMode">1</token>
@@ -2668,7 +2763,7 @@
               <float name="Transparency">0.9</float>
             </Properties>
           </Item>
-          <Item class="TextLabel" referent="115">
+          <Item class="TextLabel" referent="117">
             <Properties>
               <string name="Name">Icon</string>
               <Color3 name="BackgroundColor3">
@@ -2699,9 +2794,9 @@
               </UDim2>
               <string name="Text">×</string>
               <Color3 name="TextColor3">
-                <R>0.5803922</R>
-                <G>0.6</G>
-                <B>0.68235296</B>
+                <R>0.76862746</R>
+                <G>0.78431374</G>
+                <B>0.84705883</B>
               </Color3>
               <float name="TextSize">22</float>
               <token name="TextTruncate">0</token>
@@ -2710,15 +2805,15 @@
             </Properties>
           </Item>
         </Item>
-        <Item class="ImageLabel" referent="116">
+        <Item class="ImageLabel" referent="118">
           <Properties>
             <string name="Name">MiniAvatar</string>
             <Color3 name="BackgroundColor3">
-              <R>0.101960786</R>
-              <G>0.10980392</G>
-              <B>0.16078432</B>
+              <R>0</R>
+              <G>0</G>
+              <B>0</B>
             </Color3>
-            <float name="BackgroundTransparency">0</float>
+            <float name="BackgroundTransparency">0.5</float>
             <int name="BorderSizePixel">0</int>
             <Content name="ImageContent">
               <null>
@@ -2738,7 +2833,7 @@
               <YO>0</YO>
             </UDim2>
           </Properties>
-          <Item class="UICorner" referent="117">
+          <Item class="UICorner" referent="119">
             <Properties>
               <string name="Name">UICorner</string>
               <UDim name="CornerRadius">
@@ -2747,7 +2842,7 @@
               </UDim>
             </Properties>
           </Item>
-          <Item class="UIStroke" referent="118">
+          <Item class="UIStroke" referent="120">
             <Properties>
               <string name="Name">Outline</string>
               <token name="ApplyStrokeMode">1</token>
@@ -2760,7 +2855,7 @@
               <float name="Transparency">0</float>
             </Properties>
           </Item>
-          <Item class="TextLabel" referent="119">
+          <Item class="TextLabel" referent="121">
             <Properties>
               <string name="Name">Silhouette</string>
               <Color3 name="BackgroundColor3">
@@ -2803,7 +2898,7 @@
             </Properties>
           </Item>
         </Item>
-        <Item class="TextLabel" referent="120">
+        <Item class="TextLabel" referent="122">
           <Properties>
             <string name="Name">MiniName</string>
             <Color3 name="BackgroundColor3">
@@ -2844,7 +2939,7 @@
             <token name="TextYAlignment">1</token>
           </Properties>
         </Item>
-        <Item class="TextLabel" referent="121">
+        <Item class="TextLabel" referent="123">
           <Properties>
             <string name="Name">MiniUser</string>
             <Color3 name="BackgroundColor3">
@@ -2875,9 +2970,9 @@
             </UDim2>
             <string name="Text">@SweetPie0325</string>
             <Color3 name="TextColor3">
-              <R>0.5803922</R>
-              <G>0.6</G>
-              <B>0.68235296</B>
+              <R>0.76862746</R>
+              <G>0.78431374</G>
+              <B>0.84705883</B>
             </Color3>
             <float name="TextSize">12</float>
             <token name="TextTruncate">1</token>
@@ -2885,15 +2980,15 @@
             <token name="TextYAlignment">1</token>
           </Properties>
         </Item>
-        <Item class="Frame" referent="122">
+        <Item class="Frame" referent="124">
           <Properties>
             <string name="Name">Info</string>
             <Color3 name="BackgroundColor3">
-              <R>0.13725491</R>
-              <G>0.14509805</G>
-              <B>0.21176471</B>
+              <R>1</R>
+              <G>1</G>
+              <B>1</B>
             </Color3>
-            <float name="BackgroundTransparency">0</float>
+            <float name="BackgroundTransparency">0.9</float>
             <int name="BorderSizePixel">0</int>
             <UDim2 name="Position">
               <XS>0.057692308</XS>
@@ -2904,11 +2999,11 @@
             <UDim2 name="Size">
               <XS>0.88461536</XS>
               <XO>0</XO>
-              <YS>0.6637555</YS>
+              <YS>0.6681223</YS>
               <YO>0</YO>
             </UDim2>
           </Properties>
-          <Item class="UICorner" referent="123">
+          <Item class="UICorner" referent="125">
             <Properties>
               <string name="Name">UICorner</string>
               <UDim name="CornerRadius">
@@ -2917,7 +3012,7 @@
               </UDim>
             </Properties>
           </Item>
-          <Item class="UIStroke" referent="124">
+          <Item class="UIStroke" referent="126">
             <Properties>
               <string name="Name">Outline</string>
               <token name="ApplyStrokeMode">1</token>
@@ -2927,10 +3022,10 @@
                 <B>1</B>
               </Color3>
               <float name="Thickness">1</float>
-              <float name="Transparency">0.93</float>
+              <float name="Transparency">0.85</float>
             </Properties>
           </Item>
-          <Item class="Frame" referent="125">
+          <Item class="Frame" referent="127">
             <Properties>
               <string name="Name">Row_UserId</string>
               <Color3 name="BackgroundColor3">
@@ -2949,11 +3044,11 @@
               <UDim2 name="Size">
                 <XS>1</XS>
                 <XO>0</XO>
-                <YS>0.125</YS>
+                <YS>0.11111111</YS>
                 <YO>0</YO>
               </UDim2>
             </Properties>
-            <Item class="TextLabel" referent="126">
+            <Item class="TextLabel" referent="128">
               <Properties>
                 <string name="Name">Key</string>
                 <Color3 name="BackgroundColor3">
@@ -2977,16 +3072,16 @@
                   <YO>0</YO>
                 </UDim2>
                 <UDim2 name="Size">
-                  <XS>0.4347826</XS>
+                  <XS>0.39855072</XS>
                   <XO>0</XO>
                   <YS>1</YS>
                   <YO>0</YO>
                 </UDim2>
                 <string name="Text">User ID</string>
                 <Color3 name="TextColor3">
-                  <R>0.5803922</R>
-                  <G>0.6</G>
-                  <B>0.68235296</B>
+                  <R>0.76862746</R>
+                  <G>0.78431374</G>
+                  <B>0.84705883</B>
                 </Color3>
                 <float name="TextSize">11</float>
                 <token name="TextTruncate">1</token>
@@ -2994,7 +3089,7 @@
                 <token name="TextYAlignment">1</token>
               </Properties>
             </Item>
-            <Item class="TextLabel" referent="127">
+            <Item class="TextLabel" referent="129">
               <Properties>
                 <string name="Name">Value</string>
                 <Color3 name="BackgroundColor3">
@@ -3012,13 +3107,13 @@
                   <Style>Normal</Style>
                 </Font>
                 <UDim2 name="Position">
-                  <XS>0.4710145</XS>
+                  <XS>0.4347826</XS>
                   <XO>0</XO>
                   <YS>0</YS>
                   <YO>0</YO>
                 </UDim2>
                 <UDim2 name="Size">
-                  <XS>0.4710145</XS>
+                  <XS>0.5072464</XS>
                   <XO>0</XO>
                   <YS>1</YS>
                   <YO>0</YO>
@@ -3036,7 +3131,7 @@
               </Properties>
             </Item>
           </Item>
-          <Item class="Frame" referent="128">
+          <Item class="Frame" referent="130">
             <Properties>
               <string name="Name">Row_AccountAge</string>
               <Color3 name="BackgroundColor3">
@@ -3049,17 +3144,17 @@
               <UDim2 name="Position">
                 <XS>0</XS>
                 <XO>0</XO>
-                <YS>0.125</YS>
+                <YS>0.11111111</YS>
                 <YO>0</YO>
               </UDim2>
               <UDim2 name="Size">
                 <XS>1</XS>
                 <XO>0</XO>
-                <YS>0.125</YS>
+                <YS>0.11111111</YS>
                 <YO>0</YO>
               </UDim2>
             </Properties>
-            <Item class="TextLabel" referent="129">
+            <Item class="TextLabel" referent="131">
               <Properties>
                 <string name="Name">Key</string>
                 <Color3 name="BackgroundColor3">
@@ -3083,16 +3178,16 @@
                   <YO>0</YO>
                 </UDim2>
                 <UDim2 name="Size">
-                  <XS>0.4347826</XS>
+                  <XS>0.39855072</XS>
                   <XO>0</XO>
                   <YS>1</YS>
                   <YO>0</YO>
                 </UDim2>
                 <string name="Text">Account age</string>
                 <Color3 name="TextColor3">
-                  <R>0.5803922</R>
-                  <G>0.6</G>
-                  <B>0.68235296</B>
+                  <R>0.76862746</R>
+                  <G>0.78431374</G>
+                  <B>0.84705883</B>
                 </Color3>
                 <float name="TextSize">11</float>
                 <token name="TextTruncate">1</token>
@@ -3100,7 +3195,7 @@
                 <token name="TextYAlignment">1</token>
               </Properties>
             </Item>
-            <Item class="TextLabel" referent="130">
+            <Item class="TextLabel" referent="132">
               <Properties>
                 <string name="Name">Value</string>
                 <Color3 name="BackgroundColor3">
@@ -3118,13 +3213,13 @@
                   <Style>Normal</Style>
                 </Font>
                 <UDim2 name="Position">
-                  <XS>0.4710145</XS>
+                  <XS>0.4347826</XS>
                   <XO>0</XO>
                   <YS>0</YS>
                   <YO>0</YO>
                 </UDim2>
                 <UDim2 name="Size">
-                  <XS>0.4710145</XS>
+                  <XS>0.5072464</XS>
                   <XO>0</XO>
                   <YS>1</YS>
                   <YO>0</YO>
@@ -3141,7 +3236,7 @@
                 <token name="TextYAlignment">1</token>
               </Properties>
             </Item>
-            <Item class="Frame" referent="131">
+            <Item class="Frame" referent="133">
               <Properties>
                 <string name="Name">Rule</string>
                 <Color3 name="BackgroundColor3">
@@ -3149,7 +3244,7 @@
                   <G>1</G>
                   <B>1</B>
                 </Color3>
-                <float name="BackgroundTransparency">0.94</float>
+                <float name="BackgroundTransparency">0.88</float>
                 <int name="BorderSizePixel">0</int>
                 <UDim2 name="Position">
                   <XS>0.050724637</XS>
@@ -3166,7 +3261,7 @@
               </Properties>
             </Item>
           </Item>
-          <Item class="Frame" referent="132">
+          <Item class="Frame" referent="134">
             <Properties>
               <string name="Name">Row_Membership</string>
               <Color3 name="BackgroundColor3">
@@ -3179,17 +3274,17 @@
               <UDim2 name="Position">
                 <XS>0</XS>
                 <XO>0</XO>
-                <YS>0.25</YS>
+                <YS>0.22222222</YS>
                 <YO>0</YO>
               </UDim2>
               <UDim2 name="Size">
                 <XS>1</XS>
                 <XO>0</XO>
-                <YS>0.125</YS>
+                <YS>0.11111111</YS>
                 <YO>0</YO>
               </UDim2>
             </Properties>
-            <Item class="TextLabel" referent="133">
+            <Item class="TextLabel" referent="135">
               <Properties>
                 <string name="Name">Key</string>
                 <Color3 name="BackgroundColor3">
@@ -3213,16 +3308,16 @@
                   <YO>0</YO>
                 </UDim2>
                 <UDim2 name="Size">
-                  <XS>0.4347826</XS>
+                  <XS>0.39855072</XS>
                   <XO>0</XO>
                   <YS>1</YS>
                   <YO>0</YO>
                 </UDim2>
                 <string name="Text">Membership</string>
                 <Color3 name="TextColor3">
-                  <R>0.5803922</R>
-                  <G>0.6</G>
-                  <B>0.68235296</B>
+                  <R>0.76862746</R>
+                  <G>0.78431374</G>
+                  <B>0.84705883</B>
                 </Color3>
                 <float name="TextSize">11</float>
                 <token name="TextTruncate">1</token>
@@ -3230,7 +3325,7 @@
                 <token name="TextYAlignment">1</token>
               </Properties>
             </Item>
-            <Item class="TextLabel" referent="134">
+            <Item class="TextLabel" referent="136">
               <Properties>
                 <string name="Name">Value</string>
                 <Color3 name="BackgroundColor3">
@@ -3248,13 +3343,13 @@
                   <Style>Normal</Style>
                 </Font>
                 <UDim2 name="Position">
-                  <XS>0.4710145</XS>
+                  <XS>0.4347826</XS>
                   <XO>0</XO>
                   <YS>0</YS>
                   <YO>0</YO>
                 </UDim2>
                 <UDim2 name="Size">
-                  <XS>0.4710145</XS>
+                  <XS>0.5072464</XS>
                   <XO>0</XO>
                   <YS>1</YS>
                   <YO>0</YO>
@@ -3271,7 +3366,7 @@
                 <token name="TextYAlignment">1</token>
               </Properties>
             </Item>
-            <Item class="Frame" referent="135">
+            <Item class="Frame" referent="137">
               <Properties>
                 <string name="Name">Rule</string>
                 <Color3 name="BackgroundColor3">
@@ -3279,7 +3374,7 @@
                   <G>1</G>
                   <B>1</B>
                 </Color3>
-                <float name="BackgroundTransparency">0.94</float>
+                <float name="BackgroundTransparency">0.88</float>
                 <int name="BorderSizePixel">0</int>
                 <UDim2 name="Position">
                   <XS>0.050724637</XS>
@@ -3296,7 +3391,7 @@
               </Properties>
             </Item>
           </Item>
-          <Item class="Frame" referent="136">
+          <Item class="Frame" referent="138">
             <Properties>
               <string name="Name">Row_Role</string>
               <Color3 name="BackgroundColor3">
@@ -3309,17 +3404,17 @@
               <UDim2 name="Position">
                 <XS>0</XS>
                 <XO>0</XO>
-                <YS>0.375</YS>
+                <YS>0.33333334</YS>
                 <YO>0</YO>
               </UDim2>
               <UDim2 name="Size">
                 <XS>1</XS>
                 <XO>0</XO>
-                <YS>0.125</YS>
+                <YS>0.11111111</YS>
                 <YO>0</YO>
               </UDim2>
             </Properties>
-            <Item class="TextLabel" referent="137">
+            <Item class="TextLabel" referent="139">
               <Properties>
                 <string name="Name">Key</string>
                 <Color3 name="BackgroundColor3">
@@ -3343,16 +3438,16 @@
                   <YO>0</YO>
                 </UDim2>
                 <UDim2 name="Size">
-                  <XS>0.4347826</XS>
+                  <XS>0.39855072</XS>
                   <XO>0</XO>
                   <YS>1</YS>
                   <YO>0</YO>
                 </UDim2>
                 <string name="Text">Role</string>
                 <Color3 name="TextColor3">
-                  <R>0.5803922</R>
-                  <G>0.6</G>
-                  <B>0.68235296</B>
+                  <R>0.76862746</R>
+                  <G>0.78431374</G>
+                  <B>0.84705883</B>
                 </Color3>
                 <float name="TextSize">11</float>
                 <token name="TextTruncate">1</token>
@@ -3360,7 +3455,7 @@
                 <token name="TextYAlignment">1</token>
               </Properties>
             </Item>
-            <Item class="TextLabel" referent="138">
+            <Item class="TextLabel" referent="140">
               <Properties>
                 <string name="Name">Value</string>
                 <Color3 name="BackgroundColor3">
@@ -3378,13 +3473,13 @@
                   <Style>Normal</Style>
                 </Font>
                 <UDim2 name="Position">
-                  <XS>0.4710145</XS>
+                  <XS>0.4347826</XS>
                   <XO>0</XO>
                   <YS>0</YS>
                   <YO>0</YO>
                 </UDim2>
                 <UDim2 name="Size">
-                  <XS>0.4710145</XS>
+                  <XS>0.5072464</XS>
                   <XO>0</XO>
                   <YS>1</YS>
                   <YO>0</YO>
@@ -3401,7 +3496,7 @@
                 <token name="TextYAlignment">1</token>
               </Properties>
             </Item>
-            <Item class="Frame" referent="139">
+            <Item class="Frame" referent="141">
               <Properties>
                 <string name="Name">Rule</string>
                 <Color3 name="BackgroundColor3">
@@ -3409,7 +3504,7 @@
                   <G>1</G>
                   <B>1</B>
                 </Color3>
-                <float name="BackgroundTransparency">0.94</float>
+                <float name="BackgroundTransparency">0.88</float>
                 <int name="BorderSizePixel">0</int>
                 <UDim2 name="Position">
                   <XS>0.050724637</XS>
@@ -3426,9 +3521,9 @@
               </Properties>
             </Item>
           </Item>
-          <Item class="Frame" referent="140">
+          <Item class="Frame" referent="142">
             <Properties>
-              <string name="Name">Row_InServer</string>
+              <string name="Name">Row_Community</string>
               <Color3 name="BackgroundColor3">
                 <R>1</R>
                 <G>1</G>
@@ -3439,17 +3534,17 @@
               <UDim2 name="Position">
                 <XS>0</XS>
                 <XO>0</XO>
-                <YS>0.5</YS>
+                <YS>0.44444445</YS>
                 <YO>0</YO>
               </UDim2>
               <UDim2 name="Size">
                 <XS>1</XS>
                 <XO>0</XO>
-                <YS>0.125</YS>
+                <YS>0.11111111</YS>
                 <YO>0</YO>
               </UDim2>
             </Properties>
-            <Item class="TextLabel" referent="141">
+            <Item class="TextLabel" referent="143">
               <Properties>
                 <string name="Name">Key</string>
                 <Color3 name="BackgroundColor3">
@@ -3473,16 +3568,16 @@
                   <YO>0</YO>
                 </UDim2>
                 <UDim2 name="Size">
-                  <XS>0.4347826</XS>
+                  <XS>0.39855072</XS>
                   <XO>0</XO>
                   <YS>1</YS>
                   <YO>0</YO>
                 </UDim2>
-                <string name="Text">In this server</string>
+                <string name="Text">Community</string>
                 <Color3 name="TextColor3">
-                  <R>0.5803922</R>
-                  <G>0.6</G>
-                  <B>0.68235296</B>
+                  <R>0.76862746</R>
+                  <G>0.78431374</G>
+                  <B>0.84705883</B>
                 </Color3>
                 <float name="TextSize">11</float>
                 <token name="TextTruncate">1</token>
@@ -3490,7 +3585,7 @@
                 <token name="TextYAlignment">1</token>
               </Properties>
             </Item>
-            <Item class="TextLabel" referent="142">
+            <Item class="TextLabel" referent="144">
               <Properties>
                 <string name="Name">Value</string>
                 <Color3 name="BackgroundColor3">
@@ -3508,13 +3603,143 @@
                   <Style>Normal</Style>
                 </Font>
                 <UDim2 name="Position">
-                  <XS>0.4710145</XS>
+                  <XS>0.4347826</XS>
                   <XO>0</XO>
                   <YS>0</YS>
                   <YO>0</YO>
                 </UDim2>
                 <UDim2 name="Size">
-                  <XS>0.4710145</XS>
+                  <XS>0.5072464</XS>
+                  <XO>0</XO>
+                  <YS>1</YS>
+                  <YO>0</YO>
+                </UDim2>
+                <string name="Text">Rakyat Kecil</string>
+                <Color3 name="TextColor3">
+                  <R>0.9647059</R>
+                  <G>0.96862745</G>
+                  <B>0.98039216</B>
+                </Color3>
+                <float name="TextSize">12</float>
+                <token name="TextTruncate">1</token>
+                <token name="TextXAlignment">1</token>
+                <token name="TextYAlignment">1</token>
+              </Properties>
+            </Item>
+            <Item class="Frame" referent="145">
+              <Properties>
+                <string name="Name">Rule</string>
+                <Color3 name="BackgroundColor3">
+                  <R>1</R>
+                  <G>1</G>
+                  <B>1</B>
+                </Color3>
+                <float name="BackgroundTransparency">0.88</float>
+                <int name="BorderSizePixel">0</int>
+                <UDim2 name="Position">
+                  <XS>0.050724637</XS>
+                  <XO>0</XO>
+                  <YS>0</YS>
+                  <YO>0</YO>
+                </UDim2>
+                <UDim2 name="Size">
+                  <XS>0.89855075</XS>
+                  <XO>0</XO>
+                  <YS>0</YS>
+                  <YO>1</YO>
+                </UDim2>
+              </Properties>
+            </Item>
+          </Item>
+          <Item class="Frame" referent="146">
+            <Properties>
+              <string name="Name">Row_InServer</string>
+              <Color3 name="BackgroundColor3">
+                <R>1</R>
+                <G>1</G>
+                <B>1</B>
+              </Color3>
+              <float name="BackgroundTransparency">1</float>
+              <int name="BorderSizePixel">0</int>
+              <UDim2 name="Position">
+                <XS>0</XS>
+                <XO>0</XO>
+                <YS>0.5555556</YS>
+                <YO>0</YO>
+              </UDim2>
+              <UDim2 name="Size">
+                <XS>1</XS>
+                <XO>0</XO>
+                <YS>0.11111111</YS>
+                <YO>0</YO>
+              </UDim2>
+            </Properties>
+            <Item class="TextLabel" referent="147">
+              <Properties>
+                <string name="Name">Key</string>
+                <Color3 name="BackgroundColor3">
+                  <R>1</R>
+                  <G>1</G>
+                  <B>1</B>
+                </Color3>
+                <float name="BackgroundTransparency">1</float>
+                <int name="BorderSizePixel">0</int>
+                <Font name="FontFace">
+                  <Family>
+                    <url>rbxasset://fonts/families/Montserrat.json</url>
+                  </Family>
+                  <Weight>600</Weight>
+                  <Style>Normal</Style>
+                </Font>
+                <UDim2 name="Position">
+                  <XS>0.057971016</XS>
+                  <XO>0</XO>
+                  <YS>0</YS>
+                  <YO>0</YO>
+                </UDim2>
+                <UDim2 name="Size">
+                  <XS>0.39855072</XS>
+                  <XO>0</XO>
+                  <YS>1</YS>
+                  <YO>0</YO>
+                </UDim2>
+                <string name="Text">In this server</string>
+                <Color3 name="TextColor3">
+                  <R>0.76862746</R>
+                  <G>0.78431374</G>
+                  <B>0.84705883</B>
+                </Color3>
+                <float name="TextSize">11</float>
+                <token name="TextTruncate">1</token>
+                <token name="TextXAlignment">0</token>
+                <token name="TextYAlignment">1</token>
+              </Properties>
+            </Item>
+            <Item class="TextLabel" referent="148">
+              <Properties>
+                <string name="Name">Value</string>
+                <Color3 name="BackgroundColor3">
+                  <R>1</R>
+                  <G>1</G>
+                  <B>1</B>
+                </Color3>
+                <float name="BackgroundTransparency">1</float>
+                <int name="BorderSizePixel">0</int>
+                <Font name="FontFace">
+                  <Family>
+                    <url>rbxasset://fonts/families/Montserrat.json</url>
+                  </Family>
+                  <Weight>700</Weight>
+                  <Style>Normal</Style>
+                </Font>
+                <UDim2 name="Position">
+                  <XS>0.4347826</XS>
+                  <XO>0</XO>
+                  <YS>0</YS>
+                  <YO>0</YO>
+                </UDim2>
+                <UDim2 name="Size">
+                  <XS>0.5072464</XS>
                   <XO>0</XO>
                   <YS>1</YS>
                   <YO>0</YO>
@@ -3531,7 +3756,7 @@
                 <token name="TextYAlignment">1</token>
               </Properties>
             </Item>
-            <Item class="Frame" referent="143">
+            <Item class="Frame" referent="149">
               <Properties>
                 <string name="Name">Rule</string>
                 <Color3 name="BackgroundColor3">
@@ -3539,7 +3764,7 @@
                   <G>1</G>
                   <B>1</B>
                 </Color3>
-                <float name="BackgroundTransparency">0.94</float>
+                <float name="BackgroundTransparency">0.88</float>
                 <int name="BorderSizePixel">0</int>
                 <UDim2 name="Position">
                   <XS>0.050724637</XS>
@@ -3556,7 +3781,7 @@
               </Properties>
             </Item>
           </Item>
-          <Item class="Frame" referent="144">
+          <Item class="Frame" referent="150">
             <Properties>
               <string name="Name">Row_Followers</string>
               <Color3 name="BackgroundColor3">
@@ -3569,17 +3794,17 @@
               <UDim2 name="Position">
                 <XS>0</XS>
                 <XO>0</XO>
-                <YS>0.625</YS>
+                <YS>0.6666667</YS>
                 <YO>0</YO>
               </UDim2>
               <UDim2 name="Size">
                 <XS>1</XS>
                 <XO>0</XO>
-                <YS>0.125</YS>
+                <YS>0.11111111</YS>
                 <YO>0</YO>
               </UDim2>
             </Properties>
-            <Item class="TextLabel" referent="145">
+            <Item class="TextLabel" referent="151">
               <Properties>
                 <string name="Name">Key</string>
                 <Color3 name="BackgroundColor3">
@@ -3603,16 +3828,16 @@
                   <YO>0</YO>
                 </UDim2>
                 <UDim2 name="Size">
-                  <XS>0.4347826</XS>
+                  <XS>0.39855072</XS>
                   <XO>0</XO>
                   <YS>1</YS>
                   <YO>0</YO>
                 </UDim2>
                 <string name="Text">Followers</string>
                 <Color3 name="TextColor3">
-                  <R>0.5803922</R>
-                  <G>0.6</G>
-                  <B>0.68235296</B>
+                  <R>0.76862746</R>
+                  <G>0.78431374</G>
+                  <B>0.84705883</B>
                 </Color3>
                 <float name="TextSize">11</float>
                 <token name="TextTruncate">1</token>
@@ -3620,7 +3845,7 @@
                 <token name="TextYAlignment">1</token>
               </Properties>
             </Item>
-            <Item class="TextLabel" referent="146">
+            <Item class="TextLabel" referent="152">
               <Properties>
                 <string name="Name">Value</string>
                 <Color3 name="BackgroundColor3">
@@ -3638,13 +3863,13 @@
                   <Style>Normal</Style>
                 </Font>
                 <UDim2 name="Position">
-                  <XS>0.4710145</XS>
+                  <XS>0.4347826</XS>
                   <XO>0</XO>
                   <YS>0</YS>
                   <YO>0</YO>
                 </UDim2>
                 <UDim2 name="Size">
-                  <XS>0.4710145</XS>
+                  <XS>0.5072464</XS>
                   <XO>0</XO>
                   <YS>1</YS>
                   <YO>0</YO>
@@ -3661,7 +3886,7 @@
                 <token name="TextYAlignment">1</token>
               </Properties>
             </Item>
-            <Item class="Frame" referent="147">
+            <Item class="Frame" referent="153">
               <Properties>
                 <string name="Name">Rule</string>
                 <Color3 name="BackgroundColor3">
@@ -3669,7 +3894,7 @@
                   <G>1</G>
                   <B>1</B>
                 </Color3>
-                <float name="BackgroundTransparency">0.94</float>
+                <float name="BackgroundTransparency">0.88</float>
                 <int name="BorderSizePixel">0</int>
                 <UDim2 name="Position">
                   <XS>0.050724637</XS>
@@ -3686,7 +3911,7 @@
               </Properties>
             </Item>
           </Item>
-          <Item class="Frame" referent="148">
+          <Item class="Frame" referent="154">
             <Properties>
               <string name="Name">Row_Following</string>
               <Color3 name="BackgroundColor3">
@@ -3699,17 +3924,17 @@
               <UDim2 name="Position">
                 <XS>0</XS>
                 <XO>0</XO>
-                <YS>0.75</YS>
+                <YS>0.7777778</YS>
                 <YO>0</YO>
               </UDim2>
               <UDim2 name="Size">
                 <XS>1</XS>
                 <XO>0</XO>
-                <YS>0.125</YS>
+                <YS>0.11111111</YS>
                 <YO>0</YO>
               </UDim2>
             </Properties>
-            <Item class="TextLabel" referent="149">
+            <Item class="TextLabel" referent="155">
               <Properties>
                 <string name="Name">Key</string>
                 <Color3 name="BackgroundColor3">
@@ -3733,16 +3958,16 @@
                   <YO>0</YO>
                 </UDim2>
                 <UDim2 name="Size">
-                  <XS>0.4347826</XS>
+                  <XS>0.39855072</XS>
                   <XO>0</XO>
                   <YS>1</YS>
                   <YO>0</YO>
                 </UDim2>
                 <string name="Text">Following</string>
                 <Color3 name="TextColor3">
-                  <R>0.5803922</R>
-                  <G>0.6</G>
-                  <B>0.68235296</B>
+                  <R>0.76862746</R>
+                  <G>0.78431374</G>
+                  <B>0.84705883</B>
                 </Color3>
                 <float name="TextSize">11</float>
                 <token name="TextTruncate">1</token>
@@ -3750,7 +3975,7 @@
                 <token name="TextYAlignment">1</token>
               </Properties>
             </Item>
-            <Item class="TextLabel" referent="150">
+            <Item class="TextLabel" referent="156">
               <Properties>
                 <string name="Name">Value</string>
                 <Color3 name="BackgroundColor3">
@@ -3768,13 +3993,13 @@
                   <Style>Normal</Style>
                 </Font>
                 <UDim2 name="Position">
-                  <XS>0.4710145</XS>
+                  <XS>0.4347826</XS>
                   <XO>0</XO>
                   <YS>0</YS>
                   <YO>0</YO>
                 </UDim2>
                 <UDim2 name="Size">
-                  <XS>0.4710145</XS>
+                  <XS>0.5072464</XS>
                   <XO>0</XO>
                   <YS>1</YS>
                   <YO>0</YO>
@@ -3791,7 +4016,7 @@
                 <token name="TextYAlignment">1</token>
               </Properties>
             </Item>
-            <Item class="Frame" referent="151">
+            <Item class="Frame" referent="157">
               <Properties>
                 <string name="Name">Rule</string>
                 <Color3 name="BackgroundColor3">
@@ -3799,7 +4024,7 @@
                   <G>1</G>
                   <B>1</B>
                 </Color3>
-                <float name="BackgroundTransparency">0.94</float>
+                <float name="BackgroundTransparency">0.88</float>
                 <int name="BorderSizePixel">0</int>
                 <UDim2 name="Position">
                   <XS>0.050724637</XS>
@@ -3816,7 +4041,7 @@
               </Properties>
             </Item>
           </Item>
-          <Item class="Frame" referent="152">
+          <Item class="Frame" referent="158">
             <Properties>
               <string name="Name">Row_Kisses</string>
               <Color3 name="BackgroundColor3">
@@ -3829,17 +4054,17 @@
               <UDim2 name="Position">
                 <XS>0</XS>
                 <XO>0</XO>
-                <YS>0.875</YS>
+                <YS>0.8888889</YS>
                 <YO>0</YO>
               </UDim2>
               <UDim2 name="Size">
                 <XS>1</XS>
                 <XO>0</XO>
-                <YS>0.125</YS>
+                <YS>0.11111111</YS>
                 <YO>0</YO>
               </UDim2>
             </Properties>
-            <Item class="TextLabel" referent="153">
+            <Item class="TextLabel" referent="159">
               <Properties>
                 <string name="Name">Key</string>
                 <Color3 name="BackgroundColor3">
@@ -3863,16 +4088,16 @@
                   <YO>0</YO>
                 </UDim2>
                 <UDim2 name="Size">
-                  <XS>0.4347826</XS>
+                  <XS>0.39855072</XS>
                   <XO>0</XO>
                   <YS>1</YS>
                   <YO>0</YO>
                 </UDim2>
                 <string name="Text">Kisses received</string>
                 <Color3 name="TextColor3">
-                  <R>0.5803922</R>
-                  <G>0.6</G>
-                  <B>0.68235296</B>
+                  <R>0.76862746</R>
+                  <G>0.78431374</G>
+                  <B>0.84705883</B>
                 </Color3>
                 <float name="TextSize">11</float>
                 <token name="TextTruncate">1</token>
@@ -3880,7 +4105,7 @@
                 <token name="TextYAlignment">1</token>
               </Properties>
             </Item>
-            <Item class="TextLabel" referent="154">
+            <Item class="TextLabel" referent="160">
               <Properties>
                 <string name="Name">Value</string>
                 <Color3 name="BackgroundColor3">
@@ -3898,13 +4123,13 @@
                   <Style>Normal</Style>
                 </Font>
                 <UDim2 name="Position">
-                  <XS>0.4710145</XS>
+                  <XS>0.4347826</XS>
                   <XO>0</XO>
                   <YS>0</YS>
                   <YO>0</YO>
                 </UDim2>
                 <UDim2 name="Size">
-                  <XS>0.4710145</XS>
+                  <XS>0.5072464</XS>
                   <XO>0</XO>
                   <YS>1</YS>
                   <YO>0</YO>
@@ -3921,7 +4146,7 @@
                 <token name="TextYAlignment">1</token>
               </Properties>
             </Item>
-            <Item class="Frame" referent="155">
+            <Item class="Frame" referent="161">
               <Properties>
                 <string name="Name">Rule</string>
                 <Color3 name="BackgroundColor3">
@@ -3929,7 +4154,7 @@
                   <G>1</G>
                   <B>1</B>
                 </Color3>
-                <float name="BackgroundTransparency">0.94</float>
+                <float name="BackgroundTransparency">0.88</float>
                 <int name="BorderSizePixel">0</int>
                 <UDim2 name="Position">
                   <XS>0.050724637</XS>
@@ -3948,7 +4173,7 @@
           </Item>
         </Item>
       </Item>
-      <Item class="Frame" referent="156">
+      <Item class="Frame" referent="162">
         <Properties>
           <string name="Name">ChatPage</string>
           <Color3 name="BackgroundColor3">
@@ -3956,7 +4181,7 @@
             <G>1</G>
             <B>1</B>
           </Color3>
-          <float name="BackgroundTransparency">0</float>
+          <float name="BackgroundTransparency">1</float>
           <int name="BorderSizePixel">0</int>
           <UDim2 name="Position">
             <XS>0</XS>
@@ -3973,24 +4198,7 @@
           <bool name="Visible">false</bool>
           <int name="ZIndex">2</int>
         </Properties>
-        <Item class="UICorner" referent="157">
-          <Properties>
-            <string name="Name">UICorner</string>
-            <UDim name="CornerRadius">
-              <S>0.07692308</S>
-              <O>0</O>
-            </UDim>
-          </Properties>
-        </Item>
-        <Item class="UIGradient" referent="158">
-          <Properties>
-            <string name="Name">UIGradient</string>
-            <ColorSequence name="Color">0 0.12156863 0.1254902 0.1882353 0 1 0.12156863 0.1254902 0.1882353 0 </ColorSequence>
-            <float name="Rotation">90</float>
-            <NumberSequence name="Transparency">0 0 0 1 0 0 </NumberSequence>
-          </Properties>
-        </Item>
-        <Item class="TextButton" referent="159">
+        <Item class="TextButton" referent="163">
           <Properties>
             <string name="Name">BackButton</string>
             <bool name="AutoButtonColor">false</bool>
@@ -4015,7 +4223,7 @@
             </UDim2>
             <string name="Text"></string>
           </Properties>
-          <Item class="UICorner" referent="160">
+          <Item class="UICorner" referent="164">
             <Properties>
               <string name="Name">UICorner</string>
               <UDim name="CornerRadius">
@@ -4024,7 +4232,7 @@
               </UDim>
             </Properties>
           </Item>
-          <Item class="UIStroke" referent="161">
+          <Item class="UIStroke" referent="165">
             <Properties>
               <string name="Name">Outline</string>
               <token name="ApplyStrokeMode">1</token>
@@ -4037,7 +4245,7 @@
               <float name="Transparency">0.9</float>
             </Properties>
           </Item>
-          <Item class="TextLabel" referent="162">
+          <Item class="TextLabel" referent="166">
             <Properties>
               <string name="Name">Icon</string>
               <Color3 name="BackgroundColor3">
@@ -4068,9 +4276,9 @@
               </UDim2>
               <string name="Text">‹</string>
               <Color3 name="TextColor3">
-                <R>0.5803922</R>
-                <G>0.6</G>
-                <B>0.68235296</B>
+                <R>0.76862746</R>
+                <G>0.78431374</G>
+                <B>0.84705883</B>
               </Color3>
               <float name="TextSize">24</float>
               <token name="TextTruncate">0</token>
@@ -4079,7 +4287,7 @@
             </Properties>
           </Item>
         </Item>
-        <Item class="TextLabel" referent="163">
+        <Item class="TextLabel" referent="167">
           <Properties>
             <string name="Name">PageTitle</string>
             <Color3 name="BackgroundColor3">
@@ -4120,7 +4328,7 @@
             <token name="TextYAlignment">1</token>
           </Properties>
         </Item>
-        <Item class="TextButton" referent="164">
+        <Item class="TextButton" referent="168">
           <Properties>
             <string name="Name">CloseButton</string>
             <bool name="AutoButtonColor">false</bool>
@@ -4145,7 +4353,7 @@
             </UDim2>
             <string name="Text"></string>
           </Properties>
-          <Item class="UICorner" referent="165">
+          <Item class="UICorner" referent="169">
             <Properties>
               <string name="Name">UICorner</string>
               <UDim name="CornerRadius">
@@ -4154,7 +4362,7 @@
               </UDim>
             </Properties>
           </Item>
-          <Item class="UIStroke" referent="166">
+          <Item class="UIStroke" referent="170">
             <Properties>
               <string name="Name">Outline</string>
               <token name="ApplyStrokeMode">1</token>
@@ -4167,7 +4375,7 @@
               <float name="Transparency">0.9</float>
             </Properties>
           </Item>
-          <Item class="TextLabel" referent="167">
+          <Item class="TextLabel" referent="171">
             <Properties>
               <string name="Name">Icon</string>
               <Color3 name="BackgroundColor3">
@@ -4198,9 +4406,9 @@
               </UDim2>
               <string name="Text">×</string>
               <Color3 name="TextColor3">
-                <R>0.5803922</R>
-                <G>0.6</G>
-                <B>0.68235296</B>
+                <R>0.76862746</R>
+                <G>0.78431374</G>
+                <B>0.84705883</B>
               </Color3>
               <float name="TextSize">22</float>
               <token name="TextTruncate">0</token>
@@ -4209,7 +4417,7 @@
             </Properties>
           </Item>
         </Item>
-        <Item class="ScrollingFrame" referent="168">
+        <Item class="ScrollingFrame" referent="172">
           <Properties>
             <string name="Name">Messages</string>
             <token name="AutomaticCanvasSize">2</token>
@@ -4249,7 +4457,7 @@
             </UDim2>
             <token name="VerticalScrollBarInset">0</token>
           </Properties>
-          <Item class="UIListLayout" referent="169">
+          <Item class="UIListLayout" referent="173">
             <Properties>
               <string name="Name">UIListLayout</string>
               <token name="FillDirection">1</token>
@@ -4261,7 +4469,7 @@
               <token name="VerticalAlignment">2</token>
             </Properties>
           </Item>
-          <Item class="Frame" referent="170">
+          <Item class="Frame" referent="174">
             <Properties>
               <string name="Name">Sample1</string>
               <Color3 name="BackgroundColor3">
@@ -4285,15 +4493,15 @@
                 <YO>0</YO>
               </UDim2>
             </Properties>
-            <Item class="Frame" referent="171">
+            <Item class="Frame" referent="175">
               <Properties>
                 <string name="Name">Bubble</string>
                 <Color3 name="BackgroundColor3">
-                  <R>0.13725491</R>
-                  <G>0.14509805</G>
-                  <B>0.21176471</B>
+                  <R>1</R>
+                  <G>1</G>
+                  <B>1</B>
                 </Color3>
-                <float name="BackgroundTransparency">0</float>
+                <float name="BackgroundTransparency">0.86</float>
                 <int name="BorderSizePixel">0</int>
                 <UDim2 name="Position">
                   <XS>0</XS>
@@ -4308,7 +4516,7 @@
                   <YO>0</YO>
                 </UDim2>
               </Properties>
-              <Item class="UICorner" referent="172">
+              <Item class="UICorner" referent="176">
                 <Properties>
                   <string name="Name">UICorner</string>
                   <UDim name="CornerRadius">
@@ -4317,7 +4525,7 @@
                   </UDim>
                 </Properties>
               </Item>
-              <Item class="TextLabel" referent="173">
+              <Item class="TextLabel" referent="177">
                 <Properties>
                   <string name="Name">Text</string>
                   <Color3 name="BackgroundColor3">
@@ -4360,7 +4568,7 @@
               </Item>
             </Item>
           </Item>
-          <Item class="Frame" referent="174">
+          <Item class="Frame" referent="178">
             <Properties>
               <string name="Name">Sample2</string>
               <Color3 name="BackgroundColor3">
@@ -4384,7 +4592,7 @@
                 <YO>0</YO>
               </UDim2>
             </Properties>
-            <Item class="Frame" referent="175">
+            <Item class="Frame" referent="179">
               <Properties>
                 <string name="Name">Bubble</string>
                 <Color3 name="BackgroundColor3">
@@ -4407,7 +4615,7 @@
                   <YO>0</YO>
                 </UDim2>
               </Properties>
-              <Item class="UICorner" referent="176">
+              <Item class="UICorner" referent="180">
                 <Properties>
                   <string name="Name">UICorner</string>
                   <UDim name="CornerRadius">
@@ -4416,7 +4624,7 @@
                   </UDim>
                 </Properties>
               </Item>
-              <Item class="UIGradient" referent="177">
+              <Item class="UIGradient" referent="181">
                 <Properties>
                   <string name="Name">UIGradient</string>
                   <ColorSequence name="Color">0 1 0.32156864 0.5882353 0 1 1 0.32156864 0.5882353 0 </ColorSequence>
@@ -4424,7 +4632,7 @@
                   <NumberSequence name="Transparency">0 0 0 1 0 0 </NumberSequence>
                 </Properties>
               </Item>
-              <Item class="TextLabel" referent="178">
+              <Item class="TextLabel" referent="182">
                 <Properties>
                   <string name="Name">Text</string>
                   <Color3 name="BackgroundColor3">
@@ -4467,7 +4675,7 @@
               </Item>
             </Item>
           </Item>
-          <Item class="Frame" referent="179">
+          <Item class="Frame" referent="183">
             <Properties>
               <string name="Name">Sample3</string>
               <Color3 name="BackgroundColor3">
@@ -4491,15 +4699,15 @@
                 <YO>0</YO>
               </UDim2>
             </Properties>
-            <Item class="Frame" referent="180">
+            <Item class="Frame" referent="184">
               <Properties>
                 <string name="Name">Bubble</string>
                 <Color3 name="BackgroundColor3">
-                  <R>0.13725491</R>
-                  <G>0.14509805</G>
-                  <B>0.21176471</B>
+                  <R>1</R>
+                  <G>1</G>
+                  <B>1</B>
                 </Color3>
-                <float name="BackgroundTransparency">0</float>
+                <float name="BackgroundTransparency">0.86</float>
                 <int name="BorderSizePixel">0</int>
                 <UDim2 name="Position">
                   <XS>0</XS>
@@ -4514,7 +4722,7 @@
                   <YO>0</YO>
                 </UDim2>
               </Properties>
-              <Item class="UICorner" referent="181">
+              <Item class="UICorner" referent="185">
                 <Properties>
                   <string name="Name">UICorner</string>
                   <UDim name="CornerRadius">
@@ -4523,7 +4731,7 @@
                   </UDim>
                 </Properties>
               </Item>
-              <Item class="TextLabel" referent="182">
+              <Item class="TextLabel" referent="186">
                 <Properties>
                   <string name="Name">Text</string>
                   <Color3 name="BackgroundColor3">
@@ -4566,7 +4774,7 @@
               </Item>
             </Item>
           </Item>
-          <Item class="Frame" referent="183">
+          <Item class="Frame" referent="187">
             <Properties>
               <string name="Name">BubbleTheirs</string>
               <token name="AutomaticSize">2</token>
@@ -4580,7 +4788,7 @@
               </UDim2>
               <bool name="Visible">false</bool>
             </Properties>
-            <Item class="UIListLayout" referent="184">
+            <Item class="UIListLayout" referent="188">
               <Properties>
                 <string name="Name">UIListLayout</string>
                 <token name="FillDirection">0</token>
@@ -4588,16 +4796,16 @@
                 <token name="SortOrder">2</token>
               </Properties>
             </Item>
-            <Item class="Frame" referent="185">
+            <Item class="Frame" referent="189">
               <Properties>
                 <string name="Name">Bubble</string>
                 <token name="AutomaticSize">3</token>
                 <Color3 name="BackgroundColor3">
-                  <R>0.13725491</R>
-                  <G>0.14509805</G>
-                  <B>0.21176471</B>
+                  <R>1</R>
+                  <G>1</G>
+                  <B>1</B>
                 </Color3>
-                <float name="BackgroundTransparency">0</float>
+                <float name="BackgroundTransparency">0.86</float>
                 <int name="BorderSizePixel">0</int>
                 <UDim2 name="Size">
                   <XS>0</XS>
@@ -4606,7 +4814,7 @@
                   <YO>0</YO>
                 </UDim2>
               </Properties>
-              <Item class="UICorner" referent="186">
+              <Item class="UICorner" referent="190">
                 <Properties>
                   <string name="Name">UICorner</string>
                   <UDim name="CornerRadius">
@@ -4615,7 +4823,7 @@
                   </UDim>
                 </Properties>
               </Item>
-              <Item class="UIPadding" referent="187">
+              <Item class="UIPadding" referent="191">
                 <Properties>
                   <string name="Name">UIPadding</string>
                   <UDim name="PaddingBottom">
@@ -4636,7 +4844,7 @@
                   </UDim>
                 </Properties>
               </Item>
-              <Item class="TextLabel" referent="188">
+              <Item class="TextLabel" referent="192">
                 <Properties>
                   <string name="Name">Text</string>
                   <token name="AutomaticSize">3</token>
@@ -4666,7 +4874,7 @@
                   <token name="TextXAlignment">0</token>
                   <token name="TextYAlignment">0</token>
                 </Properties>
-                <Item class="UISizeConstraint" referent="189">
+                <Item class="UISizeConstraint" referent="193">
                   <Properties>
                     <string name="Name">UISizeConstraint</string>
                     <Vector2 name="MaxSize">
@@ -4678,7 +4886,7 @@
               </Item>
             </Item>
           </Item>
-          <Item class="Frame" referent="190">
+          <Item class="Frame" referent="194">
             <Properties>
               <string name="Name">BubbleMine</string>
               <token name="AutomaticSize">2</token>
@@ -4692,7 +4900,7 @@
               </UDim2>
               <bool name="Visible">false</bool>
             </Properties>
-            <Item class="UIListLayout" referent="191">
+            <Item class="UIListLayout" referent="195">
               <Properties>
                 <string name="Name">UIListLayout</string>
                 <token name="FillDirection">0</token>
@@ -4700,7 +4908,7 @@
                 <token name="SortOrder">2</token>
               </Properties>
             </Item>
-            <Item class="Frame" referent="192">
+            <Item class="Frame" referent="196">
               <Properties>
                 <string name="Name">Bubble</string>
                 <token name="AutomaticSize">3</token>
@@ -4718,7 +4926,7 @@
                   <YO>0</YO>
                 </UDim2>
               </Properties>
-              <Item class="UICorner" referent="193">
+              <Item class="UICorner" referent="197">
                 <Properties>
                   <string name="Name">UICorner</string>
                   <UDim name="CornerRadius">
@@ -4727,14 +4935,14 @@
                   </UDim>
                 </Properties>
               </Item>
-              <Item class="UIGradient" referent="194">
+              <Item class="UIGradient" referent="198">
                 <Properties>
                   <string name="Name">UIGradient</string>
                   <ColorSequence name="Color">0 1 0.32156864 0.5882353 0 1 1 0.32156864 0.5882353 0 </ColorSequence>
                   <float name="Rotation">25</float>
                 </Properties>
               </Item>
-              <Item class="UIPadding" referent="195">
+              <Item class="UIPadding" referent="199">
                 <Properties>
                   <string name="Name">UIPadding</string>
                   <UDim name="PaddingBottom">
@@ -4755,7 +4963,7 @@
                   </UDim>
                 </Properties>
               </Item>
-              <Item class="TextLabel" referent="196">
+              <Item class="TextLabel" referent="200">
                 <Properties>
                   <string name="Name">Text</string>
                   <token name="AutomaticSize">3</token>
@@ -4785,7 +4993,7 @@
                   <token name="TextXAlignment">1</token>
                   <token name="TextYAlignment">0</token>
                 </Properties>
-                <Item class="UISizeConstraint" referent="197">
+                <Item class="UISizeConstraint" referent="201">
                   <Properties>
                     <string name="Name">UISizeConstraint</string>
                     <Vector2 name="MaxSize">
@@ -4798,7 +5006,7 @@
             </Item>
           </Item>
         </Item>
-        <Item class="TextLabel" referent="198">
+        <Item class="TextLabel" referent="202">
           <Properties>
             <string name="Name">EmptyState</string>
             <Color3 name="BackgroundColor3">
@@ -4829,9 +5037,9 @@
             </UDim2>
             <string name="Text">Say hi 👋</string>
             <Color3 name="TextColor3">
-              <R>0.5803922</R>
-              <G>0.6</G>
-              <B>0.68235296</B>
+              <R>0.76862746</R>
+              <G>0.78431374</G>
+              <B>0.84705883</B>
             </Color3>
             <float name="TextSize">13</float>
             <token name="TextTruncate">0</token>
@@ -4840,7 +5048,7 @@
             <bool name="Visible">false</bool>
           </Properties>
         </Item>
-        <Item class="Frame" referent="199">
+        <Item class="Frame" referent="203">
           <Properties>
             <string name="Name">InputBar</string>
             <Color3 name="BackgroundColor3">
@@ -4863,15 +5071,15 @@
               <YO>0</YO>
             </UDim2>
           </Properties>
-          <Item class="Frame" referent="200">
+          <Item class="Frame" referent="204">
             <Properties>
               <string name="Name">Field</string>
               <Color3 name="BackgroundColor3">
-                <R>0.101960786</R>
-                <G>0.10980392</G>
-                <B>0.16078432</B>
+                <R>0</R>
+                <G>0</G>
+                <B>0</B>
               </Color3>
-              <float name="BackgroundTransparency">0</float>
+              <float name="BackgroundTransparency">0.55</float>
               <int name="BorderSizePixel">0</int>
               <UDim2 name="Position">
                 <XS>0</XS>
@@ -4886,7 +5094,7 @@
                 <YO>0</YO>
               </UDim2>
             </Properties>
-            <Item class="UICorner" referent="201">
+            <Item class="UICorner" referent="205">
               <Properties>
                 <string name="Name">UICorner</string>
                 <UDim name="CornerRadius">
@@ -4895,7 +5103,7 @@
                 </UDim>
               </Properties>
             </Item>
-            <Item class="UIStroke" referent="202">
+            <Item class="UIStroke" referent="206">
               <Properties>
                 <string name="Name">Outline</string>
                 <token name="ApplyStrokeMode">1</token>
@@ -4905,10 +5113,10 @@
                   <B>1</B>
                 </Color3>
                 <float name="Thickness">1</float>
-                <float name="Transparency">0.92</float>
+                <float name="Transparency">0.85</float>
               </Properties>
             </Item>
-            <Item class="TextBox" referent="203">
+            <Item class="TextBox" referent="207">
               <Properties>
                 <string name="Name">InputBox</string>
                 <Color3 name="BackgroundColor3">
@@ -4928,9 +5136,9 @@
                   <Style>Normal</Style>
                 </Font>
                 <Color3 name="PlaceholderColor3">
-                  <R>0.3882353</R>
-                  <G>0.40784314</G>
-                  <B>0.49411765</B>
+                  <R>0.627451</R>
+                  <G>0.64705884</G>
+                  <B>0.7294118</B>
                 </Color3>
                 <string name="PlaceholderText">Message...</string>
                 <UDim2 name="Position">
@@ -4957,7 +5165,7 @@
               </Properties>
             </Item>
           </Item>
-          <Item class="TextButton" referent="204">
+          <Item class="TextButton" referent="208">
             <Properties>
               <string name="Name">SendButton</string>
               <bool name="AutoButtonColor">true</bool>
@@ -4982,7 +5190,7 @@
               </UDim2>
               <string name="Text"></string>
             </Properties>
-            <Item class="UICorner" referent="205">
+            <Item class="UICorner" referent="209">
               <Properties>
                 <string name="Name">UICorner</string>
                 <UDim name="CornerRadius">
@@ -4991,7 +5199,7 @@
                 </UDim>
               </Properties>
             </Item>
-            <Item class="UIGradient" referent="206">
+            <Item class="UIGradient" referent="210">
               <Properties>
                 <string name="Name">UIGradient</string>
                 <ColorSequence name="Color">0 1 0.32156864 0.5882353 0 1 1 0.32156864 0.5882353 0 </ColorSequence>
@@ -4999,7 +5207,7 @@
                 <NumberSequence name="Transparency">0 0 0 1 0 0 </NumberSequence>
               </Properties>
             </Item>
-            <Item class="TextLabel" referent="207">
+            <Item class="TextLabel" referent="211">
               <Properties>
                 <string name="Name">Label</string>
                 <Color3 name="BackgroundColor3">
@@ -5043,7 +5251,7 @@
           </Item>
         </Item>
       </Item>
-      <Item class="Frame" referent="208">
+      <Item class="Frame" referent="212">
         <Properties>
           <string name="Name">FxLayer</string>
           <Color3 name="BackgroundColor3">
@@ -5069,7 +5277,7 @@
         </Properties>
       </Item>
     </Item>
-    <Item class="TextButton" referent="209">
+    <Item class="TextButton" referent="213">
       <Properties>
         <string name="Name">Toast</string>
         <Vector2 name="AnchorPoint">
@@ -5078,11 +5286,11 @@
         </Vector2>
         <bool name="AutoButtonColor">false</bool>
         <Color3 name="BackgroundColor3">
-          <R>0.07450981</R>
-          <G>0.078431375</G>
-          <B>0.11764706</B>
+          <R>0.023529412</R>
+          <G>0.02745098</G>
+          <B>0.047058824</B>
         </Color3>
-        <float name="BackgroundTransparency">0.04</float>
+        <float name="BackgroundTransparency">0.3</float>
         <int name="BorderSizePixel">0</int>
         <UDim2 name="Position">
           <XS>0.5</XS>
@@ -5100,13 +5308,13 @@
         <bool name="Visible">false</bool>
         <int name="ZIndex">10</int>
       </Properties>
-      <Item class="UIScale" referent="210">
+      <Item class="UIScale" referent="214">
         <Properties>
           <string name="Name">ResponsiveScale</string>
           <float name="Scale">1</float>
         </Properties>
       </Item>
-      <Item class="UICorner" referent="211">
+      <Item class="UICorner" referent="215">
         <Properties>
           <string name="Name">UICorner</string>
           <UDim name="CornerRadius">
@@ -5115,7 +5323,7 @@
           </UDim>
         </Properties>
       </Item>
-      <Item class="UIStroke" referent="212">
+      <Item class="UIStroke" referent="216">
         <Properties>
           <string name="Name">Outline</string>
           <token name="ApplyStrokeMode">1</token>
@@ -5128,7 +5336,7 @@
           <float name="Transparency">0.86</float>
         </Properties>
       </Item>
-      <Item class="Frame" referent="213">
+      <Item class="Frame" referent="217">
         <Properties>
           <string name="Name">Dot</string>
           <Color3 name="BackgroundColor3">
@@ -5151,7 +5359,7 @@
             <YO>0</YO>
           </UDim2>
         </Properties>
-        <Item class="UICorner" referent="214">
+        <Item class="UICorner" referent="218">
           <Properties>
             <string name="Name">UICorner</string>
             <UDim name="CornerRadius">
@@ -5161,7 +5369,7 @@
           </Properties>
         </Item>
       </Item>
-      <Item class="TextLabel" referent="215">
+      <Item class="TextLabel" referent="219">
         <Properties>
           <string name="Name">Message</string>
           <Color3 name="BackgroundColor3">
@@ -5203,7 +5411,7 @@
         </Properties>
       </Item>
     </Item>
-    <Item class="Frame" referent="216">
+    <Item class="Frame" referent="220">
       <Properties>
         <string name="Name">CarryRequest</string>
         <Vector2 name="AnchorPoint">
@@ -5211,11 +5419,11 @@
           <Y>0</Y>
         </Vector2>
         <Color3 name="BackgroundColor3">
-          <R>0.07450981</R>
-          <G>0.078431375</G>
-          <B>0.11764706</B>
+          <R>0.023529412</R>
+          <G>0.02745098</G>
+          <B>0.047058824</B>
         </Color3>
-        <float name="BackgroundTransparency">0</float>
+        <float name="BackgroundTransparency">0.3</float>
         <int name="BorderSizePixel">0</int>
         <bool name="ClipsDescendants">true</bool>
         <UDim2 name="Position">
@@ -5233,13 +5441,13 @@
         <bool name="Visible">false</bool>
         <int name="ZIndex">9</int>
       </Properties>
-      <Item class="UIScale" referent="217">
+      <Item class="UIScale" referent="221">
         <Properties>
           <string name="Name">ResponsiveScale</string>
           <float name="Scale">1</float>
         </Properties>
       </Item>
-      <Item class="UICorner" referent="218">
+      <Item class="UICorner" referent="222">
         <Properties>
           <string name="Name">UICorner</string>
           <UDim name="CornerRadius">
@@ -5248,7 +5456,7 @@
           </UDim>
         </Properties>
       </Item>
-      <Item class="UIStroke" referent="219">
+      <Item class="UIStroke" referent="223">
         <Properties>
           <string name="Name">Outline</string>
           <token name="ApplyStrokeMode">1</token>
@@ -5261,7 +5469,7 @@
           <float name="Transparency">0.86</float>
         </Properties>
       </Item>
-      <Item class="Frame" referent="220">
+      <Item class="Frame" referent="224">
         <Properties>
           <string name="Name">Icon</string>
           <Color3 name="BackgroundColor3">
@@ -5284,7 +5492,7 @@
             <YO>0</YO>
           </UDim2>
         </Properties>
-        <Item class="UICorner" referent="221">
+        <Item class="UICorner" referent="225">
           <Properties>
             <string name="Name">UICorner</string>
             <UDim name="CornerRadius">
@@ -5293,7 +5501,7 @@
             </UDim>
           </Properties>
         </Item>
-        <Item class="TextLabel" referent="222">
+        <Item class="TextLabel" referent="226">
           <Properties>
             <string name="Name">Emoji</string>
             <Color3 name="BackgroundColor3">
@@ -5335,7 +5543,7 @@
           </Properties>
         </Item>
       </Item>
-      <Item class="TextLabel" referent="223">
+      <Item class="TextLabel" referent="227">
         <Properties>
           <string name="Name">Message</string>
           <Color3 name="BackgroundColor3">
@@ -5376,7 +5584,7 @@
           <token name="TextYAlignment">1</token>
         </Properties>
       </Item>
-      <Item class="TextLabel" referent="224">
+      <Item class="TextLabel" referent="228">
         <Properties>
           <string name="Name">Detail</string>
           <Color3 name="BackgroundColor3">
@@ -5407,9 +5615,9 @@
           </UDim2>
           <string name="Text">Piggyback ride  •  15s</string>
           <Color3 name="TextColor3">
-            <R>0.5803922</R>
-            <G>0.6</G>
-            <B>0.68235296</B>
+            <R>0.76862746</R>
+            <G>0.78431374</G>
+            <B>0.84705883</B>
           </Color3>
           <float name="TextSize">10</float>
           <token name="TextTruncate">1</token>
@@ -5417,7 +5625,7 @@
           <token name="TextYAlignment">1</token>
         </Properties>
       </Item>
-      <Item class="TextButton" referent="225">
+      <Item class="TextButton" referent="229">
         <Properties>
           <string name="Name">Accept</string>
           <bool name="AutoButtonColor">true</bool>
@@ -5442,7 +5650,7 @@
           </UDim2>
           <string name="Text"></string>
         </Properties>
-        <Item class="UICorner" referent="226">
+        <Item class="UICorner" referent="230">
           <Properties>
             <string name="Name">UICorner</string>
             <UDim name="CornerRadius">
@@ -5451,7 +5659,7 @@
             </UDim>
           </Properties>
         </Item>
-        <Item class="TextLabel" referent="227">
+        <Item class="TextLabel" referent="231">
           <Properties>
             <string name="Name">Label</string>
             <Color3 name="BackgroundColor3">
@@ -5493,7 +5701,7 @@
           </Properties>
         </Item>
       </Item>
-      <Item class="TextButton" referent="228">
+      <Item class="TextButton" referent="232">
         <Properties>
           <string name="Name">Decline</string>
           <bool name="AutoButtonColor">true</bool>
@@ -5518,7 +5726,7 @@
           </UDim2>
           <string name="Text"></string>
         </Properties>
-        <Item class="UICorner" referent="229">
+        <Item class="UICorner" referent="233">
           <Properties>
             <string name="Name">UICorner</string>
             <UDim name="CornerRadius">
@@ -5527,7 +5735,7 @@
             </UDim>
           </Properties>
         </Item>
-        <Item class="UIStroke" referent="230">
+        <Item class="UIStroke" referent="234">
           <Properties>
             <string name="Name">Outline</string>
             <token name="ApplyStrokeMode">1</token>
@@ -5540,7 +5748,7 @@
             <float name="Transparency">0.88</float>
           </Properties>
         </Item>
-        <Item class="TextLabel" referent="231">
+        <Item class="TextLabel" referent="235">
           <Properties>
             <string name="Name">Label</string>
             <Color3 name="BackgroundColor3">
@@ -5571,9 +5779,9 @@
             </UDim2>
             <string name="Text">DECLINE</string>
             <Color3 name="TextColor3">
-              <R>0.5803922</R>
-              <G>0.6</G>
-              <B>0.68235296</B>
+              <R>0.76862746</R>
+              <G>0.78431374</G>
+              <B>0.84705883</B>
             </Color3>
             <float name="TextSize">12</float>
             <token name="TextTruncate">1</token>
@@ -5582,7 +5790,7 @@
           </Properties>
         </Item>
       </Item>
-      <Item class="Frame" referent="232">
+      <Item class="Frame" referent="236">
         <Properties>
           <string name="Name">Timer</string>
           <Color3 name="BackgroundColor3">
@@ -5605,7 +5813,7 @@
             <YO>0</YO>
           </UDim2>
         </Properties>
-        <Item class="Frame" referent="233">
+        <Item class="Frame" referent="237">
           <Properties>
             <string name="Name">Fill</string>
             <Color3 name="BackgroundColor3">
@@ -5631,7 +5839,7 @@
         </Item>
       </Item>
     </Item>
-    <Item class="Frame" referent="234">
+    <Item class="Frame" referent="238">
       <Properties>
         <string name="Name">CarryBar</string>
         <Vector2 name="AnchorPoint">
@@ -5639,11 +5847,11 @@
           <Y>1</Y>
         </Vector2>
         <Color3 name="BackgroundColor3">
-          <R>0.07450981</R>
-          <G>0.078431375</G>
-          <B>0.11764706</B>
+          <R>0.023529412</R>
+          <G>0.02745098</G>
+          <B>0.047058824</B>
         </Color3>
-        <float name="BackgroundTransparency">0.04</float>
+        <float name="BackgroundTransparency">0.3</float>
         <int name="BorderSizePixel">0</int>
         <UDim2 name="Position">
           <XS>0.5</XS>
@@ -5660,13 +5868,13 @@
         <bool name="Visible">false</bool>
         <int name="ZIndex">8</int>
       </Properties>
-      <Item class="UIScale" referent="235">
+      <Item class="UIScale" referent="239">
         <Properties>
           <string name="Name">ResponsiveScale</string>
           <float name="Scale">1</float>
         </Properties>
       </Item>
-      <Item class="UICorner" referent="236">
+      <Item class="UICorner" referent="240">
         <Properties>
           <string name="Name">UICorner</string>
           <UDim name="CornerRadius">
@@ -5675,7 +5883,7 @@
           </UDim>
         </Properties>
       </Item>
-      <Item class="UIStroke" referent="237">
+      <Item class="UIStroke" referent="241">
         <Properties>
           <string name="Name">Outline</string>
           <token name="ApplyStrokeMode">1</token>
@@ -5688,7 +5896,7 @@
           <float name="Transparency">0.55</float>
         </Properties>
       </Item>
-      <Item class="TextLabel" referent="238">
+      <Item class="TextLabel" referent="242">
         <Properties>
           <string name="Name">Message</string>
           <Color3 name="BackgroundColor3">
@@ -5729,7 +5937,7 @@
           <token name="TextYAlignment">1</token>
         </Properties>
       </Item>
-      <Item class="TextButton" referent="239">
+      <Item class="TextButton" referent="243">
         <Properties>
           <string name="Name">DropButton</string>
           <bool name="AutoButtonColor">true</bool>
@@ -5754,7 +5962,7 @@
           </UDim2>
           <string name="Text"></string>
         </Properties>
-        <Item class="UICorner" referent="240">
+        <Item class="UICorner" referent="244">
           <Properties>
             <string name="Name">UICorner</string>
             <UDim name="CornerRadius">
@@ -5763,7 +5971,7 @@
             </UDim>
           </Properties>
         </Item>
-        <Item class="TextLabel" referent="241">
+        <Item class="TextLabel" referent="245">
           <Properties>
             <string name="Name">Label</string>
             <Color3 name="BackgroundColor3">
@@ -5806,7 +6014,7 @@
         </Item>
       </Item>
     </Item>
-    <Item class="BillboardGui" referent="242">
+    <Item class="BillboardGui" referent="246">
       <Properties>
         <string name="Name">NametagTemplate</string>
         <bool name="AlwaysOnTop">false</bool>
@@ -5831,7 +6039,7 @@
           <Z>0</Z>
         </Vector3>
       </Properties>
-      <Item class="Frame" referent="243">
+      <Item class="Frame" referent="247">
         <Properties>
           <string name="Name">Stack</string>
           <Color3 name="BackgroundColor3">
@@ -5854,7 +6062,7 @@
             <YO>0</YO>
           </UDim2>
         </Properties>
-        <Item class="UIListLayout" referent="244">
+        <Item class="UIListLayout" referent="248">
           <Properties>
             <string name="Name">UIListLayout</string>
             <token name="FillDirection">1</token>
@@ -5867,7 +6075,7 @@
             <token name="VerticalAlignment">2</token>
           </Properties>
         </Item>
-        <Item class="TextLabel" referent="245">
+        <Item class="TextLabel" referent="249">
           <Properties>
             <string name="Name">Title</string>
             <Color3 name="BackgroundColor3">
@@ -5908,7 +6116,7 @@
             <token name="TextXAlignment">2</token>
             <token name="TextYAlignment">1</token>
           </Properties>
-          <Item class="UIStroke" referent="246">
+          <Item class="UIStroke" referent="250">
             <Properties>
               <string name="Name">TextStroke</string>
               <token name="ApplyStrokeMode">0</token>
@@ -5922,7 +6130,7 @@
             </Properties>
           </Item>
         </Item>
-        <Item class="TextLabel" referent="247">
+        <Item class="TextLabel" referent="251">
           <Properties>
             <string name="Name">PlayerName</string>
             <Color3 name="BackgroundColor3">
@@ -5963,7 +6171,7 @@
             <token name="TextXAlignment">2</token>
             <token name="TextYAlignment">1</token>
           </Properties>
-          <Item class="UIGradient" referent="248">
+          <Item class="UIGradient" referent="252">
             <Properties>
               <string name="Name">UIGradient</string>
               <ColorSequence name="Color">0 1 0.34509805 0.65882355 0 1 1 0.34509805 0.65882355 0 </ColorSequence>
@@ -5971,7 +6179,7 @@
               <NumberSequence name="Transparency">0 0 0 1 0 0 </NumberSequence>
             </Properties>
           </Item>
-          <Item class="UIStroke" referent="249">
+          <Item class="UIStroke" referent="253">
             <Properties>
               <string name="Name">TextStroke</string>
               <token name="ApplyStrokeMode">0</token>
@@ -5985,7 +6193,7 @@
             </Properties>
           </Item>
         </Item>
-        <Item class="Frame" referent="250">
+        <Item class="Frame" referent="254">
           <Properties>
             <string name="Name">RoleChip</string>
             <Color3 name="BackgroundColor3">
@@ -6009,7 +6217,7 @@
               <YO>17</YO>
             </UDim2>
           </Properties>
-          <Item class="UICorner" referent="251">
+          <Item class="UICorner" referent="255">
             <Properties>
               <string name="Name">UICorner</string>
               <UDim name="CornerRadius">
@@ -6018,7 +6226,7 @@
               </UDim>
             </Properties>
           </Item>
-          <Item class="UIStroke" referent="252">
+          <Item class="UIStroke" referent="256">
             <Properties>
               <string name="Name">Outline</string>
               <token name="ApplyStrokeMode">1</token>
@@ -6031,7 +6239,7 @@
               <float name="Transparency">0.2</float>
             </Properties>
           </Item>
-          <Item class="TextLabel" referent="253">
+          <Item class="TextLabel" referent="257">
             <Properties>
               <string name="Name">Label</string>
               <Color3 name="BackgroundColor3">
@@ -6075,12 +6283,12 @@
         </Item>
       </Item>
     </Item>
-    <Item class="BindableEvent" referent="254">
+    <Item class="BindableEvent" referent="258">
       <Properties>
         <string name="Name">OpenPlayer</string>
       </Properties>
     </Item>
-    <Item class="LocalScript" referent="255">
+    <Item class="LocalScript" referent="259">
       <Properties>
         <string name="Name">PlayerMenuClient</string>
         <string name="Source"><![CDATA[--[[
@@ -6122,6 +6330,8 @@ local home = card:WaitForChild("Home")
 local profilePage = card:WaitForChild("ProfilePage")
 local chatPage = card:WaitForChild("ChatPage")
 local fxLayer = card:WaitForChild("FxLayer")
+local communityBackground = card:WaitForChild("CommunityBackground")
+local communityScrim = card:WaitForChild("CommunityScrim")
 local toast = gui:WaitForChild("Toast")
 local carryRequest = gui:WaitForChild("CarryRequest")
 local carryBar = gui:WaitForChild("CarryBar")
@@ -6130,6 +6340,7 @@ local openEvent = gui:WaitForChild("OpenPlayer")
 local portrait = home:WaitForChild("Avatar"):WaitForChild("Portrait")
 local ring = home.Avatar:WaitForChild("Ring")
 local viewport = portrait:WaitForChild("ModelView")
+local communityChip = home:WaitForChild("CommunityChip")
 local stats = home:WaitForChild("Stats")
 local actions = home:WaitForChild("Actions")
 local kissTile = stats:WaitForChild("Kiss")
@@ -6138,9 +6349,9 @@ local chatInput = chatPage:WaitForChild("InputBar"):WaitForChild("Field"):WaitFo
 local sendButton = chatPage.InputBar:WaitForChild("SendButton")
 local info = profilePage:WaitForChild("Info")
 
+local TILE_TRANSPARENCY = 0.9 -- keep in sync with GLASS in PlayerMenuGui
+local TILE_HOVER_TRANSPARENCY = 0.8
 local COLORS = {
-	Tile = Color3.fromRGB(35, 37, 54),
-	TileHover = Color3.fromRGB(45, 48, 69),
 	Pink = Color3.fromRGB(255, 82, 150),
 	Green = Color3.fromRGB(61, 220, 151),
 	Red = Color3.fromRGB(255, 85, 102),
@@ -6493,12 +6704,42 @@ local function refreshIdentity()
 	home.RoleChip.Label.TextColor3 = color
 	home.RoleChip.BackgroundColor3 = color
 	home.RoleChip.Outline.Color = color
-	card.Glow.BackgroundColor3 = color
 	ring.Outline.Color = color
 	profilePage.MiniAvatar.Outline.Color = color
 	profilePage.MiniName.Text = target.DisplayName
 	profilePage.MiniUser.Text = "@" .. target.Name
 	chatPage.PageTitle.Text = target.DisplayName
+end
+
+-- The community icon is the card's background; its name is a chip on the card.
+local function refreshCommunity()
+	local target = state.target
+	if not target then
+		return
+	end
+	local groupId = target:GetAttribute("PMCommunityId")
+	local name = target:GetAttribute("PMCommunityName")
+	local show = Settings.Community.Enabled and type(groupId) == "number" and type(name) == "string"
+
+	communityBackground.Visible = show
+	communityScrim.Visible = show
+	communityChip.Visible = show
+	if show then
+		local image = string.format("rbxthumb://type=GroupIcon&id=%d&w=420&h=420", groupId)
+		if communityBackground.Image ~= image then
+			communityBackground.Image = image
+		end
+		communityBackground.ImageTransparency = Settings.Community.ImageTransparency
+		local shown = name
+		local length = utf8.len(name)
+		local cut = if length and length > 16 then utf8.offset(name, 16) else nil
+		if cut then
+			shown = string.sub(name, 1, cut - 1) .. "…"
+		end
+		communityChip.Label.Text = shown
+	else
+		communityBackground.Image = ""
+	end
 end
 
 local function refreshStats()
@@ -6517,12 +6758,14 @@ local function refreshProfile()
 		return
 	end
 	local role = targetRole(target)
+	local community = target:GetAttribute("PMCommunityName")
 	local joined = target:GetAttribute("PMJoined")
 	local rows = {
 		UserId = tostring(target.UserId),
 		AccountAge = formatAge(target.AccountAge),
 		Membership = if target.MembershipType == Enum.MembershipType.Premium then "Premium" else "Standard",
 		Role = if role ~= "" then role else "Member",
+		Community = if type(community) == "string" then community else "None",
 		InServer = if type(joined) == "number" then formatDuration(math.max(0, workspace:GetServerTimeNow() - joined)) else "–",
 		Followers = formatCount(target:GetAttribute("PMFollowers")),
 		Following = formatCount(target:GetAttribute("PMFollowing")),
@@ -6545,7 +6788,7 @@ local function setTile(tile, title, subtitle, enabled)
 	tile.Title.TextTransparency = dim
 	tile.Subtitle.TextTransparency = dim
 	tile.IconChip.Icon.TextTransparency = dim
-	tile.IconChip.BackgroundTransparency = if enabled then 0.8 else 0.92
+	tile.IconChip.BackgroundTransparency = if enabled then 0.75 else 0.9
 end
 
 local function coolingDown(action)
@@ -6723,6 +6966,7 @@ sendButton.Activated:Connect(sendMessage)
 
 local function showPage(name)
 	state.page = name
+	home.Visible = name == "Home"
 	profilePage.Visible = name == "Profile"
 	chatPage.Visible = name == "Chat"
 	local page = if name == "Profile" then profilePage elseif name == "Chat" then chatPage else nil
@@ -6763,6 +7007,7 @@ local function openCard(target, page)
 	disconnectTarget()
 	state.target = target
 	refreshIdentity()
+	refreshCommunity()
 	refreshStats()
 	refreshActions()
 	loadAvatar(target)
@@ -6774,6 +7019,7 @@ local function openCard(target, page)
 			return
 		end
 		refreshIdentity()
+		refreshCommunity()
 		refreshStats()
 		if name == "PMKisses" then
 			pulse(kissTile.Pulse)
@@ -6947,11 +7193,11 @@ for _, tile in actions:GetChildren() do
 	if tile:IsA("TextButton") then
 		tile.MouseEnter:Connect(function()
 			if tile.Interactable then
-				tween(tile, 0.12, { BackgroundColor3 = COLORS.TileHover })
+				tween(tile, 0.12, { BackgroundTransparency = TILE_HOVER_TRANSPARENCY })
 			end
 		end)
 		tile.MouseLeave:Connect(function()
-			tween(tile, 0.12, { BackgroundColor3 = COLORS.Tile })
+			tween(tile, 0.12, { BackgroundTransparency = TILE_TRANSPARENCY })
 		end)
 	end
 end
@@ -7188,6 +7434,7 @@ for _, child in messages:GetChildren() do
 	end
 end
 fitChip(home.RoleChip, 24)
+fitChip(communityChip, 24)
 kissTile.Pulse.Scale = 1
 card.Visible = false
 profilePage.Visible = false
@@ -7213,7 +7460,7 @@ end)
 ]]></string>
       </Properties>
     </Item>
-    <Item class="LocalScript" referent="256">
+    <Item class="LocalScript" referent="260">
       <Properties>
         <string name="Name">PlayerMenuNametags</string>
         <string name="Source"><![CDATA[--[[

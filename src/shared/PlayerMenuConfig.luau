@@ -5,6 +5,8 @@
 	Ketuk / klik pemain lain untuk membuka kartu profilnya: nama, statistik
 	(Friends, Followers, Kiss), Carry, Add Friend, Follow, dan Private Chat.
 	Di atas kepala setiap pemain ada nametag: judul, nama, dan role.
+	Latar kartu transparan; kalau pemain punya komunitas (group Roblox),
+	ikon komunitasnya jadi latar kartu.
 
 	Role dan judul dibaca server saat pemain masuk, lalu disimpan sebagai
 	attribute di Player (PMRole, PMRoleColor, PMTitle, ...). Script lain boleh
@@ -37,6 +39,14 @@ Config.Settings = {
 	ChatMaxLength = 200,
 
 	ShowFriendCount = true, -- jumlah teman Roblox di kartu
+
+	-- Komunitas (group Roblox) pemain: ikonnya jadi latar kartu dan namanya tampil di kartu.
+	Community = {
+		Enabled = true,
+		PreferGroupId = 0, -- (opsional) kalau pemain ada di komunitas ini, pakai yang ini
+		FallbackToAnyGroup = true, -- tanpa komunitas utama, pakai komunitas pertama yang diikuti
+		ImageTransparency = 0.6, -- 0 = ikon jelas, 1 = tidak terlihat
+	},
 	DataStoreName = "PlayerMenu_v1",
 	SaveData = true, -- false = Kiss dan Follow tidak disimpan (reset tiap sesi)
 

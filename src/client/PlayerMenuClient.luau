@@ -37,6 +37,8 @@ local home = card:WaitForChild("Home")
 local profilePage = card:WaitForChild("ProfilePage")
 local chatPage = card:WaitForChild("ChatPage")
 local fxLayer = card:WaitForChild("FxLayer")
+local communityBackground = card:WaitForChild("CommunityBackground")
+local communityScrim = card:WaitForChild("CommunityScrim")
 local toast = gui:WaitForChild("Toast")
 local carryRequest = gui:WaitForChild("CarryRequest")
 local carryBar = gui:WaitForChild("CarryBar")
@@ -45,6 +47,7 @@ local openEvent = gui:WaitForChild("OpenPlayer")
 local portrait = home:WaitForChild("Avatar"):WaitForChild("Portrait")
 local ring = home.Avatar:WaitForChild("Ring")
 local viewport = portrait:WaitForChild("ModelView")
+local communityChip = home:WaitForChild("CommunityChip")
 local stats = home:WaitForChild("Stats")
 local actions = home:WaitForChild("Actions")
 local kissTile = stats:WaitForChild("Kiss")
@@ -53,9 +56,9 @@ local chatInput = chatPage:WaitForChild("InputBar"):WaitForChild("Field"):WaitFo
 local sendButton = chatPage.InputBar:WaitForChild("SendButton")
 local info = profilePage:WaitForChild("Info")
 
+local TILE_TRANSPARENCY = 0.9 -- keep in sync with GLASS in PlayerMenuGui
+local TILE_HOVER_TRANSPARENCY = 0.8
 local COLORS = {
-	Tile = Color3.fromRGB(35, 37, 54),
-	TileHover = Color3.fromRGB(45, 48, 69),
 	Pink = Color3.fromRGB(255, 82, 150),
 	Green = Color3.fromRGB(61, 220, 151),
 	Red = Color3.fromRGB(255, 85, 102),
@@ -408,12 +411,42 @@ local function refreshIdentity()
 	home.RoleChip.Label.TextColor3 = color
 	home.RoleChip.BackgroundColor3 = color
 	home.RoleChip.Outline.Color = color
-	card.Glow.BackgroundColor3 = color
 	ring.Outline.Color = color
 	profilePage.MiniAvatar.Outline.Color = color
 	profilePage.MiniName.Text = target.DisplayName
 	profilePage.MiniUser.Text = "@" .. target.Name
 	chatPage.PageTitle.Text = target.DisplayName
+end
+
+-- The community icon is the card's background; its name is a chip on the card.
+local function refreshCommunity()
+	local target = state.target
+	if not target then
+		return
+	end
+	local groupId = target:GetAttribute("PMCommunityId")
+	local name = target:GetAttribute("PMCommunityName")
+	local show = Settings.Community.Enabled and type(groupId) == "number" and type(name) == "string"
+
+	communityBackground.Visible = show
+	communityScrim.Visible = show
+	communityChip.Visible = show
+	if show then
+		local image = string.format("rbxthumb://type=GroupIcon&id=%d&w=420&h=420", groupId)
+		if communityBackground.Image ~= image then
+			communityBackground.Image = image
+		end
+		communityBackground.ImageTransparency = Settings.Community.ImageTransparency
+		local shown = name
+		local length = utf8.len(name)
+		local cut = if length and length > 16 then utf8.offset(name, 16) else nil
+		if cut then
+			shown = string.sub(name, 1, cut - 1) .. "…"
+		end
+		communityChip.Label.Text = shown
+	else
+		communityBackground.Image = ""
+	end
 end
 
 local function refreshStats()
@@ -432,12 +465,14 @@ local function refreshProfile()
 		return
 	end
 	local role = targetRole(target)
+	local community = target:GetAttribute("PMCommunityName")
 	local joined = target:GetAttribute("PMJoined")
 	local rows = {
 		UserId = tostring(target.UserId),
 		AccountAge = formatAge(target.AccountAge),
 		Membership = if target.MembershipType == Enum.MembershipType.Premium then "Premium" else "Standard",
 		Role = if role ~= "" then role else "Member",
+		Community = if type(community) == "string" then community else "None",
 		InServer = if type(joined) == "number" then formatDuration(math.max(0, workspace:GetServerTimeNow() - joined)) else "–",
 		Followers = formatCount(target:GetAttribute("PMFollowers")),
 		Following = formatCount(target:GetAttribute("PMFollowing")),
@@ -460,7 +495,7 @@ local function setTile(tile, title, subtitle, enabled)
 	tile.Title.TextTransparency = dim
 	tile.Subtitle.TextTransparency = dim
 	tile.IconChip.Icon.TextTransparency = dim
-	tile.IconChip.BackgroundTransparency = if enabled then 0.8 else 0.92
+	tile.IconChip.BackgroundTransparency = if enabled then 0.75 else 0.9
 end
 
 local function coolingDown(action)
@@ -638,6 +673,7 @@ sendButton.Activated:Connect(sendMessage)
 
 local function showPage(name)
 	state.page = name
+	home.Visible = name == "Home"
 	profilePage.Visible = name == "Profile"
 	chatPage.Visible = name == "Chat"
 	local page = if name == "Profile" then profilePage elseif name == "Chat" then chatPage else nil
@@ -678,6 +714,7 @@ local function openCard(target, page)
 	disconnectTarget()
 	state.target = target
 	refreshIdentity()
+	refreshCommunity()
 	refreshStats()
 	refreshActions()
 	loadAvatar(target)
@@ -689,6 +726,7 @@ local function openCard(target, page)
 			return
 		end
 		refreshIdentity()
+		refreshCommunity()
 		refreshStats()
 		if name == "PMKisses" then
 			pulse(kissTile.Pulse)
@@ -862,11 +900,11 @@ for _, tile in actions:GetChildren() do
 	if tile:IsA("TextButton") then
 		tile.MouseEnter:Connect(function()
 			if tile.Interactable then
-				tween(tile, 0.12, { BackgroundColor3 = COLORS.TileHover })
+				tween(tile, 0.12, { BackgroundTransparency = TILE_HOVER_TRANSPARENCY })
 			end
 		end)
 		tile.MouseLeave:Connect(function()
-			tween(tile, 0.12, { BackgroundColor3 = COLORS.Tile })
+			tween(tile, 0.12, { BackgroundTransparency = TILE_TRANSPARENCY })
 		end)
 	end
 end
@@ -1103,6 +1141,7 @@ for _, child in messages:GetChildren() do
 	end
 end
 fitChip(home.RoleChip, 24)
+fitChip(communityChip, 24)
 kissTile.Pulse.Scale = 1
 card.Visible = false
 profilePage.Visible = false

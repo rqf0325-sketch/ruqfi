@@ -124,7 +124,11 @@ local function emit(file, root)
 	print(`Wrote build/{file}.json`)
 end
 
-setLayout(1280, 720)
+-- A sample community icon for the previews (Roblox images are not fetched).
+local card = gui.Card
+card.CommunityBackground.Image = "preview:sample-community.svg"
+
+setLayout(960, 540)
 setPage("Home")
 emit("pm-desktop", gui)
 setPage("Profile")
@@ -136,6 +140,16 @@ setPage("Home")
 setHud(true)
 emit("pm-hud", gui)
 setHud(false)
+
+-- A player without a community: plain transparent card.
+local communityParts = { card.CommunityBackground, card.CommunityScrim, card.Home.CommunityChip }
+for _, part in communityParts do
+	part.Visible = false
+end
+emit("pm-plain", gui)
+for _, part in communityParts do
+	part.Visible = true
+end
 
 setLayout(844, 390)
 emit("pm-phone", gui)

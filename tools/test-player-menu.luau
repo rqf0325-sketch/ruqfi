@@ -138,7 +138,7 @@ for _, name in {
 end
 
 -- Members Studio has that Lune's database lacks; reading them gives the stored value or nil.
-local OPTIONAL = { Interactable = true, Occupant = true, SeatPart = true, CurrentCamera = true, OnServerInvoke = true, AbsoluteCanvasSize = true }
+local OPTIONAL = { Image = true, Interactable = true, Occupant = true, SeatPart = true, CurrentCamera = true, OnServerInvoke = true, AbsoluteCanvasSize = true }
 
 local function signalFor(inst, name)
 	local perInst = signalTable[idOf(inst)]
@@ -485,6 +485,7 @@ local dataStore = {
 	end,
 }
 
+local groupsByUser = {}
 local closeCallbacks = {}
 local starterGuiCalls = {}
 
@@ -492,6 +493,9 @@ local services = {
 	Players = playersService,
 	DataStoreService = { GetDataStore = function()
 		return dataStore
+	end },
+	GroupService = { GetGroupsAsync = function(_, userId)
+		return groupsByUser[userId] or {}
 	end },
 	MarketplaceService = { UserOwnsGamePassAsync = function()
 		return false
@@ -662,6 +666,10 @@ local function scenario()
 	local _ = makeCharacter(playerA, roblox.Vector3.new(0, 3, 0))
 	local _, humanoidB, rootB = makeCharacter(playerB, roblox.Vector3.new(4, 3, 0))
 
+	-- A has a primary community, B only a non-primary one.
+	groupsByUser[1] = { { Id = 111, Name = "Rakyat Kecil", IsPrimary = false }, { Id = 222, Name = "Primary Club", IsPrimary = true } }
+	groupsByUser[2] = { { Id = 333, Name = "Only Group", IsPrimary = false } }
+
 	run(serverModel)
 	addPlayer(playerA)
 	addPlayer(playerB)
@@ -682,6 +690,9 @@ local function scenario()
 	checkEq(playerA:GetAttribute("PMFriends"), 329, "friend count")
 	checkEq(playerA:GetAttribute("PMKisses"), 0, "kisses start at 0")
 	check(type(playerA:GetAttribute("PMJoined")) == "number", "join time published")
+	checkEq(playerA:GetAttribute("PMCommunityId"), 222, "primary community is chosen")
+	checkEq(playerA:GetAttribute("PMCommunityName"), "Primary Club", "community name published")
+	checkEq(playerB:GetAttribute("PMCommunityId"), 333, "first community is the fallback")
 
 	-- Client start ------------------------------------------------------------
 	local clientScript = unwrap(wrap(guiModel):FindFirstChild("PlayerMenuClient"))
@@ -732,6 +743,10 @@ local function scenario()
 	check(home.Actions.Follow.Title.Text == "Follow", "follow tile idle")
 	check(card.ProfilePage.Visible == false and card.ChatPage.Visible == false, "pages hidden")
 	check(card.Home.Avatar.Portrait.ModelView.Visible == true, "3D bust built from the character")
+	check(card.CommunityBackground.Visible == true, "community background shows")
+	check(string.find(card.CommunityBackground.Image, "type=GroupIcon&id=333", 1, true) ~= nil, "community icon url: " .. card.CommunityBackground.Image)
+	checkEq(home.CommunityChip.Label.Text, "Only Group", "community chip text")
+	check(math.abs(card.CommunityBackground.ImageTransparency - Config.Settings.Community.ImageTransparency) < 1e-3, "community image dimming from Config")
 
 	-- Drag is not a tap
 	card.Visible = true
@@ -785,19 +800,21 @@ local function scenario()
 	advance(0.4)
 	noErrors("profile page")
 	check(card.ProfilePage.Visible == true, "profile page opens")
+	check(card.Home.Visible == false, "home is hidden under the (transparent) profile page")
 	local rows = card.ProfilePage.Info
 	checkEq(rows.Row_UserId.Value.Text, "2", "profile user id")
 	checkEq(rows.Row_Membership.Value.Text, "Premium", "profile membership")
 	checkEq(rows.Row_Role.Value.Text, "Member", "profile role")
+	checkEq(rows.Row_Community.Value.Text, "Only Group", "profile community")
 	checkEq(rows.Row_Kisses.Value.Text, "2", "profile kisses")
 	check(string.find(rows.Row_AccountAge.Value.Text, "yr") ~= nil, "profile account age: " .. rows.Row_AccountAge.Value.Text)
 	fire(card.ProfilePage.BackButton)
-	check(card.ProfilePage.Visible == false, "back from profile")
+	check(card.ProfilePage.Visible == false and card.Home.Visible == true, "back from profile shows home again")
 
 	-- Private chat -------------------------------------------------------------------------------
 	fire(home.Actions.Chat)
 	advance(0.4)
-	check(card.ChatPage.Visible == true, "chat page opens")
+	check(card.ChatPage.Visible == true and card.Home.Visible == false, "chat page opens over a hidden home")
 	checkEq(card.ChatPage.PageTitle.Text, "Paul", "chat title")
 	check(card.ChatPage.EmptyState.Visible == true, "empty chat state")
 	local input = card.ChatPage.InputBar.Field.InputBox
@@ -924,6 +941,16 @@ local function scenario()
 	check(home.Actions.Chat.Badge.Visible == false, "unread cleared")
 	fire(card.ChatPage.BackButton)
 
+	-- Community changes live: none -> plain transparent card, long names are shortened
+	playerB:SetAttribute("PMCommunityName", "A very long community name indeed")
+	advance(0.1)
+	check(string.find(home.CommunityChip.Label.Text, "…", 1, true) ~= nil and utf8.len(home.CommunityChip.Label.Text) <= 17, "long community name is shortened: " .. home.CommunityChip.Label.Text)
+	playerB:SetAttribute("PMCommunityId", nil)
+	playerB:SetAttribute("PMCommunityName", nil)
+	advance(0.1)
+	check(card.CommunityBackground.Visible == false and home.CommunityChip.Visible == false, "no community: plain card")
+	checkEq(card.CommunityBackground.Image, "", "community image cleared")
+
 	-- Roles: title changes at runtime ---------------------------------------------------------------------------------
 	playerB:SetAttribute("PMTitle", "Dancer")
 	playerB:SetAttribute("PMRole", "VIP")
@@ -947,6 +974,7 @@ local function scenario()
 	check(home.Stats.Kiss.Interactable == false, "can't kiss yourself")
 	check(home.Actions.Carry.Interactable == false and home.Actions.Chat.Interactable == false, "own card disables social actions")
 	check(home.RoleChip.Visible == true and home.RoleChip.Label.Text == "ADMINISTRATOR", "own role chip")
+	checkEq(home.CommunityChip.Label.Text, "Primary Club", "own community chip")
 	fire(home.CloseButton)
 	advance(0.5)
 
@@ -963,11 +991,14 @@ local function scenario()
 	advance(1)
 	local saved = dataStoreData["u_2"]
 	check(saved ~= nil and saved.Kisses == 2, "B's kisses were saved on leaving")
+	Config.Settings.Community.PreferGroupId = 555
+	groupsByUser[2] = { { Id = 333, Name = "Only Group", IsPrimary = true }, { Id = 555, Name = "Our Game Community", IsPrimary = false } }
 	local rejoined = makePlayer(2, "PaulTheVIP", "Paul")
 	makeCharacter(rejoined, roblox.Vector3.new(4, 3, 0))
 	addPlayer(rejoined)
 	advance(0.5)
 	checkEq(rejoined:GetAttribute("PMKisses"), 2, "kisses are loaded again on rejoin")
+	checkEq(rejoined:GetAttribute("PMCommunityId"), 555, "PreferGroupId wins over the primary community")
 	dataStoreFails = true
 	local unlucky = makePlayer(3, "Unlucky", "Unlucky")
 	makeCharacter(unlucky, roblox.Vector3.new(8, 3, 0))
