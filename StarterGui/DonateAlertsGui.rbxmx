@@ -1,0 +1,3163 @@
+<roblox version="4">
+  <Item class="ScreenGui" referent="0">
+    <Properties>
+      <string name="Name">DonateAlertsGui</string>
+      <int name="DisplayOrder">10</int>
+      <bool name="ResetOnSpawn">false</bool>
+      <token name="ScreenInsets">3</token>
+      <token name="ZIndexBehavior">1</token>
+    </Properties>
+    <Item class="Frame" referent="1">
+      <Properties>
+        <string name="Name">Stack</string>
+        <Vector2 name="AnchorPoint">
+          <X>0.5</X>
+          <Y>0</Y>
+        </Vector2>
+        <Color3 name="BackgroundColor3">
+          <R>1</R>
+          <G>1</G>
+          <B>1</B>
+        </Color3>
+        <float name="BackgroundTransparency">1</float>
+        <int name="BorderSizePixel">0</int>
+        <UDim2 name="Position">
+          <XS>0.5</XS>
+          <XO>0</XO>
+          <YS>0</YS>
+          <YO>8</YO>
+        </UDim2>
+        <UDim2 name="Size">
+          <XS>0.32</XS>
+          <XO>0</XO>
+          <YS>1</YS>
+          <YO>-16</YO>
+        </UDim2>
+      </Properties>
+      <Item class="UISizeConstraint" referent="2">
+        <Properties>
+          <string name="Name">UISizeConstraint</string>
+          <Vector2 name="MaxSize">
+            <X>400</X>
+            <Y>100000</Y>
+          </Vector2>
+          <Vector2 name="MinSize">
+            <X>300</X>
+            <Y>0</Y>
+          </Vector2>
+        </Properties>
+      </Item>
+      <Item class="UIListLayout" referent="3">
+        <Properties>
+          <string name="Name">UIListLayout</string>
+          <token name="FillDirection">1</token>
+          <token name="HorizontalAlignment">0</token>
+          <UDim name="Padding">
+            <S>0</S>
+            <O>0</O>
+          </UDim>
+          <token name="SortOrder">2</token>
+          <token name="VerticalAlignment">1</token>
+        </Properties>
+      </Item>
+      <Item class="Frame" referent="4">
+        <Properties>
+          <string name="Name">Sample_1</string>
+          <Color3 name="BackgroundColor3">
+            <R>1</R>
+            <G>1</G>
+            <B>1</B>
+          </Color3>
+          <float name="BackgroundTransparency">1</float>
+          <int name="BorderSizePixel">0</int>
+          <int name="LayoutOrder">-1</int>
+          <UDim2 name="Position">
+            <XS>0</XS>
+            <XO>0</XO>
+            <YS>0</YS>
+            <YO>0</YO>
+          </UDim2>
+          <UDim2 name="Size">
+            <XS>1</XS>
+            <XO>0</XO>
+            <YS>1</YS>
+            <YO>0</YO>
+          </UDim2>
+        </Properties>
+        <Item class="UIAspectRatioConstraint" referent="5">
+          <Properties>
+            <string name="Name">UIAspectRatioConstraint</string>
+            <float name="AspectRatio">3.148148</float>
+          </Properties>
+        </Item>
+        <Item class="Frame" referent="6">
+          <Properties>
+            <string name="Name">Mover</string>
+            <Color3 name="BackgroundColor3">
+              <R>1</R>
+              <G>1</G>
+              <B>1</B>
+            </Color3>
+            <float name="BackgroundTransparency">1</float>
+            <int name="BorderSizePixel">0</int>
+            <UDim2 name="Position">
+              <XS>0</XS>
+              <XO>0</XO>
+              <YS>0</YS>
+              <YO>0</YO>
+            </UDim2>
+            <UDim2 name="Size">
+              <XS>1</XS>
+              <XO>0</XO>
+              <YS>1</YS>
+              <YO>0</YO>
+            </UDim2>
+          </Properties>
+          <Item class="Frame" referent="7">
+            <Properties>
+              <string name="Name">Card</string>
+              <Color3 name="BackgroundColor3">
+                <R>1</R>
+                <G>1</G>
+                <B>1</B>
+              </Color3>
+              <float name="BackgroundTransparency">0.03</float>
+              <int name="BorderSizePixel">0</int>
+              <UDim2 name="Position">
+                <XS>0</XS>
+                <XO>0</XO>
+                <YS>0</YS>
+                <YO>0</YO>
+              </UDim2>
+              <UDim2 name="Size">
+                <XS>1</XS>
+                <XO>0</XO>
+                <YS>0.9259259</YS>
+                <YO>0</YO>
+              </UDim2>
+            </Properties>
+            <Item class="UICorner" referent="8">
+              <Properties>
+                <string name="Name">UICorner</string>
+                <UDim name="BottomLeftRadius">
+                  <S>0.16</S>
+                  <O>0</O>
+                </UDim>
+                <UDim name="BottomRightRadius">
+                  <S>0.16</S>
+                  <O>0</O>
+                </UDim>
+                <UDim name="TopLeftRadius">
+                  <S>0.16</S>
+                  <O>0</O>
+                </UDim>
+                <UDim name="TopRightRadius">
+                  <S>0.16</S>
+                  <O>0</O>
+                </UDim>
+              </Properties>
+            </Item>
+            <Item class="UIStroke" referent="9">
+              <Properties>
+                <string name="Name">UIStroke</string>
+                <token name="ApplyStrokeMode">1</token>
+                <Color3 name="Color">
+                  <R>0.23921569</R>
+                  <G>0.8627451</G>
+                  <B>0.5921569</B>
+                </Color3>
+                <float name="Thickness">1.5</float>
+                <float name="Transparency">0.35</float>
+              </Properties>
+            </Item>
+            <Item class="UIGradient" referent="10">
+              <Properties>
+                <string name="Name">UIGradient</string>
+                <ColorSequence name="Color">0 0.10980392 0.12941177 0.1764706 0 1 0.043137256 0.050980393 0.07058824 0 </ColorSequence>
+                <float name="Rotation">90</float>
+                <NumberSequence name="Transparency">0 0 0 1 0 0 </NumberSequence>
+              </Properties>
+            </Item>
+            <Item class="Frame" referent="11">
+              <Properties>
+                <string name="Name">Glow</string>
+                <Color3 name="BackgroundColor3">
+                  <R>0.23921569</R>
+                  <G>0.8627451</G>
+                  <B>0.5921569</B>
+                </Color3>
+                <float name="BackgroundTransparency">0</float>
+                <int name="BorderSizePixel">0</int>
+                <UDim2 name="Position">
+                  <XS>0</XS>
+                  <XO>0</XO>
+                  <YS>0</YS>
+                  <YO>0</YO>
+                </UDim2>
+                <UDim2 name="Size">
+                  <XS>1</XS>
+                  <XO>0</XO>
+                  <YS>1</YS>
+                  <YO>0</YO>
+                </UDim2>
+                <int name="ZIndex">0</int>
+              </Properties>
+              <Item class="UICorner" referent="12">
+                <Properties>
+                  <string name="Name">UICorner</string>
+                  <UDim name="BottomLeftRadius">
+                    <S>0.16</S>
+                    <O>0</O>
+                  </UDim>
+                  <UDim name="BottomRightRadius">
+                    <S>0.16</S>
+                    <O>0</O>
+                  </UDim>
+                  <UDim name="TopLeftRadius">
+                    <S>0.16</S>
+                    <O>0</O>
+                  </UDim>
+                  <UDim name="TopRightRadius">
+                    <S>0.16</S>
+                    <O>0</O>
+                  </UDim>
+                </Properties>
+              </Item>
+              <Item class="UIGradient" referent="13">
+                <Properties>
+                  <string name="Name">UIGradient</string>
+                  <ColorSequence name="Color">0 1 1 1 0 1 1 1 1 0 </ColorSequence>
+                  <float name="Rotation">0</float>
+                  <NumberSequence name="Transparency">0 0.82 0 1 1 0 </NumberSequence>
+                </Properties>
+              </Item>
+            </Item>
+            <Item class="Frame" referent="14">
+              <Properties>
+                <string name="Name">IconBadge</string>
+                <Color3 name="BackgroundColor3">
+                  <R>1</R>
+                  <G>1</G>
+                  <B>1</B>
+                </Color3>
+                <float name="BackgroundTransparency">0</float>
+                <int name="BorderSizePixel">0</int>
+                <UDim2 name="Position">
+                  <XS>0.047058824</XS>
+                  <XO>0</XO>
+                  <YS>0.22</YS>
+                  <YO>0</YO>
+                </UDim2>
+                <UDim2 name="Size">
+                  <XS>0.16470589</XS>
+                  <XO>0</XO>
+                  <YS>0.56</YS>
+                  <YO>0</YO>
+                </UDim2>
+              </Properties>
+              <Item class="UICorner" referent="15">
+                <Properties>
+                  <string name="Name">UICorner</string>
+                  <UDim name="BottomLeftRadius">
+                    <S>0.5</S>
+                    <O>0</O>
+                  </UDim>
+                  <UDim name="BottomRightRadius">
+                    <S>0.5</S>
+                    <O>0</O>
+                  </UDim>
+                  <UDim name="TopLeftRadius">
+                    <S>0.5</S>
+                    <O>0</O>
+                  </UDim>
+                  <UDim name="TopRightRadius">
+                    <S>0.5</S>
+                    <O>0</O>
+                  </UDim>
+                </Properties>
+              </Item>
+              <Item class="UIGradient" referent="16">
+                <Properties>
+                  <string name="Name">UIGradient</string>
+                  <ColorSequence name="Color">0 0.42941177 0.89705884 0.69411767 0 1 0.17941177 0.64705884 0.44411767 0 </ColorSequence>
+                  <float name="Rotation">45</float>
+                  <NumberSequence name="Transparency">0 0 0 1 0 0 </NumberSequence>
+                </Properties>
+              </Item>
+              <Item class="UIStroke" referent="17">
+                <Properties>
+                  <string name="Name">UIStroke</string>
+                  <token name="ApplyStrokeMode">1</token>
+                  <Color3 name="Color">
+                    <R>1</R>
+                    <G>1</G>
+                    <B>1</B>
+                  </Color3>
+                  <float name="Thickness">1</float>
+                  <float name="Transparency">0.8</float>
+                </Properties>
+              </Item>
+              <Item class="TextLabel" referent="18">
+                <Properties>
+                  <string name="Name">Emoji</string>
+                  <Color3 name="BackgroundColor3">
+                    <R>1</R>
+                    <G>1</G>
+                    <B>1</B>
+                  </Color3>
+                  <float name="BackgroundTransparency">1</float>
+                  <int name="BorderSizePixel">0</int>
+                  <Font name="FontFace">
+                    <Family>
+                      <url>rbxasset://fonts/families/Montserrat.json</url>
+                    </Family>
+                    <Weight>400</Weight>
+                    <Style>Normal</Style>
+                  </Font>
+                  <UDim2 name="Position">
+                    <XS>0.25</XS>
+                    <XO>0</XO>
+                    <YS>0.21428572</YS>
+                    <YO>0</YO>
+                  </UDim2>
+                  <UDim2 name="Size">
+                    <XS>0.5</XS>
+                    <XO>0</XO>
+                    <YS>0.5714286</YS>
+                    <YO>0</YO>
+                  </UDim2>
+                  <string name="Text">🎁</string>
+                  <Color3 name="TextColor3">
+                    <R>1</R>
+                    <G>1</G>
+                    <B>1</B>
+                  </Color3>
+                  <bool name="TextScaled">true</bool>
+                  <float name="TextSize">32</float>
+                  <token name="TextXAlignment">2</token>
+                  <token name="TextYAlignment">1</token>
+                </Properties>
+              </Item>
+              <Item class="ImageLabel" referent="19">
+                <Properties>
+                  <string name="Name">Avatar</string>
+                  <Color3 name="BackgroundColor3">
+                    <R>1</R>
+                    <G>1</G>
+                    <B>1</B>
+                  </Color3>
+                  <float name="BackgroundTransparency">1</float>
+                  <int name="BorderSizePixel">0</int>
+                  <Content name="ImageContent">
+                    <null>
+                    </null>
+                  </Content>
+                  <UDim2 name="Position">
+                    <XS>0</XS>
+                    <XO>0</XO>
+                    <YS>0</YS>
+                    <YO>0</YO>
+                  </UDim2>
+                  <UDim2 name="Size">
+                    <XS>1</XS>
+                    <XO>0</XO>
+                    <YS>1</YS>
+                    <YO>0</YO>
+                  </UDim2>
+                  <bool name="Visible">false</bool>
+                  <int name="ZIndex">2</int>
+                </Properties>
+                <Item class="UICorner" referent="20">
+                  <Properties>
+                    <string name="Name">UICorner</string>
+                    <UDim name="BottomLeftRadius">
+                      <S>0.5</S>
+                      <O>0</O>
+                    </UDim>
+                    <UDim name="BottomRightRadius">
+                      <S>0.5</S>
+                      <O>0</O>
+                    </UDim>
+                    <UDim name="TopLeftRadius">
+                      <S>0.5</S>
+                      <O>0</O>
+                    </UDim>
+                    <UDim name="TopRightRadius">
+                      <S>0.5</S>
+                      <O>0</O>
+                    </UDim>
+                  </Properties>
+                </Item>
+              </Item>
+            </Item>
+            <Item class="Frame" referent="21">
+              <Properties>
+                <string name="Name">Body</string>
+                <Color3 name="BackgroundColor3">
+                  <R>1</R>
+                  <G>1</G>
+                  <B>1</B>
+                </Color3>
+                <float name="BackgroundTransparency">1</float>
+                <int name="BorderSizePixel">0</int>
+                <UDim2 name="Position">
+                  <XS>0.24705882</XS>
+                  <XO>0</XO>
+                  <YS>0</YS>
+                  <YO>0</YO>
+                </UDim2>
+                <UDim2 name="Size">
+                  <XS>0.7117647</XS>
+                  <XO>0</XO>
+                  <YS>1</YS>
+                  <YO>0</YO>
+                </UDim2>
+              </Properties>
+              <Item class="TextLabel" referent="22">
+                <Properties>
+                  <string name="Name">Title</string>
+                  <Color3 name="BackgroundColor3">
+                    <R>1</R>
+                    <G>1</G>
+                    <B>1</B>
+                  </Color3>
+                  <float name="BackgroundTransparency">1</float>
+                  <int name="BorderSizePixel">0</int>
+                  <Font name="FontFace">
+                    <Family>
+                      <url>rbxasset://fonts/families/Montserrat.json</url>
+                    </Family>
+                    <Weight>700</Weight>
+                    <Style>Normal</Style>
+                  </Font>
+                  <UDim2 name="Position">
+                    <XS>0</XS>
+                    <XO>0</XO>
+                    <YS>0.14</YS>
+                    <YO>0</YO>
+                  </UDim2>
+                  <bool name="RichText">true</bool>
+                  <UDim2 name="Size">
+                    <XS>1</XS>
+                    <XO>0</XO>
+                    <YS>0.14</YS>
+                    <YO>0</YO>
+                  </UDim2>
+                  <string name="Text">&lt;font color="#FFFFFF"&gt;Budi Santoso&lt;/font&gt; &lt;font color="#8C95A6"&gt;baru saja bagi-bagi&lt;/font&gt;</string>
+                  <Color3 name="TextColor3">
+                    <R>0.9607843</R>
+                    <G>0.9647059</G>
+                    <B>0.972549</B>
+                  </Color3>
+                  <bool name="TextScaled">true</bool>
+                  <float name="TextSize">14</float>
+                  <token name="TextXAlignment">0</token>
+                  <token name="TextYAlignment">1</token>
+                </Properties>
+              </Item>
+              <Item class="TextLabel" referent="23">
+                <Properties>
+                  <string name="Name">Amount</string>
+                  <Color3 name="BackgroundColor3">
+                    <R>1</R>
+                    <G>1</G>
+                    <B>1</B>
+                  </Color3>
+                  <float name="BackgroundTransparency">1</float>
+                  <int name="BorderSizePixel">0</int>
+                  <Font name="FontFace">
+                    <Family>
+                      <url>rbxasset://fonts/families/Montserrat.json</url>
+                    </Family>
+                    <Weight>800</Weight>
+                    <Style>Normal</Style>
+                  </Font>
+                  <UDim2 name="Position">
+                    <XS>0</XS>
+                    <XO>0</XO>
+                    <YS>0.32</YS>
+                    <YO>0</YO>
+                  </UDim2>
+                  <UDim2 name="Size">
+                    <XS>0.7107438</XS>
+                    <XO>0</XO>
+                    <YS>0.24</YS>
+                    <YO>0</YO>
+                  </UDim2>
+                  <string name="Text">Rp 5.000</string>
+                  <Color3 name="TextColor3">
+                    <R>0.23921569</R>
+                    <G>0.8627451</G>
+                    <B>0.5921569</B>
+                  </Color3>
+                  <bool name="TextScaled">true</bool>
+                  <float name="TextSize">24</float>
+                  <token name="TextXAlignment">0</token>
+                  <token name="TextYAlignment">1</token>
+                </Properties>
+              </Item>
+              <Item class="Frame" referent="24">
+                <Properties>
+                  <string name="Name">Tag</string>
+                  <Color3 name="BackgroundColor3">
+                    <R>0.23921569</R>
+                    <G>0.8627451</G>
+                    <B>0.5921569</B>
+                  </Color3>
+                  <float name="BackgroundTransparency">0.82</float>
+                  <int name="BorderSizePixel">0</int>
+                  <UDim2 name="Position">
+                    <XS>0.74380165</XS>
+                    <XO>0</XO>
+                    <YS>0.36</YS>
+                    <YO>0</YO>
+                  </UDim2>
+                  <UDim2 name="Size">
+                    <XS>0.25619835</XS>
+                    <XO>0</XO>
+                    <YS>0.18</YS>
+                    <YO>0</YO>
+                  </UDim2>
+                  <bool name="Visible">false</bool>
+                </Properties>
+                <Item class="UICorner" referent="25">
+                  <Properties>
+                    <string name="Name">UICorner</string>
+                    <UDim name="BottomLeftRadius">
+                      <S>0.33333334</S>
+                      <O>0</O>
+                    </UDim>
+                    <UDim name="BottomRightRadius">
+                      <S>0.33333334</S>
+                      <O>0</O>
+                    </UDim>
+                    <UDim name="TopLeftRadius">
+                      <S>0.33333334</S>
+                      <O>0</O>
+                    </UDim>
+                    <UDim name="TopRightRadius">
+                      <S>0.33333334</S>
+                      <O>0</O>
+                    </UDim>
+                  </Properties>
+                </Item>
+                <Item class="UIStroke" referent="26">
+                  <Properties>
+                    <string name="Name">UIStroke</string>
+                    <token name="ApplyStrokeMode">1</token>
+                    <Color3 name="Color">
+                      <R>0.23921569</R>
+                      <G>0.8627451</G>
+                      <B>0.5921569</B>
+                    </Color3>
+                    <float name="Thickness">1</float>
+                    <float name="Transparency">0.6</float>
+                  </Properties>
+                </Item>
+                <Item class="TextLabel" referent="27">
+                  <Properties>
+                    <string name="Name">Label</string>
+                    <Color3 name="BackgroundColor3">
+                      <R>1</R>
+                      <G>1</G>
+                      <B>1</B>
+                    </Color3>
+                    <float name="BackgroundTransparency">1</float>
+                    <int name="BorderSizePixel">0</int>
+                    <Font name="FontFace">
+                      <Family>
+                        <url>rbxasset://fonts/families/Montserrat.json</url>
+                      </Family>
+                      <Weight>800</Weight>
+                      <Style>Normal</Style>
+                    </Font>
+                    <UDim2 name="Position">
+                      <XS>0</XS>
+                      <XO>0</XO>
+                      <YS>0.22222222</YS>
+                      <YO>0</YO>
+                    </UDim2>
+                    <UDim2 name="Size">
+                      <XS>1</XS>
+                      <XO>0</XO>
+                      <YS>0.5555556</YS>
+                      <YO>0</YO>
+                    </UDim2>
+                    <string name="Text"></string>
+                    <Color3 name="TextColor3">
+                      <R>0.23921569</R>
+                      <G>0.8627451</G>
+                      <B>0.5921569</B>
+                    </Color3>
+                    <bool name="TextScaled">true</bool>
+                    <float name="TextSize">10</float>
+                    <token name="TextXAlignment">2</token>
+                    <token name="TextYAlignment">1</token>
+                  </Properties>
+                </Item>
+              </Item>
+              <Item class="TextLabel" referent="28">
+                <Properties>
+                  <string name="Name">Message</string>
+                  <Color3 name="BackgroundColor3">
+                    <R>1</R>
+                    <G>1</G>
+                    <B>1</B>
+                  </Color3>
+                  <float name="BackgroundTransparency">1</float>
+                  <int name="BorderSizePixel">0</int>
+                  <Font name="FontFace">
+                    <Family>
+                      <url>rbxasset://fonts/families/Montserrat.json</url>
+                    </Family>
+                    <Weight>500</Weight>
+                    <Style>Normal</Style>
+                  </Font>
+                  <UDim2 name="Position">
+                    <XS>0</XS>
+                    <XO>0</XO>
+                    <YS>0.62</YS>
+                    <YO>0</YO>
+                  </UDim2>
+                  <UDim2 name="Size">
+                    <XS>1</XS>
+                    <XO>0</XO>
+                    <YS>0.26</YS>
+                    <YO>0</YO>
+                  </UDim2>
+                  <string name="Text">“Semangat terus bang, gas!”</string>
+                  <Color3 name="TextColor3">
+                    <R>0.54901963</R>
+                    <G>0.58431375</G>
+                    <B>0.6509804</B>
+                  </Color3>
+                  <bool name="TextScaled">true</bool>
+                  <float name="TextSize">26</float>
+                  <bool name="TextWrapped">true</bool>
+                  <token name="TextXAlignment">0</token>
+                  <token name="TextYAlignment">0</token>
+                </Properties>
+                <Item class="UITextSizeConstraint" referent="29">
+                  <Properties>
+                    <string name="Name">UITextSizeConstraint</string>
+                    <int name="MaxTextSize">12</int>
+                    <int name="MinTextSize">1</int>
+                  </Properties>
+                </Item>
+              </Item>
+            </Item>
+            <Item class="Frame" referent="30">
+              <Properties>
+                <string name="Name">Progress</string>
+                <Color3 name="BackgroundColor3">
+                  <R>1</R>
+                  <G>1</G>
+                  <B>1</B>
+                </Color3>
+                <float name="BackgroundTransparency">0.9</float>
+                <int name="BorderSizePixel">0</int>
+                <UDim2 name="Position">
+                  <XS>0.047058824</XS>
+                  <XO>0</XO>
+                  <YS>0.92</YS>
+                  <YO>0</YO>
+                </UDim2>
+                <UDim2 name="Size">
+                  <XS>0.90588236</XS>
+                  <XO>0</XO>
+                  <YS>0.03</YS>
+                  <YO>0</YO>
+                </UDim2>
+              </Properties>
+              <Item class="UICorner" referent="31">
+                <Properties>
+                  <string name="Name">UICorner</string>
+                  <UDim name="BottomLeftRadius">
+                    <S>0.5</S>
+                    <O>0</O>
+                  </UDim>
+                  <UDim name="BottomRightRadius">
+                    <S>0.5</S>
+                    <O>0</O>
+                  </UDim>
+                  <UDim name="TopLeftRadius">
+                    <S>0.5</S>
+                    <O>0</O>
+                  </UDim>
+                  <UDim name="TopRightRadius">
+                    <S>0.5</S>
+                    <O>0</O>
+                  </UDim>
+                </Properties>
+              </Item>
+              <Item class="Frame" referent="32">
+                <Properties>
+                  <string name="Name">Fill</string>
+                  <Color3 name="BackgroundColor3">
+                    <R>0.23921569</R>
+                    <G>0.8627451</G>
+                    <B>0.5921569</B>
+                  </Color3>
+                  <float name="BackgroundTransparency">0</float>
+                  <int name="BorderSizePixel">0</int>
+                  <UDim2 name="Position">
+                    <XS>0</XS>
+                    <XO>0</XO>
+                    <YS>0</YS>
+                    <YO>0</YO>
+                  </UDim2>
+                  <UDim2 name="Size">
+                    <XS>0.9</XS>
+                    <XO>0</XO>
+                    <YS>1</YS>
+                    <YO>0</YO>
+                  </UDim2>
+                </Properties>
+                <Item class="UICorner" referent="33">
+                  <Properties>
+                    <string name="Name">UICorner</string>
+                    <UDim name="BottomLeftRadius">
+                      <S>0.5</S>
+                      <O>0</O>
+                    </UDim>
+                    <UDim name="BottomRightRadius">
+                      <S>0.5</S>
+                      <O>0</O>
+                    </UDim>
+                    <UDim name="TopLeftRadius">
+                      <S>0.5</S>
+                      <O>0</O>
+                    </UDim>
+                    <UDim name="TopRightRadius">
+                      <S>0.5</S>
+                      <O>0</O>
+                    </UDim>
+                  </Properties>
+                </Item>
+              </Item>
+            </Item>
+          </Item>
+        </Item>
+      </Item>
+      <Item class="Frame" referent="34">
+        <Properties>
+          <string name="Name">Sample_2</string>
+          <Color3 name="BackgroundColor3">
+            <R>1</R>
+            <G>1</G>
+            <B>1</B>
+          </Color3>
+          <float name="BackgroundTransparency">1</float>
+          <int name="BorderSizePixel">0</int>
+          <int name="LayoutOrder">-2</int>
+          <UDim2 name="Position">
+            <XS>0</XS>
+            <XO>0</XO>
+            <YS>0</YS>
+            <YO>0</YO>
+          </UDim2>
+          <UDim2 name="Size">
+            <XS>1</XS>
+            <XO>0</XO>
+            <YS>1</YS>
+            <YO>0</YO>
+          </UDim2>
+        </Properties>
+        <Item class="UIAspectRatioConstraint" referent="35">
+          <Properties>
+            <string name="Name">UIAspectRatioConstraint</string>
+            <float name="AspectRatio">3.148148</float>
+          </Properties>
+        </Item>
+        <Item class="Frame" referent="36">
+          <Properties>
+            <string name="Name">Mover</string>
+            <Color3 name="BackgroundColor3">
+              <R>1</R>
+              <G>1</G>
+              <B>1</B>
+            </Color3>
+            <float name="BackgroundTransparency">1</float>
+            <int name="BorderSizePixel">0</int>
+            <UDim2 name="Position">
+              <XS>0</XS>
+              <XO>0</XO>
+              <YS>0</YS>
+              <YO>0</YO>
+            </UDim2>
+            <UDim2 name="Size">
+              <XS>1</XS>
+              <XO>0</XO>
+              <YS>1</YS>
+              <YO>0</YO>
+            </UDim2>
+          </Properties>
+          <Item class="Frame" referent="37">
+            <Properties>
+              <string name="Name">Card</string>
+              <Color3 name="BackgroundColor3">
+                <R>1</R>
+                <G>1</G>
+                <B>1</B>
+              </Color3>
+              <float name="BackgroundTransparency">0.03</float>
+              <int name="BorderSizePixel">0</int>
+              <UDim2 name="Position">
+                <XS>0</XS>
+                <XO>0</XO>
+                <YS>0</YS>
+                <YO>0</YO>
+              </UDim2>
+              <UDim2 name="Size">
+                <XS>1</XS>
+                <XO>0</XO>
+                <YS>0.9259259</YS>
+                <YO>0</YO>
+              </UDim2>
+            </Properties>
+            <Item class="UICorner" referent="38">
+              <Properties>
+                <string name="Name">UICorner</string>
+                <UDim name="BottomLeftRadius">
+                  <S>0.16</S>
+                  <O>0</O>
+                </UDim>
+                <UDim name="BottomRightRadius">
+                  <S>0.16</S>
+                  <O>0</O>
+                </UDim>
+                <UDim name="TopLeftRadius">
+                  <S>0.16</S>
+                  <O>0</O>
+                </UDim>
+                <UDim name="TopRightRadius">
+                  <S>0.16</S>
+                  <O>0</O>
+                </UDim>
+              </Properties>
+            </Item>
+            <Item class="UIStroke" referent="39">
+              <Properties>
+                <string name="Name">UIStroke</string>
+                <token name="ApplyStrokeMode">1</token>
+                <Color3 name="Color">
+                  <R>0.54509807</R>
+                  <G>0.42352942</G>
+                  <B>1</B>
+                </Color3>
+                <float name="Thickness">1.5</float>
+                <float name="Transparency">0.35</float>
+              </Properties>
+            </Item>
+            <Item class="UIGradient" referent="40">
+              <Properties>
+                <string name="Name">UIGradient</string>
+                <ColorSequence name="Color">0 0.10980392 0.12941177 0.1764706 0 1 0.043137256 0.050980393 0.07058824 0 </ColorSequence>
+                <float name="Rotation">90</float>
+                <NumberSequence name="Transparency">0 0 0 1 0 0 </NumberSequence>
+              </Properties>
+            </Item>
+            <Item class="Frame" referent="41">
+              <Properties>
+                <string name="Name">Glow</string>
+                <Color3 name="BackgroundColor3">
+                  <R>0.54509807</R>
+                  <G>0.42352942</G>
+                  <B>1</B>
+                </Color3>
+                <float name="BackgroundTransparency">0</float>
+                <int name="BorderSizePixel">0</int>
+                <UDim2 name="Position">
+                  <XS>0</XS>
+                  <XO>0</XO>
+                  <YS>0</YS>
+                  <YO>0</YO>
+                </UDim2>
+                <UDim2 name="Size">
+                  <XS>1</XS>
+                  <XO>0</XO>
+                  <YS>1</YS>
+                  <YO>0</YO>
+                </UDim2>
+                <int name="ZIndex">0</int>
+              </Properties>
+              <Item class="UICorner" referent="42">
+                <Properties>
+                  <string name="Name">UICorner</string>
+                  <UDim name="BottomLeftRadius">
+                    <S>0.16</S>
+                    <O>0</O>
+                  </UDim>
+                  <UDim name="BottomRightRadius">
+                    <S>0.16</S>
+                    <O>0</O>
+                  </UDim>
+                  <UDim name="TopLeftRadius">
+                    <S>0.16</S>
+                    <O>0</O>
+                  </UDim>
+                  <UDim name="TopRightRadius">
+                    <S>0.16</S>
+                    <O>0</O>
+                  </UDim>
+                </Properties>
+              </Item>
+              <Item class="UIGradient" referent="43">
+                <Properties>
+                  <string name="Name">UIGradient</string>
+                  <ColorSequence name="Color">0 1 1 1 0 1 1 1 1 0 </ColorSequence>
+                  <float name="Rotation">0</float>
+                  <NumberSequence name="Transparency">0 0.82 0 1 1 0 </NumberSequence>
+                </Properties>
+              </Item>
+            </Item>
+            <Item class="Frame" referent="44">
+              <Properties>
+                <string name="Name">IconBadge</string>
+                <Color3 name="BackgroundColor3">
+                  <R>1</R>
+                  <G>1</G>
+                  <B>1</B>
+                </Color3>
+                <float name="BackgroundTransparency">0</float>
+                <int name="BorderSizePixel">0</int>
+                <UDim2 name="Position">
+                  <XS>0.047058824</XS>
+                  <XO>0</XO>
+                  <YS>0.22</YS>
+                  <YO>0</YO>
+                </UDim2>
+                <UDim2 name="Size">
+                  <XS>0.16470589</XS>
+                  <XO>0</XO>
+                  <YS>0.56</YS>
+                  <YO>0</YO>
+                </UDim2>
+              </Properties>
+              <Item class="UICorner" referent="45">
+                <Properties>
+                  <string name="Name">UICorner</string>
+                  <UDim name="BottomLeftRadius">
+                    <S>0.5</S>
+                    <O>0</O>
+                  </UDim>
+                  <UDim name="BottomRightRadius">
+                    <S>0.5</S>
+                    <O>0</O>
+                  </UDim>
+                  <UDim name="TopLeftRadius">
+                    <S>0.5</S>
+                    <O>0</O>
+                  </UDim>
+                  <UDim name="TopRightRadius">
+                    <S>0.5</S>
+                    <O>0</O>
+                  </UDim>
+                </Properties>
+              </Item>
+              <Item class="UIGradient" referent="46">
+                <Properties>
+                  <string name="Name">UIGradient</string>
+                  <ColorSequence name="Color">0 0.65882355 0.5676471 1 0 1 0.40882355 0.31764707 0.75 0 </ColorSequence>
+                  <float name="Rotation">45</float>
+                  <NumberSequence name="Transparency">0 0 0 1 0 0 </NumberSequence>
+                </Properties>
+              </Item>
+              <Item class="UIStroke" referent="47">
+                <Properties>
+                  <string name="Name">UIStroke</string>
+                  <token name="ApplyStrokeMode">1</token>
+                  <Color3 name="Color">
+                    <R>1</R>
+                    <G>1</G>
+                    <B>1</B>
+                  </Color3>
+                  <float name="Thickness">1</float>
+                  <float name="Transparency">0.8</float>
+                </Properties>
+              </Item>
+              <Item class="TextLabel" referent="48">
+                <Properties>
+                  <string name="Name">Emoji</string>
+                  <Color3 name="BackgroundColor3">
+                    <R>1</R>
+                    <G>1</G>
+                    <B>1</B>
+                  </Color3>
+                  <float name="BackgroundTransparency">1</float>
+                  <int name="BorderSizePixel">0</int>
+                  <Font name="FontFace">
+                    <Family>
+                      <url>rbxasset://fonts/families/Montserrat.json</url>
+                    </Family>
+                    <Weight>400</Weight>
+                    <Style>Normal</Style>
+                  </Font>
+                  <UDim2 name="Position">
+                    <XS>0.25</XS>
+                    <XO>0</XO>
+                    <YS>0.21428572</YS>
+                    <YO>0</YO>
+                  </UDim2>
+                  <UDim2 name="Size">
+                    <XS>0.5</XS>
+                    <XO>0</XO>
+                    <YS>0.5714286</YS>
+                    <YO>0</YO>
+                  </UDim2>
+                  <string name="Text">🔥</string>
+                  <Color3 name="TextColor3">
+                    <R>1</R>
+                    <G>1</G>
+                    <B>1</B>
+                  </Color3>
+                  <bool name="TextScaled">true</bool>
+                  <float name="TextSize">32</float>
+                  <token name="TextXAlignment">2</token>
+                  <token name="TextYAlignment">1</token>
+                </Properties>
+              </Item>
+              <Item class="ImageLabel" referent="49">
+                <Properties>
+                  <string name="Name">Avatar</string>
+                  <Color3 name="BackgroundColor3">
+                    <R>1</R>
+                    <G>1</G>
+                    <B>1</B>
+                  </Color3>
+                  <float name="BackgroundTransparency">1</float>
+                  <int name="BorderSizePixel">0</int>
+                  <Content name="ImageContent">
+                    <null>
+                    </null>
+                  </Content>
+                  <UDim2 name="Position">
+                    <XS>0</XS>
+                    <XO>0</XO>
+                    <YS>0</YS>
+                    <YO>0</YO>
+                  </UDim2>
+                  <UDim2 name="Size">
+                    <XS>1</XS>
+                    <XO>0</XO>
+                    <YS>1</YS>
+                    <YO>0</YO>
+                  </UDim2>
+                  <bool name="Visible">false</bool>
+                  <int name="ZIndex">2</int>
+                </Properties>
+                <Item class="UICorner" referent="50">
+                  <Properties>
+                    <string name="Name">UICorner</string>
+                    <UDim name="BottomLeftRadius">
+                      <S>0.5</S>
+                      <O>0</O>
+                    </UDim>
+                    <UDim name="BottomRightRadius">
+                      <S>0.5</S>
+                      <O>0</O>
+                    </UDim>
+                    <UDim name="TopLeftRadius">
+                      <S>0.5</S>
+                      <O>0</O>
+                    </UDim>
+                    <UDim name="TopRightRadius">
+                      <S>0.5</S>
+                      <O>0</O>
+                    </UDim>
+                  </Properties>
+                </Item>
+              </Item>
+            </Item>
+            <Item class="Frame" referent="51">
+              <Properties>
+                <string name="Name">Body</string>
+                <Color3 name="BackgroundColor3">
+                  <R>1</R>
+                  <G>1</G>
+                  <B>1</B>
+                </Color3>
+                <float name="BackgroundTransparency">1</float>
+                <int name="BorderSizePixel">0</int>
+                <UDim2 name="Position">
+                  <XS>0.24705882</XS>
+                  <XO>0</XO>
+                  <YS>0</YS>
+                  <YO>0</YO>
+                </UDim2>
+                <UDim2 name="Size">
+                  <XS>0.7117647</XS>
+                  <XO>0</XO>
+                  <YS>1</YS>
+                  <YO>0</YO>
+                </UDim2>
+              </Properties>
+              <Item class="TextLabel" referent="52">
+                <Properties>
+                  <string name="Name">Title</string>
+                  <Color3 name="BackgroundColor3">
+                    <R>1</R>
+                    <G>1</G>
+                    <B>1</B>
+                  </Color3>
+                  <float name="BackgroundTransparency">1</float>
+                  <int name="BorderSizePixel">0</int>
+                  <Font name="FontFace">
+                    <Family>
+                      <url>rbxasset://fonts/families/Montserrat.json</url>
+                    </Family>
+                    <Weight>700</Weight>
+                    <Style>Normal</Style>
+                  </Font>
+                  <UDim2 name="Position">
+                    <XS>0</XS>
+                    <XO>0</XO>
+                    <YS>0.14</YS>
+                    <YO>0</YO>
+                  </UDim2>
+                  <bool name="RichText">true</bool>
+                  <UDim2 name="Size">
+                    <XS>1</XS>
+                    <XO>0</XO>
+                    <YS>0.14</YS>
+                    <YO>0</YO>
+                  </UDim2>
+                  <string name="Text">&lt;font color="#FFFFFF"&gt;Nadia&lt;/font&gt; &lt;font color="#8C95A6"&gt;baru saja bagi-bagi&lt;/font&gt;</string>
+                  <Color3 name="TextColor3">
+                    <R>0.9607843</R>
+                    <G>0.9647059</G>
+                    <B>0.972549</B>
+                  </Color3>
+                  <bool name="TextScaled">true</bool>
+                  <float name="TextSize">14</float>
+                  <token name="TextXAlignment">0</token>
+                  <token name="TextYAlignment">1</token>
+                </Properties>
+              </Item>
+              <Item class="TextLabel" referent="53">
+                <Properties>
+                  <string name="Name">Amount</string>
+                  <Color3 name="BackgroundColor3">
+                    <R>1</R>
+                    <G>1</G>
+                    <B>1</B>
+                  </Color3>
+                  <float name="BackgroundTransparency">1</float>
+                  <int name="BorderSizePixel">0</int>
+                  <Font name="FontFace">
+                    <Family>
+                      <url>rbxasset://fonts/families/Montserrat.json</url>
+                    </Family>
+                    <Weight>800</Weight>
+                    <Style>Normal</Style>
+                  </Font>
+                  <UDim2 name="Position">
+                    <XS>0</XS>
+                    <XO>0</XO>
+                    <YS>0.32</YS>
+                    <YO>0</YO>
+                  </UDim2>
+                  <UDim2 name="Size">
+                    <XS>0.7107438</XS>
+                    <XO>0</XO>
+                    <YS>0.24</YS>
+                    <YO>0</YO>
+                  </UDim2>
+                  <string name="Text">Rp 50.000</string>
+                  <Color3 name="TextColor3">
+                    <R>0.54509807</R>
+                    <G>0.42352942</G>
+                    <B>1</B>
+                  </Color3>
+                  <bool name="TextScaled">true</bool>
+                  <float name="TextSize">24</float>
+                  <token name="TextXAlignment">0</token>
+                  <token name="TextYAlignment">1</token>
+                </Properties>
+              </Item>
+              <Item class="Frame" referent="54">
+                <Properties>
+                  <string name="Name">Tag</string>
+                  <Color3 name="BackgroundColor3">
+                    <R>0.54509807</R>
+                    <G>0.42352942</G>
+                    <B>1</B>
+                  </Color3>
+                  <float name="BackgroundTransparency">0.82</float>
+                  <int name="BorderSizePixel">0</int>
+                  <UDim2 name="Position">
+                    <XS>0.74380165</XS>
+                    <XO>0</XO>
+                    <YS>0.36</YS>
+                    <YO>0</YO>
+                  </UDim2>
+                  <UDim2 name="Size">
+                    <XS>0.25619835</XS>
+                    <XO>0</XO>
+                    <YS>0.18</YS>
+                    <YO>0</YO>
+                  </UDim2>
+                  <bool name="Visible">true</bool>
+                </Properties>
+                <Item class="UICorner" referent="55">
+                  <Properties>
+                    <string name="Name">UICorner</string>
+                    <UDim name="BottomLeftRadius">
+                      <S>0.33333334</S>
+                      <O>0</O>
+                    </UDim>
+                    <UDim name="BottomRightRadius">
+                      <S>0.33333334</S>
+                      <O>0</O>
+                    </UDim>
+                    <UDim name="TopLeftRadius">
+                      <S>0.33333334</S>
+                      <O>0</O>
+                    </UDim>
+                    <UDim name="TopRightRadius">
+                      <S>0.33333334</S>
+                      <O>0</O>
+                    </UDim>
+                  </Properties>
+                </Item>
+                <Item class="UIStroke" referent="56">
+                  <Properties>
+                    <string name="Name">UIStroke</string>
+                    <token name="ApplyStrokeMode">1</token>
+                    <Color3 name="Color">
+                      <R>0.54509807</R>
+                      <G>0.42352942</G>
+                      <B>1</B>
+                    </Color3>
+                    <float name="Thickness">1</float>
+                    <float name="Transparency">0.6</float>
+                  </Properties>
+                </Item>
+                <Item class="TextLabel" referent="57">
+                  <Properties>
+                    <string name="Name">Label</string>
+                    <Color3 name="BackgroundColor3">
+                      <R>1</R>
+                      <G>1</G>
+                      <B>1</B>
+                    </Color3>
+                    <float name="BackgroundTransparency">1</float>
+                    <int name="BorderSizePixel">0</int>
+                    <Font name="FontFace">
+                      <Family>
+                        <url>rbxasset://fonts/families/Montserrat.json</url>
+                      </Family>
+                      <Weight>800</Weight>
+                      <Style>Normal</Style>
+                    </Font>
+                    <UDim2 name="Position">
+                      <XS>0</XS>
+                      <XO>0</XO>
+                      <YS>0.22222222</YS>
+                      <YO>0</YO>
+                    </UDim2>
+                    <UDim2 name="Size">
+                      <XS>1</XS>
+                      <XO>0</XO>
+                      <YS>0.5555556</YS>
+                      <YO>0</YO>
+                    </UDim2>
+                    <string name="Text">HYPE</string>
+                    <Color3 name="TextColor3">
+                      <R>0.54509807</R>
+                      <G>0.42352942</G>
+                      <B>1</B>
+                    </Color3>
+                    <bool name="TextScaled">true</bool>
+                    <float name="TextSize">10</float>
+                    <token name="TextXAlignment">2</token>
+                    <token name="TextYAlignment">1</token>
+                  </Properties>
+                </Item>
+              </Item>
+              <Item class="TextLabel" referent="58">
+                <Properties>
+                  <string name="Name">Message</string>
+                  <Color3 name="BackgroundColor3">
+                    <R>1</R>
+                    <G>1</G>
+                    <B>1</B>
+                  </Color3>
+                  <float name="BackgroundTransparency">1</float>
+                  <int name="BorderSizePixel">0</int>
+                  <Font name="FontFace">
+                    <Family>
+                      <url>rbxasset://fonts/families/Montserrat.json</url>
+                    </Family>
+                    <Weight>500</Weight>
+                    <Style>Normal</Style>
+                  </Font>
+                  <UDim2 name="Position">
+                    <XS>0</XS>
+                    <XO>0</XO>
+                    <YS>0.62</YS>
+                    <YO>0</YO>
+                  </UDim2>
+                  <UDim2 name="Size">
+                    <XS>1</XS>
+                    <XO>0</XO>
+                    <YS>0.26</YS>
+                    <YO>0</YO>
+                  </UDim2>
+                  <string name="Text">“Buat beli kopi, jangan lupa istirahat ya”</string>
+                  <Color3 name="TextColor3">
+                    <R>0.54901963</R>
+                    <G>0.58431375</G>
+                    <B>0.6509804</B>
+                  </Color3>
+                  <bool name="TextScaled">true</bool>
+                  <float name="TextSize">26</float>
+                  <bool name="TextWrapped">true</bool>
+                  <token name="TextXAlignment">0</token>
+                  <token name="TextYAlignment">0</token>
+                </Properties>
+                <Item class="UITextSizeConstraint" referent="59">
+                  <Properties>
+                    <string name="Name">UITextSizeConstraint</string>
+                    <int name="MaxTextSize">12</int>
+                    <int name="MinTextSize">1</int>
+                  </Properties>
+                </Item>
+              </Item>
+            </Item>
+            <Item class="Frame" referent="60">
+              <Properties>
+                <string name="Name">Progress</string>
+                <Color3 name="BackgroundColor3">
+                  <R>1</R>
+                  <G>1</G>
+                  <B>1</B>
+                </Color3>
+                <float name="BackgroundTransparency">0.9</float>
+                <int name="BorderSizePixel">0</int>
+                <UDim2 name="Position">
+                  <XS>0.047058824</XS>
+                  <XO>0</XO>
+                  <YS>0.92</YS>
+                  <YO>0</YO>
+                </UDim2>
+                <UDim2 name="Size">
+                  <XS>0.90588236</XS>
+                  <XO>0</XO>
+                  <YS>0.03</YS>
+                  <YO>0</YO>
+                </UDim2>
+              </Properties>
+              <Item class="UICorner" referent="61">
+                <Properties>
+                  <string name="Name">UICorner</string>
+                  <UDim name="BottomLeftRadius">
+                    <S>0.5</S>
+                    <O>0</O>
+                  </UDim>
+                  <UDim name="BottomRightRadius">
+                    <S>0.5</S>
+                    <O>0</O>
+                  </UDim>
+                  <UDim name="TopLeftRadius">
+                    <S>0.5</S>
+                    <O>0</O>
+                  </UDim>
+                  <UDim name="TopRightRadius">
+                    <S>0.5</S>
+                    <O>0</O>
+                  </UDim>
+                </Properties>
+              </Item>
+              <Item class="Frame" referent="62">
+                <Properties>
+                  <string name="Name">Fill</string>
+                  <Color3 name="BackgroundColor3">
+                    <R>0.54509807</R>
+                    <G>0.42352942</G>
+                    <B>1</B>
+                  </Color3>
+                  <float name="BackgroundTransparency">0</float>
+                  <int name="BorderSizePixel">0</int>
+                  <UDim2 name="Position">
+                    <XS>0</XS>
+                    <XO>0</XO>
+                    <YS>0</YS>
+                    <YO>0</YO>
+                  </UDim2>
+                  <UDim2 name="Size">
+                    <XS>0.6</XS>
+                    <XO>0</XO>
+                    <YS>1</YS>
+                    <YO>0</YO>
+                  </UDim2>
+                </Properties>
+                <Item class="UICorner" referent="63">
+                  <Properties>
+                    <string name="Name">UICorner</string>
+                    <UDim name="BottomLeftRadius">
+                      <S>0.5</S>
+                      <O>0</O>
+                    </UDim>
+                    <UDim name="BottomRightRadius">
+                      <S>0.5</S>
+                      <O>0</O>
+                    </UDim>
+                    <UDim name="TopLeftRadius">
+                      <S>0.5</S>
+                      <O>0</O>
+                    </UDim>
+                    <UDim name="TopRightRadius">
+                      <S>0.5</S>
+                      <O>0</O>
+                    </UDim>
+                  </Properties>
+                </Item>
+              </Item>
+            </Item>
+          </Item>
+        </Item>
+      </Item>
+      <Item class="Frame" referent="64">
+        <Properties>
+          <string name="Name">Sample_3</string>
+          <Color3 name="BackgroundColor3">
+            <R>1</R>
+            <G>1</G>
+            <B>1</B>
+          </Color3>
+          <float name="BackgroundTransparency">1</float>
+          <int name="BorderSizePixel">0</int>
+          <int name="LayoutOrder">-3</int>
+          <UDim2 name="Position">
+            <XS>0</XS>
+            <XO>0</XO>
+            <YS>0</YS>
+            <YO>0</YO>
+          </UDim2>
+          <UDim2 name="Size">
+            <XS>1</XS>
+            <XO>0</XO>
+            <YS>1</YS>
+            <YO>0</YO>
+          </UDim2>
+        </Properties>
+        <Item class="UIAspectRatioConstraint" referent="65">
+          <Properties>
+            <string name="Name">UIAspectRatioConstraint</string>
+            <float name="AspectRatio">3.148148</float>
+          </Properties>
+        </Item>
+        <Item class="Frame" referent="66">
+          <Properties>
+            <string name="Name">Mover</string>
+            <Color3 name="BackgroundColor3">
+              <R>1</R>
+              <G>1</G>
+              <B>1</B>
+            </Color3>
+            <float name="BackgroundTransparency">1</float>
+            <int name="BorderSizePixel">0</int>
+            <UDim2 name="Position">
+              <XS>0</XS>
+              <XO>0</XO>
+              <YS>0</YS>
+              <YO>0</YO>
+            </UDim2>
+            <UDim2 name="Size">
+              <XS>1</XS>
+              <XO>0</XO>
+              <YS>1</YS>
+              <YO>0</YO>
+            </UDim2>
+          </Properties>
+          <Item class="Frame" referent="67">
+            <Properties>
+              <string name="Name">Card</string>
+              <Color3 name="BackgroundColor3">
+                <R>1</R>
+                <G>1</G>
+                <B>1</B>
+              </Color3>
+              <float name="BackgroundTransparency">0.03</float>
+              <int name="BorderSizePixel">0</int>
+              <UDim2 name="Position">
+                <XS>0</XS>
+                <XO>0</XO>
+                <YS>0</YS>
+                <YO>0</YO>
+              </UDim2>
+              <UDim2 name="Size">
+                <XS>1</XS>
+                <XO>0</XO>
+                <YS>0.9259259</YS>
+                <YO>0</YO>
+              </UDim2>
+            </Properties>
+            <Item class="UICorner" referent="68">
+              <Properties>
+                <string name="Name">UICorner</string>
+                <UDim name="BottomLeftRadius">
+                  <S>0.16</S>
+                  <O>0</O>
+                </UDim>
+                <UDim name="BottomRightRadius">
+                  <S>0.16</S>
+                  <O>0</O>
+                </UDim>
+                <UDim name="TopLeftRadius">
+                  <S>0.16</S>
+                  <O>0</O>
+                </UDim>
+                <UDim name="TopRightRadius">
+                  <S>0.16</S>
+                  <O>0</O>
+                </UDim>
+              </Properties>
+            </Item>
+            <Item class="UIStroke" referent="69">
+              <Properties>
+                <string name="Name">UIStroke</string>
+                <token name="ApplyStrokeMode">1</token>
+                <Color3 name="Color">
+                  <R>1</R>
+                  <G>0.74509805</G>
+                  <B>0.21960784</B>
+                </Color3>
+                <float name="Thickness">1.5</float>
+                <float name="Transparency">0.35</float>
+              </Properties>
+            </Item>
+            <Item class="UIGradient" referent="70">
+              <Properties>
+                <string name="Name">UIGradient</string>
+                <ColorSequence name="Color">0 0.10980392 0.12941177 0.1764706 0 1 0.043137256 0.050980393 0.07058824 0 </ColorSequence>
+                <float name="Rotation">90</float>
+                <NumberSequence name="Transparency">0 0 0 1 0 0 </NumberSequence>
+              </Properties>
+            </Item>
+            <Item class="Frame" referent="71">
+              <Properties>
+                <string name="Name">Glow</string>
+                <Color3 name="BackgroundColor3">
+                  <R>1</R>
+                  <G>0.74509805</G>
+                  <B>0.21960784</B>
+                </Color3>
+                <float name="BackgroundTransparency">0</float>
+                <int name="BorderSizePixel">0</int>
+                <UDim2 name="Position">
+                  <XS>0</XS>
+                  <XO>0</XO>
+                  <YS>0</YS>
+                  <YO>0</YO>
+                </UDim2>
+                <UDim2 name="Size">
+                  <XS>1</XS>
+                  <XO>0</XO>
+                  <YS>1</YS>
+                  <YO>0</YO>
+                </UDim2>
+                <int name="ZIndex">0</int>
+              </Properties>
+              <Item class="UICorner" referent="72">
+                <Properties>
+                  <string name="Name">UICorner</string>
+                  <UDim name="BottomLeftRadius">
+                    <S>0.16</S>
+                    <O>0</O>
+                  </UDim>
+                  <UDim name="BottomRightRadius">
+                    <S>0.16</S>
+                    <O>0</O>
+                  </UDim>
+                  <UDim name="TopLeftRadius">
+                    <S>0.16</S>
+                    <O>0</O>
+                  </UDim>
+                  <UDim name="TopRightRadius">
+                    <S>0.16</S>
+                    <O>0</O>
+                  </UDim>
+                </Properties>
+              </Item>
+              <Item class="UIGradient" referent="73">
+                <Properties>
+                  <string name="Name">UIGradient</string>
+                  <ColorSequence name="Color">0 1 1 1 0 1 1 1 1 0 </ColorSequence>
+                  <float name="Rotation">0</float>
+                  <NumberSequence name="Transparency">0 0.82 0 1 1 0 </NumberSequence>
+                </Properties>
+              </Item>
+            </Item>
+            <Item class="Frame" referent="74">
+              <Properties>
+                <string name="Name">IconBadge</string>
+                <Color3 name="BackgroundColor3">
+                  <R>1</R>
+                  <G>1</G>
+                  <B>1</B>
+                </Color3>
+                <float name="BackgroundTransparency">0</float>
+                <int name="BorderSizePixel">0</int>
+                <UDim2 name="Position">
+                  <XS>0.047058824</XS>
+                  <XO>0</XO>
+                  <YS>0.22</YS>
+                  <YO>0</YO>
+                </UDim2>
+                <UDim2 name="Size">
+                  <XS>0.16470589</XS>
+                  <XO>0</XO>
+                  <YS>0.56</YS>
+                  <YO>0</YO>
+                </UDim2>
+              </Properties>
+              <Item class="UICorner" referent="75">
+                <Properties>
+                  <string name="Name">UICorner</string>
+                  <UDim name="BottomLeftRadius">
+                    <S>0.5</S>
+                    <O>0</O>
+                  </UDim>
+                  <UDim name="BottomRightRadius">
+                    <S>0.5</S>
+                    <O>0</O>
+                  </UDim>
+                  <UDim name="TopLeftRadius">
+                    <S>0.5</S>
+                    <O>0</O>
+                  </UDim>
+                  <UDim name="TopRightRadius">
+                    <S>0.5</S>
+                    <O>0</O>
+                  </UDim>
+                </Properties>
+              </Item>
+              <Item class="UIGradient" referent="76">
+                <Properties>
+                  <string name="Name">UIGradient</string>
+                  <ColorSequence name="Color">0 1 0.8088235 0.41470587 0 1 0.75 0.5588235 0.16470589 0 </ColorSequence>
+                  <float name="Rotation">45</float>
+                  <NumberSequence name="Transparency">0 0 0 1 0 0 </NumberSequence>
+                </Properties>
+              </Item>
+              <Item class="UIStroke" referent="77">
+                <Properties>
+                  <string name="Name">UIStroke</string>
+                  <token name="ApplyStrokeMode">1</token>
+                  <Color3 name="Color">
+                    <R>1</R>
+                    <G>1</G>
+                    <B>1</B>
+                  </Color3>
+                  <float name="Thickness">1</float>
+                  <float name="Transparency">0.8</float>
+                </Properties>
+              </Item>
+              <Item class="TextLabel" referent="78">
+                <Properties>
+                  <string name="Name">Emoji</string>
+                  <Color3 name="BackgroundColor3">
+                    <R>1</R>
+                    <G>1</G>
+                    <B>1</B>
+                  </Color3>
+                  <float name="BackgroundTransparency">1</float>
+                  <int name="BorderSizePixel">0</int>
+                  <Font name="FontFace">
+                    <Family>
+                      <url>rbxasset://fonts/families/Montserrat.json</url>
+                    </Family>
+                    <Weight>400</Weight>
+                    <Style>Normal</Style>
+                  </Font>
+                  <UDim2 name="Position">
+                    <XS>0.25</XS>
+                    <XO>0</XO>
+                    <YS>0.21428572</YS>
+                    <YO>0</YO>
+                  </UDim2>
+                  <UDim2 name="Size">
+                    <XS>0.5</XS>
+                    <XO>0</XO>
+                    <YS>0.5714286</YS>
+                    <YO>0</YO>
+                  </UDim2>
+                  <string name="Text">👑</string>
+                  <Color3 name="TextColor3">
+                    <R>1</R>
+                    <G>1</G>
+                    <B>1</B>
+                  </Color3>
+                  <bool name="TextScaled">true</bool>
+                  <float name="TextSize">32</float>
+                  <token name="TextXAlignment">2</token>
+                  <token name="TextYAlignment">1</token>
+                </Properties>
+              </Item>
+              <Item class="ImageLabel" referent="79">
+                <Properties>
+                  <string name="Name">Avatar</string>
+                  <Color3 name="BackgroundColor3">
+                    <R>1</R>
+                    <G>1</G>
+                    <B>1</B>
+                  </Color3>
+                  <float name="BackgroundTransparency">1</float>
+                  <int name="BorderSizePixel">0</int>
+                  <Content name="ImageContent">
+                    <null>
+                    </null>
+                  </Content>
+                  <UDim2 name="Position">
+                    <XS>0</XS>
+                    <XO>0</XO>
+                    <YS>0</YS>
+                    <YO>0</YO>
+                  </UDim2>
+                  <UDim2 name="Size">
+                    <XS>1</XS>
+                    <XO>0</XO>
+                    <YS>1</YS>
+                    <YO>0</YO>
+                  </UDim2>
+                  <bool name="Visible">false</bool>
+                  <int name="ZIndex">2</int>
+                </Properties>
+                <Item class="UICorner" referent="80">
+                  <Properties>
+                    <string name="Name">UICorner</string>
+                    <UDim name="BottomLeftRadius">
+                      <S>0.5</S>
+                      <O>0</O>
+                    </UDim>
+                    <UDim name="BottomRightRadius">
+                      <S>0.5</S>
+                      <O>0</O>
+                    </UDim>
+                    <UDim name="TopLeftRadius">
+                      <S>0.5</S>
+                      <O>0</O>
+                    </UDim>
+                    <UDim name="TopRightRadius">
+                      <S>0.5</S>
+                      <O>0</O>
+                    </UDim>
+                  </Properties>
+                </Item>
+              </Item>
+            </Item>
+            <Item class="Frame" referent="81">
+              <Properties>
+                <string name="Name">Body</string>
+                <Color3 name="BackgroundColor3">
+                  <R>1</R>
+                  <G>1</G>
+                  <B>1</B>
+                </Color3>
+                <float name="BackgroundTransparency">1</float>
+                <int name="BorderSizePixel">0</int>
+                <UDim2 name="Position">
+                  <XS>0.24705882</XS>
+                  <XO>0</XO>
+                  <YS>0</YS>
+                  <YO>0</YO>
+                </UDim2>
+                <UDim2 name="Size">
+                  <XS>0.7117647</XS>
+                  <XO>0</XO>
+                  <YS>1</YS>
+                  <YO>0</YO>
+                </UDim2>
+              </Properties>
+              <Item class="TextLabel" referent="82">
+                <Properties>
+                  <string name="Name">Title</string>
+                  <Color3 name="BackgroundColor3">
+                    <R>1</R>
+                    <G>1</G>
+                    <B>1</B>
+                  </Color3>
+                  <float name="BackgroundTransparency">1</float>
+                  <int name="BorderSizePixel">0</int>
+                  <Font name="FontFace">
+                    <Family>
+                      <url>rbxasset://fonts/families/Montserrat.json</url>
+                    </Family>
+                    <Weight>700</Weight>
+                    <Style>Normal</Style>
+                  </Font>
+                  <UDim2 name="Position">
+                    <XS>0</XS>
+                    <XO>0</XO>
+                    <YS>0.14</YS>
+                    <YO>0</YO>
+                  </UDim2>
+                  <bool name="RichText">true</bool>
+                  <UDim2 name="Size">
+                    <XS>1</XS>
+                    <XO>0</XO>
+                    <YS>0.14</YS>
+                    <YO>0</YO>
+                  </UDim2>
+                  <string name="Text">&lt;font color="#FFFFFF"&gt;Sultan Andi&lt;/font&gt; &lt;font color="#8C95A6"&gt;baru saja bagi-bagi&lt;/font&gt;</string>
+                  <Color3 name="TextColor3">
+                    <R>0.9607843</R>
+                    <G>0.9647059</G>
+                    <B>0.972549</B>
+                  </Color3>
+                  <bool name="TextScaled">true</bool>
+                  <float name="TextSize">14</float>
+                  <token name="TextXAlignment">0</token>
+                  <token name="TextYAlignment">1</token>
+                </Properties>
+              </Item>
+              <Item class="TextLabel" referent="83">
+                <Properties>
+                  <string name="Name">Amount</string>
+                  <Color3 name="BackgroundColor3">
+                    <R>1</R>
+                    <G>1</G>
+                    <B>1</B>
+                  </Color3>
+                  <float name="BackgroundTransparency">1</float>
+                  <int name="BorderSizePixel">0</int>
+                  <Font name="FontFace">
+                    <Family>
+                      <url>rbxasset://fonts/families/Montserrat.json</url>
+                    </Family>
+                    <Weight>800</Weight>
+                    <Style>Normal</Style>
+                  </Font>
+                  <UDim2 name="Position">
+                    <XS>0</XS>
+                    <XO>0</XO>
+                    <YS>0.32</YS>
+                    <YO>0</YO>
+                  </UDim2>
+                  <UDim2 name="Size">
+                    <XS>0.7107438</XS>
+                    <XO>0</XO>
+                    <YS>0.24</YS>
+                    <YO>0</YO>
+                  </UDim2>
+                  <string name="Text">Rp 100.000</string>
+                  <Color3 name="TextColor3">
+                    <R>1</R>
+                    <G>0.74509805</G>
+                    <B>0.21960784</B>
+                  </Color3>
+                  <bool name="TextScaled">true</bool>
+                  <float name="TextSize">24</float>
+                  <token name="TextXAlignment">0</token>
+                  <token name="TextYAlignment">1</token>
+                </Properties>
+              </Item>
+              <Item class="Frame" referent="84">
+                <Properties>
+                  <string name="Name">Tag</string>
+                  <Color3 name="BackgroundColor3">
+                    <R>1</R>
+                    <G>0.74509805</G>
+                    <B>0.21960784</B>
+                  </Color3>
+                  <float name="BackgroundTransparency">0.82</float>
+                  <int name="BorderSizePixel">0</int>
+                  <UDim2 name="Position">
+                    <XS>0.74380165</XS>
+                    <XO>0</XO>
+                    <YS>0.36</YS>
+                    <YO>0</YO>
+                  </UDim2>
+                  <UDim2 name="Size">
+                    <XS>0.25619835</XS>
+                    <XO>0</XO>
+                    <YS>0.18</YS>
+                    <YO>0</YO>
+                  </UDim2>
+                  <bool name="Visible">true</bool>
+                </Properties>
+                <Item class="UICorner" referent="85">
+                  <Properties>
+                    <string name="Name">UICorner</string>
+                    <UDim name="BottomLeftRadius">
+                      <S>0.33333334</S>
+                      <O>0</O>
+                    </UDim>
+                    <UDim name="BottomRightRadius">
+                      <S>0.33333334</S>
+                      <O>0</O>
+                    </UDim>
+                    <UDim name="TopLeftRadius">
+                      <S>0.33333334</S>
+                      <O>0</O>
+                    </UDim>
+                    <UDim name="TopRightRadius">
+                      <S>0.33333334</S>
+                      <O>0</O>
+                    </UDim>
+                  </Properties>
+                </Item>
+                <Item class="UIStroke" referent="86">
+                  <Properties>
+                    <string name="Name">UIStroke</string>
+                    <token name="ApplyStrokeMode">1</token>
+                    <Color3 name="Color">
+                      <R>1</R>
+                      <G>0.74509805</G>
+                      <B>0.21960784</B>
+                    </Color3>
+                    <float name="Thickness">1</float>
+                    <float name="Transparency">0.6</float>
+                  </Properties>
+                </Item>
+                <Item class="TextLabel" referent="87">
+                  <Properties>
+                    <string name="Name">Label</string>
+                    <Color3 name="BackgroundColor3">
+                      <R>1</R>
+                      <G>1</G>
+                      <B>1</B>
+                    </Color3>
+                    <float name="BackgroundTransparency">1</float>
+                    <int name="BorderSizePixel">0</int>
+                    <Font name="FontFace">
+                      <Family>
+                        <url>rbxasset://fonts/families/Montserrat.json</url>
+                      </Family>
+                      <Weight>800</Weight>
+                      <Style>Normal</Style>
+                    </Font>
+                    <UDim2 name="Position">
+                      <XS>0</XS>
+                      <XO>0</XO>
+                      <YS>0.22222222</YS>
+                      <YO>0</YO>
+                    </UDim2>
+                    <UDim2 name="Size">
+                      <XS>1</XS>
+                      <XO>0</XO>
+                      <YS>0.5555556</YS>
+                      <YO>0</YO>
+                    </UDim2>
+                    <string name="Text">SULTAN</string>
+                    <Color3 name="TextColor3">
+                      <R>1</R>
+                      <G>0.74509805</G>
+                      <B>0.21960784</B>
+                    </Color3>
+                    <bool name="TextScaled">true</bool>
+                    <float name="TextSize">10</float>
+                    <token name="TextXAlignment">2</token>
+                    <token name="TextYAlignment">1</token>
+                  </Properties>
+                </Item>
+              </Item>
+              <Item class="TextLabel" referent="88">
+                <Properties>
+                  <string name="Name">Message</string>
+                  <Color3 name="BackgroundColor3">
+                    <R>1</R>
+                    <G>1</G>
+                    <B>1</B>
+                  </Color3>
+                  <float name="BackgroundTransparency">1</float>
+                  <int name="BorderSizePixel">0</int>
+                  <Font name="FontFace">
+                    <Family>
+                      <url>rbxasset://fonts/families/Montserrat.json</url>
+                    </Family>
+                    <Weight>500</Weight>
+                    <Style>Normal</Style>
+                  </Font>
+                  <UDim2 name="Position">
+                    <XS>0</XS>
+                    <XO>0</XO>
+                    <YS>0.62</YS>
+                    <YO>0</YO>
+                  </UDim2>
+                  <UDim2 name="Size">
+                    <XS>1</XS>
+                    <XO>0</XO>
+                    <YS>0.26</YS>
+                    <YO>0</YO>
+                  </UDim2>
+                  <string name="Text">“Bagi-bagi rezeki buat semua!”</string>
+                  <Color3 name="TextColor3">
+                    <R>0.54901963</R>
+                    <G>0.58431375</G>
+                    <B>0.6509804</B>
+                  </Color3>
+                  <bool name="TextScaled">true</bool>
+                  <float name="TextSize">26</float>
+                  <bool name="TextWrapped">true</bool>
+                  <token name="TextXAlignment">0</token>
+                  <token name="TextYAlignment">0</token>
+                </Properties>
+                <Item class="UITextSizeConstraint" referent="89">
+                  <Properties>
+                    <string name="Name">UITextSizeConstraint</string>
+                    <int name="MaxTextSize">12</int>
+                    <int name="MinTextSize">1</int>
+                  </Properties>
+                </Item>
+              </Item>
+            </Item>
+            <Item class="Frame" referent="90">
+              <Properties>
+                <string name="Name">Progress</string>
+                <Color3 name="BackgroundColor3">
+                  <R>1</R>
+                  <G>1</G>
+                  <B>1</B>
+                </Color3>
+                <float name="BackgroundTransparency">0.9</float>
+                <int name="BorderSizePixel">0</int>
+                <UDim2 name="Position">
+                  <XS>0.047058824</XS>
+                  <XO>0</XO>
+                  <YS>0.92</YS>
+                  <YO>0</YO>
+                </UDim2>
+                <UDim2 name="Size">
+                  <XS>0.90588236</XS>
+                  <XO>0</XO>
+                  <YS>0.03</YS>
+                  <YO>0</YO>
+                </UDim2>
+              </Properties>
+              <Item class="UICorner" referent="91">
+                <Properties>
+                  <string name="Name">UICorner</string>
+                  <UDim name="BottomLeftRadius">
+                    <S>0.5</S>
+                    <O>0</O>
+                  </UDim>
+                  <UDim name="BottomRightRadius">
+                    <S>0.5</S>
+                    <O>0</O>
+                  </UDim>
+                  <UDim name="TopLeftRadius">
+                    <S>0.5</S>
+                    <O>0</O>
+                  </UDim>
+                  <UDim name="TopRightRadius">
+                    <S>0.5</S>
+                    <O>0</O>
+                  </UDim>
+                </Properties>
+              </Item>
+              <Item class="Frame" referent="92">
+                <Properties>
+                  <string name="Name">Fill</string>
+                  <Color3 name="BackgroundColor3">
+                    <R>1</R>
+                    <G>0.74509805</G>
+                    <B>0.21960784</B>
+                  </Color3>
+                  <float name="BackgroundTransparency">0</float>
+                  <int name="BorderSizePixel">0</int>
+                  <UDim2 name="Position">
+                    <XS>0</XS>
+                    <XO>0</XO>
+                    <YS>0</YS>
+                    <YO>0</YO>
+                  </UDim2>
+                  <UDim2 name="Size">
+                    <XS>0.3</XS>
+                    <XO>0</XO>
+                    <YS>1</YS>
+                    <YO>0</YO>
+                  </UDim2>
+                </Properties>
+                <Item class="UICorner" referent="93">
+                  <Properties>
+                    <string name="Name">UICorner</string>
+                    <UDim name="BottomLeftRadius">
+                      <S>0.5</S>
+                      <O>0</O>
+                    </UDim>
+                    <UDim name="BottomRightRadius">
+                      <S>0.5</S>
+                      <O>0</O>
+                    </UDim>
+                    <UDim name="TopLeftRadius">
+                      <S>0.5</S>
+                      <O>0</O>
+                    </UDim>
+                    <UDim name="TopRightRadius">
+                      <S>0.5</S>
+                      <O>0</O>
+                    </UDim>
+                  </Properties>
+                </Item>
+              </Item>
+            </Item>
+          </Item>
+        </Item>
+      </Item>
+      <Item class="Frame" referent="94">
+        <Properties>
+          <string name="Name">Template</string>
+          <Color3 name="BackgroundColor3">
+            <R>1</R>
+            <G>1</G>
+            <B>1</B>
+          </Color3>
+          <float name="BackgroundTransparency">1</float>
+          <int name="BorderSizePixel">0</int>
+          <int name="LayoutOrder">0</int>
+          <UDim2 name="Position">
+            <XS>0</XS>
+            <XO>0</XO>
+            <YS>0</YS>
+            <YO>0</YO>
+          </UDim2>
+          <UDim2 name="Size">
+            <XS>1</XS>
+            <XO>0</XO>
+            <YS>1</YS>
+            <YO>0</YO>
+          </UDim2>
+          <bool name="Visible">false</bool>
+        </Properties>
+        <Item class="UIAspectRatioConstraint" referent="95">
+          <Properties>
+            <string name="Name">UIAspectRatioConstraint</string>
+            <float name="AspectRatio">3.148148</float>
+          </Properties>
+        </Item>
+        <Item class="Frame" referent="96">
+          <Properties>
+            <string name="Name">Mover</string>
+            <Color3 name="BackgroundColor3">
+              <R>1</R>
+              <G>1</G>
+              <B>1</B>
+            </Color3>
+            <float name="BackgroundTransparency">1</float>
+            <int name="BorderSizePixel">0</int>
+            <UDim2 name="Position">
+              <XS>0</XS>
+              <XO>0</XO>
+              <YS>0</YS>
+              <YO>0</YO>
+            </UDim2>
+            <UDim2 name="Size">
+              <XS>1</XS>
+              <XO>0</XO>
+              <YS>1</YS>
+              <YO>0</YO>
+            </UDim2>
+          </Properties>
+          <Item class="Frame" referent="97">
+            <Properties>
+              <string name="Name">Card</string>
+              <Color3 name="BackgroundColor3">
+                <R>1</R>
+                <G>1</G>
+                <B>1</B>
+              </Color3>
+              <float name="BackgroundTransparency">0.03</float>
+              <int name="BorderSizePixel">0</int>
+              <UDim2 name="Position">
+                <XS>0</XS>
+                <XO>0</XO>
+                <YS>0</YS>
+                <YO>0</YO>
+              </UDim2>
+              <UDim2 name="Size">
+                <XS>1</XS>
+                <XO>0</XO>
+                <YS>0.9259259</YS>
+                <YO>0</YO>
+              </UDim2>
+            </Properties>
+            <Item class="UICorner" referent="98">
+              <Properties>
+                <string name="Name">UICorner</string>
+                <UDim name="BottomLeftRadius">
+                  <S>0.16</S>
+                  <O>0</O>
+                </UDim>
+                <UDim name="BottomRightRadius">
+                  <S>0.16</S>
+                  <O>0</O>
+                </UDim>
+                <UDim name="TopLeftRadius">
+                  <S>0.16</S>
+                  <O>0</O>
+                </UDim>
+                <UDim name="TopRightRadius">
+                  <S>0.16</S>
+                  <O>0</O>
+                </UDim>
+              </Properties>
+            </Item>
+            <Item class="UIStroke" referent="99">
+              <Properties>
+                <string name="Name">UIStroke</string>
+                <token name="ApplyStrokeMode">1</token>
+                <Color3 name="Color">
+                  <R>0.23921569</R>
+                  <G>0.8627451</G>
+                  <B>0.5921569</B>
+                </Color3>
+                <float name="Thickness">1.5</float>
+                <float name="Transparency">0.35</float>
+              </Properties>
+            </Item>
+            <Item class="UIGradient" referent="100">
+              <Properties>
+                <string name="Name">UIGradient</string>
+                <ColorSequence name="Color">0 0.10980392 0.12941177 0.1764706 0 1 0.043137256 0.050980393 0.07058824 0 </ColorSequence>
+                <float name="Rotation">90</float>
+                <NumberSequence name="Transparency">0 0 0 1 0 0 </NumberSequence>
+              </Properties>
+            </Item>
+            <Item class="Frame" referent="101">
+              <Properties>
+                <string name="Name">Glow</string>
+                <Color3 name="BackgroundColor3">
+                  <R>0.23921569</R>
+                  <G>0.8627451</G>
+                  <B>0.5921569</B>
+                </Color3>
+                <float name="BackgroundTransparency">0</float>
+                <int name="BorderSizePixel">0</int>
+                <UDim2 name="Position">
+                  <XS>0</XS>
+                  <XO>0</XO>
+                  <YS>0</YS>
+                  <YO>0</YO>
+                </UDim2>
+                <UDim2 name="Size">
+                  <XS>1</XS>
+                  <XO>0</XO>
+                  <YS>1</YS>
+                  <YO>0</YO>
+                </UDim2>
+                <int name="ZIndex">0</int>
+              </Properties>
+              <Item class="UICorner" referent="102">
+                <Properties>
+                  <string name="Name">UICorner</string>
+                  <UDim name="BottomLeftRadius">
+                    <S>0.16</S>
+                    <O>0</O>
+                  </UDim>
+                  <UDim name="BottomRightRadius">
+                    <S>0.16</S>
+                    <O>0</O>
+                  </UDim>
+                  <UDim name="TopLeftRadius">
+                    <S>0.16</S>
+                    <O>0</O>
+                  </UDim>
+                  <UDim name="TopRightRadius">
+                    <S>0.16</S>
+                    <O>0</O>
+                  </UDim>
+                </Properties>
+              </Item>
+              <Item class="UIGradient" referent="103">
+                <Properties>
+                  <string name="Name">UIGradient</string>
+                  <ColorSequence name="Color">0 1 1 1 0 1 1 1 1 0 </ColorSequence>
+                  <float name="Rotation">0</float>
+                  <NumberSequence name="Transparency">0 0.82 0 1 1 0 </NumberSequence>
+                </Properties>
+              </Item>
+            </Item>
+            <Item class="Frame" referent="104">
+              <Properties>
+                <string name="Name">IconBadge</string>
+                <Color3 name="BackgroundColor3">
+                  <R>1</R>
+                  <G>1</G>
+                  <B>1</B>
+                </Color3>
+                <float name="BackgroundTransparency">0</float>
+                <int name="BorderSizePixel">0</int>
+                <UDim2 name="Position">
+                  <XS>0.047058824</XS>
+                  <XO>0</XO>
+                  <YS>0.22</YS>
+                  <YO>0</YO>
+                </UDim2>
+                <UDim2 name="Size">
+                  <XS>0.16470589</XS>
+                  <XO>0</XO>
+                  <YS>0.56</YS>
+                  <YO>0</YO>
+                </UDim2>
+              </Properties>
+              <Item class="UICorner" referent="105">
+                <Properties>
+                  <string name="Name">UICorner</string>
+                  <UDim name="BottomLeftRadius">
+                    <S>0.5</S>
+                    <O>0</O>
+                  </UDim>
+                  <UDim name="BottomRightRadius">
+                    <S>0.5</S>
+                    <O>0</O>
+                  </UDim>
+                  <UDim name="TopLeftRadius">
+                    <S>0.5</S>
+                    <O>0</O>
+                  </UDim>
+                  <UDim name="TopRightRadius">
+                    <S>0.5</S>
+                    <O>0</O>
+                  </UDim>
+                </Properties>
+              </Item>
+              <Item class="UIGradient" referent="106">
+                <Properties>
+                  <string name="Name">UIGradient</string>
+                  <ColorSequence name="Color">0 0.42941177 0.89705884 0.69411767 0 1 0.17941177 0.64705884 0.44411767 0 </ColorSequence>
+                  <float name="Rotation">45</float>
+                  <NumberSequence name="Transparency">0 0 0 1 0 0 </NumberSequence>
+                </Properties>
+              </Item>
+              <Item class="UIStroke" referent="107">
+                <Properties>
+                  <string name="Name">UIStroke</string>
+                  <token name="ApplyStrokeMode">1</token>
+                  <Color3 name="Color">
+                    <R>1</R>
+                    <G>1</G>
+                    <B>1</B>
+                  </Color3>
+                  <float name="Thickness">1</float>
+                  <float name="Transparency">0.8</float>
+                </Properties>
+              </Item>
+              <Item class="TextLabel" referent="108">
+                <Properties>
+                  <string name="Name">Emoji</string>
+                  <Color3 name="BackgroundColor3">
+                    <R>1</R>
+                    <G>1</G>
+                    <B>1</B>
+                  </Color3>
+                  <float name="BackgroundTransparency">1</float>
+                  <int name="BorderSizePixel">0</int>
+                  <Font name="FontFace">
+                    <Family>
+                      <url>rbxasset://fonts/families/Montserrat.json</url>
+                    </Family>
+                    <Weight>400</Weight>
+                    <Style>Normal</Style>
+                  </Font>
+                  <UDim2 name="Position">
+                    <XS>0.25</XS>
+                    <XO>0</XO>
+                    <YS>0.21428572</YS>
+                    <YO>0</YO>
+                  </UDim2>
+                  <UDim2 name="Size">
+                    <XS>0.5</XS>
+                    <XO>0</XO>
+                    <YS>0.5714286</YS>
+                    <YO>0</YO>
+                  </UDim2>
+                  <string name="Text">🎁</string>
+                  <Color3 name="TextColor3">
+                    <R>1</R>
+                    <G>1</G>
+                    <B>1</B>
+                  </Color3>
+                  <bool name="TextScaled">true</bool>
+                  <float name="TextSize">32</float>
+                  <token name="TextXAlignment">2</token>
+                  <token name="TextYAlignment">1</token>
+                </Properties>
+              </Item>
+              <Item class="ImageLabel" referent="109">
+                <Properties>
+                  <string name="Name">Avatar</string>
+                  <Color3 name="BackgroundColor3">
+                    <R>1</R>
+                    <G>1</G>
+                    <B>1</B>
+                  </Color3>
+                  <float name="BackgroundTransparency">1</float>
+                  <int name="BorderSizePixel">0</int>
+                  <Content name="ImageContent">
+                    <null>
+                    </null>
+                  </Content>
+                  <UDim2 name="Position">
+                    <XS>0</XS>
+                    <XO>0</XO>
+                    <YS>0</YS>
+                    <YO>0</YO>
+                  </UDim2>
+                  <UDim2 name="Size">
+                    <XS>1</XS>
+                    <XO>0</XO>
+                    <YS>1</YS>
+                    <YO>0</YO>
+                  </UDim2>
+                  <bool name="Visible">false</bool>
+                  <int name="ZIndex">2</int>
+                </Properties>
+                <Item class="UICorner" referent="110">
+                  <Properties>
+                    <string name="Name">UICorner</string>
+                    <UDim name="BottomLeftRadius">
+                      <S>0.5</S>
+                      <O>0</O>
+                    </UDim>
+                    <UDim name="BottomRightRadius">
+                      <S>0.5</S>
+                      <O>0</O>
+                    </UDim>
+                    <UDim name="TopLeftRadius">
+                      <S>0.5</S>
+                      <O>0</O>
+                    </UDim>
+                    <UDim name="TopRightRadius">
+                      <S>0.5</S>
+                      <O>0</O>
+                    </UDim>
+                  </Properties>
+                </Item>
+              </Item>
+            </Item>
+            <Item class="Frame" referent="111">
+              <Properties>
+                <string name="Name">Body</string>
+                <Color3 name="BackgroundColor3">
+                  <R>1</R>
+                  <G>1</G>
+                  <B>1</B>
+                </Color3>
+                <float name="BackgroundTransparency">1</float>
+                <int name="BorderSizePixel">0</int>
+                <UDim2 name="Position">
+                  <XS>0.24705882</XS>
+                  <XO>0</XO>
+                  <YS>0</YS>
+                  <YO>0</YO>
+                </UDim2>
+                <UDim2 name="Size">
+                  <XS>0.7117647</XS>
+                  <XO>0</XO>
+                  <YS>1</YS>
+                  <YO>0</YO>
+                </UDim2>
+              </Properties>
+              <Item class="TextLabel" referent="112">
+                <Properties>
+                  <string name="Name">Title</string>
+                  <Color3 name="BackgroundColor3">
+                    <R>1</R>
+                    <G>1</G>
+                    <B>1</B>
+                  </Color3>
+                  <float name="BackgroundTransparency">1</float>
+                  <int name="BorderSizePixel">0</int>
+                  <Font name="FontFace">
+                    <Family>
+                      <url>rbxasset://fonts/families/Montserrat.json</url>
+                    </Family>
+                    <Weight>700</Weight>
+                    <Style>Normal</Style>
+                  </Font>
+                  <UDim2 name="Position">
+                    <XS>0</XS>
+                    <XO>0</XO>
+                    <YS>0.14</YS>
+                    <YO>0</YO>
+                  </UDim2>
+                  <bool name="RichText">true</bool>
+                  <UDim2 name="Size">
+                    <XS>1</XS>
+                    <XO>0</XO>
+                    <YS>0.14</YS>
+                    <YO>0</YO>
+                  </UDim2>
+                  <string name="Text">&lt;font color="#FFFFFF"&gt;Donatur&lt;/font&gt; &lt;font color="#8C95A6"&gt;baru saja bagi-bagi&lt;/font&gt;</string>
+                  <Color3 name="TextColor3">
+                    <R>0.9607843</R>
+                    <G>0.9647059</G>
+                    <B>0.972549</B>
+                  </Color3>
+                  <bool name="TextScaled">true</bool>
+                  <float name="TextSize">14</float>
+                  <token name="TextXAlignment">0</token>
+                  <token name="TextYAlignment">1</token>
+                </Properties>
+              </Item>
+              <Item class="TextLabel" referent="113">
+                <Properties>
+                  <string name="Name">Amount</string>
+                  <Color3 name="BackgroundColor3">
+                    <R>1</R>
+                    <G>1</G>
+                    <B>1</B>
+                  </Color3>
+                  <float name="BackgroundTransparency">1</float>
+                  <int name="BorderSizePixel">0</int>
+                  <Font name="FontFace">
+                    <Family>
+                      <url>rbxasset://fonts/families/Montserrat.json</url>
+                    </Family>
+                    <Weight>800</Weight>
+                    <Style>Normal</Style>
+                  </Font>
+                  <UDim2 name="Position">
+                    <XS>0</XS>
+                    <XO>0</XO>
+                    <YS>0.32</YS>
+                    <YO>0</YO>
+                  </UDim2>
+                  <UDim2 name="Size">
+                    <XS>0.7107438</XS>
+                    <XO>0</XO>
+                    <YS>0.24</YS>
+                    <YO>0</YO>
+                  </UDim2>
+                  <string name="Text">Rp 0</string>
+                  <Color3 name="TextColor3">
+                    <R>0.23921569</R>
+                    <G>0.8627451</G>
+                    <B>0.5921569</B>
+                  </Color3>
+                  <bool name="TextScaled">true</bool>
+                  <float name="TextSize">24</float>
+                  <token name="TextXAlignment">0</token>
+                  <token name="TextYAlignment">1</token>
+                </Properties>
+              </Item>
+              <Item class="Frame" referent="114">
+                <Properties>
+                  <string name="Name">Tag</string>
+                  <Color3 name="BackgroundColor3">
+                    <R>0.23921569</R>
+                    <G>0.8627451</G>
+                    <B>0.5921569</B>
+                  </Color3>
+                  <float name="BackgroundTransparency">0.82</float>
+                  <int name="BorderSizePixel">0</int>
+                  <UDim2 name="Position">
+                    <XS>0.74380165</XS>
+                    <XO>0</XO>
+                    <YS>0.36</YS>
+                    <YO>0</YO>
+                  </UDim2>
+                  <UDim2 name="Size">
+                    <XS>0.25619835</XS>
+                    <XO>0</XO>
+                    <YS>0.18</YS>
+                    <YO>0</YO>
+                  </UDim2>
+                  <bool name="Visible">false</bool>
+                </Properties>
+                <Item class="UICorner" referent="115">
+                  <Properties>
+                    <string name="Name">UICorner</string>
+                    <UDim name="BottomLeftRadius">
+                      <S>0.33333334</S>
+                      <O>0</O>
+                    </UDim>
+                    <UDim name="BottomRightRadius">
+                      <S>0.33333334</S>
+                      <O>0</O>
+                    </UDim>
+                    <UDim name="TopLeftRadius">
+                      <S>0.33333334</S>
+                      <O>0</O>
+                    </UDim>
+                    <UDim name="TopRightRadius">
+                      <S>0.33333334</S>
+                      <O>0</O>
+                    </UDim>
+                  </Properties>
+                </Item>
+                <Item class="UIStroke" referent="116">
+                  <Properties>
+                    <string name="Name">UIStroke</string>
+                    <token name="ApplyStrokeMode">1</token>
+                    <Color3 name="Color">
+                      <R>0.23921569</R>
+                      <G>0.8627451</G>
+                      <B>0.5921569</B>
+                    </Color3>
+                    <float name="Thickness">1</float>
+                    <float name="Transparency">0.6</float>
+                  </Properties>
+                </Item>
+                <Item class="TextLabel" referent="117">
+                  <Properties>
+                    <string name="Name">Label</string>
+                    <Color3 name="BackgroundColor3">
+                      <R>1</R>
+                      <G>1</G>
+                      <B>1</B>
+                    </Color3>
+                    <float name="BackgroundTransparency">1</float>
+                    <int name="BorderSizePixel">0</int>
+                    <Font name="FontFace">
+                      <Family>
+                        <url>rbxasset://fonts/families/Montserrat.json</url>
+                      </Family>
+                      <Weight>800</Weight>
+                      <Style>Normal</Style>
+                    </Font>
+                    <UDim2 name="Position">
+                      <XS>0</XS>
+                      <XO>0</XO>
+                      <YS>0.22222222</YS>
+                      <YO>0</YO>
+                    </UDim2>
+                    <UDim2 name="Size">
+                      <XS>1</XS>
+                      <XO>0</XO>
+                      <YS>0.5555556</YS>
+                      <YO>0</YO>
+                    </UDim2>
+                    <string name="Text"></string>
+                    <Color3 name="TextColor3">
+                      <R>0.23921569</R>
+                      <G>0.8627451</G>
+                      <B>0.5921569</B>
+                    </Color3>
+                    <bool name="TextScaled">true</bool>
+                    <float name="TextSize">10</float>
+                    <token name="TextXAlignment">2</token>
+                    <token name="TextYAlignment">1</token>
+                  </Properties>
+                </Item>
+              </Item>
+              <Item class="TextLabel" referent="118">
+                <Properties>
+                  <string name="Name">Message</string>
+                  <Color3 name="BackgroundColor3">
+                    <R>1</R>
+                    <G>1</G>
+                    <B>1</B>
+                  </Color3>
+                  <float name="BackgroundTransparency">1</float>
+                  <int name="BorderSizePixel">0</int>
+                  <Font name="FontFace">
+                    <Family>
+                      <url>rbxasset://fonts/families/Montserrat.json</url>
+                    </Family>
+                    <Weight>500</Weight>
+                    <Style>Normal</Style>
+                  </Font>
+                  <UDim2 name="Position">
+                    <XS>0</XS>
+                    <XO>0</XO>
+                    <YS>0.62</YS>
+                    <YO>0</YO>
+                  </UDim2>
+                  <UDim2 name="Size">
+                    <XS>1</XS>
+                    <XO>0</XO>
+                    <YS>0.26</YS>
+                    <YO>0</YO>
+                  </UDim2>
+                  <string name="Text"></string>
+                  <Color3 name="TextColor3">
+                    <R>0.54901963</R>
+                    <G>0.58431375</G>
+                    <B>0.6509804</B>
+                  </Color3>
+                  <bool name="TextScaled">true</bool>
+                  <float name="TextSize">26</float>
+                  <bool name="TextWrapped">true</bool>
+                  <token name="TextXAlignment">0</token>
+                  <token name="TextYAlignment">0</token>
+                </Properties>
+                <Item class="UITextSizeConstraint" referent="119">
+                  <Properties>
+                    <string name="Name">UITextSizeConstraint</string>
+                    <int name="MaxTextSize">12</int>
+                    <int name="MinTextSize">1</int>
+                  </Properties>
+                </Item>
+              </Item>
+            </Item>
+            <Item class="Frame" referent="120">
+              <Properties>
+                <string name="Name">Progress</string>
+                <Color3 name="BackgroundColor3">
+                  <R>1</R>
+                  <G>1</G>
+                  <B>1</B>
+                </Color3>
+                <float name="BackgroundTransparency">0.9</float>
+                <int name="BorderSizePixel">0</int>
+                <UDim2 name="Position">
+                  <XS>0.047058824</XS>
+                  <XO>0</XO>
+                  <YS>0.92</YS>
+                  <YO>0</YO>
+                </UDim2>
+                <UDim2 name="Size">
+                  <XS>0.90588236</XS>
+                  <XO>0</XO>
+                  <YS>0.03</YS>
+                  <YO>0</YO>
+                </UDim2>
+              </Properties>
+              <Item class="UICorner" referent="121">
+                <Properties>
+                  <string name="Name">UICorner</string>
+                  <UDim name="BottomLeftRadius">
+                    <S>0.5</S>
+                    <O>0</O>
+                  </UDim>
+                  <UDim name="BottomRightRadius">
+                    <S>0.5</S>
+                    <O>0</O>
+                  </UDim>
+                  <UDim name="TopLeftRadius">
+                    <S>0.5</S>
+                    <O>0</O>
+                  </UDim>
+                  <UDim name="TopRightRadius">
+                    <S>0.5</S>
+                    <O>0</O>
+                  </UDim>
+                </Properties>
+              </Item>
+              <Item class="Frame" referent="122">
+                <Properties>
+                  <string name="Name">Fill</string>
+                  <Color3 name="BackgroundColor3">
+                    <R>0.23921569</R>
+                    <G>0.8627451</G>
+                    <B>0.5921569</B>
+                  </Color3>
+                  <float name="BackgroundTransparency">0</float>
+                  <int name="BorderSizePixel">0</int>
+                  <UDim2 name="Position">
+                    <XS>0</XS>
+                    <XO>0</XO>
+                    <YS>0</YS>
+                    <YO>0</YO>
+                  </UDim2>
+                  <UDim2 name="Size">
+                    <XS>1</XS>
+                    <XO>0</XO>
+                    <YS>1</YS>
+                    <YO>0</YO>
+                  </UDim2>
+                </Properties>
+                <Item class="UICorner" referent="123">
+                  <Properties>
+                    <string name="Name">UICorner</string>
+                    <UDim name="BottomLeftRadius">
+                      <S>0.5</S>
+                      <O>0</O>
+                    </UDim>
+                    <UDim name="BottomRightRadius">
+                      <S>0.5</S>
+                      <O>0</O>
+                    </UDim>
+                    <UDim name="TopLeftRadius">
+                      <S>0.5</S>
+                      <O>0</O>
+                    </UDim>
+                    <UDim name="TopRightRadius">
+                      <S>0.5</S>
+                      <O>0</O>
+                    </UDim>
+                  </Properties>
+                </Item>
+              </Item>
+            </Item>
+          </Item>
+        </Item>
+      </Item>
+    </Item>
+    <Item class="LocalScript" referent="124">
+      <Properties>
+        <string name="Name">DonateAlertsClient</string>
+        <string name="Source"><![CDATA[--[[
+	DonateAlertsClient (LocalScript inside StarterGui.DonateAlertsGui)
+
+	Menampilkan notifikasi donasi yang dikirim server (DonateAlertsServer):
+	antrean, animasi masuk/keluar, warna per tingkat donasi dari
+	ReplicatedStorage.DonateAlerts.Config, suara, dan foto avatar donatur.
+	Juga memasang perintah chat tes (/testdonate) untuk admin.
+]]
+
+local Players = game:GetService("Players")
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+local TextChatService = game:GetService("TextChatService")
+local TweenService = game:GetService("TweenService")
+
+local player = Players.LocalPlayer
+local gui = script.Parent
+
+local shared = ReplicatedStorage:WaitForChild("DonateAlerts")
+local Config = require(shared:WaitForChild("Config"))
+local Settings = Config.Settings
+local remotes = shared:WaitForChild("Remotes")
+local alertRemote = remotes:WaitForChild("DonateAlert")
+local testRemote = remotes:WaitForChild("TestAlert")
+
+local stack = gui:WaitForChild("Stack")
+local template = stack:WaitForChild("Template")
+local layout = stack:FindFirstChildOfClass("UIListLayout")
+
+local COLORS = {
+	White = Color3.new(1, 1, 1),
+	Black = Color3.new(0, 0, 0),
+	Muted = Color3.fromRGB(140, 149, 166),
+}
+
+local ENTER_TIME = 0.45
+local LEAVE_TIME = 0.35
+local SHIFT_TIME = 0.3
+local RUSH_FACTOR = 0.55 -- lama tampil dikalikan ini kalau antrean panjang
+local MARGIN = 8 -- jarak stack ke tepi layar (pixel)
+local SIDE_MARGIN = 12
+
+-- Kartu contoh dari Studio tidak dipakai saat game berjalan.
+for _, child in stack:GetChildren() do
+	if string.sub(child.Name, 1, 7) == "Sample_" then
+		child:Destroy()
+	end
+end
+
+---------------------------------------------------------------------------
+-- Posisi: stack dipindah ke Settings.Position
+---------------------------------------------------------------------------
+
+-- side: sisi layar tempat kartu meluncur masuk (0 = dari atas / bawah)
+local PLACEMENTS = {
+	TopCenter = { x = 0.5, top = true, side = 0 },
+	TopLeft = { x = 0, top = true, side = -1 },
+	TopRight = { x = 1, top = true, side = 1 },
+	BottomCenter = { x = 0.5, top = false, side = 0 },
+	BottomLeft = { x = 0, top = false, side = -1 },
+	BottomRight = { x = 1, top = false, side = 1 },
+}
+
+local placement = PLACEMENTS[Settings.Position]
+if not placement then
+	warn(`[DonateAlerts] Settings.Position "{tostring(Settings.Position)}" tidak dikenal, memakai TopCenter`)
+	placement = PLACEMENTS.TopCenter
+end
+
+local edgeY = if placement.top then 0 else 1
+stack.AnchorPoint = Vector2.new(placement.x, edgeY)
+stack.Position = UDim2.new(placement.x, placement.side * -SIDE_MARGIN, edgeY, if placement.top then MARGIN else -MARGIN)
+if layout then
+	layout.VerticalAlignment = if placement.top then Enum.VerticalAlignment.Top else Enum.VerticalAlignment.Bottom
+end
+
+-- Posisi kartu (dalam ukuran slot) saat belum / sudah tidak terlihat.
+local HIDDEN = if placement.side ~= 0
+	then UDim2.fromScale(placement.side * 1.3, 0)
+	else UDim2.fromScale(0, if placement.top then -1.6 else 1.6)
+-- Alert lama bergeser satu slot ke arah ini saat alert baru masuk; kebalikannya saat ada yang hilang.
+local INSERT_SHIFT = if placement.top then -1 else 1
+
+---------------------------------------------------------------------------
+-- Helpers
+---------------------------------------------------------------------------
+
+local function tween(instance, time, props, style, direction)
+	local t = TweenService:Create(
+		instance,
+		TweenInfo.new(time, style or Enum.EasingStyle.Quad, direction or Enum.EasingDirection.Out),
+		props
+	)
+	t:Play()
+	return t
+end
+
+local function escape(text)
+	return (text:gsub("&", "&amp;"):gsub("<", "&lt;"):gsub(">", "&gt;"))
+end
+
+local function hex(color)
+	return "#" .. color:ToHex()
+end
+
+-- 25000 -> "Rp 25.000"
+local function formatAmount(amount)
+	local digits = string.format("%.0f", math.floor(amount))
+	local parts = {}
+	while #digits > 3 do
+		table.insert(parts, 1, string.sub(digits, -3))
+		digits = string.sub(digits, 1, -4)
+	end
+	table.insert(parts, 1, digits)
+	local number = table.concat(parts, Settings.ThousandsSeparator)
+	if Settings.CurrencyPosition == "Suffix" then
+		return `{number} {Settings.Currency}`
+	end
+	return `{Settings.Currency} {number}`
+end
+
+local tiers = table.clone(Config.Tiers)
+table.sort(tiers, function(a, b)
+	return a.Min < b.Min
+end)
+
+local function tierFor(amount)
+	local found = tiers[1]
+	for _, tier in tiers do
+		if amount >= tier.Min then
+			found = tier
+		end
+	end
+	return found
+end
+
+local sounds = {}
+local function playSound(id)
+	if not Settings.SoundEnabled or not id or id == "" then
+		return
+	end
+	local sound = sounds[id]
+	if not sound then
+		sound = Instance.new("Sound")
+		sound.SoundId = id
+		sound.Volume = Settings.Volume
+		sound.Parent = gui
+		sounds[id] = sound
+	end
+	sound:Play()
+end
+
+---------------------------------------------------------------------------
+-- Satu notifikasi
+---------------------------------------------------------------------------
+
+local visible = {} -- alert yang sedang di layar, paling lama dulu
+local queue = {}
+local counter = 0
+local pump
+
+-- Pindahkan alert satu slot dari posisinya sekarang lalu geser kembali,
+-- supaya alert lain tidak "melompat" saat susunan list berubah.
+local function shift(entry, slots)
+	if entry.shiftTween then
+		entry.shiftTween:Cancel()
+	end
+	local position = entry.mover.Position
+	entry.mover.Position = UDim2.fromScale(position.X.Scale, position.Y.Scale + slots)
+	entry.shiftTween = tween(entry.mover, SHIFT_TIME, { Position = UDim2.new() })
+end
+
+local function dismiss(entry)
+	if entry.closing then
+		return
+	end
+	entry.closing = true
+
+	local leave = tween(entry.card, LEAVE_TIME, { Position = HIDDEN }, Enum.EasingStyle.Quad, Enum.EasingDirection.In)
+	leave.Completed:Once(function()
+		local index = table.find(visible, entry)
+		if index then
+			table.remove(visible, index)
+		end
+		entry.slot:Destroy()
+		if index then
+			for i = 1, index - 1 do
+				shift(visible[i], -INSERT_SHIFT)
+			end
+		end
+		pump()
+	end)
+end
+
+local function loadAvatar(entry, userId)
+	local ok, image = pcall(Players.GetUserThumbnailAsync, Players, userId, Enum.ThumbnailType.HeadShot, Enum.ThumbnailSize.Size100x100)
+	if ok and image ~= "" and entry.avatar.Parent then
+		entry.avatar.Image = image
+		entry.avatar.Visible = true
+		entry.emoji.Visible = false
+	end
+end
+
+local function show(alert)
+	counter += 1
+	local tier = tierFor(alert.amount)
+	local color = tier.Color
+
+	local slot = template:Clone()
+	slot.Name = "Alert"
+	-- Yang terbaru selalu paling dekat dengan tepi layar.
+	slot.LayoutOrder = if placement.top then -counter else counter
+	slot.Visible = true
+	local mover = slot:WaitForChild("Mover")
+	local card = mover:WaitForChild("Card")
+	local body = card:WaitForChild("Body")
+	local badge = card:WaitForChild("IconBadge")
+	local messageLabel = body:WaitForChild("Message")
+
+	local entry = {
+		slot = slot,
+		mover = mover,
+		card = card,
+		avatar = badge:WaitForChild("Avatar"),
+		emoji = badge:WaitForChild("Emoji"),
+	}
+
+	-- Warna sesuai tingkat donasi
+	card:FindFirstChildOfClass("UIStroke").Color = color
+	card:WaitForChild("Glow").BackgroundColor3 = color
+	badge:FindFirstChildOfClass("UIGradient").Color =
+		ColorSequence.new(color:Lerp(COLORS.White, 0.25), color:Lerp(COLORS.Black, 0.25))
+	entry.emoji.Text = tier.Emoji
+	local amountLabel = body:WaitForChild("Amount")
+	amountLabel.Text = formatAmount(alert.amount)
+	amountLabel.TextColor3 = color
+
+	local tag = body:WaitForChild("Tag")
+	local hasTag = tier.Tag ~= nil and tier.Tag ~= ""
+	tag.Visible = hasTag
+	if hasTag then
+		tag.BackgroundColor3 = color
+		tag:FindFirstChildOfClass("UIStroke").Color = color
+		local tagLabel = tag:WaitForChild("Label")
+		tagLabel.Text = tier.Tag
+		tagLabel.TextColor3 = color
+	end
+
+	-- Judul: "<nama> baru saja bagi-bagi" atau "<nama> bagi-bagi ke <target>"
+	local title = `<font color="{hex(COLORS.White)}">{escape(alert.donor)}</font> `
+	if alert.target ~= "" then
+		title ..= `<font color="{hex(COLORS.Muted)}">{escape(Settings.TargetHeadline)}</font> <font color="{hex(color)}">{escape(alert.target)}</font>`
+	else
+		title ..= `<font color="{hex(COLORS.Muted)}">{escape(Settings.Headline)}</font>`
+	end
+	body:WaitForChild("Title").Text = title
+
+	-- Pesan (maksimal 2 baris); tanpa pesan, teks digeser ke tengah kartu.
+	local hasMessage = alert.message ~= ""
+	messageLabel.Visible = hasMessage
+	messageLabel.Text = `“{alert.message}”`
+	body.Position = UDim2.fromScale(body.Position.X.Scale, if hasMessage then 0 else 0.09)
+	local sizeLimit = messageLabel:FindFirstChildOfClass("UITextSizeConstraint")
+	local function fitMessage()
+		local height = card.AbsoluteSize.Y
+		if sizeLimit and height > 0 then
+			sizeLimit.MaxTextSize = math.max(6, math.floor(height * 12 / 100 + 0.5))
+		end
+	end
+	fitMessage()
+	card:GetPropertyChangedSignal("AbsoluteSize"):Connect(fitMessage)
+
+	-- Alert yang sudah ada bergeser satu slot; alert baru meluncur masuk.
+	for _, other in visible do
+		shift(other, INSERT_SHIFT)
+	end
+	table.insert(visible, entry)
+
+	card.Position = HIDDEN
+	slot.Parent = stack
+	tween(card, ENTER_TIME, { Position = UDim2.new() }, Enum.EasingStyle.Back, Enum.EasingDirection.Out)
+
+	local duration = tier.Duration or 5
+	if #queue >= Settings.RushQueueAt then
+		duration *= RUSH_FACTOR
+	end
+	local fill = card:WaitForChild("Progress"):WaitForChild("Fill")
+	fill.Size = UDim2.fromScale(1, 1)
+	fill.BackgroundColor3 = color
+	tween(fill, duration, { Size = UDim2.fromScale(0, 1) }, Enum.EasingStyle.Linear)
+	task.delay(duration, dismiss, entry)
+
+	playSound(tier.Sound or Settings.Sound)
+	if alert.userId then
+		task.spawn(loadAvatar, entry, alert.userId)
+	end
+end
+
+function pump()
+	while #visible < Settings.MaxVisible and #queue > 0 do
+		show(table.remove(queue, 1))
+	end
+end
+
+---------------------------------------------------------------------------
+-- Alert dari server
+---------------------------------------------------------------------------
+
+local function text(value)
+	return if typeof(value) == "string" then value else ""
+end
+
+alertRemote.OnClientEvent:Connect(function(data)
+	if typeof(data) ~= "table" or typeof(data.amount) ~= "number" or data.amount ~= data.amount then
+		return
+	end
+	local donor = text(data.donor)
+	local alert = {
+		donor = if donor ~= "" then donor else Settings.AnonymousName,
+		amount = math.max(0, data.amount),
+		message = text(data.message),
+		target = text(data.target),
+		userId = if typeof(data.userId) == "number" and data.userId > 0 then data.userId else nil,
+	}
+	if #queue >= Settings.MaxQueue then
+		table.remove(queue, 1)
+	end
+	table.insert(queue, alert)
+	pump()
+end)
+
+---------------------------------------------------------------------------
+-- Perintah chat tes: "/testdonate 25000 Semangat!" (server memeriksa admin)
+---------------------------------------------------------------------------
+
+local function runTest(message)
+	local rest = string.gsub(message, "^%s*%S+%s*", "")
+	local amount, note = string.match(rest, "^(%d+)%s*(.*)$")
+	testRemote:FireServer(tonumber(amount), note or rest)
+end
+
+local commandReady = false
+local function setupTestCommand()
+	local alias = Settings.TestCommand
+	if commandReady or not alias or alias == "" then
+		return
+	end
+	commandReady = true
+
+	if TextChatService.ChatVersion == Enum.ChatVersion.TextChatService then
+		local command = Instance.new("TextChatCommand")
+		command.Name = "DonateAlertsTest"
+		command.PrimaryAlias = alias
+		command.Triggered:Connect(function(_, message)
+			runTest(message)
+		end)
+		command.Parent = TextChatService
+	else
+		player.Chatted:Connect(function(message)
+			local first = string.match(message, "^%s*(%S+)")
+			if first and string.lower(first) == string.lower(alias) then
+				runTest(message)
+			end
+		end)
+	end
+end
+
+-- Server menandai admin lewat attribute.
+if player:GetAttribute("DonateAdmin") then
+	setupTestCommand()
+end
+player:GetAttributeChangedSignal("DonateAdmin"):Connect(function()
+	if player:GetAttribute("DonateAdmin") then
+		setupTestCommand()
+	end
+end)
+]]></string>
+      </Properties>
+    </Item>
+  </Item>
+</roblox>

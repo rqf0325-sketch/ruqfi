@@ -50,10 +50,15 @@ local env = setmetatable({
 	NumberSequenceKeypoint = roblox.NumberSequenceKeypoint,
 }, { __index = getfenv(1) })
 
-local GUI_SOURCE = "src/gui/VehicleSpawnerGui.luau"
-local gui = luau.load(fs.readFile(GUI_SOURCE), { debugName = GUI_SOURCE, environment = env })()
-gui.Parent = nil
-script("LocalScript", "VehicleSpawnerClient", "src/client/VehicleSpawnerClient.luau", gui)
+-- Runs a GUI builder from src/gui and attaches its LocalScript.
+local function buildGui(source, clientName, clientSource)
+	local gui = luau.load(fs.readFile(source), { debugName = source, environment = env })()
+	gui.Parent = nil
+	script("LocalScript", clientName, clientSource, gui)
+	return gui
+end
+
+local gui = buildGui("src/gui/VehicleSpawnerGui.luau", "VehicleSpawnerClient", "src/client/VehicleSpawnerClient.luau")
 
 fs.writeDir("StarterGui")
 write("StarterGui/VehicleSpawnerGui.rbxmx", gui)
@@ -79,8 +84,32 @@ fs.writeDir("ServerScriptService")
 write("ServerScriptService/VehicleSpawnerServer.rbxmx",
 	script("Script", "VehicleSpawnerServer", "src/server/VehicleSpawnerServer.luau", nil))
 
+-- Donate alerts
+local donateGui = buildGui("src/gui/DonateAlertsGui.luau", "DonateAlertsClient", "src/client/DonateAlertsClient.luau")
+write("StarterGui/DonateAlertsGui.rbxmx", donateGui)
+
+local donateShared = Instance.new("Folder")
+donateShared.Name = "DonateAlerts"
+script("ModuleScript", "Config", "src/shared/DonateConfig.luau", donateShared)
+local donateRemotes = Instance.new("Folder")
+donateRemotes.Name = "Remotes"
+donateRemotes.Parent = donateShared
+for _, name in { "DonateAlert", "TestAlert" } do
+	local remote = Instance.new("RemoteEvent")
+	remote.Name = name
+	remote.Parent = donateRemotes
+end
+write("ReplicatedStorage/DonateAlerts.rbxmx", donateShared)
+
+local donateServer = script("Script", "DonateAlertsServer", "src/server/DonateAlertsServer.luau", nil)
+local notify = Instance.new("BindableEvent")
+notify.Name = "Notify"
+notify.Parent = donateServer
+write("ServerScriptService/DonateAlertsServer.rbxmx", donateServer)
+
 if table.find(process.args, "--tree") then
 	fs.writeDir("build")
 	fs.writeFile("build/tree.json", serde.encode("json", dump(gui), true))
-	print("Wrote build/tree.json")
+	fs.writeFile("build/donate-tree.json", serde.encode("json", dump(donateGui), true))
+	print("Wrote build/tree.json, build/donate-tree.json")
 end

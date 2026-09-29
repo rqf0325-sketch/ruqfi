@@ -18,6 +18,9 @@ const SHOTS = [
 	{ tree: "build/tree.json", file: "docs/preview-desktop.png", width: 1280, height: 720 },
 	{ tree: "build/tree.json", file: "docs/preview-phone.png", width: 844, height: 390 },
 	{ tree: "build/touch-tree.json", file: "docs/preview-touch.png", width: 844, height: 390 },
+	// build/donate-tree.json: same command as tree.json. topInset = Roblox's top bar (TopbarSafeInsets).
+	{ tree: "build/donate-tree.json", file: "docs/preview-donate.png", width: 1280, height: 720, topInset: 44 },
+	{ tree: "build/donate-tree.json", file: "docs/preview-donate-phone.png", width: 844, height: 390, topInset: 44 },
 ];
 
 const fontFaces = [400, 500, 600, 700, 800]
@@ -28,7 +31,7 @@ const fontFaces = [400, 500, 600, 700, 800]
 	.join("\n");
 
 // Runs in the page.
-function renderGui(tree) {
+function renderGui({ tree, topInset }) {
 	const GUI = new Set(["Frame", "TextLabel", "TextButton", "TextBox", "ImageLabel", "ImageButton", "ScrollingFrame"]);
 	const kids = (n) => (Array.isArray(n.children) ? n.children : []);
 	const kid = (n, cls) => kids(n).find((c) => c.class === cls);
@@ -63,6 +66,11 @@ function renderGui(tree) {
 	function sizeOf(n, pw, ph) {
 		const s = n.props.Size;
 		let w = s.xs * pw + s.xo, h = s.ys * ph + s.yo;
+		const limit = kid(n, "UISizeConstraint");
+		if (limit) {
+			w = Math.min(Math.max(w, limit.props.MinSize.x), limit.props.MaxSize.x);
+			h = Math.min(Math.max(h, limit.props.MinSize.y), limit.props.MaxSize.y);
+		}
 		const ar = kid(n, "UIAspectRatioConstraint");
 		if (ar) {
 			const r = ar.props.AspectRatio;
@@ -120,14 +128,18 @@ function renderGui(tree) {
 				});
 				const span = document.createElement("span");
 				Object.assign(span.style, {
-					whiteSpace: "pre", lineHeight: "1", fontFamily: "Montserrat, 'Noto Color Emoji'",
+					whiteSpace: p.TextWrapped ? "normal" : "pre", lineHeight: "1", fontFamily: "Montserrat, 'Noto Color Emoji'",
 					fontWeight: String(p.FontFace.weight), color: rgba(color, p.TextTransparency ?? 0),
 				});
 				if (p.RichText) span.innerHTML = text.replace(/<font color="(#[0-9A-Fa-f]{6})">/g, '<span style="color:$1">').replace(/<\/font>/g, "</span>");
 				else span.textContent = text;
 				box.appendChild(span);
 				el.appendChild(box);
-				texts.push({ span, cw, ch, size: p.TextScaled ? null : p.TextSize });
+				if (p.TextWrapped) span.style.width = `${cw}px`;
+				texts.push({
+					span, cw, ch, size: p.TextScaled ? null : p.TextSize, wrap: !!p.TextWrapped,
+					max: kid(n, "UITextSizeConstraint")?.props.MaxTextSize ?? Infinity,
+				});
 			}
 		}
 
@@ -167,15 +179,19 @@ function renderGui(tree) {
 	}
 
 	const screen = document.getElementById("screen");
-	render({ ...tree, props: { ...tree.props, Size: { xs: 1, xo: 0, ys: 1, yo: 0 }, Position: { xs: 0, xo: 0, ys: 0, yo: 0 }, AnchorPoint: { x: 0, y: 0 }, BackgroundTransparency: 1 } },
+	render({ ...tree, props: { ...tree.props, Size: { xs: 1, xo: 0, ys: 1, yo: -topInset }, Position: { xs: 0, xo: 0, ys: 0, yo: topInset }, AnchorPoint: { x: 0, y: 0 }, BackgroundTransparency: 1 } },
 		screen, screen.clientWidth, screen.clientHeight);
 
-	// TextScaled: largest size that fits the text box on one line.
+	// TextScaled: largest size that fits the text box (one line, or wrapped inside the box).
 	for (const t of texts) {
-		let size = t.size ?? t.ch;
+		let size = Math.min(t.size ?? t.ch, t.max);
 		t.span.style.fontSize = `${size}px`;
 		if (t.size == null) {
-			while (size > 1 && t.span.getBoundingClientRect().width > t.cw + 0.5) {
+			const overflows = () => {
+				const r = t.span.getBoundingClientRect();
+				return t.wrap ? r.height > t.ch + 0.5 : r.width > t.cw + 0.5;
+			};
+			while (size > 1 && overflows()) {
 				size -= 0.25;
 				t.span.style.fontSize = `${size}px`;
 			}
@@ -208,7 +224,7 @@ html,body{margin:0;height:100%;overflow:hidden}
 			await page.close();
 			continue;
 		}
-		await page.evaluate(renderGui, readTree(shot.tree));
+		await page.evaluate(renderGui, { tree: readTree(shot.tree), topInset: shot.topInset ?? 0 });
 		await page.screenshot({ path: path.join(ROOT, shot.file) });
 		console.log(`Wrote ${shot.file}`);
 		await page.close();

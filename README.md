@@ -11,6 +11,8 @@ Menu spawn kendaraan untuk Roblox (GUI + sistem) plus motor **HD Road Glide ST C
 ![Kontrol motor di HP](docs/preview-touch.png)
 </details>
 
+Repo ini juga berisi **Donate Alerts**, notifikasi donasi ala Saweria / Bagi-Bagi / SocialBuzz ([lihat di bawah](#donate-alerts-notifikasi-donasi)).
+
 > Gambar di atas adalah render preview. Di dalam game, kartu dan panel detail menampilkan **model 3D motornya** (panel detail berputar pelan). Ikon 🏍️ hanya muncul kalau modelnya belum ada.
 
 ## Cara pasang
@@ -93,9 +95,75 @@ Model aslinya punya beberapa masalah yang membuatnya tidak bisa dikendarai norma
 - Pemberi GUI lampu, klakson, dan remote radio yang error diperbaiki atau dibuang.
 - Weld chassis dipindah dari JointsService (usang) ke folder `Welds` di dalam motor.
 
+## Donate Alerts (notifikasi donasi)
+
+Notifikasi donasi yang muncul di layar semua pemain: nama donatur, jumlah (default **Rupiah**), pesan, foto avatar (kalau ada), dan bar hitung mundur. Warna, emoji, label, dan lama tampilnya berbeda per tingkat donasi (Rp 10.000, 50.000, 100.000, 500.000 ke atas). Kalau banyak donasi masuk sekaligus, kartunya mengantre dan tampil bertumpuk.
+
+![Donate Alerts](docs/preview-donate.png)
+
+<details>
+<summary>Tampilan di HP</summary>
+
+![Donate Alerts di HP](docs/preview-donate-phone.png)
+</details>
+
+### Cara pasang
+
+Sama seperti garasi: klik kanan service tujuan di Roblox Studio, pilih **Insert from File...**.
+
+| File | Klik kanan di |
+|---|---|
+| `StarterGui/DonateAlertsGui.rbxmx` | **StarterGui** |
+| `ReplicatedStorage/DonateAlerts.rbxmx` | **ReplicatedStorage** |
+| `ServerScriptService/DonateAlertsServer.rbxmx` | **ServerScriptService** |
+
+```
+StarterGui/DonateAlertsGui              (kartu contoh + LocalScript DonateAlertsClient)
+ReplicatedStorage/DonateAlerts          (Config, Remotes)
+ServerScriptService/DonateAlertsServer  (+ BindableEvent Notify)
+```
+
+Coba dulu: jalankan game di Studio, buka chat, lalu ketik `/testdonate 25000 Semangat terus!`. Di game yang sudah dipublish, perintah ini hanya untuk pemilik game dan UserId di `Settings.Admins`.
+
+### Mengirim donasi
+
+**Dari script server lain** (misalnya setelah pembelian Developer Product):
+
+```lua
+local notify = game.ServerScriptService.DonateAlertsServer.Notify
+notify:Fire({ donor = "Budi", amount = 25000, message = "Semangat!", target = "RuqFi", userId = 1234 })
+```
+
+Hanya `amount` yang wajib. `donor` kosong menjadi "Anonim", `target` mengubah teksnya menjadi "Budi bagi-bagi ke RuqFi", dan `userId` mengganti emoji dengan foto avatar.
+
+**Dari backend luar** lewat [Open Cloud Messaging Service](https://create.roblox.com/docs/cloud/reference/features/messaging-service). Game berlangganan topic `Settings.MessagingTopic` (default `DonateAlerts`), jadi cukup publish JSON yang sama ke topic itu:
+
+```sh
+curl -X POST "https://apis.roblox.com/messaging-service/v1/universes/UNIVERSE_ID/topics/DonateAlerts" \
+  -H "x-api-key: $ROBLOX_API_KEY" -H "Content-Type: application/json" \
+  -d '{"message": "{\"donor\":\"Budi\",\"amount\":25000,\"message\":\"Semangat!\"}"}'
+```
+
+API key dibuat di Creator Hub dengan izin **Messaging Service → Publish** untuk game-mu.
+
+Roblox tidak bisa menerima webhook langsung, jadi untuk terhubung ke Saweria, Bagi-Bagi, atau SocialBuzz kamu butuh backend kecil sendiri yang menerima kabar donasi dari platform itu lalu memanggil perintah di atas. **Backend itu belum ada di repo ini.** Simpan API key hanya di backend (jangan di dalam game), dan pastikan backend memverifikasi bahwa donasinya benar-benar dibayar sebelum mem-publish, karena siapa pun yang bisa publish ke topic itu bisa memunculkan notifikasi.
+
+### Pengaturan
+
+Semuanya ada di `ReplicatedStorage > DonateAlerts > Config`:
+
+- `Currency`, `CurrencyPosition`, `ThousandsSeparator`: ganti ke `"Robux"`, `"Suffix"`, `","` kalau mau memakai Robux.
+- `Headline`, `TargetHeadline`, `AnonymousName`: teks pada kartu.
+- `Position`: `TopCenter`, `TopLeft`, `TopRight`, `BottomCenter`, `BottomLeft`, atau `BottomRight`.
+- `MaxVisible`, `MaxQueue`, `RushQueueAt`: berapa kartu tampil bersamaan, panjang antrean, dan kapan kartu mulai tampil lebih singkat.
+- `Sound`, `Volume`, `SoundEnabled`: suara notifikasi. Ganti dengan `rbxassetid://` milikmu.
+- `Tiers`: batas jumlah, emoji, warna, label, lama tampil, dan suara tiap tingkat.
+- `FilterText`, `FilterUserId`: nama dan pesan donatur difilter Roblox sebelum tampil ke pemain lain (atas nama pemilik game; untuk game milik grup isi `FilterUserId`).
+
 ## Catatan
 
 - Sistem ini belum dicoba langsung di Roblox Studio. Semua script sudah lolos compile Luau dan linter (selene), dan semua path objek yang dipakai script sudah dicek ada di file model. Tetap coba dulu di Studio (Play) sebelum dipublish.
+- Donate Alerts juga belum dicoba di Studio (animasi, suara, perintah chat, dan MessagingService belum pernah berjalan). Yang sudah dicek: semua script lolos compile Luau, semua path objek yang dipakai client ada di file model, dan fungsi format rupiah, pemilihan tingkat, serta pembersih teks sudah dites di Lune. Belum dicek dengan selene. Suara bawaan `Sound` hanya contoh, ganti dengan ID audio milikmu.
 - Statistik di panel detail (Top Speed, dan lain-lain) hanya tampilan dan diisi manual di Config. Performa motor asli diatur di `Tuner` di dalam model motornya.
 - Kalau motor muncul menghadap arah yang salah, ubah `SpawnRotation` di Config.
 
@@ -104,10 +172,10 @@ Model aslinya punya beberapa masalah yang membuatnya tidak bisa dikendarai norma
 File-file di atas dibuat dari `src/` dan `vehicles/original/` menggunakan [Lune](https://github.com/lune-org/lune):
 
 ```sh
-lune run tools/build.luau                # GUI, Config/Remotes, script server
+lune run tools/build.luau                # GUI, Config/Remotes, script server (garasi + donate alerts)
 lune run tools/patch-road-glide.luau     # motor → ServerStorage/Vehicles.rbxm
 lune run tools/check.luau                # compile semua script di file model
 lune run tools/test-rider-visuals.luau   # tes badan pengendara R6 (kepala, wajah, rambut)
 ```
 
-Preview PNG: jalankan kedua build dengan `-- --tree`, lalu `node tools/preview/render.cjs` (butuh Playwright dan font Montserrat di `build/fonts`).
+Preview PNG: jalankan kedua build dengan `-- --tree` (Donate Alerts ikut dari `tools/build.luau`), lalu `node tools/preview/render.cjs` (butuh Playwright dan font Montserrat di `build/fonts`).

@@ -14,6 +14,9 @@ local FILES = {
 	"StarterGui/VehicleSpawnerGui.rbxmx",
 	"ReplicatedStorage/VehicleSpawner.rbxmx",
 	"ServerScriptService/VehicleSpawnerServer.rbxmx",
+	"StarterGui/DonateAlertsGui.rbxmx",
+	"ReplicatedStorage/DonateAlerts.rbxmx",
+	"ServerScriptService/DonateAlertsServer.rbxmx",
 	"ServerStorage/Vehicles.rbxm",
 }
 
