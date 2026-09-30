@@ -12,12 +12,13 @@ const ROOT = path.resolve(__dirname, "../..");
 const FONT_DIR = path.join(ROOT, "build/fonts/package/files");
 const readTree = (file) => JSON.parse(fs.readFileSync(path.join(ROOT, file), "utf8"));
 
-// build/tree.json: `lune run tools/build.luau -- --tree`
+// build/tree.json, build/music-tree.json: `lune run tools/build.luau -- --tree`
 // build/touch-tree.json: `lune run tools/patch-road-glide.luau -- --tree`
 const SHOTS = [
 	{ tree: "build/tree.json", file: "docs/preview-desktop.png", width: 1280, height: 720 },
 	{ tree: "build/tree.json", file: "docs/preview-phone.png", width: 844, height: 390 },
 	{ tree: "build/touch-tree.json", file: "docs/preview-touch.png", width: 844, height: 390 },
+	{ tree: "build/music-tree.json", file: "docs/preview-music.png", width: 420, height: 110 },
 ];
 
 const fontFaces = [400, 500, 600, 700, 800]

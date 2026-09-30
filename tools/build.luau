@@ -2,6 +2,7 @@
 	Builds the Studio model files from src/:
 
 	  StarterGui/VehicleSpawnerGui.rbxmx          GUI + VehicleSpawnerClient (LocalScript)
+	  StarterGui/MusicRefreshGui.rbxmx            refresh-music button + MusicRefreshClient
 	  ReplicatedStorage/VehicleSpawner.rbxmx      Config (ModuleScript) + Remotes
 	  ServerScriptService/VehicleSpawnerServer.rbxmx
 
@@ -50,13 +51,21 @@ local env = setmetatable({
 	NumberSequenceKeypoint = roblox.NumberSequenceKeypoint,
 }, { __index = getfenv(1) })
 
-local GUI_SOURCE = "src/gui/VehicleSpawnerGui.luau"
-local gui = luau.load(fs.readFile(GUI_SOURCE), { debugName = GUI_SOURCE, environment = env })()
-gui.Parent = nil
+local function buildGui(source)
+	local gui = luau.load(fs.readFile(source), { debugName = source, environment = env })()
+	gui.Parent = nil
+	return gui
+end
+
+local gui = buildGui("src/gui/VehicleSpawnerGui.luau")
 script("LocalScript", "VehicleSpawnerClient", "src/client/VehicleSpawnerClient.luau", gui)
 
 fs.writeDir("StarterGui")
 write("StarterGui/VehicleSpawnerGui.rbxmx", gui)
+
+local musicGui = buildGui("src/gui/MusicRefreshGui.luau")
+script("LocalScript", "MusicRefreshClient", "src/client/MusicRefreshClient.luau", musicGui)
+write("StarterGui/MusicRefreshGui.rbxmx", musicGui)
 
 -- ReplicatedStorage.VehicleSpawner
 local shared = Instance.new("Folder")
@@ -83,4 +92,31 @@ if table.find(process.args, "--tree") then
 	fs.writeDir("build")
 	fs.writeFile("build/tree.json", serde.encode("json", dump(gui), true))
 	print("Wrote build/tree.json")
+
+	-- Music button where MusicRefreshClient puts it: left of a stand-in
+	-- Donate button (100 x 36 at the Donate button's 36 px height), toast showing.
+	local preview = musicGui:Clone()
+	local button = preview.RefreshButton
+	button.Position = roblox.UDim2.new(1, -12 - 110 - 8, 0, 11)
+	button.Toast.Visible = true
+	local donate = Instance.new("TextButton")
+	donate.Name = "Donate (stand-in)"
+	donate.AnchorPoint = roblox.Vector2.new(1, 0)
+	donate.Position = roblox.UDim2.new(1, -12, 0, 11)
+	donate.Size = roblox.UDim2.fromOffset(110, 36)
+	donate.BackgroundColor3 = roblox.Color3.fromRGB(46, 160, 90)
+	donate.BackgroundTransparency = 0
+	donate.Text = ""
+	donate.Parent = preview
+	local round = Instance.new("UICorner")
+	round.CornerRadius = roblox.UDim.new(0.5, 0)
+	round.Parent = donate
+	local text = button.Label:Clone()
+	text.Text = "DONATE"
+	text.Position = roblox.UDim2.fromScale(0, 11.5 / 36)
+	text.Size = roblox.UDim2.fromScale(1, 13 / 36)
+	text.TextXAlignment = roblox.Enum.TextXAlignment.Center
+	text.Parent = donate
+	fs.writeFile("build/music-tree.json", serde.encode("json", dump(preview), true))
+	print("Wrote build/music-tree.json")
 end

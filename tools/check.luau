@@ -12,6 +12,7 @@ local roblox = require("@lune/roblox")
 
 local FILES = {
 	"StarterGui/VehicleSpawnerGui.rbxmx",
+	"StarterGui/MusicRefreshGui.rbxmx",
 	"ReplicatedStorage/VehicleSpawner.rbxmx",
 	"ServerScriptService/VehicleSpawnerServer.rbxmx",
 	"ServerStorage/Vehicles.rbxm",

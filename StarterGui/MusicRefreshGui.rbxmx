@@ -1,0 +1,805 @@
+<roblox version="4">
+  <Item class="ScreenGui" referent="0">
+    <Properties>
+      <string name="Name">MusicRefreshGui</string>
+      <int name="DisplayOrder">5</int>
+      <bool name="ResetOnSpawn">false</bool>
+      <token name="ScreenInsets">1</token>
+      <token name="ZIndexBehavior">1</token>
+    </Properties>
+    <Item class="TextButton" referent="1">
+      <Properties>
+        <string name="Name">RefreshButton</string>
+        <Vector2 name="AnchorPoint">
+          <X>1</X>
+          <Y>0</Y>
+        </Vector2>
+        <bool name="AutoButtonColor">true</bool>
+        <Color3 name="BackgroundColor3">
+          <R>0.06666667</R>
+          <G>0.078431375</G>
+          <B>0.105882354</B>
+        </Color3>
+        <float name="BackgroundTransparency">0.08</float>
+        <int name="BorderSizePixel">0</int>
+        <UDim2 name="Position">
+          <XS>1</XS>
+          <XO>-12</XO>
+          <YS>0</YS>
+          <YO>11</YO>
+        </UDim2>
+        <UDim2 name="Size">
+          <XS>0</XS>
+          <XO>100</XO>
+          <YS>0</YS>
+          <YO>36</YO>
+        </UDim2>
+        <string name="Text"></string>
+      </Properties>
+      <Item class="UICorner" referent="2">
+        <Properties>
+          <string name="Name">UICorner</string>
+          <UDim name="BottomLeftRadius">
+            <S>0.5</S>
+            <O>0</O>
+          </UDim>
+          <UDim name="BottomRightRadius">
+            <S>0.5</S>
+            <O>0</O>
+          </UDim>
+          <UDim name="TopLeftRadius">
+            <S>0.5</S>
+            <O>0</O>
+          </UDim>
+          <UDim name="TopRightRadius">
+            <S>0.5</S>
+            <O>0</O>
+          </UDim>
+        </Properties>
+      </Item>
+      <Item class="UIStroke" referent="3">
+        <Properties>
+          <string name="Name">UIStroke</string>
+          <token name="ApplyStrokeMode">1</token>
+          <Color3 name="Color">
+            <R>1</R>
+            <G>0.74509805</G>
+            <B>0.21960784</B>
+          </Color3>
+          <float name="Thickness">1.5</float>
+          <float name="Transparency">0.45</float>
+        </Properties>
+      </Item>
+      <Item class="TextLabel" referent="4">
+        <Properties>
+          <string name="Name">Icon</string>
+          <float name="BackgroundTransparency">1</float>
+          <Font name="FontFace">
+            <Family>
+              <url>rbxasset://fonts/families/Montserrat.json</url>
+            </Family>
+            <Weight>400</Weight>
+            <Style>Normal</Style>
+          </Font>
+          <UDim2 name="Position">
+            <XS>0.11</XS>
+            <XO>0</XO>
+            <YS>0.25</YS>
+            <YO>0</YO>
+          </UDim2>
+          <UDim2 name="Size">
+            <XS>0.18</XS>
+            <XO>0</XO>
+            <YS>0.5</YS>
+            <YO>0</YO>
+          </UDim2>
+          <string name="Text">🔄</string>
+          <Color3 name="TextColor3">
+            <R>1</R>
+            <G>1</G>
+            <B>1</B>
+          </Color3>
+          <bool name="TextScaled">true</bool>
+          <float name="TextSize">18</float>
+          <token name="TextXAlignment">2</token>
+          <token name="TextYAlignment">1</token>
+        </Properties>
+      </Item>
+      <Item class="TextLabel" referent="5">
+        <Properties>
+          <string name="Name">Label</string>
+          <float name="BackgroundTransparency">1</float>
+          <Font name="FontFace">
+            <Family>
+              <url>rbxasset://fonts/families/Montserrat.json</url>
+            </Family>
+            <Weight>800</Weight>
+            <Style>Normal</Style>
+          </Font>
+          <UDim2 name="Position">
+            <XS>0.35</XS>
+            <XO>0</XO>
+            <YS>0.31944445</YS>
+            <YO>0</YO>
+          </UDim2>
+          <UDim2 name="Size">
+            <XS>0.54</XS>
+            <XO>0</XO>
+            <YS>0.3611111</YS>
+            <YO>0</YO>
+          </UDim2>
+          <string name="Text">MUSIC</string>
+          <Color3 name="TextColor3">
+            <R>0.9607843</R>
+            <G>0.9647059</G>
+            <B>0.972549</B>
+          </Color3>
+          <bool name="TextScaled">true</bool>
+          <float name="TextSize">13</float>
+          <token name="TextXAlignment">0</token>
+          <token name="TextYAlignment">1</token>
+        </Properties>
+      </Item>
+      <Item class="Frame" referent="6">
+        <Properties>
+          <string name="Name">Toast</string>
+          <Vector2 name="AnchorPoint">
+            <X>1</X>
+            <Y>0</Y>
+          </Vector2>
+          <Color3 name="BackgroundColor3">
+            <R>0.06666667</R>
+            <G>0.078431375</G>
+            <B>0.105882354</B>
+          </Color3>
+          <float name="BackgroundTransparency">0.04</float>
+          <int name="BorderSizePixel">0</int>
+          <UDim2 name="Position">
+            <XS>1</XS>
+            <XO>0</XO>
+            <YS>1</YS>
+            <YO>6</YO>
+          </UDim2>
+          <UDim2 name="Size">
+            <XS>1.7</XS>
+            <XO>0</XO>
+            <YS>0.8333333</YS>
+            <YO>0</YO>
+          </UDim2>
+          <bool name="Visible">false</bool>
+          <int name="ZIndex">2</int>
+        </Properties>
+        <Item class="UICorner" referent="7">
+          <Properties>
+            <string name="Name">UICorner</string>
+            <UDim name="BottomLeftRadius">
+              <S>0.3</S>
+              <O>0</O>
+            </UDim>
+            <UDim name="BottomRightRadius">
+              <S>0.3</S>
+              <O>0</O>
+            </UDim>
+            <UDim name="TopLeftRadius">
+              <S>0.3</S>
+              <O>0</O>
+            </UDim>
+            <UDim name="TopRightRadius">
+              <S>0.3</S>
+              <O>0</O>
+            </UDim>
+          </Properties>
+        </Item>
+        <Item class="UIStroke" referent="8">
+          <Properties>
+            <string name="Name">UIStroke</string>
+            <token name="ApplyStrokeMode">1</token>
+            <Color3 name="Color">
+              <R>1</R>
+              <G>1</G>
+              <B>1</B>
+            </Color3>
+            <float name="Thickness">1</float>
+            <float name="Transparency">0.86</float>
+          </Properties>
+        </Item>
+        <Item class="Frame" referent="9">
+          <Properties>
+            <string name="Name">Dot</string>
+            <Color3 name="BackgroundColor3">
+              <R>0.23921569</R>
+              <G>0.8627451</G>
+              <B>0.5921569</B>
+            </Color3>
+            <int name="BorderSizePixel">0</int>
+            <UDim2 name="Position">
+              <XS>0.07058824</XS>
+              <XO>0</XO>
+              <YS>0.36666667</YS>
+              <YO>0</YO>
+            </UDim2>
+            <UDim2 name="Size">
+              <XS>0.047058824</XS>
+              <XO>0</XO>
+              <YS>0.26666668</YS>
+              <YO>0</YO>
+            </UDim2>
+            <int name="ZIndex">2</int>
+          </Properties>
+          <Item class="UICorner" referent="10">
+            <Properties>
+              <string name="Name">UICorner</string>
+              <UDim name="BottomLeftRadius">
+                <S>0.5</S>
+                <O>0</O>
+              </UDim>
+              <UDim name="BottomRightRadius">
+                <S>0.5</S>
+                <O>0</O>
+              </UDim>
+              <UDim name="TopLeftRadius">
+                <S>0.5</S>
+                <O>0</O>
+              </UDim>
+              <UDim name="TopRightRadius">
+                <S>0.5</S>
+                <O>0</O>
+              </UDim>
+            </Properties>
+          </Item>
+        </Item>
+        <Item class="TextLabel" referent="11">
+          <Properties>
+            <string name="Name">Message</string>
+            <float name="BackgroundTransparency">1</float>
+            <Font name="FontFace">
+              <Family>
+                <url>rbxasset://fonts/families/Montserrat.json</url>
+              </Family>
+              <Weight>600</Weight>
+              <Style>Normal</Style>
+            </Font>
+            <UDim2 name="Position">
+              <XS>0.16470589</XS>
+              <XO>0</XO>
+              <YS>0.3</YS>
+              <YO>0</YO>
+            </UDim2>
+            <UDim2 name="Size">
+              <XS>0.7764706</XS>
+              <XO>0</XO>
+              <YS>0.4</YS>
+              <YO>0</YO>
+            </UDim2>
+            <string name="Text">Music refreshed</string>
+            <Color3 name="TextColor3">
+              <R>0.9607843</R>
+              <G>0.9647059</G>
+              <B>0.972549</B>
+            </Color3>
+            <bool name="TextScaled">true</bool>
+            <float name="TextSize">12</float>
+            <token name="TextXAlignment">0</token>
+            <token name="TextYAlignment">1</token>
+            <int name="ZIndex">2</int>
+          </Properties>
+        </Item>
+      </Item>
+    </Item>
+    <Item class="LocalScript" referent="12">
+      <Properties>
+        <string name="Name">MusicRefreshClient</string>
+        <string name="Source"><![CDATA[--[[
+	MusicRefreshClient (LocalScript di dalam StarterGui.MusicRefreshGui)
+
+	Tombol MUSIC di samping tombol Donate (pojok kanan atas). Kalau musik
+	ngebug (tidak bunyi, macet, atau dobel), pemain menekan tombol ini:
+
+	  1. Lagu yang sedang diputar dimuat ulang lalu dilanjutkan dari detik
+	     yang sama.
+	  2. Lagu yang sama yang berbunyi dua kali (dobel) dihentikan satu.
+	  3. Kalau tidak ada musik yang berbunyi sama sekali, musik diputar lagi.
+
+	Hanya berlaku untuk pemain yang menekan, pemain lain tidak terpengaruh.
+	Tidak perlu script server.
+
+	Musik dicari otomatis di Workspace, SoundService, PlayerGui, dan
+	PlayerScripts: Sound yang namanya (atau nama folder/induknya) mengandung
+	salah satu kata di MusicWords, atau Sound 2D (bukan di dalam Part) yang
+	Looped atau panjangnya lebih dari 20 detik. Suara kendaraan, karakter,
+	dan efek pendek tidak ikut. Kalau musikmu tidak ketemu, isi MusicPaths.
+]]
+
+local Settings = {
+	-- Posisi tombol
+	FollowDonateButton = true, -- tempel di samping tombol Donate. false = pakai posisi RefreshButton yang diatur di Studio
+	DonateButtonName = "", -- nama persis tombol Donate kalau tidak ketemu otomatis (kosong = cari tulisan "Donate"/"Donasi")
+	Side = "Left", -- "Left", "Right", atau "Below": di sisi mana dari tombol Donate
+	Gap = 8, -- jarak ke tombol Donate (pixel)
+
+	-- Musik
+	MusicPaths = {}, -- kosong = cari otomatis. Contoh: { "Workspace.Music", "SoundService.BGM", "PlayerGui.MusicPlayer" }
+	MusicWords = { "music", "musik", "song", "lagu", "bgm", "radio", "playlist", "soundtrack" },
+	PlayWhenSilent = true, -- kalau tidak ada musik yang berbunyi, putar musik (hanya untuk pemain ini)
+	Cooldown = 3, -- detik sebelum tombol bisa ditekan lagi
+
+	Messages = {
+		Refreshed = "Music refreshed",
+		Started = "Music started",
+		NotPlaying = "No music is playing",
+		NotFound = "No music found",
+		Failed = "Couldn't refresh the music",
+	},
+}
+
+local ContentProvider = game:GetService("ContentProvider")
+local Players = game:GetService("Players")
+local RunService = game:GetService("RunService")
+local SoundService = game:GetService("SoundService")
+local TweenService = game:GetService("TweenService")
+
+local player = Players.LocalPlayer
+local playerGui = player:WaitForChild("PlayerGui")
+local gui = script.Parent
+local button = gui:WaitForChild("RefreshButton")
+local icon = button:WaitForChild("Icon")
+local label = button:WaitForChild("Label")
+local toast = button:WaitForChild("Toast")
+local toastMessage = toast:WaitForChild("Message")
+local toastDot = toast:WaitForChild("Dot")
+
+local MIN_LENGTH = 20 -- detik; Sound 2D sepanjang ini atau lebih dianggap musik
+local LOAD_TIMEOUT = 6 -- detik menunggu lagu selesai dimuat ulang
+local SEARCH_INTERVAL = 1.5 -- detik antar pencarian tombol Donate
+local MIN_HEIGHT, MAX_HEIGHT = 24, 56
+local DONATE_WORDS = { "donat", "donas" } -- donate, donation, donasi
+
+local COLORS = {
+	Green = Color3.fromRGB(61, 220, 151),
+	Red = Color3.fromRGB(255, 85, 102),
+}
+
+local function hasWord(text, words)
+	text = string.lower(text)
+	for _, word in words do
+		if string.find(text, string.lower(word), 1, true) then
+			return true
+		end
+	end
+	return false
+end
+
+---------------------------------------------------------------------------
+-- Finding the music
+---------------------------------------------------------------------------
+
+-- "Workspace.Music" -> workspace.Music. PlayerGui/PlayerScripts are the local player's.
+local function resolve(path)
+	local parts = string.split(path, ".")
+	local node
+	if parts[1] == "PlayerGui" or parts[1] == "PlayerScripts" then
+		node = player:FindFirstChild(parts[1])
+	elseif string.lower(parts[1]) == "workspace" then
+		node = workspace
+	else
+		local ok, service = pcall(game.GetService, game, parts[1])
+		node = if ok then service else game:FindFirstChild(parts[1])
+	end
+	for i = 2, #parts do
+		node = node and node:FindFirstChild(parts[i])
+	end
+	return node
+end
+
+local function namedAsMusic(sound, root)
+	local node = sound
+	while node and node ~= root do
+		if hasWord(node.Name, Settings.MusicWords) then
+			return true
+		end
+		node = node.Parent
+	end
+	return false
+end
+
+-- Sounds inside a Part or Attachment play from that spot in the world
+-- (engines, horns, other players' radios); music is 2D.
+local function isPositional(sound)
+	return sound:FindFirstAncestorWhichIsA("BasePart") ~= nil or sound:FindFirstAncestorWhichIsA("Attachment") ~= nil
+end
+
+local function collect(root, explicit, characters, found, seen)
+	local items = root:GetDescendants()
+	table.insert(items, root)
+	for _, sound in items do
+		if not sound:IsA("Sound") or seen[sound] or sound.SoundId == "" then
+			continue
+		end
+		local named = explicit
+		if not explicit then
+			if isPositional(sound) then
+				continue
+			end
+			local onCharacter = false
+			for _, character in characters do
+				if sound:IsDescendantOf(character) then
+					onCharacter = true
+					break
+				end
+			end
+			if onCharacter then
+				continue
+			end
+			named = namedAsMusic(sound, root)
+			local long = sound.Looped or sound.TimeLength >= MIN_LENGTH or (sound.Playing and not sound.IsLoaded)
+			if not named and not long then
+				continue
+			end
+		end
+		seen[sound] = true
+		table.insert(found, { sound = sound, named = named })
+	end
+end
+
+-- Returns { { sound = Sound, named = boolean } }. Named ones are surely music.
+local function findMusic()
+	local found, seen = {}, {}
+	if #Settings.MusicPaths > 0 then
+		for _, path in Settings.MusicPaths do
+			local root = resolve(path)
+			if root then
+				collect(root, true, {}, found, seen)
+			else
+				warn(`[MusicRefresh] MusicPaths: "{path}" tidak ditemukan`)
+			end
+		end
+		return found
+	end
+
+	local characters = {}
+	for _, other in Players:GetPlayers() do
+		if other.Character then
+			table.insert(characters, other.Character)
+		end
+	end
+	local roots = { SoundService, workspace, playerGui }
+	local playerScripts = player:FindFirstChild("PlayerScripts")
+	if playerScripts then
+		table.insert(roots, playerScripts)
+	end
+	for _, root in roots do
+		collect(root, false, characters, found, seen)
+	end
+	return found
+end
+
+---------------------------------------------------------------------------
+-- Refreshing
+---------------------------------------------------------------------------
+
+-- Re-downloads the song and plays it again from `at` seconds. Only this
+-- player hears the change (as long as SoundService.RespectFilteringEnabled
+-- is on, the default).
+local function reload(sound, at)
+	local id = sound.SoundId
+	sound:Stop()
+	sound.SoundId = ""
+	task.wait()
+	if sound.SoundId ~= "" then
+		return -- the game switched songs in the meantime
+	end
+	sound.SoundId = id
+	task.spawn(pcall, ContentProvider.PreloadAsync, ContentProvider, { sound })
+	local deadline = os.clock() + LOAD_TIMEOUT
+	while not sound.IsLoaded and os.clock() < deadline and sound.Parent do
+		task.wait(0.1)
+	end
+	if sound.SoundId ~= id or not sound.Parent then
+		return
+	end
+	sound:Play()
+	if at > 0 and (sound.TimeLength == 0 or at < sound.TimeLength - 1) then
+		sound.TimePosition = at
+	end
+end
+
+local function reloadAll(sounds)
+	local pending = #sounds
+	for _, sound in sounds do
+		local at = sound.TimePosition
+		task.spawn(function()
+			local ok, err = pcall(reload, sound, at)
+			if not ok then
+				warn(`[MusicRefresh] {sound:GetFullName()}: {err}`)
+			end
+			pending -= 1
+		end)
+	end
+	local deadline = os.clock() + LOAD_TIMEOUT + 1
+	while pending > 0 and os.clock() < deadline do
+		task.wait(0.1)
+	end
+end
+
+-- Music this script started itself because nothing was playing. It plays
+-- the found songs one after another and steps aside as soon as the game's
+-- own music starts again.
+local fallback = { token = 0, sound = nil, connections = {} }
+
+local function stopFallback()
+	fallback.token += 1
+	for _, connection in fallback.connections do
+		connection:Disconnect()
+	end
+	table.clear(fallback.connections)
+	local sound = fallback.sound
+	fallback.sound = nil
+	if sound and sound.Parent then
+		sound:Stop()
+	end
+end
+
+local function startFallback(found)
+	local playlist = {}
+	for _, entry in found do
+		if entry.named then
+			table.insert(playlist, entry.sound)
+		end
+	end
+	if #playlist == 0 then
+		for _, entry in found do
+			table.insert(playlist, entry.sound)
+		end
+	end
+	if #playlist == 0 then
+		return false
+	end
+
+	stopFallback()
+	local token = fallback.token
+	local index = math.random(#playlist)
+
+	local function playNext()
+		if fallback.token ~= token then
+			return
+		end
+		local sound = playlist[index]
+		index = index % #playlist + 1
+		fallback.sound = sound
+		reload(sound, 0)
+	end
+
+	for _, sound in playlist do
+		table.insert(fallback.connections, sound.Ended:Connect(function()
+			if sound == fallback.sound and fallback.token == token then
+				task.spawn(playNext)
+			end
+		end))
+	end
+	for _, entry in found do
+		local sound = entry.sound
+		table.insert(fallback.connections, sound:GetPropertyChangedSignal("Playing"):Connect(function()
+			if sound.Playing and sound ~= fallback.sound and fallback.token == token then
+				stopFallback()
+			end
+		end))
+	end
+
+	playNext()
+	return true
+end
+
+-- Returns ok, message.
+local function refresh()
+	local found = findMusic()
+	if #found == 0 then
+		return false, Settings.Messages.NotFound
+	end
+
+	local active, playingIds = {}, {}
+	for _, entry in found do
+		local sound = entry.sound
+		if sound == fallback.sound or not (sound.Playing or sound.IsPlaying) then
+			continue
+		end
+		if playingIds[sound.SoundId] then
+			sound:Stop() -- the same song playing twice
+		else
+			playingIds[sound.SoundId] = true
+			table.insert(active, sound)
+		end
+	end
+
+	if #active > 0 then
+		stopFallback()
+		reloadAll(active)
+		return true, Settings.Messages.Refreshed
+	end
+	if fallback.sound and fallback.sound.Parent then
+		reloadAll({ fallback.sound })
+		return true, Settings.Messages.Refreshed
+	end
+	if Settings.PlayWhenSilent and startFallback(found) then
+		return true, Settings.Messages.Started
+	end
+	return false, Settings.Messages.NotPlaying
+end
+
+---------------------------------------------------------------------------
+-- Button
+---------------------------------------------------------------------------
+
+local toastToken = 0
+local function notify(text, ok)
+	toastToken += 1
+	local token = toastToken
+	toastMessage.Text = text
+	toastDot.BackgroundColor3 = if ok then COLORS.Green else COLORS.Red
+	toast.Visible = true
+	task.delay(2.5, function()
+		if toastToken == token then
+			toast.Visible = false
+		end
+	end)
+end
+
+local spin = TweenService:Create(
+	icon,
+	TweenInfo.new(0.8, Enum.EasingStyle.Linear, Enum.EasingDirection.In, -1),
+	{ Rotation = 360 }
+)
+
+local busy = false
+button.Activated:Connect(function()
+	if busy then
+		return
+	end
+	busy = true
+	icon.Rotation = 0
+	spin:Play()
+
+	local ran, ok, message = pcall(refresh)
+	spin:Cancel()
+	icon.Rotation = 0
+	if ran then
+		notify(message, ok)
+	else
+		warn(`[MusicRefresh] {ok}`)
+		notify(Settings.Messages.Failed, false)
+	end
+
+	icon.TextTransparency = 0.5
+	label.TextTransparency = 0.5
+	task.wait(Settings.Cooldown)
+	icon.TextTransparency = 0
+	label.TextTransparency = 0
+	busy = false
+end)
+
+---------------------------------------------------------------------------
+-- Sitting next to the Donate button
+---------------------------------------------------------------------------
+
+local homeSize = button.Size
+local aspect = if homeSize.X.Offset > 0 and homeSize.Y.Offset > 0 then homeSize.X.Offset / homeSize.Y.Offset else 2.8
+
+local function isShown(object)
+	local node = object
+	while node and node ~= playerGui do
+		if (node:IsA("GuiObject") and not node.Visible) or (node:IsA("LayerCollector") and not node.Enabled) then
+			return false
+		end
+		node = node.Parent
+	end
+	return node == playerGui
+end
+
+-- 3 = the button itself says donate, 2 = something inside it does (icon,
+-- label), 1 = only its frame/ScreenGui does.
+local function donateScore(object)
+	if Settings.DonateButtonName ~= "" then
+		return if object.Name == Settings.DonateButtonName then 3 else 0
+	end
+	if not object:IsA("GuiButton") then
+		return 0
+	end
+	if hasWord(object.Name, DONATE_WORDS) or (object:IsA("TextButton") and hasWord(object.Text, DONATE_WORDS)) then
+		return 3
+	end
+	for _, child in object:GetDescendants() do
+		local text = if child:IsA("TextLabel") or child:IsA("TextButton") then child.Text else ""
+		if hasWord(child.Name, DONATE_WORDS) or hasWord(text, DONATE_WORDS) then
+			return 2
+		end
+	end
+	local node = object.Parent
+	while node and node ~= playerGui do
+		if hasWord(node.Name, DONATE_WORDS) then
+			return 1
+		end
+		node = node.Parent
+	end
+	return 0
+end
+
+-- The best visible donate button in the top-right part of the screen.
+local function findDonateButton()
+	local best, bestScore, bestY = nil, 0, 0
+	for _, object in playerGui:GetDescendants() do
+		if not object:IsA("GuiObject") or object:IsDescendantOf(gui) then
+			continue
+		end
+		local score = donateScore(object)
+		if score == 0 or not isShown(object) then
+			continue
+		end
+		local screenGui = object:FindFirstAncestorWhichIsA("ScreenGui")
+		local position, size = object.AbsolutePosition, object.AbsoluteSize
+		if not screenGui or size.Y < 8 then
+			continue
+		end
+		if Settings.DonateButtonName == "" then
+			local screen = screenGui.AbsoluteSize
+			if position.X + size.X / 2 < screen.X * 0.5 or position.Y + size.Y / 2 > screen.Y * 0.4 then
+				continue
+			end
+		end
+		if score > bestScore or (score == bestScore and position.Y < bestY) then
+			best, bestScore, bestY = object, score, position.Y
+		end
+	end
+	return best
+end
+
+local target = nil
+local lastSearch = -math.huge
+
+local function follow()
+	if not (target and target.Parent and isShown(target)) then
+		-- Keep the last spot while the Donate button is hidden or being rebuilt.
+		if os.clock() - lastSearch < SEARCH_INTERVAL then
+			return
+		end
+		lastSearch = os.clock()
+		target = findDonateButton()
+		if not target then
+			return
+		end
+		-- Same inset settings -> same coordinates as the Donate button's ScreenGui.
+		local screenGui = target:FindFirstAncestorWhichIsA("ScreenGui")
+		gui.IgnoreGuiInset = screenGui.IgnoreGuiInset
+		pcall(function()
+			gui.ScreenInsets = screenGui.ScreenInsets
+		end)
+	end
+
+	local position, size = target.AbsolutePosition, target.AbsoluteSize
+	local height = math.clamp(size.Y, MIN_HEIGHT, MAX_HEIGHT)
+	local width = math.floor(height * aspect + 0.5)
+	local gap = Settings.Gap
+	local x, y
+	if Settings.Side == "Right" then
+		x, y = position.X + size.X + gap, position.Y + (size.Y - height) / 2
+	elseif Settings.Side == "Below" then
+		x, y = position.X + size.X - width, position.Y + size.Y + gap
+	else
+		x, y = position.X - gap - width, position.Y + (size.Y - height) / 2
+	end
+
+	local newPosition = UDim2.fromOffset(math.floor(x + 0.5), math.floor(y + 0.5))
+	local newSize = UDim2.fromOffset(width, math.floor(height + 0.5))
+	if button.Position ~= newPosition or button.Size ~= newSize then
+		button.AnchorPoint = Vector2.new(0, 0)
+		button.Position = newPosition
+		button.Size = newSize
+	end
+end
+
+if Settings.FollowDonateButton then
+	RunService.RenderStepped:Connect(follow)
+end
+]]></string>
+      </Properties>
+    </Item>
+  </Item>
+</roblox>

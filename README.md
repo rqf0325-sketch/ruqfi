@@ -1,6 +1,6 @@
 # Vehicle Spawner + HD Road Glide ST CVO
 
-Menu spawn kendaraan untuk Roblox (GUI + sistem) plus motor **HD Road Glide ST CVO** yang sudah diperbaiki supaya bisa dikendarai normal di **R6** (juga R15), di PC maupun HP.
+Menu spawn kendaraan untuk Roblox (GUI + sistem) plus motor **HD Road Glide ST CVO** yang sudah diperbaiki supaya bisa dikendarai normal di **R6** (juga R15), di PC maupun HP. Ada juga [tombol **Refresh Musik**](#tombol-refresh-musik) di samping tombol Donate.
 
 ![Menu](docs/preview-desktop.png)
 
@@ -66,6 +66,36 @@ Semua pilihan dijelaskan di dalam Config. `GamepassId` dipakai untuk mengunci ke
 
 Config sudah berisi Chopper Howlers, Bobber Howlers, BMW R 80, dan Chicano Howlers dari menu lama. Keempatnya **tersembunyi** sampai modelnya ada di `ServerStorage > Vehicles`. Isi `GamepassId` kedua motor "Limited Motorcycle Pass" dengan ID gamepass-mu.
 
+## Tombol Refresh Musik
+
+![Tombol MUSIC di samping tombol Donate](docs/preview-music.png)
+
+Tombol **🔄 MUSIC** untuk pemain yang musiknya ngebug (tidak bunyi, macet, atau dobel). Tombol ini otomatis menempel di **sebelah kiri tombol Donate** di pojok kanan atas, dengan tinggi yang sama.
+
+**Cara pasang:** download `StarterGui/MusicRefreshGui.rbxmx`, lalu di Roblox Studio klik kanan **StarterGui**, pilih **Insert from File...**, dan pilih filenya. Tidak perlu script server, dan sistem musik yang sudah ada tidak perlu diubah.
+
+Saat tombol ditekan:
+
+- Lagu yang sedang diputar dimuat ulang lalu dilanjutkan dari detik yang sama.
+- Kalau lagu yang sama berbunyi dua kali (dobel), satu dihentikan.
+- Kalau tidak ada musik yang berbunyi sama sekali, musik diputar lagi (lanjut ke lagu berikutnya setelah selesai), lalu berhenti sendiri begitu musik dari game-mu jalan lagi.
+
+Semua ini hanya berlaku untuk pemain yang menekan tombol. Pemain lain tidak terpengaruh.
+
+Musik dicari otomatis di Workspace, SoundService, PlayerGui, dan PlayerScripts. Yang dianggap musik: Sound yang namanya atau nama foldernya mengandung *music, musik, song, lagu, bgm, radio, playlist,* atau *soundtrack*, dan Sound 2D (tidak di dalam Part) yang Looped atau panjangnya minimal 20 detik. Suara motor, karakter, dan efek pendek tidak ikut.
+
+Pengaturannya ada di bagian atas LocalScript `MusicRefreshGui > MusicRefreshClient` (`Settings`):
+
+| Pengaturan | Fungsi |
+|---|---|
+| `DonateButtonName` | Nama tombol Donate, kalau tombolnya tidak ketemu otomatis. Tanpa ini, yang dicari adalah tombol di kanan atas yang bertuliskan "Donate"/"Donasi" (di nama, teks, atau label di dalamnya). |
+| `Side`, `Gap` | Letak tombol terhadap tombol Donate: kiri (`"Left"`), kanan (`"Right"`), atau bawah (`"Below"`), dan jaraknya dalam pixel. |
+| `FollowDonateButton` | `false` = tidak menempel ke Donate. Tombol memakai posisi `RefreshButton` yang kamu atur sendiri di Studio. |
+| `MusicPaths` | Isi kalau musikmu tidak ketemu, mis. `{ "Workspace.Music", "SoundService.BGM" }`. |
+| `PlayWhenSilent` | `false` = jangan memutar musik saat tidak ada musik yang berbunyi. |
+
+Kalau tombol Donate tidak ditemukan, tombol MUSIC tetap muncul di pojok kanan atas.
+
 ## Perbaikan pada model motor
 
 Model aslinya punya beberapa masalah yang membuatnya tidak bisa dikendarai normal. Semuanya diperbaiki oleh `tools/patch-road-glide.luau`:
@@ -96,6 +126,7 @@ Model aslinya punya beberapa masalah yang membuatnya tidak bisa dikendarai norma
 ## Catatan
 
 - Sistem ini belum dicoba langsung di Roblox Studio. Semua script sudah lolos compile Luau dan linter (selene), dan semua path objek yang dipakai script sudah dicek ada di file model. Tetap coba dulu di Studio (Play) sebelum dipublish.
+- Tombol refresh musik juga belum dicoba di Studio. Logikanya diuji dengan simulasi (`tools/test-music-refresh.luau`): musik macet, lagu dobel, musik mati, lagu yang diganti game di tengah refresh, dan posisi di samping tombol Donate.
 - Statistik di panel detail (Top Speed, dan lain-lain) hanya tampilan dan diisi manual di Config. Performa motor asli diatur di `Tuner` di dalam model motornya.
 - Kalau motor muncul menghadap arah yang salah, ubah `SpawnRotation` di Config.
 
@@ -108,6 +139,7 @@ lune run tools/build.luau                # GUI, Config/Remotes, script server
 lune run tools/patch-road-glide.luau     # motor → ServerStorage/Vehicles.rbxm
 lune run tools/check.luau                # compile semua script di file model
 lune run tools/test-rider-visuals.luau   # tes badan pengendara R6 (kepala, wajah, rambut)
+lune run tools/test-music-refresh.luau   # tes tombol refresh musik
 ```
 
 Preview PNG: jalankan kedua build dengan `-- --tree`, lalu `node tools/preview/render.cjs` (butuh Playwright dan font Montserrat di `build/fonts`).
